@@ -78,7 +78,7 @@ body {
   box-shadow: 0 0 25px rgba(197, 160, 89, 0.4);
 }
 
-/* 3. CONTENEDOR PRINCIPAL */
+/* 3. CONTENEDOR PRINCIPAL - SAFE AREA FIX */
 .invitation-container {
   width: 100%;
   max-width: 450px;
@@ -87,7 +87,8 @@ body {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  padding: 60px 25px;
+  /* Aumentamos a 120px para proteger el logo del notch y barras de navegación */
+  padding: 120px 25px 60px 25px; 
   text-align: center;
 }
 
@@ -119,15 +120,22 @@ body {
   100% { transform: scale(1.12) rotate(1deg); }
 }
 
-/* 4. ELEMENTOS VISUALES */
+/* 4. ELEMENTOS VISUALES - BRANDING INVYRA */
+.hero-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
 .brand-logo-img {
-  width: 160px;
+  width: 180px; /* Tamaño optimizado para Invyra */
   height: auto;
-  margin: 0 auto 30px auto;
+  margin: 0 auto 40px auto;
   display: block;
   filter: drop-shadow(0 0 15px rgba(197, 160, 89, 0.3));
   mix-blend-mode: screen;
-  opacity: 0.95;
+  opacity: 1;
 }
 
 .main-title {
