@@ -1,52 +1,35 @@
 /**
- * INVYRA - Premium Digital Events
- * Proyecto: Midnight Gala (34 Años de Javier)
- * Versión: 2.0 (Master Integration)
+ * INVYRA - Final Production Build
  */
 
-// 1. CONFIGURACIÓN Y CONSTANTES
-// 1. CONFIGURACIÓN Y CONSTANTES
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyJ3LoQZeOTN2D621SNoNpN4ymGL4ml_k3tFm3V5X2p6Dm1yaKvA_WUrnIWLv5M-tue/exec";
 const TELEFONO_RSVP = "525516986744";
-
-// Cámbiar esta línea al 9 de Abril de 2027:
 const FECHA_EVENTO = "Apr 09, 2027 21:00:00";
 
-// 2. CONTROL DE ENTRADA (SPLASH SCREEN)
+// Entrada a la experiencia
 function entrarGala() {
     const splash = document.getElementById('splash-screen');
     const music = document.getElementById('bg-music');
-    
-    // Transición de salida del Intro
     splash.style.opacity = '0';
-    
-    // Inicio de la música emocional (Nyxoria Project)
     music.volume = 0.4;
-    music.play().catch(err => console.log("Interacción requerida para audio:", err));
-    
-    setTimeout(() => {
-        splash.style.display = 'none';
-    }, 1000);
+    music.play().catch(err => console.log("Interacción requerida:", err));
+    setTimeout(() => { splash.style.display = 'none'; }, 1000);
 }
 
-// 3. MOTOR DE REVELADO (SCROLL ANIMADO)
+// Animaciones de scroll
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('show');
-        }
+        if (entry.isIntersecting) { entry.target.classList.add('show'); }
     });
 }, { threshold: 0.15 });
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// 4. CUENTA REGRESIVA DINÁMICA
+// Cuenta regresiva
 const targetDate = new Date(FECHA_EVENTO).getTime();
-
 setInterval(() => {
     const now = new Date().getTime();
     const diff = targetDate - now;
-
     if (diff > 0) {
         document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
         document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
@@ -55,48 +38,44 @@ setInterval(() => {
     }
 }, 1000);
 
-// 5. RSVP: VALIDACIÓN, REGISTRO Y WHATSAPP
+// Flujo de confirmación interactivo
 async function confirmarAsistencia() {
     const inputNombre = document.getElementById('nombreInvitado');
+    const btnConfirmar = document.getElementById('btn-confirmar');
+    const modal = document.getElementById('rsvp-modal');
     const nombre = inputNombre.value.trim();
-    const btn = document.querySelector('.btn-rsvp');
 
-    // Validación de seguridad: No enviar si está vacío
     if (!nombre) {
-        inputNombre.style.border = "1px solid red";
+        inputNombre.style.border = "1px solid #ff4444";
         setTimeout(() => inputNombre.style.border = "1px solid rgba(197, 160, 89, 0.3)", 2000);
         return;
     }
 
-    // Estado visual de procesamiento
-    btn.innerText = "PROCESANDO...";
-    btn.disabled = true;
-
-    const datos = {
-        nombre: nombre,
-        asistencia: "Confirmado"
-    };
+    modal.classList.remove('hidden');
+    btnConfirmar.innerText = "PROCESANDO...";
+    btnConfirmar.disabled = true;
+    inputNombre.disabled = true;
 
     try {
-        // Registro en base de datos (Google Sheets) via SCRIPT_URL
         await fetch(SCRIPT_URL, {
             method: 'POST',
             mode: 'no-cors',
-            body: JSON.stringify(datos)
+            body: JSON.stringify({ nombre: nombre, asistencia: "Confirmado" })
         });
 
-        // Apertura de WhatsApp personalizada con el número configurado
-        const mensaje = encodeURIComponent(`¡Hola! Soy ${nombre}, confirmo mi asistencia a la Midnight Gala. ¡Nos vemos pronto!`);
-        window.open(`https://wa.me/${TELEFONO_RSVP}?text=${mensaje}`, '_blank');
+        btnConfirmar.innerText = "¡TODO LISTO!";
+        const mensaje = encodeURIComponent(`¡Hola! Confirmo mi asistencia a la Midnight Gala.%0A%0A*Invitado:* ${nombre}`);
         
-        // Feedback de éxito final
-        btn.innerText = "¡TODO LISTO!";
-        btn.style.background = "#25D366";
-        btn.style.color = "white";
+        setTimeout(() => {
+            window.open(`https://wa.me/${TELEFONO_RSVP}?text=${mensaje}`, '_blank');
+            modal.classList.add('hidden');
+        }, 2500);
 
     } catch (error) {
-        console.error("Error en el flujo:", error);
-        btn.innerText = "REINTENTAR";
-        btn.disabled = false;
+        console.error("Error:", error);
+        modal.classList.add('hidden');
+        btnConfirmar.innerText = "REINTENTAR";
+        btnConfirmar.disabled = false;
+        inputNombre.disabled = false;
     }
 }

@@ -1,13 +1,11 @@
-<!DOCTYPE html>
+<!<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>INVYRA | Midnight Gala - Javier</title>
   
-  <!-- Aquí va el Favicon -->
   <link rel="icon" type="image/jpeg" href="../../LOGO/FAVICON.jpeg">
-  
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
@@ -25,7 +23,6 @@
     <div class="overlay"></div>
     
     <header class="hero-section reveal">
-      <!-- Nombre exacto según tu captura image_583390.png -->
       <img src="../../LOGO/VERSIÓN FONDO OSCURO.jpeg" alt="Invyra Logo" class="brand-logo-img">
       <h2 class="pre-title">ESTÁS INVITADO A LA</h2>
       <h1 class="main-title">MIDNIGHT<br>GALA</h1>
@@ -53,23 +50,34 @@
       </div>
       <div class="detail-item">
         <span>LUGAR</span>
-        <p>Rossell Palace - Salón Imperial</p>
+        <p>Salón Imperial - Rossell Palace</p>
       </div>
     </section>
 
     <footer class="action-section reveal">
-      <div class="input-group">
+      <div class="rsvp-form">
         <input type="text" id="nombreInvitado" placeholder="Tu nombre completo" autocomplete="off">
+        <button id="btn-confirmar" class="btn-rsvp" onclick="confirmarAsistencia()">CONFIRMAR ASISTENCIA</button>
       </div>
-      <button class="btn-rsvp" onclick="confirmarAsistencia()">CONFIRMAR ASISTENCIA</button>
       
-      <a href="https://www.google.com/maps/place/Salón+Ambar+Rossell+Palace,+General,+Cda.+Emiliano+Zapata+344,+Sta+Cruz+Atoyac,+Benito+Juárez,+03310+Ciudad+de+México,+CDMX,+México/data=!4m2!3m1!1s0x85d1ffbbd4d56f57:0xb6478c531a6fd4b?utm_source=mstt_1&entry=gps&coh=192189&g_ep=CAESBzI1LjMxLjIYACCIJyqZASw5NDI2NzcyNyw5NDI4MDQ4Nyw5NDI4NDQ1NCw5NDIyMzI5OSw5NDIxNjQxMyw5NDI4MDU3Niw5NDIxMjQ5Niw5NDIwNzM5NCw5NDIwNzUwNiw5NDIwODUwNiw5NDIxNzUyMyw5NDIxODY1Myw5NDIyOTgzOSw5NDI3NTE2OCw0NzA4NDM5Myw5NDIxMzIwMCw5NDI1ODMyNUICVVM%3D&skid=e617e1e2-fced-4eea-86d9-da98db4e3b7f&g_st=awb" target="_blank" class="location-link">VER UBICACIÓN EN GOOGLE MAPS</a>
-        
+      <!-- Icono de Google Maps Estético -->
+      <a href="https://www.google.com/maps/place/Salón+Ambar+Rossell+Palace,+General,+Cda.+Emiliano+Zapata+344,+Sta+Cruz+Atoyac,+Benito+Juárez,+03310+Ciudad+de+México,+CDMX,+México/data=!4m2!3m1!1s0x85d1ffbbd4d56f57:0xb6478c531a6fd4b?utm_source=mstt_1&entry=gps&coh=192189&g_ep=CAESBzI1LjMxLjIYACCIJyqZASw5NDI2NzcyNyw5NDI4MDQ4Nyw5NDI4NDQ1NCw5NDIyMzI5OSw5NDIxNjQxMyw5NDI4MDU3Niw5NDIxMjQ5Niw5NDIwNzM5NCw5NDIwNzUwNiw5NDIwODUwNiw5NDIxNzUyMyw5NDIxODY1Myw5NDIyOTgzOSw5NDI3NTE2OCw0NzA4NDM5Myw5NDIxMzIwMCw5NDI1ODMyNUICVVM%3D&skid=e617e1e2-fced-4eea-86d9-da98db4e3b7f&g_st=awb" target="_blank" class="location-link" aria-label="Ubicación">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+          <circle cx="12" cy="10" r="3"></circle>
+        </svg>
       </a>
     </footer>
   </div>
 
-  <!-- Audio de fondo actualizado a Violín -->
+  <!-- Modal de Confirmación -->
+  <div id="rsvp-modal" class="modal hidden">
+    <div class="modal-content">
+      <h3>¡TODO LISTO!</h3>
+      <p>Redirigiendo a WhatsApp para completar tu registro...</p>
+    </div>
+  </div>
+
   <audio id="bg-music" loop>
     <source src="../../music/violin-luxury.mp3" type="audio/mpeg">
   </audio>
