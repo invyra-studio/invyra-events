@@ -1,0 +1,223 @@
+/* =========================================
+   INVYRA - PREMIUM DIGITAL EVENTS
+   PROYECTO: BIRTHDAY DEMO 01 (GALA)
+   ========================================= */
+
+:root {
+  --gold: #c5a059;
+  --white: #ffffff;
+  --bg-dark: #0a0a0a;
+  --glass: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(197, 160, 89, 0.3);
+}
+
+/* 1. RESET Y BASE */
+body {
+  background-color: var(--bg-dark);
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* 2. FIX INTRO / SPLASH SCREEN */
+#splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 1s ease, visibility 1s;
+}
+
+.splash-content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.splash-logo {
+  width: 80%;
+  max-width: 350px;
+  height: auto;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
+}
+
+.btn-start-experience {
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  padding: 15px 35px;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 3px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.4s ease;
+}
+
+.btn-start-experience:hover {
+  background: var(--gold);
+  color: #000;
+  box-shadow: 0 0 25px rgba(197, 160, 89, 0.4);
+}
+
+/* 3. CONTENEDOR PRINCIPAL */
+.invitation-container {
+  width: 100%;
+  max-width: 450px;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 60px 25px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+/* Capa de fondo con efecto Ken Burns */
+.invitation-container::before {
+  content: "";
+  position: fixed; /* Se mantiene fijo al hacer scroll */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('../../assets/bg-birthday.jpeg') no-repeat center center/cover;
+  z-index: -2;
+  animation: kenburns 12s infinite alternate ease-in-out;
+}
+
+/* Overlay de gradiente para legibilidad */
+.invitation-container::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.8) 100%);
+  z-index: -1;
+}
+
+@keyframes kenburns {
+  0% { transform: scale(1) rotate(0deg); }
+  100% { transform: scale(1.12) rotate(1deg); }
+}
+
+/* 4. ELEMENTOS VISUALES */
+.brand-logo-img {
+  width: 160px;
+  height: auto;
+  margin: 0 auto 30px auto;
+  display: block;
+  filter: drop-shadow(0 0 15px rgba(197, 160, 89, 0.3));
+  mix-blend-mode: screen;
+  opacity: 0.95;
+}
+
+.main-title {
+  font-family: 'Cinzel', serif;
+  font-size: 3.2rem;
+  line-height: 0.9;
+  color: var(--gold);
+  text-shadow: 0 0 20px rgba(197, 160, 89, 0.4), 0 4px 10px rgba(0,0,0,0.9);
+}
+
+.pre-title, .celebrant-name {
+  letter-spacing: 3px;
+  text-shadow: 0 2px 4px rgba(0,0,0,1);
+}
+
+/* 5. SECCIÓN COUNTDOWN (Glassmorphism) */
+.countdown-section {
+  margin: 40px 0;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-around;
+  padding: 20px 10px;
+}
+
+.time-unit span {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 1.6rem;
+  color: var(--gold);
+}
+
+.time-unit small {
+  font-size: 0.6rem;
+  letter-spacing: 1px;
+  opacity: 0.7;
+}
+
+/* 6. DETALLES Y ACCIÓN */
+.details-section {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--glass-border);
+  padding: 25px;
+  margin-bottom: 40px;
+}
+
+.btn-rsvp {
+  background: var(--gold);
+  color: #000;
+  border: none;
+  padding: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-radius: 4px;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-rsvp:disabled { opacity: 0.7; cursor: not-allowed; }
+
+#nombreInvitado {
+  width: 100%;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid var(--glass-border);
+  color: #fff;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1rem;
+}
+
+/* 7. ANIMACIONES DE REVELADO (SCROLL) */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 1.2s all ease-out;
+}
+
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ADAPTACIÓN MOBILE */
+@media (max-width: 380px) {
+  .main-title { font-size: 2.5rem; }
+  .brand-logo-img { width: 130px; }
+}

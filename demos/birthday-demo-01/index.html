@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>INVYRA | Midnight Gala - Javier</title>
+  
+  <!-- Aquí va el Favicon -->
+  <link rel="icon" type="image/jpeg" href="../../LOGO/FAVICON.jpeg">
+  
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div id="splash-screen">
+    <div class="splash-content">
+      <img src="../../LOGO/VERSIÓN MONOCROMÁTICA BLANCA.jpeg" class="splash-logo" alt="INVYRA">
+      <div class="loader-bar"></div>
+      <button onclick="entrarGala()" class="btn-start-experience">DESCUBRIR INVITACIÓN</button>
+    </div>
+  </div>
+
+  <div class="invitation-container">
+    <div class="overlay"></div>
+    
+    <header class="hero-section reveal">
+      <!-- Nombre exacto según tu captura image_583390.png -->
+      <img src="../../LOGO/VERSIÓN FONDO OSCURO.jpeg" alt="Invyra Logo" class="brand-logo-img">
+      <h2 class="pre-title">ESTÁS INVITADO A LA</h2>
+      <h1 class="main-title">MIDNIGHT<br>GALA</h1>
+      <p class="celebrant-name">34 AÑOS DE JAVIER</p>
+    </header>
+
+    <section class="countdown-section reveal">
+      <p class="section-label">EL TIEMPO SE AGOTA</p>
+      <div id="countdown" class="glass-card">
+        <div class="time-unit"><span id="days">00</span><small>DÍAS</small></div>
+        <div class="time-unit"><span id="hours">00</span><small>HRS</small></div>
+        <div class="time-unit"><span id="mins">00</span><small>MIN</small></div>
+        <div class="time-unit"><span id="secs">00</span><small>SEG</small></div>
+      </div>
+    </section>
+
+    <section class="details-section reveal">
+      <div class="detail-item">
+        <span>FECHA</span>
+        <p>09 . ABR . 2027</p>
+      </div>
+      <div class="detail-item">
+        <span>HORA</span>
+        <p>21:00 HRS</p>
+      </div>
+      <div class="detail-item">
+        <span>LUGAR</span>
+        <p>Rossell Palace - Salón Imperial</p>
+      </div>
+    </section>
+
+    <footer class="action-section reveal">
+      <div class="input-group">
+        <input type="text" id="nombreInvitado" placeholder="Tu nombre completo" autocomplete="off">
+      </div>
+      <button class="btn-rsvp" onclick="confirmarAsistencia()">CONFIRMAR ASISTENCIA</button>
+      
+      <a href="https://www.google.com/maps/place/Salón+Ambar+Rossell+Palace,+General,+Cda.+Emiliano+Zapata+344,+Sta+Cruz+Atoyac,+Benito+Juárez,+03310+Ciudad+de+México,+CDMX,+México/data=!4m2!3m1!1s0x85d1ffbbd4d56f57:0xb6478c531a6fd4b?utm_source=mstt_1&entry=gps&coh=192189&g_ep=CAESBzI1LjMxLjIYACCIJyqZASw5NDI2NzcyNyw5NDI4MDQ4Nyw5NDI4NDQ1NCw5NDIyMzI5OSw5NDIxNjQxMyw5NDI4MDU3Niw5NDIxMjQ5Niw5NDIwNzM5NCw5NDIwNzUwNiw5NDIwODUwNiw5NDIxNzUyMyw5NDIxODY1Myw5NDIyOTgzOSw5NDI3NTE2OCw0NzA4NDM5Myw5NDIxMzIwMCw5NDI1ODMyNUICVVM%3D&skid=e617e1e2-fced-4eea-86d9-da98db4e3b7f&g_st=awb" target="_blank" class="location-link">VER UBICACIÓN EN GOOGLE MAPS</a>
+        
+      </a>
+    </footer>
+  </div>
+
+  <!-- Audio de fondo actualizado a Violín -->
+  <audio id="bg-music" loop>
+    <source src="../../music/violin-luxury.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
