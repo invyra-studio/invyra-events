@@ -348,3 +348,56 @@ body {
         font-size: clamp(2.7rem, 13vw, 3.4rem);
     }
 }
+/* ==============================
+   FIX MOBILE — ACTION SECTION
+   ============================== */
+
+.action-section {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+    display: block;
+    margin-top: 40px;
+    margin-bottom: 90px;
+}
+
+.rsvp-form {
+    width: 100%;
+}
+
+.location-container {
+    margin-top: 38px;
+    text-align: center;
+}
+
+.location-text {
+    margin-bottom: 18px;
+}
+
+.location-link {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .action-section {
+        opacity: 1 !important;
+        transform: none !important;
+        visibility: visible !important;
+        display: block;
+        margin-top: 34px;
+        margin-bottom: 100px;
+    }
+
+    #nombreInvitado,
+    .btn-rsvp {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .location-container {
+        margin-top: 36px;
+    }
+}
