@@ -1,50 +1,39 @@
 /**
- * INVYRA - Master Script v4.5.1
- * Luxury Immersive Experience - Final Production Build
+ * INVYRA - Master Script v4.5.3
+ * Luxury Immersive Experience - Erza 22th Birthday Build
+ * QA Fix: Restored dust particles (removed lines)
  */
 
-// 1. PRE-LOADER & INITIALIZATION
 document.body.classList.add('js-enabled');
 if (typeof gsap !== 'undefined') gsap.registerPlugin(ScrollTrigger);
 
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyJ3LoQZeOTN2D621SNoNpN4ymGL4ml_k3tFm3V5X2p6Dm1yaKvA_WUrnIWLv5M-tue/exec";
 const TELEFONO_RSVP = "525516986744";
-const FECHA_EVENTO = "Apr 09, 2027 21:00:00";
+const FECHA_EVENTO = "Aug 16, 2026 21:00:00"; 
 let isMuted = false;
 
-// 2. ESTRUCTURA DE PARTÍCULAS DUALES (Top & Bottom) - HIGH DENSITY
+// 2. CONFIGURACIÓN DE PARTÍCULAS (RECUPERANDO EL LOOK PREMIUM)
 function initParticles() {
     const commonConfig = (direction) => ({
         "particles": {
-            "number": { 
-                "value": 120, 
-                "density": { "enable": true, "value_area": 800 } 
-            },
+            "number": { "value": 120, "density": { "enable": true, "value_area": 800 } },
             "color": { "value": "#c5a059" },
             "shape": { "type": "circle" },
             "opacity": { 
                 "value": 0.8, 
                 "random": false, 
-                "anim": { "enable": true, "speed": 1, "opacity_min": 0.4, "sync": false }
+                "anim": { "enable": true, "speed": 1, "opacity_min": 0.4, "sync": false } 
             },
-            "size": { 
-                "value": 1.5, 
-                "random": true, 
-                "anim": { "enable": false }
-            },
-            "line_linked": { "enable": false },
-            "move": {
-                "enable": true,
+            "size": { "value": 1.5, "random": true },
+            "line_linked": { "enable": false }, // ESTO ELIMINA LAS LÍNEAS DE LA IMAGEN
+            "move": { 
+                "enable": true, 
                 "speed": 0.7, 
-                "direction": direction,
-                "random": true,
+                "direction": direction, 
+                "random": true, 
                 "straight": false,
-                "out_mode": "out"
+                "out_mode": "out" 
             }
-        },
-        "interactivity": {
-            "detect_on": "canvas",
-            "events": { "onhover": { "enable": false } }
         },
         "retina_detect": true 
     });
@@ -57,88 +46,44 @@ function initParticles() {
 
 initParticles();
 
-// 3. CONTROL DE AUDIO (MUTE LOGIC)
 function toggleMute() {
     const music = document.getElementById('bg-music');
     const muteIcon = document.getElementById('mute-icon');
-    
     isMuted = !isMuted;
     music.muted = isMuted;
-
-    if (isMuted) {
-        muteIcon.innerHTML = `
-            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-            <line x1="23" y1="9" x2="17" y2="15"></line>
-            <line x1="17" y1="9" x2="23" y2="15"></line>`;
-        gsap.to(".mute-control", { opacity: 0.6, duration: 0.3 });
-    } else {
-        muteIcon.innerHTML = `
-            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>`;
-        gsap.to(".mute-control", { opacity: 1, duration: 0.3 });
-    }
+    gsap.to(".mute-control", { opacity: isMuted ? 0.6 : 1, duration: 0.3 });
 }
 
-// 4. ENTRADA A LA EXPERIENCIA
 function entrarGala() {
     const splash = document.getElementById('splash-screen');
     const music = document.getElementById('bg-music');
     
-    gsap.to(splash, { 
-        opacity: 0, 
-        duration: 1.2, 
-        onComplete: () => {
-            splash.style.display = 'none';
-            initScrollReveal();
-        }
-    });
+    gsap.to(splash, { opacity: 0, duration: 1.2, onComplete: () => { splash.style.display = 'none'; initScrollReveal(); } });
 
     music.volume = 0;
-    music.play().catch(err => console.log("Interacción requerida:", err));
-    gsap.to(music, { volume: 0.35, duration: 4, ease: "power1.inOut" });
+    music.play().catch(err => console.log("Interacción requerida"));
+    gsap.to(music, { volume: 0.35, duration: 4 });
 
-    const tl = gsap.timeline();
-    tl.from(".brand-logo-img", { opacity: 0, y: -40, duration: 1.5, ease: "power3.out" })
-      .from(".main-title", { opacity: 0, y: 60, duration: 1.5, ease: "power3.out" }, "-=1")
-      .from(".celebrant-name", { opacity: 0, duration: 1, ease: "power2.out" }, "-=0.8")
-      .from(".hero-subtitle", { opacity: 0, y: 20, duration: 1.2, ease: "power2.out" }, "-=0.5");
+    const revealTL = gsap.timeline({ defaults: { ease: "power3.out", duration: 1.25 } });
+
+    revealTL
+        .to(".hero-atmosphere", { opacity: 1, duration: 1.5 })
+        .to(".brand-logo-img", { opacity: 1, y: 0, filter: "blur(0px)" }, "-=1.0")
+        .to(".pre-title", { opacity: 1, y: 0, filter: "blur(0px)" }, "-=0.8")
+        .to(".reveal-title", { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 1.6 }, "-=0.7")
+        .to(".celebrant-name", { opacity: 1, y: 0, filter: "blur(0px)" }, "-=1.0")
+        .to(".hero-subtitle", { opacity: 1, y: 0, filter: "blur(0px)" }, "-=0.9");
 }
 
-// 5. SCROLL EXPERIENCE (REVEALS)
 function initScrollReveal() {
     document.querySelectorAll('.section-reveal').forEach(section => {
-        gsap.fromTo(section, 
-            { opacity: 0, y: 50 },
-            {
-                scrollTrigger: {
-                    trigger: section,
-                    start: "top 90%",
-                    toggleActions: "play none none none"
-                },
-                opacity: 1,
-                y: 0,
-                duration: 1.5,
-                ease: "power3.out"
-            }
-        );
+        gsap.fromTo(section, { opacity: 0, y: 50 }, {
+            scrollTrigger: { trigger: section, start: "top 90%", toggleActions: "play none none none" },
+            opacity: 1, y: 0, duration: 1.5, ease: "power3.out"
+        });
     });
-
-    gsap.to(".location-link", {
-        scrollTrigger: {
-            trigger: ".location-container",
-            start: "top 95%"
-        },
-        y: -5,
-        repeat: -1,
-        yoyo: true,
-        duration: 2,
-        ease: "sine.inOut"
-    });
-
-    ScrollTrigger.refresh();
 }
 
-// 6. CUENTA REGRESIVA
 const targetDate = new Date(FECHA_EVENTO).getTime();
 setInterval(() => {
     const now = new Date().getTime();
@@ -151,7 +96,6 @@ setInterval(() => {
     }
 }, 1000);
 
-// 7. RSVP FLOW
 async function confirmarAsistencia() {
     const inputNombre = document.getElementById('nombreInvitado');
     const btnConfirmar = document.getElementById('btn-confirmar');
@@ -160,59 +104,23 @@ async function confirmarAsistencia() {
 
     if (!nombre) {
         gsap.to(inputNombre, { x: 10, duration: 0.1, repeat: 5, yoyo: true });
-        inputNombre.style.border = "1px solid #ff4444";
-        setTimeout(() => inputNombre.style.border = "1px solid rgba(197, 160, 89, 0.3)", 2000);
         return;
     }
 
     modal.classList.remove('hidden');
-    gsap.from(".modal-content", { 
-        opacity: 0, 
-        scale: 0.8, 
-        duration: 0.5, 
-        ease: "back.out(1.7)" 
-    });
-
     btnConfirmar.innerText = "PROCESANDO...";
-    btnConfirmar.disabled = true;
 
     try {
-        await fetch(SCRIPT_URL, {
-            method: 'POST',
-            mode: 'no-cors',
-            body: JSON.stringify({ nombre: nombre, asistencia: "Confirmado" })
-        });
-
+        await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify({ nombre: nombre, asistencia: "Confirmado" }) });
         btnConfirmar.innerText = "¡TODO LISTO!";
-        const mensaje = encodeURIComponent(`¡Hola! Confirmo mi asistencia a la Midnight Gala.\n\n*Invitado:* ${nombre}`);
-        
-        setTimeout(() => {
-            window.open(`https://wa.me/${TELEFONO_RSVP}?text=${mensaje}`, '_blank');
-            modal.classList.add('hidden');
-        }, 2800);
-
-    } catch (error) {
-        console.error("Error:", error);
-        modal.classList.add('hidden');
-        btnConfirmar.disabled = false;
-    }
+        setTimeout(() => { window.open(`https://wa.me/${TELEFONO_RSVP}?text=${encodeURIComponent("Confirmado: " + nombre)}`, '_blank'); }, 2000);
+    } catch (error) { console.error(error); }
 }
 
-// 8. GESTIÓN DE VISIBILIDAD (AQUÍ AFUERA PARA QUE SIEMPRE FUNCIONE)
 document.addEventListener("visibilitychange", () => {
     const music = document.getElementById('bg-music');
-    const splash = document.getElementById('splash-screen');
-    
-    if (!music) return;
-
-    if (document.hidden) {
-        music.pause();
-        console.log("QA Log: App en segundo plano - Audio pausado");
-    } else {
-        // Solo reanudamos si ya pasaron el splash screen y no está en mute manual
-        if (splash && splash.style.display === 'none' && !isMuted) {
-            music.play().catch(err => console.log("QA Log: Error al reanudar:", err));
-            console.log("QA Log: App en primer plano - Audio reanudado");
-        }
+    if (document.hidden) { music.pause(); } else {
+        const splash = document.getElementById('splash-screen');
+        if (splash && splash.style.display === 'none' && !isMuted) { music.play(); }
     }
 });
