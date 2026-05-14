@@ -12,45 +12,45 @@ const TELEFONO_RSVP = "525516986744";
 const FECHA_EVENTO = "Apr 09, 2027 21:00:00";
 let isMuted = false;
 
-// 2. ESTRUCTURA DE PARTÍCULAS DUALES (Top & Bottom)
+// 2. ESTRUCTURA DE PARTÍCULAS DUALES (Top & Bottom) - HIGH DENSITY
 function initParticles() {
-    particlesJS("particles-top", {
+    const commonConfig = (direction) => ({
         "particles": {
-            "number": { "value": 40, "density": { "enable": true, "value_area": 800 } },
+            "number": { 
+                "value": 120, // Triple de partículas para mayor densidad
+                "density": { "enable": true, "value_area": 800 } 
+            },
             "color": { "value": "#c5a059" },
             "shape": { "type": "circle" },
-            "opacity": { "value": 0.3, "random": true },
-            "size": { "value": 1.5, "random": true },
+            "opacity": { 
+                "value": 0.8, // Más opacidad para mayor nitidez
+                "random": false, // Desactivado para evitar puntos "borrosos"
+                "anim": { "enable": true, "speed": 1, "opacity_min": 0.4, "sync": false }
+            },
+            "size": { 
+                "value": 1.5, 
+                "random": true, 
+                "anim": { "enable": false }
+            },
             "line_linked": { "enable": false },
             "move": {
                 "enable": true,
-                "speed": 0.5,
-                "direction": "bottom",
+                "speed": 0.7, 
+                "direction": direction,
                 "random": true,
                 "straight": false,
                 "out_mode": "out"
             }
-        }
+        },
+        "interactivity": {
+            "detect_on": "canvas",
+            "events": { "onhover": { "enable": false } }
+        },
+        "retina_detect": true // CRÍTICO: Activa la nitidez 8K para tu S25 Ultra
     });
 
-    particlesJS("particles-bottom", {
-        "particles": {
-            "number": { "value": 40, "density": { "enable": true, "value_area": 800 } },
-            "color": { "value": "#c5a059" },
-            "shape": { "type": "circle" },
-            "opacity": { "value": 0.3, "random": true },
-            "size": { "value": 2, "random": true },
-            "line_linked": { "enable": false },
-            "move": {
-                "enable": true,
-                "speed": 0.6,
-                "direction": "top",
-                "random": true,
-                "straight": false,
-                "out_mode": "out"
-            }
-        }
-    });
+    particlesJS("particles-top", commonConfig("bottom"));
+    particlesJS("particles-bottom", commonConfig("top"));
 }
 
 initParticles();
@@ -199,4 +199,26 @@ async function confirmarAsistencia() {
         btnConfirmar.disabled = false;
         inputNombre.disabled = false;
     }
+
+    // 8. GESTIÓN DE VISIBILIDAD (Ahorro de recursos y control de audio)
+document.addEventListener("visibilitychange", () => {
+    const music = document.getElementById('bg-music');
+    
+    if (!music) return;
+
+    if (document.hidden) {
+        // La página no es visible: pausamos la música silenciosamente
+        music.pause();
+        console.log("QA Log: App en segundo plano - Audio pausado");
+    } else {
+        // La página vuelve a ser visible
+        // Solo reanudamos si la experiencia ya inició y no estaba en mute manual
+        const splash = document.getElementById('splash-screen');
+        if (splash && splash.style.display === 'none' && !isMuted) {
+            music.play().catch(err => console.log("QA Log: Error al reanudar audio:", err));
+            console.log("QA Log: App en primer plano - Audio reanudado");
+        }
+    }
+});
+
 }
