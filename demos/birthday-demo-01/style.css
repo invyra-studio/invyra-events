@@ -129,7 +129,8 @@ body {
 }
 
 .brand-logo-img {
-    width: 180px;
+    width: 115px;
+    max-width: 34vw;
     margin-bottom: 40px;
     image-rendering: -webkit-optimize-contrast;
     transform: translateZ(0);
