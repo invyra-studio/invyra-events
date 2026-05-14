@@ -1,10 +1,10 @@
 /**
- * INVYRA - Master Script v5.4
- * Luxury Immersive Experience - True RWD & Audio Fix
- * Ref: Hotfix Mute visible & Location Elegante
+ * INVYRA - Master Script v5.5
+ * Luxury Immersive Experience - Final Stable Build
+ * Ref: Hotfix Force Render & Audio Sync
  */
 
-// 1. CONFIGURACIÓN Y ESTADO
+// 1. ESTADO Y CONFIGURACIÓN GLOBAL
 document.body.classList.add('js-enabled');
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,11 +20,9 @@ const ICONS = {
     MUTE: `<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line>`
 };
 
-// 2. MOTOR DE PARTÍCULAS (RWD Optimized)
+// 2. MOTOR DE PARTÍCULAS (Adaptativo)
 function initParticles() {
     if (typeof particlesJS === 'undefined') return;
-    
-    // Densidad dinámica según ancho de pantalla
     const particleCount = window.innerWidth > 768 ? 70 : 40;
 
     particlesJS("particles-js", {
@@ -48,7 +46,7 @@ function initParticles() {
     });
 }
 
-// 3. LÓGICA DE AUDIO & MUTE (Nuevo)
+// 3. CONTROL DE AUDIO (Mute/Unmute)
 function toggleMute() {
     const music = document.getElementById('bg-music');
     const muteIcon = document.getElementById('mute-icon');
@@ -59,17 +57,13 @@ function toggleMute() {
     music.muted = CONFIG.IS_MUTED;
 
     muteIcon.innerHTML = CONFIG.IS_MUTED ? ICONS.MUTE : ICONS.SOUND;
-    
-    // Animación de feedback al presionar
     gsap.to(".mute-control", { scale: 0.9, duration: 0.1, yoyo: true, repeat: 1 });
 }
 
-// 4. ENTRADA A LA GALA
+// 4. ENTRADA CINEMATOGRÁFICA
 function entrarGala() {
     const splash = document.getElementById('splash-screen');
     const music = document.getElementById('bg-music');
-    
-    // Timeline para una entrada fluida
     const tl = gsap.timeline();
 
     tl.to(splash, { 
@@ -82,29 +76,26 @@ function entrarGala() {
         }
     });
 
-    // Fade-in de Audio Premium
     if (music) {
         music.volume = 0;
         music.play().then(() => {
             gsap.to(music, { volume: 0.35, duration: 4 });
             CONFIG.IS_MUTED = false;
-        }).catch(err => {
-            console.log("Audio bloqueado por navegador. Esperando interacción.");
-            // Sincronizamos icono si el navegador bloqueó el autoplay
+        }).catch(() => {
+            console.log("Interacción requerida para audio.");
             document.getElementById('mute-icon').innerHTML = ICONS.MUTE;
             CONFIG.IS_MUTED = true;
             music.muted = true;
         });
     }
 
-    // Hero Reveal
     tl.from(".brand-logo-img", { opacity: 0, y: -40, duration: 1.5, ease: "power3.out" }, "-=0.5")
       .from(".main-title", { opacity: 0, y: 60, duration: 1.5, ease: "power3.out" }, "-=1")
       .from(".celebrant-name", { opacity: 0, duration: 1, ease: "power2.out" }, "-=0.8")
       .from(".hero-subtitle", { opacity: 0, y: 20, duration: 1.2, ease: "power2.out" }, "-=0.5");
 }
 
-// 5. SCROLL EXPERIENCE (Optimizado)
+// 5. SISTEMA DE REVELACIÓN (Scroll)
 function initScrollReveal() {
     document.querySelectorAll('.section-reveal').forEach(section => {
         gsap.fromTo(section, 
@@ -122,7 +113,7 @@ function initScrollReveal() {
     ScrollTrigger.refresh();
 }
 
-// 6. CUENTA REGRESIVA
+// 6. COUNTDOWN MASTER
 const x = setInterval(() => {
     const now = new Date().getTime();
     const diff = new Date(CONFIG.FECHA_EVENTO).getTime() - now;
@@ -137,7 +128,7 @@ const x = setInterval(() => {
     }
 }, 1000);
 
-// 7. RSVP FLOW
+// 7. RSVP SYSTEM
 async function confirmarAsistencia() {
     const input = document.getElementById('nombreInvitado');
     const btn = document.getElementById('btn-confirmar');
@@ -146,7 +137,7 @@ async function confirmarAsistencia() {
 
     if (!nombre) {
         gsap.to(input, { x: 10, duration: 0.1, repeat: 5, yoyo: true });
-        input.style.border = "1px solid #ff4444";
+        input.style.border = "1.5px solid #ff4444";
         return;
     }
 
@@ -176,7 +167,7 @@ async function confirmarAsistencia() {
     }
 }
 
-// 8. RWD RESIZE LISTENER
+// 8. EVENT LISTENERS
 window.addEventListener('load', initParticles);
 
 let resizeTimer;
@@ -184,6 +175,6 @@ window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
         ScrollTrigger.refresh();
-        initParticles(); // Re-ajusta densidad de partículas
+        initParticles();
     }, 250);
 });

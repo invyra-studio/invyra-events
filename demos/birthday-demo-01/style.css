@@ -1,6 +1,6 @@
 /* =========================================
-   INVYRA - TRUE RWD LUXURY MASTER CSS
-   VERSIÓN: 5.4 (HOTFIX: MUTE & LOCATION)
+   INVYRA - LUXURY MASTER CSS
+   VERSIÓN: 5.5 (FORCE RENDER & ANTI-STACKING)
    ========================================= */
 
 :root {
@@ -30,39 +30,37 @@ body {
   overflow-x: hidden;
 }
 
-/* 2. COMPONENTES DE CONTROL (AUDIO) 
-   Aumentamos Z-Index a 100k para asegurar visibilidad total
+/* 2. FIX: BOTÓN DE MUTE (FORZADO) 
+   Usamos ID para máxima especificidad y un Z-index astronómico
 */
-.mute-control {
-  position: fixed;
-  top: 25px;
-  right: 25px;
-  z-index: 100000; 
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--gold);
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  color: var(--gold);
-  appearance: none;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.mute-control:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 15px rgba(197, 160, 89, 0.4);
+#fixed-mute-btn.mute-control {
+  position: fixed !important;
+  top: 25px !important;
+  right: 25px !important;
+  z-index: 999999 !important; 
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  background: rgba(0, 0, 0, 0.8) !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1.5px solid var(--gold) !important;
+  border-radius: 50% !important;
+  width: 50px !important;
+  height: 50px !important;
+  justify-content: center !important;
+  align-items: center !important;
+  cursor: pointer !important;
+  color: var(--gold) !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  transition: all 0.4s ease;
 }
 
 #splash-screen {
   position: fixed;
   inset: 0;
   background-color: #000;
-  z-index: 90000; /* Por debajo del mute */
+  z-index: 90000;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -148,9 +146,6 @@ body {
   border: 1px solid var(--glass-border);
   padding: 40px;
   border-radius: 4px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 .detail-divider {
@@ -165,7 +160,6 @@ body {
 .action-section {
   max-width: 600px;
   margin: 0 auto;
-  padding-top: 20px;
 }
 
 #nombreInvitado {
@@ -176,8 +170,9 @@ body {
   color: #fff;
   border-radius: 12px;
   text-align: center;
-  font-size: 1rem;
   margin-bottom: 20px;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .btn-rsvp {
@@ -191,19 +186,22 @@ body {
   letter-spacing: 3px;
   border-radius: 12px;
   cursor: pointer;
-  transition: all 0.4s ease;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
-/* 7. UBICACIÓN LUXURY (Hotfix) 
-   Separamos el botón del formulario para evitar que se encimen
+/* 7. FIX: UBICACIÓN (FORZADO) 
+   Aumentamos margen para evitar el encimado en pantallas Android
 */
-.location-container {
-  margin-top: 50px; 
-  padding-bottom: 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
+#location-fix-wrapper.location-container {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  margin-top: 100px !important; /* Espaciado extra de seguridad */
+  padding-bottom: 60px !important;
+  clear: both !important;
+  position: relative !important;
+  z-index: 100 !important;
 }
 
 .location-label {
@@ -211,29 +209,28 @@ body {
   letter-spacing: 3px;
   color: var(--gold);
   opacity: 0.6;
-  font-family: 'Inter', sans-serif;
+  margin-bottom: 15px;
 }
 
 .location-btn-luxury {
-  display: inline-flex;
+  display: inline-flex !important;
   align-items: center;
   gap: 12px;
   background: transparent;
-  color: var(--gold);
-  border: 1px solid var(--gold);
-  padding: 14px 30px;
-  border-radius: 50px; /* Estilo píldora */
+  color: var(--gold) !important;
+  border: 1px solid var(--gold) !important;
+  padding: 15px 35px;
+  border-radius: 50px;
   font-family: 'Cinzel', serif;
   font-size: 0.9rem;
   letter-spacing: 2px;
-  text-decoration: none;
+  text-decoration: none !important;
   transition: all 0.4s ease;
 }
 
 .location-btn-luxury:hover {
-  background: rgba(197, 160, 89, 0.1);
-  box-shadow: 0 0 20px rgba(197, 160, 89, 0.3);
-  transform: translateY(-3px);
+  background: rgba(197, 160, 89, 0.1) !important;
+  box-shadow: 0 0 20px rgba(197, 160, 89, 0.4) !important;
 }
 
 /* 8. MEDIA QUERIES */

@@ -9,15 +9,14 @@
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <!-- Librerías de Animación -->
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 </head>
 <body>
 
-  <!-- 1. CONTROL DE AUDIO (Z-Index Máximo) -->
-  <button class="mute-control" onclick="toggleMute()" aria-label="Control de audio">
+  <!-- 1. CONTROL DE AUDIO (Forzado al inicio del DOM) -->
+  <button class="mute-control" id="fixed-mute-btn" onclick="toggleMute()" aria-label="Control de audio">
     <svg id="mute-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
       <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
@@ -35,7 +34,6 @@
 
   <main class="invitation-wrapper">
     
-    <!-- 3. HERO SECTION -->
     <header class="hero-section">
       <div class="cinematic-bg"></div>
       <div class="cinematic-glow glow-one"></div>
@@ -54,11 +52,9 @@
       </div>
     </header>
 
-    <!-- 4. CONTENT BODY -->
     <div class="content-body">
       
       <div class="info-grid-container">
-        <!-- Countdown -->
         <section class="countdown-section section-reveal">
           <p class="section-label">EL TIEMPO SE AGOTA</p>
           <div id="countdown" class="glass-card">
@@ -69,7 +65,6 @@
           </div>
         </section>
 
-        <!-- Detalles -->
         <section class="details-section section-reveal">
           <div class="detail-item">
             <span class="detail-label">FECHA</span>
@@ -88,7 +83,6 @@
         </section>
       </div>
 
-      <!-- 5. FOOTER & RSVP -->
       <footer class="action-section section-reveal">
         <div class="rsvp-form">
           <label for="nombreInvitado" class="sr-only">Nombre Completo</label>
@@ -96,8 +90,8 @@
           <button id="btn-confirmar" class="btn-rsvp" onclick="confirmarAsistencia()">CONFIRMAR ASISTENCIA</button>
         </div>
         
-        <!-- Contenedor de Ubicación Estilizado -->
-        <div class="location-container">
+        <!-- SECCIÓN UBICACIÓN (Aislamiento de contenedor) -->
+        <div id="location-fix-wrapper" class="location-container">
           <p class="location-label">¿CÓMO LLEGAR?</p>
           <a href="https://maps.google.com" target="_blank" class="location-btn-luxury">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -112,7 +106,6 @@
     </div> 
   </main>
 
-  <!-- 6. MODAL & AUDIO -->
   <div id="rsvp-modal" class="modal hidden" aria-hidden="true">
     <div class="modal-content">
       <div class="modal-icon">✨</div>
