@@ -1,15 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
-
 :root {
-    --gold: #D6B36A;
-    --gold-soft: #C9A96A;
-    --white: #F3EEE4;
-    --white-soft: #D9D2C7;
-    --muted: #8D8578;
-    --bg-dark: #050505;
+    --gold: #c5a059;
+    --white: #ffffff;
+    --bg-dark: #0a0a0a;
     --glass: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(214, 179, 106, 0.35);
-    --gold-button: rgba(214, 179, 106, 0.5);
+    --glass-border: rgba(197, 160, 89, 0.3);
+    --gold-button: rgba(212, 190, 140, 0.5);
 }
 
 * { box-sizing: border-box; }
@@ -17,7 +12,7 @@
 body {
     background-color: var(--bg-dark);
     color: var(--white);
-    font-family: "Montserrat", sans-serif;
+    font-family: "Inter", sans-serif;
     margin: 0;
     display: flex;
     justify-content: center;
@@ -62,11 +57,10 @@ body {
 .btn-start-experience {
     background: transparent;
     color: var(--gold);
-    border: 1px solid rgba(214, 179, 106, 0.65);
+    border: 1px solid var(--gold);
     padding: 15px 35px;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 500;
-    letter-spacing: 0.18em;
+    font-family: "Cinzel", serif;
+    letter-spacing: 3px;
     cursor: pointer;
     text-transform: uppercase;
     margin-top: 40px;
@@ -94,14 +88,13 @@ body {
 .brand-logo-img { width: 180px; margin-bottom: 40px; image-rendering: -webkit-optimize-contrast; transform: translateZ(0); }
 
 .main-title {
-    font-family: "Cormorant Garamond", serif;
-    font-size: clamp(2.8rem, 9vw, 4.2rem);
-    line-height: 0.9;
-    letter-spacing: 0.08em;
+    font-family: "Cinzel", serif;
+    font-size: clamp(2.5rem, 8.5vw, 3.3rem);
+    line-height: 1;
+    letter-spacing: 0.1em;
     color: var(--gold);
-    text-shadow: 0 0 28px rgba(214, 179, 106, 0.28);
+    text-shadow: 0 0 20px rgba(197, 160, 89, 0.4);
     text-transform: uppercase;
-    font-weight: 600;
 }
 
 .reveal-item, .reveal-title { opacity: 0; filter: blur(10px); transform: translateY(30px); will-change: opacity, transform, filter; }
@@ -109,104 +102,12 @@ body {
 .hero-atmosphere { opacity: 0; }
 
 .invitation-container { width: 100%; max-width: 450px; padding: 0 25px 60px; text-align: center; }
+.glass-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border-radius: 24px; display: flex; justify-content: space-around; padding: 20px 10px; }
+.time-unit span { display: block; font-family: "Cinzel", serif; font-size: 1.6rem; color: var(--gold); }
+.details-section { background: rgba(0, 0, 0, 0.5); border: 1px solid var(--glass-border); padding: 25px; margin-bottom: 40px; }
+.btn-rsvp { border: 1px solid var(--gold-button); background: transparent; color: var(--gold); padding: 1rem 2rem; font-weight: 700; text-transform: uppercase; width: 100%; cursor: pointer; }
 
-.glass-card {
-    background: rgba(255, 255, 255, 0.035);
-    border: 1px solid rgba(243, 238, 228, 0.13);
-    backdrop-filter: blur(10px);
-    border-radius: 24px;
-    display: flex;
-    justify-content: space-around;
-    padding: 20px 10px;
-    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
-}
-
-.time-unit span {
-    display: block;
-    font-family: "Cormorant Garamond", serif;
-    font-size: 1.9rem;
-    color: var(--gold);
-    font-weight: 500;
-}
-
-.time-unit {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 600;
-    color: var(--white);
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-}
-
-.details-section {
-    background: rgba(0, 0, 0, 0.5);
-    border: 1px solid var(--glass-border);
-    padding: 25px;
-    margin-bottom: 40px;
-    color: var(--white);
-    font-family: "Montserrat", sans-serif;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
-}
-
-.details-section h3,
-.details-section h4,
-.details-section strong {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 600;
-    color: var(--white);
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-}
-
-.details-section p,
-.details-section span {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 400;
-    color: var(--white);
-    letter-spacing: 0.03em;
-}
-
-.btn-rsvp {
-    border: 1px solid var(--gold-button);
-    background: transparent;
-    color: var(--gold);
-    padding: 1rem 2rem;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    width: 100%;
-    cursor: pointer;
-    transition: 0.35s ease;
-}
-
-.btn-rsvp:hover {
-    background: rgba(214, 179, 106, 0.12);
-    box-shadow: 0 0 30px rgba(214, 179, 106, 0.14);
-    color: var(--white);
-}
-
-#nombreInvitado {
-    width: 100%;
-    padding: 15px;
-    background: rgba(0, 0, 0, 0.6);
-    border: 1px solid var(--glass-border);
-    color: var(--white);
-    margin-bottom: 20px;
-    border-radius: 4px;
-    text-align: center;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 400;
-}
-
-#nombreInvitado::placeholder {
-    color: var(--muted);
-}
-
-#nombreInvitado:focus {
-    outline: none;
-    border-color: rgba(214, 179, 106, 0.75);
-    box-shadow: 0 0 25px rgba(214, 179, 106, 0.12);
-}
+#nombreInvitado { width: 100%; padding: 15px; background: rgba(0, 0, 0, 0.6); border: 1px solid var(--glass-border); color: #fff; margin-bottom: 20px; border-radius: 4px; text-align: center; }
 
 .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.95); display: flex; justify-content: center; align-items: center; z-index: 20000; opacity: 0; visibility: hidden; }
 .modal:not(.hidden) { opacity: 1; visibility: visible; }
@@ -215,164 +116,5 @@ body {
 .js-enabled .section-reveal { opacity: 0; transform: translateY(80px); }
 
 @media (max-width: 768px) {
-    .main-title { font-size: clamp(2.7rem, 13vw, 3.4rem); }
-}
-/* ==============================
-   INVYRA — TYPOGRAPHY & COLORS
-   ============================== */
-
-body {
-    font-family: "Montserrat", sans-serif;
-    color: #F3EEE4;
-}
-
-/* Splash / botón inicial */
-.btn-start-experience {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 500;
-    color: #D6B36A;
-    border-color: rgba(214, 179, 106, 0.65);
-    letter-spacing: 0.18em;
-}
-
-/* Texto superior del hero */
-.pre-title {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 600;
-    color: #F3EEE4;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-}
-
-/* Título principal */
-.main-title {
-    font-family: "Cormorant Garamond", serif;
-    font-weight: 600;
-    color: #D6B36A;
-    letter-spacing: 0.08em;
-    line-height: 0.9;
-    text-transform: uppercase;
-    text-shadow: 0 0 28px rgba(214, 179, 106, 0.28);
-}
-
-/* Celebrando los 22 años */
-.celebrant-name {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 600;
-    color: #F3EEE4;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-}
-
-/* Descripción del hero */
-.hero-subtitle {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 400;
-    color: #D9D2C7;
-    line-height: 1.45;
-}
-
-/* Título del countdown: LA NOCHE SE ACERCA */
-.section-label {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 500;
-    color: #F3EEE4;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-}
-
-/* Números del countdown */
-.time-unit span {
-    font-family: "Cormorant Garamond", serif;
-    font-weight: 500;
-    color: #D6B36A;
-}
-
-/* Labels DÍAS / HRS / MIN / SEG */
-.time-unit small {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 600;
-    color: #F3EEE4;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-}
-
-/* Caja countdown */
-.glass-card {
-    background: rgba(255, 255, 255, 0.035);
-    border: 1px solid rgba(243, 238, 228, 0.13);
-    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
-}
-
-/* Labels FECHA / HORA / LUGAR */
-.detail-item span {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 600;
-    color: #F3EEE4;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-}
-
-/* Valores de fecha, hora y lugar */
-.detail-item p {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 400;
-    color: #F3EEE4;
-    letter-spacing: 0.03em;
-}
-
-/* Caja de detalles */
-.details-section {
-    background: rgba(0, 0, 0, 0.5);
-    border-color: rgba(214, 179, 106, 0.35);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
-}
-
-/* Input RSVP */
-#nombreInvitado {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 400;
-    color: #F3EEE4;
-    border-color: rgba(214, 179, 106, 0.35);
-}
-
-#nombreInvitado::placeholder {
-    color: #8D8578;
-}
-
-#nombreInvitado:focus {
-    outline: none;
-    border-color: rgba(214, 179, 106, 0.75);
-    box-shadow: 0 0 25px rgba(214, 179, 106, 0.12);
-}
-
-/* Botón confirmar asistencia */
-.btn-rsvp {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 700;
-    color: #D6B36A;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    border-color: rgba(214, 179, 106, 0.5);
-    transition: 0.35s ease;
-}
-
-.btn-rsvp:hover {
-    background: rgba(214, 179, 106, 0.12);
-    box-shadow: 0 0 30px rgba(214, 179, 106, 0.14);
-    color: #F3EEE4;
-}
-
-/* Ver ubicación */
-.location-text {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 500;
-    color: #F3EEE4;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-}
-
-/* Ícono de ubicación */
-.location-link svg {
-    stroke: #D6B36A;
+    .main-title { font-size: clamp(2.2rem, 12vw, 2.8rem); }
 }
