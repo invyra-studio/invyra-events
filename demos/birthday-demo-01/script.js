@@ -1,12 +1,14 @@
 /**
- * INVYRA - Master Script v4.5.4
- * Luxury Immersive Experience - Final Production Build
- * Hotfix: S25 Ultra Entry Deadlock & PPI Resilience
+ * INVYRA - Master Script v4.5.5
+ * Luxury Immersive Experience - Master Build
+ * Engine: GSAP + Particles.js
  */
 
 // 1. PRE-LOADER & INITIALIZATION
-document.body.classList.add('js-enabled');
-gsap.registerPlugin(ScrollTrigger);
+document.addEventListener('DOMContentLoaded', () => {
+    document.body.classList.add('js-enabled');
+    gsap.registerPlugin(ScrollTrigger);
+});
 
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyJ3LoQZeOTN2D621SNoNpN4ymGL4ml_k3tFm3V5X2p6Dm1yaKvA_WUrnIWLv5M-tue/exec";
 const TELEFONO_RSVP = "525535690278"; 
@@ -17,14 +19,14 @@ const ICON_SOUND = `<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygo
 const ICON_MUTE = `<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line>`;
 
 /**
- * 2. ESTRUCTURA DE PARTÍCULAS DUALES (PPI Boost)
+ * 2. ESTRUCTURA DE PARTÍCULAS DUALES (PPI Optimized)
  */
 function initParticles() {
     if (typeof particlesJS === 'undefined') return;
 
     const particleConfig = (direction, size, speed) => ({
         "particles": {
-            "number": { "value": 70, "density": { "enable": true, "value_area": 800 } },
+            "number": { "value": 75, "density": { "enable": true, "value_area": 800 } },
             "color": { "value": "#c5a059" },
             "shape": { "type": "circle" },
             "opacity": { "value": 0.8, "random": true },
@@ -43,15 +45,13 @@ function initParticles() {
         "retina_detect": true
     });
 
-    // Inicialización Dual
     particlesJS("particles-top", particleConfig("bottom", 3.5, 1.2));
     particlesJS("particles-bottom", particleConfig("top", 4.5, 1.5));
 }
 
-// Failsafe de carga para dispositivos de alta gama
 window.addEventListener('load', () => {
     initParticles();
-    // Forzamos un refresh tras un breve delay para asegurar que el layout del S25 esté asentado
+    // Delay estratégico para estabilizar el layout en pantallas Quad HD+
     setTimeout(() => ScrollTrigger.refresh(), 800);
 });
 
@@ -79,7 +79,7 @@ function toggleMute() {
 }
 
 /**
- * 4. ENTRADA A LA EXPERIENCIA (Hotfix para S25 Ultra)
+ * 4. ENTRADA A LA EXPERIENCIA
  */
 function entrarGala() {
     const splash = document.getElementById('splash-screen');
@@ -88,10 +88,10 @@ function entrarGala() {
     
     if (!splash) return;
 
-    // A. Salida del Splash (Animación más rápida para evitar sensación de bloqueo)
+    // Salida agresiva del Splash para evitar input lag
     gsap.to(splash, { 
         opacity: 0, 
-        y: -100, // Añadimos un ligero desplazamiento hacia arriba
+        y: -100, 
         duration: 0.8, 
         ease: "power2.in",
         onComplete: () => {
@@ -100,21 +100,18 @@ function entrarGala() {
         }
     });
 
-    // B. Audio Policy Handling
     if (music) {
         music.volume = 0;
         music.play().then(() => {
             gsap.to(music, { volume: 0.35, duration: 3 });
             isMuted = false;
         }).catch(() => {
-            // Si el navegador bloquea, sincronizamos UI a Mute
             isMuted = true;
             music.muted = true;
             if (muteIcon) muteIcon.innerHTML = ICON_MUTE;
         });
     }
 
-    // C. Hero Reveal Timeline
     const tl = gsap.timeline({ delay: 0.2 });
     tl.from(".brand-logo-img", { opacity: 0, y: -40, duration: 1.2, ease: "power3.out" })
       .from(".main-title", { opacity: 0, y: 40, duration: 1.2, ease: "power3.out" }, "-=0.8")
@@ -123,7 +120,7 @@ function entrarGala() {
 }
 
 /**
- * 5. SCROLL EXPERIENCE
+ * 5. SCROLL EXPERIENCE (GSAP)
  */
 function initScrollReveal() {
     const sections = document.querySelectorAll('.section-reveal');
@@ -157,8 +154,10 @@ const x = setInterval(() => {
     const now = new Date().getTime();
     const distance = countDownDate - now;
 
-    const d = document.getElementById('days'), h = document.getElementById('hours'), 
-          m = document.getElementById('mins'), s = document.getElementById('secs');
+    const d = document.getElementById('days'), 
+          h = document.getElementById('hours'), 
+          m = document.getElementById('mins'), 
+          s = document.getElementById('secs');
 
     if (d) {
         d.innerText = String(Math.max(0, Math.floor(distance / (1000 * 60 * 60 * 24)))).padStart(2, '0');
@@ -170,7 +169,7 @@ const x = setInterval(() => {
     if (distance < 0) {
         clearInterval(x);
         const countdownEl = document.getElementById('countdown');
-        if (countdownEl) countdownEl.innerHTML = "¡EL DÍA HA LLEGADO!";
+        if (countdownEl) countdownEl.innerHTML = "¡LA GALA HA COMENZADO!";
     }
 }, 1000);
 
@@ -182,7 +181,7 @@ async function confirmarAsistencia() {
     const btnConfirmar = document.getElementById('btn-confirmar');
     const modal = document.getElementById('rsvp-modal');
     
-    if (!inputNombre) return;
+    if (!inputNombre || !btnConfirmar) return;
     const nombre = inputNombre.value.trim();
 
     if (nombre.length < 3) {
@@ -204,8 +203,10 @@ async function confirmarAsistencia() {
         btnConfirmar.innerText = "¡TODO LISTO!";
         btnConfirmar.style.backgroundColor = "var(--success-whatsapp)";
 
-        modal.classList.remove('hidden');
-        gsap.from(".modal-content", { opacity: 0, scale: 0.8, duration: 0.5, ease: "back.out" });
+        if (modal) {
+            modal.classList.remove('hidden');
+            gsap.from(".modal-content", { opacity: 0, scale: 0.8, duration: 0.5, ease: "back.out" });
+        }
 
         const mensajeWa = encodeURIComponent(`¡Hola Javier! ✨\n\nConfirmo mi asistencia a la *Midnight Gala*.\n\n*Invitado:* ${nombre}`);
         
@@ -213,7 +214,7 @@ async function confirmarAsistencia() {
             window.open(`https://wa.me/${TELEFONO_RSVP}?text=${mensajeWa}`, '_blank');
         }, 2800);
     } catch (error) {
-        console.error("RSVP Error:", error);
+        console.error("RSVP Failure:", error);
         btnConfirmar.disabled = false;
         btnConfirmar.innerText = "REINTENTAR";
     }
