@@ -1,6 +1,7 @@
 /* =========================================
    INVYRA - PREMIUM DIGITAL EVENTS
    PROYECTO: BIRTHDAY DEMO 01 (GALA) - FINAL
+   FIX: RESTAURACIÓN DE FONDO Y VISIBILIDAD
    ========================================= */
 
 :root {
@@ -16,6 +17,7 @@
 /* 1. RESET Y BASE */
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -24,34 +26,39 @@ body {
   font-family: 'Inter', sans-serif;
   margin: 0;
   display: flex;
-  justify-content: center;
+  justify-content: center; 
   align-items: center;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-/* 2. BOTÓN DE MUTE (ACCESIBILIDAD LUXURY) */
+/* 2. FIX BOTÓN MUTE (Compatibilidad Oppo / ColorOS) */
 .mute-control {
   position: fixed;
   top: 25px;
   right: 25px;
-  z-index: 11000;
-  background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(5px);
-  border: 1px solid var(--glass-border);
+  z-index: 21000;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: rgba(0, 0, 0, 0.6) !important;
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border) !important;
   border-radius: 50%;
-  width: 45px;
-  height: 45px;
+  width: 48px;
+  height: 48px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  outline: none;
   transition: all 0.4s ease;
 }
 
-.mute-control:hover {
-  transform: scale(1.1);
-  background: rgba(197, 160, 89, 0.1);
+.mute-control svg {
+  width: 22px;
+  height: 22px;
+  stroke: var(--gold) !important;
 }
 
 /* 3. INTRO / SPLASH SCREEN */
@@ -62,38 +69,11 @@ body {
   width: 100vw;
   height: 100vh;
   background-color: #000;
-  z-index: 10000;
+  z-index: 30000;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: opacity 1s ease, visibility 1s;
-}
-
-.splash-logo {
-  width: 80%;
-  max-width: 350px;
-  height: auto;
-  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
-}
-
-.btn-start-experience {
-  background: transparent;
-  color: var(--gold);
-  border: 1px solid var(--gold);
-  padding: 15px 35px;
-  font-family: 'Cinzel', serif;
-  letter-spacing: 3px;
-  cursor: pointer;
-  text-transform: uppercase;
-  transition: all 0.4s ease;
-  margin-top: 40px;
-}
-
-.btn-start-experience:hover {
-  background: var(--gold);
-  color: #000;
-  box-shadow: 0 0 25px rgba(197, 160, 89, 0.4);
 }
 
 /* 4. CONTENEDOR PRINCIPAL */
@@ -109,7 +89,7 @@ body {
   text-align: center;
 }
 
-/* 5. OVERLAY CINEMATOGRÁFICO Y PARTÍCULAS DUALES */
+/* 5. HERO Y PARTÍCULAS (Ajuste de capas y profundidad) */
 .hero-section {
   position: relative;
   min-height: 100vh;
@@ -120,15 +100,14 @@ body {
   justify-content: center;
   padding-top: 120px; 
   padding-bottom: 60px;
-  margin-bottom: 40px;
 }
 
 #particles-top, #particles-bottom {
   position: absolute;
   left: 0;
   width: 100%;
-  height: 25vh;
-  z-index: 1;
+  height: 40vh; /* Área aumentada para mayor cobertura visual */
+  z-index: 2 !important; 
   pointer-events: none;
 }
 
@@ -138,77 +117,34 @@ body {
 .cinematic-bg {
   position: absolute;
   inset: 0;
-  z-index: -2;
+  z-index: 1;
+  /* Restauración de imagen con gradiente de legibilidad al 85% */
   background:
-    radial-gradient(circle at 20% 20%, rgba(214, 194, 163, 0.12), transparent 30%),
-    radial-gradient(circle at 80% 80%, rgba(74, 31, 45, 0.15), transparent 35%),
-    #050505;
-}
-
-.cinematic-glow {
-  position: absolute;
-  width: 420px;
-  height: 420px;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.28;
-  z-index: -1;
-  pointer-events: none;
-}
-
-.glow-one { top: 8%; left: -120px; background: rgba(214, 194, 163, 0.45); }
-.glow-two { right: -140px; bottom: 8%; background: rgba(74, 31, 45, 0.48); }
-
-.cinematic-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background:
-    radial-gradient(circle at center, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.72) 78%),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.85));
-  pointer-events: none;
+    radial-gradient(circle at 20% 20%, rgba(214, 194, 163, 0.16), transparent 32%),
+    radial-gradient(circle at 80% 80%, rgba(74, 31, 45, 0.18), transparent 35%),
+    linear-gradient(135deg, rgba(2,2,2,0.85) 0%, rgba(9,7,6,0.85) 45%, rgba(20,15,11,0.85) 100%),
+    url('../../assets/bg-birthday.jpeg') no-repeat center center/cover;
+  background-blend-mode: overlay;
 }
 
 .hero-content {
   position: relative;
-  z-index: 5;
-  width: 100%;
+  z-index: 10;
 }
 
-/* 6. ELEMENTOS VISUALES DEL HERO */
-.brand-logo-img {
-  width: 180px;
-  height: auto;
-  margin: 0 auto 40px auto;
-  display: block;
-  filter: drop-shadow(0 0 15px rgba(197, 160, 89, 0.3));
-  mix-blend-mode: screen;
-}
-
+/* 6. ELEMENTOS VISUALES */
 .main-title {
   font-family: 'Cinzel', serif;
   font-size: clamp(2.5rem, 8.5vw, 3.3rem); 
   line-height: 1;
   letter-spacing: 0.1em;
   color: var(--gold);
-  text-shadow: 0 0 20px rgba(197, 160, 89, 0.4), 0 4px 10px rgba(0,0,0,0.9);
-  margin: 15px 0;
+  text-shadow: 0 0 20px rgba(197, 160, 89, 0.4);
   text-transform: uppercase;
 }
 
-.hero-subtitle {
-  font-size: 1rem;
-  opacity: .8;
-  letter-spacing: .12rem;
-  font-family: 'Inter', sans-serif;
-  color: #f5f1ea;
-  text-transform: uppercase;
-  padding: 0 10px;
-}
-
-/* 7. COUNTDOWN GLASSMORPHISM */
-.countdown-section {
-  margin: 40px 0;
+/* 7. COUNTDOWN Y DETALLES */
+.countdown-section, .details-section {
   position: relative;
   z-index: 5;
 }
@@ -218,65 +154,9 @@ body {
   border: 1px solid rgba(255, 255, 255, .1);
   backdrop-filter: blur(10px);
   border-radius: 24px;
-  display: flex;
-  justify-content: space-around;
-  padding: 20px 10px;
-  transition: .4s ease;
 }
 
-.glass-card:hover {
-  transform: translateY(-5px);
-}
-
-.time-unit span {
-  display: block;
-  font-family: 'Cinzel', serif;
-  font-size: 1.6rem;
-  color: var(--gold);
-}
-
-/* 8. DETALLES */
-.details-section {
-  background: rgba(0, 0, 0, 0.5);
-  border: 1px solid var(--glass-border);
-  padding: 25px;
-  margin-bottom: 40px;
-  position: relative;
-  z-index: 5;
-}
-
-/* 9. BOTONES PREMIUM Y FIX DE UBICACIÓN */
-.btn-rsvp {
-  border: 1px solid var(--gold-button);
-  background: transparent;
-  color: var(--gold);
-  padding: 1rem 2rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .15rem;
-  border-radius: 4px;
-  width: 100%;
-  cursor: pointer;
-  transition: .4s ease;
-}
-
-.btn-rsvp:hover:not(:disabled) {
-  background: rgba(212, 190, 140, .15);
-  box-shadow: 0 0 25px rgba(212, 190, 140, .2);
-  transform: scale(1.02);
-}
-
-#nombreInvitado {
-  width: 100%;
-  padding: 15px;
-  background: rgba(0, 0, 0, 0.6);
-  border: 1px solid var(--glass-border);
-  color: #fff;
-  text-align: center;
-  margin-bottom: 20px;
-  border-radius: 4px;
-}
-
+/* 8. UBICACIÓN */
 .location-container {
   margin-top: 60px;
   display: flex;
@@ -286,38 +166,22 @@ body {
   padding-bottom: 20px;
 }
 
-.location-text {
-  font-size: 0.7rem;
-  letter-spacing: 3px;
-  color: var(--gold);
-  opacity: 0.7;
-}
-
-.location-link {
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.location-link:hover {
-  transform: scale(1.2) translateY(-5px);
-  filter: drop-shadow(0 5px 15px rgba(197, 160, 89, 0.4));
-}
-
-/* 10. VENTANA EMERGENTE (MODAL) REFINADA */
+/* 9. MODAL */
 .modal {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.95); 
+  background: rgba(0, 0, 0, 0.96); 
   backdrop-filter: blur(15px);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 20000; 
+  z-index: 25000; 
   opacity: 0;
   visibility: hidden;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.5s ease;
 }
 
 .modal:not(.hidden) {
@@ -325,39 +189,7 @@ body {
   visibility: visible;
 }
 
-.modal-content {
-  background: rgba(10, 10, 10, 0.8);
-  border: 1px solid var(--gold);
-  padding: 50px 30px;
-  border-radius: 16px;
-  text-align: center;
-  max-width: 85%;
-  width: 350px;
-  box-shadow: 0 0 50px rgba(197, 160, 89, 0.2);
-  transform: scale(0.8);
-  transition: transform 0.5s ease;
-}
-
-.modal:not(.hidden) .modal-content {
-  transform: scale(1);
-}
-
-.modal-content h3 {
-  color: var(--gold);
-  font-family: 'Cinzel', serif;
-  font-size: 1.8rem;
-  letter-spacing: 4px;
-  margin-bottom: 15px;
-}
-
-.modal-content p {
-  color: #f5f1ea;
-  font-size: 0.95rem;
-  line-height: 1.6;
-  opacity: 0.9;
-}
-
-/* 11. FAILSAFE VISIBILIDAD */
+/* 10. FAILSAFE VISIBILIDAD */
 .section-reveal {
   opacity: 1;
 }
@@ -369,8 +201,10 @@ body {
 
 /* ADAPTACIÓN MOBILE */
 @media (max-width: 768px) {
-  .hero-section { min-height: 100svh; }
-  .cinematic-glow { width: 280px; height: 280px; filter: blur(65px); }
-  .main-title { font-size: clamp(2.2rem, 12vw, 2.8rem); }
-  .mute-control { top: 15px; right: 15px; width: 40px; height: 40px; }
+  .mute-control { 
+    top: env(safe-area-inset-top, 15px); 
+    right: 15px; 
+    width: 42px; 
+    height: 42px; 
+  }
 }
