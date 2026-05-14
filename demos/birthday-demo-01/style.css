@@ -13,15 +13,18 @@
 }
 
 * { box-sizing: border-box; }
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
 
 body {
     background-color: var(--bg-dark);
     color: var(--white);
     font-family: "Montserrat", sans-serif;
     margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     min-height: 100vh;
     overflow-x: hidden;
 }
@@ -60,12 +63,22 @@ body {
 
 .hero-section {
     position: relative;
-    min-height: 100vh;
+    width: 100%;
+    max-width: 100%;
+    min-height: 100svh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 120px 0 60px;
+    overflow: hidden;
+}
+
+.hero-content {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    text-align: center;
 }
 
 .cinematic-bg {
@@ -173,10 +186,12 @@ body {
 }
 
 .invitation-container {
-    width: 100%;
+    width: min(100%, 450px);
     max-width: 450px;
+    margin: 0 auto;
     padding: 0 25px 60px;
     text-align: center;
+    overflow-x: hidden;
 }
 
 .countdown-section {
@@ -345,9 +360,25 @@ body {
 
 @media (max-width: 768px) {
     .main-title {
-        font-size: clamp(2.7rem, 13vw, 3.4rem);
+        font-size: clamp(2.6rem, 12vw, 3.2rem);
+        letter-spacing: 0.04em;
+        max-width: 100%;
+        overflow-wrap: normal;
+    }
+
+    .pre-title,
+    .celebrant-name,
+    .hero-subtitle {
+        max-width: 100%;
+        padding: 0 10px;
     }
 }
+
+img,
+svg {
+    max-width: 100%;
+}
+
 /* ==============================
    FIX MOBILE — ACTION SECTION
    ============================== */
