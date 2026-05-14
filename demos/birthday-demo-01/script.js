@@ -1,7 +1,7 @@
 /**
- * INVYRA - Master Script v4.5.3
+ * INVYRA - Master Script v4.5.4
  * Luxury Immersive Experience - Final Production Build
- * Fix: High-PPI Visibility & Particle Soul Boost
+ * Hotfix: S25 Ultra Entry Deadlock & PPI Resilience
  */
 
 // 1. PRE-LOADER & INITIALIZATION
@@ -13,73 +13,47 @@ const TELEFONO_RSVP = "525535690278";
 const FECHA_EVENTO = "Apr 09, 2027 21:00:00";
 let isMuted = false;
 
-const ICON_SOUND = `
-    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-`;
-const ICON_MUTE = `
-    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-    <line x1="23" y1="9" x2="17" y2="15"></line>
-    <line x1="17" y1="9" x2="23" y2="15"></line>
-`;
+const ICON_SOUND = `<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>`;
+const ICON_MUTE = `<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line>`;
 
 /**
- * 2. ESTRUCTURA DE PARTÍCULAS DUALES (Ultra Visibility Mode)
+ * 2. ESTRUCTURA DE PARTÍCULAS DUALES (PPI Boost)
  */
 function initParticles() {
     if (typeof particlesJS === 'undefined') return;
 
-    // BOOST SUPERIOR: Polvo estelar denso (Caída)
-    particlesJS("particles-top", {
+    const particleConfig = (direction, size, speed) => ({
         "particles": {
-            "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-            "color": { "value": "#c5a059" },
-            "shape": { "type": "circle" },
-            "opacity": { "value": 0.8, "random": true }, // Opacidad aumentada
-            "size": { "value": 3.5, "random": true },    // Tamaño escalado para pantallas 4K/PPI alto
-            "line_linked": { "enable": false },
-            "move": {
-                "enable": true,
-                "speed": 1.2,
-                "direction": "bottom",
-                "random": true,
-                "straight": false,
-                "out_mode": "out"
-            }
-        },
-        "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": false } } },
-        "retina_detect": true // Vital para Galaxy S25 Ultra
-    });
-
-    // BOOST INFERIOR: Destellos de gala (Ascenso)
-    particlesJS("particles-bottom", {
-        "particles": {
-            "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+            "number": { "value": 70, "density": { "enable": true, "value_area": 800 } },
             "color": { "value": "#c5a059" },
             "shape": { "type": "circle" },
             "opacity": { "value": 0.8, "random": true },
-            "size": { "value": 4.5, "random": true },    // Ligeramente más grandes abajo
+            "size": { "value": size, "random": true },
             "line_linked": { "enable": false },
             "move": {
                 "enable": true,
-                "speed": 1.5,
-                "direction": "top",
+                "speed": speed,
+                "direction": direction,
                 "random": true,
                 "straight": false,
                 "out_mode": "out"
             }
         },
-        "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": false } } },
+        "interactivity": { "events": { "onhover": { "enable": false } } },
         "retina_detect": true
     });
+
+    // Inicialización Dual
+    particlesJS("particles-top", particleConfig("bottom", 3.5, 1.2));
+    particlesJS("particles-bottom", particleConfig("top", 4.5, 1.5));
 }
 
-// Inicialización forzada tras carga completa
+// Failsafe de carga para dispositivos de alta gama
 window.addEventListener('load', () => {
     initParticles();
-    setTimeout(() => ScrollTrigger.refresh(), 500);
+    // Forzamos un refresh tras un breve delay para asegurar que el layout del S25 esté asentado
+    setTimeout(() => ScrollTrigger.refresh(), 800);
 });
-
 
 /**
  * 3. CONTROL DE AUDIO
@@ -100,12 +74,12 @@ function toggleMute() {
     } else {
         muteIcon.innerHTML = ICON_SOUND;
         gsap.to(muteBtn, { opacity: 1, duration: 0.3 });
-        if (music.paused) music.play().catch(e => console.log(e));
+        if (music.paused) music.play().catch(() => {});
     }
 }
 
 /**
- * 4. ENTRADA A LA EXPERIENCIA
+ * 4. ENTRADA A LA EXPERIENCIA (Hotfix para S25 Ultra)
  */
 function entrarGala() {
     const splash = document.getElementById('splash-screen');
@@ -114,36 +88,38 @@ function entrarGala() {
     
     if (!splash) return;
 
+    // A. Salida del Splash (Animación más rápida para evitar sensación de bloqueo)
     gsap.to(splash, { 
         opacity: 0, 
-        duration: 1.2, 
-        ease: "power2.inOut",
+        y: -100, // Añadimos un ligero desplazamiento hacia arriba
+        duration: 0.8, 
+        ease: "power2.in",
         onComplete: () => {
             splash.style.display = 'none';
             initScrollReveal();
         }
     });
 
+    // B. Audio Policy Handling
     if (music) {
         music.volume = 0;
-        const promise = music.play();
-        if (promise !== undefined) {
-            promise.then(() => {
-                gsap.to(music, { volume: 0.35, duration: 4 });
-                isMuted = false;
-            }).catch(() => {
-                isMuted = true;
-                music.muted = true;
-                if (muteIcon) muteIcon.innerHTML = ICON_MUTE;
-            });
-        }
+        music.play().then(() => {
+            gsap.to(music, { volume: 0.35, duration: 3 });
+            isMuted = false;
+        }).catch(() => {
+            // Si el navegador bloquea, sincronizamos UI a Mute
+            isMuted = true;
+            music.muted = true;
+            if (muteIcon) muteIcon.innerHTML = ICON_MUTE;
+        });
     }
 
-    const tl = gsap.timeline({ delay: 0.5 });
-    tl.from(".brand-logo-img", { opacity: 0, y: -40, duration: 1.5, ease: "power3.out" })
-      .from(".main-title", { opacity: 0, y: 60, duration: 1.5, ease: "power3.out" }, "-=1")
-      .from(".celebrant-name", { opacity: 0, duration: 1 }, "-=0.8")
-      .from(".hero-subtitle", { opacity: 0, y: 20, duration: 1.2 }, "-=0.5");
+    // C. Hero Reveal Timeline
+    const tl = gsap.timeline({ delay: 0.2 });
+    tl.from(".brand-logo-img", { opacity: 0, y: -40, duration: 1.2, ease: "power3.out" })
+      .from(".main-title", { opacity: 0, y: 40, duration: 1.2, ease: "power3.out" }, "-=0.8")
+      .from(".celebrant-name", { opacity: 0, duration: 1 }, "-=0.6")
+      .from(".hero-subtitle", { opacity: 0, y: 20, duration: 1 }, "-=0.4");
 }
 
 /**
@@ -155,10 +131,10 @@ function initScrollReveal() {
         gsap.fromTo(section, 
             { opacity: 0, y: 50 },
             {
-                opacity: 1, y: 0, duration: 1.5, ease: "power3.out",
+                opacity: 1, y: 0, duration: 1.2, ease: "power3.out",
                 scrollTrigger: {
                     trigger: section,
-                    start: "top 90%",
+                    start: "top 92%",
                     toggleActions: "play none none none"
                 }
             }
@@ -168,7 +144,7 @@ function initScrollReveal() {
     const locLink = document.querySelector(".location-link");
     if (locLink) {
         gsap.to(locLink, {
-            y: -8, repeat: -1, yoyo: true, duration: 1.5, ease: "sine.inOut"
+            y: -10, repeat: -1, yoyo: true, duration: 1.5, ease: "sine.inOut"
         });
     }
 }
@@ -181,25 +157,20 @@ const x = setInterval(() => {
     const now = new Date().getTime();
     const distance = countDownDate - now;
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
     const d = document.getElementById('days'), h = document.getElementById('hours'), 
           m = document.getElementById('mins'), s = document.getElementById('secs');
 
     if (d) {
-        d.innerText = String(days).padStart(2, '0');
-        h.innerText = String(hours).padStart(2, '0');
-        m.innerText = String(minutes).padStart(2, '0');
-        s.innerText = String(seconds).padStart(2, '0');
+        d.innerText = String(Math.max(0, Math.floor(distance / (1000 * 60 * 60 * 24)))).padStart(2, '0');
+        h.innerText = String(Math.max(0, Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)))).padStart(2, '0');
+        m.innerText = String(Math.max(0, Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)))).padStart(2, '0');
+        s.innerText = String(Math.max(0, Math.floor((distance % (1000 * 60)) / 1000))).padStart(2, '0');
     }
 
     if (distance < 0) {
         clearInterval(x);
-        if (document.getElementById('countdown')) 
-            document.getElementById('countdown').innerHTML = "¡EL DÍA HA LLEGADO!";
+        const countdownEl = document.getElementById('countdown');
+        if (countdownEl) countdownEl.innerHTML = "¡EL DÍA HA LLEGADO!";
     }
 }, 1000);
 
@@ -216,6 +187,7 @@ async function confirmarAsistencia() {
 
     if (nombre.length < 3) {
         gsap.to(inputNombre, { x: 10, duration: 0.1, repeat: 5, yoyo: true });
+        inputNombre.focus();
         return;
     }
 
@@ -241,6 +213,8 @@ async function confirmarAsistencia() {
             window.open(`https://wa.me/${TELEFONO_RSVP}?text=${mensajeWa}`, '_blank');
         }, 2800);
     } catch (error) {
-        console.error(error);
+        console.error("RSVP Error:", error);
+        btnConfirmar.disabled = false;
+        btnConfirmar.innerText = "REINTENTAR";
     }
 }
