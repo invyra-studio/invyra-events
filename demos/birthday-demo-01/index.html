@@ -9,12 +9,14 @@
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
+  <!-- Librerías de Animación -->
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 </head>
 <body>
 
+  <!-- 1. CONTROL DE AUDIO (Z-Index Máximo) -->
   <button class="mute-control" onclick="toggleMute()" aria-label="Control de audio">
     <svg id="mute-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
@@ -22,6 +24,7 @@
     </svg>
   </button>
 
+  <!-- 2. SPLASH SCREEN -->
   <div id="splash-screen">
     <div class="splash-content">
       <img src="../../LOGO/VERSIÓN MONOCROMÁTICA BLANCA.jpeg" class="splash-logo" alt="INVYRA Logo">
@@ -32,6 +35,7 @@
 
   <main class="invitation-wrapper">
     
+    <!-- 3. HERO SECTION -->
     <header class="hero-section">
       <div class="cinematic-bg"></div>
       <div class="cinematic-glow glow-one"></div>
@@ -50,10 +54,11 @@
       </div>
     </header>
 
+    <!-- 4. CONTENT BODY -->
     <div class="content-body">
       
       <div class="info-grid-container">
-        
+        <!-- Countdown -->
         <section class="countdown-section section-reveal">
           <p class="section-label">EL TIEMPO SE AGOTA</p>
           <div id="countdown" class="glass-card">
@@ -64,6 +69,7 @@
           </div>
         </section>
 
+        <!-- Detalles -->
         <section class="details-section section-reveal">
           <div class="detail-item">
             <span class="detail-label">FECHA</span>
@@ -80,27 +86,33 @@
             <p class="detail-value">Salón Imperial - Rossell Palace</p>
           </div>
         </section>
+      </div>
 
-      </div> <footer class="action-section section-reveal">
+      <!-- 5. FOOTER & RSVP -->
+      <footer class="action-section section-reveal">
         <div class="rsvp-form">
           <label for="nombreInvitado" class="sr-only">Nombre Completo</label>
           <input type="text" id="nombreInvitado" placeholder="Tu nombre completo" autocomplete="off" required>
           <button id="btn-confirmar" class="btn-rsvp" onclick="confirmarAsistencia()">CONFIRMAR ASISTENCIA</button>
         </div>
         
-        <div class="location-wrapper">
-          <a href="https://maps.google.com" target="_blank" class="location-link">
-            <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Contenedor de Ubicación Estilizado -->
+        <div class="location-container">
+          <p class="location-label">¿CÓMO LLEGAR?</p>
+          <a href="https://maps.google.com" target="_blank" class="location-btn-luxury">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
               <circle cx="12" cy="10" r="3"></circle>
             </svg>
-            <span class="location-text">VER UBICACIÓN</span>
+            VER UBICACIÓN
           </a>
         </div>
       </footer>
 
-    </div> </main>
+    </div> 
+  </main>
 
+  <!-- 6. MODAL & AUDIO -->
   <div id="rsvp-modal" class="modal hidden" aria-hidden="true">
     <div class="modal-content">
       <div class="modal-icon">✨</div>

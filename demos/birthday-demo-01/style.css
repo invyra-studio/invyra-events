@@ -1,6 +1,6 @@
 /* =========================================
    INVYRA - TRUE RWD LUXURY MASTER CSS
-   VERSIÓN: 5.3 (ADAPTATIVE GRID)
+   VERSIÓN: 5.4 (HOTFIX: MUTE & LOCATION)
    ========================================= */
 
 :root {
@@ -11,7 +11,7 @@
   --glass-border: rgba(197, 160, 89, 0.3);
   --success-whatsapp: #25D366;
   --gold-button: rgba(212, 190, 140, 0.5);
-  --container-max: 1200px; /* Máximo para desktop */
+  --container-max: 1200px;
 }
 
 /* 1. RESET Y BASE FLUIDA */
@@ -30,15 +30,17 @@ body {
   overflow-x: hidden;
 }
 
-/* 2. COMPONENTES FIJOS (Audio & Splash) */
+/* 2. COMPONENTES DE CONTROL (AUDIO) 
+   Aumentamos Z-Index a 100k para asegurar visibilidad total
+*/
 .mute-control {
   position: fixed;
   top: 25px;
   right: 25px;
-  z-index: 50000;
+  z-index: 100000; 
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(10px);
-  border: 1px solid var(--glass-border);
+  border: 1px solid var(--gold);
   border-radius: 50%;
   width: 50px;
   height: 50px;
@@ -51,29 +53,22 @@ body {
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+.mute-control:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(197, 160, 89, 0.4);
+}
+
 #splash-screen {
   position: fixed;
   inset: 0;
   background-color: #000;
-  z-index: 60000;
+  z-index: 90000; /* Por debajo del mute */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.splash-content {
-  width: 90%;
-  max-width: 400px;
-  text-align: center;
-}
-
-.splash-logo {
-  width: 100%;
-  max-width: 300px;
-  margin-bottom: 30px;
-}
-
-/* 3. WRAPPER PRINCIPAL RWD */
+/* 3. WRAPPER Y HERO */
 .invitation-wrapper {
   width: 100%;
   display: flex;
@@ -81,11 +76,10 @@ body {
   align-items: center;
 }
 
-/* 4. HERO SECTION (Cinematic Experience) */
 .hero-section {
   position: relative;
   width: 100%;
-  height: 100vh; /* Siempre ocupa el alto de pantalla inicial */
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -108,49 +102,30 @@ body {
     radial-gradient(circle at center, transparent, rgba(0,0,0,0.7));
 }
 
-#particles-js {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 10;
-  text-align: center;
-  padding: 0 20px;
-}
-
-.brand-logo-img {
-  width: clamp(140px, 15vw, 220px);
-  margin-bottom: 2rem;
-  filter: drop-shadow(0 0 15px rgba(197, 160, 89, 0.4));
-}
-
 .main-title {
   font-family: 'Cinzel', serif;
-  font-size: clamp(2.2rem, 8vw, 5rem); /* Tipografía fluida */
+  font-size: clamp(2.2rem, 8vw, 5rem);
   line-height: 1;
   color: var(--gold);
   text-transform: uppercase;
   margin: 0;
 }
 
-/* 5. CONTENT BODY (Grid System) */
+/* 4. CONTENT BODY & GRID */
 .content-body {
   width: 100%;
   max-width: var(--container-max);
-  padding: 80px 20px;
+  padding: 60px 20px;
 }
 
 .info-grid-container {
   display: grid;
-  grid-template-columns: 1fr; /* Móvil: 1 columna */
+  grid-template-columns: 1fr;
   gap: 30px;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 }
 
-/* 6. CARDS Y DETALLES */
+/* 5. CARDS Y DETALLES */
 .glass-card {
   background: var(--glass);
   border: 1px solid var(--glass-border);
@@ -186,10 +161,11 @@ body {
   opacity: 0.3;
 }
 
-/* 7. RSVP Y FOOTER */
+/* 6. RSVP FORM */
 .action-section {
   max-width: 600px;
   margin: 0 auto;
+  padding-top: 20px;
 }
 
 #nombreInvitado {
@@ -218,39 +194,52 @@ body {
   transition: all 0.4s ease;
 }
 
-.btn-rsvp:hover:not(:disabled) {
-  background: var(--gold);
-  color: #000;
-  box-shadow: 0 0 40px rgba(197, 160, 89, 0.3);
+/* 7. UBICACIÓN LUXURY (Hotfix) 
+   Separamos el botón del formulario para evitar que se encimen
+*/
+.location-container {
+  margin-top: 50px; 
+  padding-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
 }
 
-/* 8. MEDIA QUERIES (True RWD) */
+.location-label {
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  color: var(--gold);
+  opacity: 0.6;
+  font-family: 'Inter', sans-serif;
+}
 
-/* TABLET Y DESKTOP PEQUEÑO */
+.location-btn-luxury {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  padding: 14px 30px;
+  border-radius: 50px; /* Estilo píldora */
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+
+.location-btn-luxury:hover {
+  background: rgba(197, 160, 89, 0.1);
+  box-shadow: 0 0 20px rgba(197, 160, 89, 0.3);
+  transform: translateY(-3px);
+}
+
+/* 8. MEDIA QUERIES */
 @media (min-width: 768px) {
   .info-grid-container {
-    grid-template-columns: 1fr 1fr; /* Cambio a 2 columnas */
-    align-items: stretch;
-  }
-  
-  .details-section {
-    text-align: left;
-    align-items: flex-start;
-  }
-  
-  .detail-divider {
-    margin: 20px 0;
-  }
-}
-
-/* DESKTOP XL */
-@media (min-width: 1200px) {
-  .content-body {
-    padding: 120px 0;
-  }
-  
-  .info-grid-container {
-    gap: 60px;
+    grid-template-columns: 1fr 1fr;
   }
 }
 
