@@ -432,3 +432,62 @@ svg {
         margin-top: 36px;
     }
 }
+
+/* ==============================
+   FIX SPLASH CENTERING
+   ============================== */
+
+#splash-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.splash-content {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.splash-logo {
+    display: block;
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+.btn-start-experience {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 350px;
+    margin: 40px auto 0;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .splash-content {
+        max-width: 100%;
+        padding: 0 28px;
+    }
+
+    .splash-logo {
+        max-width: 340px;
+    }
+
+    .btn-start-experience {
+        max-width: 100%;
+        padding: 15px 18px;
+        letter-spacing: 0.14em;
+        font-size: 0.82rem;
+    }
+}
