@@ -1,4 +1,4 @@
-<!<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -8,8 +8,21 @@
   <link rel="icon" type="image/jpeg" href="../../LOGO/FAVICON.jpeg">
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- SCRIPTS DE LIBRERÍAS -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 </head>
 <body>
+
+  <!-- BOTÓN DE MUTE (ACCESIBILIDAD LUXURY) -->
+  <button id="mute-btn" onclick="toggleMute()" class="mute-control">
+    <svg id="mute-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#c5a059" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+      <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+    </svg>
+  </button>
 
   <div id="splash-screen">
     <div class="splash-content">
@@ -22,14 +35,28 @@
   <div class="invitation-container">
     <div class="overlay"></div>
     
-    <header class="hero-section reveal">
-      <img src="../../LOGO/VERSIÓN FONDO OSCURO.jpeg" alt="Invyra Logo" class="brand-logo-img">
-      <h2 class="pre-title">ESTÁS INVITADO A LA</h2>
-      <h1 class="main-title">MIDNIGHT<br>GALA</h1>
-      <p class="celebrant-name">34 AÑOS DE JAVIER</p>
+    <header class="hero-section">
+      <!-- Capas Cinematográficas -->
+      <div class="cinematic-bg"></div>
+      <div class="cinematic-glow glow-one"></div>
+      <div class="cinematic-glow glow-two"></div>
+      <div class="cinematic-overlay"></div>
+      
+      <!-- ESTRUCTURA DE PARTÍCULAS DUALES (TOP & BOTTOM) -->
+      <div id="particles-top"></div>
+      <div id="particles-bottom"></div>
+
+      <!-- Contenido Principal Envolvente -->
+      <div class="hero-content">
+        <img src="../../LOGO/VERSIÓN FONDO OSCURO.jpeg" alt="Invyra Logo" class="brand-logo-img">
+        <h2 class="pre-title">ESTÁS INVITADO A LA</h2>
+        <h1 class="main-title">MIDNIGHT<br>GALA</h1>
+        <p class="celebrant-name">34 AÑOS DE JAVIER</p>
+        <p class="hero-subtitle">Una noche inolvidable de elegancia y celebración</p>
+      </div>
     </header>
 
-    <section class="countdown-section reveal">
+    <section class="countdown-section section-reveal">
       <p class="section-label">EL TIEMPO SE AGOTA</p>
       <div id="countdown" class="glass-card">
         <div class="time-unit"><span id="days">00</span><small>DÍAS</small></div>
@@ -39,7 +66,7 @@
       </div>
     </section>
 
-    <section class="details-section reveal">
+    <section class="details-section section-reveal">
       <div class="detail-item">
         <span>FECHA</span>
         <p>09 . ABR . 2027</p>
@@ -54,23 +81,25 @@
       </div>
     </section>
 
-    <footer class="action-section reveal">
+    <footer class="action-section section-reveal">
       <div class="rsvp-form">
         <input type="text" id="nombreInvitado" placeholder="Tu nombre completo" autocomplete="off">
         <button id="btn-confirmar" class="btn-rsvp" onclick="confirmarAsistencia()">CONFIRMAR ASISTENCIA</button>
       </div>
       
-      <!-- Icono de Google Maps Estético -->
-      <a href="https://www.google.com/maps/place/Salón+Ambar+Rossell+Palace,+General,+Cda.+Emiliano+Zapata+344,+Sta+Cruz+Atoyac,+Benito+Juárez,+03310+Ciudad+de+México,+CDMX,+México/data=!4m2!3m1!1s0x85d1ffbbd4d56f57:0xb6478c531a6fd4b?utm_source=mstt_1&entry=gps&coh=192189&g_ep=CAESBzI1LjMxLjIYACCIJyqZASw5NDI2NzcyNyw5NDI4MDQ4Nyw5NDI4NDQ1NCw5NDIyMzI5OSw5NDIxNjQxMyw5NDI4MDU3Niw5NDIxMjQ5Niw5NDIwNzM5NCw5NDIwNzUwNiw5NDIwODUwNiw5NDIxNzUyMyw5NDIxODY1Myw5NDIyOTgzOSw5NDI3NTE2OCw0NzA4NDM5Myw5NDIxMzIwMCw5NDI1ODMyNUICVVM%3D&skid=e617e1e2-fced-4eea-86d9-da98db4e3b7f&g_st=awb" target="_blank" class="location-link" aria-label="Ubicación">
-        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-          <circle cx="12" cy="10" r="3"></circle>
-        </svg>
-      </a>
+      <!-- CONTENEDOR DE UBICACIÓN (FIX DE OVERLAP) -->
+      <div class="location-container">
+        <p class="location-text">VER UBICACIÓN</p>
+        <a href="https://www.google.com/maps/place/Salón+Ambar+Rossell+Palace,+General,+Cda.+Emiliano+Zapata+344,+Sta+Cruz+Atoyac,+Benito+Juárez,+03310+Ciudad+de+México,+CDMX,+México/data=!4m2!3m1!1s0x85d1ffbbd4d56f57:0xb6478c531a6fd4b?utm_source=mstt_1&entry=gps&coh=192189&g_ep=CAESBzI1LjMxLjIYACCIJyqZASw5NDI2NzcyNyw5NDI4MDQ4Nyw5NDI4NDQ1NCw5NDIyMzI5OSw5NDIxNjQxMyw5NDI4MDU3Niw5NDIxMjQ5Niw5NDIwNzM5NCw5NDIwNzUwNiw5NDIwODUwNiw5NDIxNzUyMyw5NDIxODY1Myw5NDIyOTgzOSw5NDI3NTE2OCw0NzA4NDM5Myw5NDIxMzIwMCw5NDIxMzIwMCw5NDI1ODMyNUICVVM%3D&skid=e617e1e2-fced-4eea-86d9-da98db4e3b7f&g_st=awb" target="_blank" class="location-link" aria-label="Ubicación">
+          <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+        </a>
+      </div>
     </footer>
   </div>
 
-  <!-- Modal de Confirmación -->
   <div id="rsvp-modal" class="modal hidden">
     <div class="modal-content">
       <h3>¡TODO LISTO!</h3>
