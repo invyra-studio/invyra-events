@@ -5,7 +5,7 @@
 
 // 1. PRE-LOADER & INITIALIZATION
 document.body.classList.add('js-enabled');
-gsap.registerPlugin(ScrollTrigger);
+if (typeof gsap !== 'undefined') gsap.registerPlugin(ScrollTrigger);
 
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyJ3LoQZeOTN2D621SNoNpN4ymGL4ml_k3tFm3V5X2p6Dm1yaKvA_WUrnIWLv5M-tue/exec";
 const TELEFONO_RSVP = "525516986744";
@@ -17,14 +17,14 @@ function initParticles() {
     const commonConfig = (direction) => ({
         "particles": {
             "number": { 
-                "value": 120, // Triple de partículas para mayor densidad
+                "value": 120, 
                 "density": { "enable": true, "value_area": 800 } 
             },
             "color": { "value": "#c5a059" },
             "shape": { "type": "circle" },
             "opacity": { 
-                "value": 0.8, // Más opacidad para mayor nitidez
-                "random": false, // Desactivado para evitar puntos "borrosos"
+                "value": 0.8, 
+                "random": false, 
                 "anim": { "enable": true, "speed": 1, "opacity_min": 0.4, "sync": false }
             },
             "size": { 
@@ -46,11 +46,13 @@ function initParticles() {
             "detect_on": "canvas",
             "events": { "onhover": { "enable": false } }
         },
-        "retina_detect": true // CRÍTICO: Activa la nitidez 8K para tu S25 Ultra
+        "retina_detect": true 
     });
 
-    particlesJS("particles-top", commonConfig("bottom"));
-    particlesJS("particles-bottom", commonConfig("top"));
+    if (typeof particlesJS !== 'undefined') {
+        particlesJS("particles-top", commonConfig("bottom"));
+        particlesJS("particles-bottom", commonConfig("top"));
+    }
 }
 
 initParticles();
@@ -149,7 +151,7 @@ setInterval(() => {
     }
 }, 1000);
 
-// 7. RSVP FLOW (MODAL FIX)
+// 7. RSVP FLOW
 async function confirmarAsistencia() {
     const inputNombre = document.getElementById('nombreInvitado');
     const btnConfirmar = document.getElementById('btn-confirmar');
@@ -163,7 +165,6 @@ async function confirmarAsistencia() {
         return;
     }
 
-    // Mostramos el modal y animamos su contenido (Tarjeta)
     modal.classList.remove('hidden');
     gsap.from(".modal-content", { 
         opacity: 0, 
@@ -174,7 +175,6 @@ async function confirmarAsistencia() {
 
     btnConfirmar.innerText = "PROCESANDO...";
     btnConfirmar.disabled = true;
-    inputNombre.disabled = true;
 
     try {
         await fetch(SCRIPT_URL, {
@@ -188,37 +188,31 @@ async function confirmarAsistencia() {
         
         setTimeout(() => {
             window.open(`https://wa.me/${TELEFONO_RSVP}?text=${mensaje}`, '_blank');
-            // Opcional: Ocultar tras la redirección
             modal.classList.add('hidden');
         }, 2800);
 
     } catch (error) {
         console.error("Error:", error);
         modal.classList.add('hidden');
-        btnConfirmar.innerText = "REINTENTAR";
         btnConfirmar.disabled = false;
-        inputNombre.disabled = false;
     }
+}
 
-    // 8. GESTIÓN DE VISIBILIDAD (Ahorro de recursos y control de audio)
+// 8. GESTIÓN DE VISIBILIDAD (AQUÍ AFUERA PARA QUE SIEMPRE FUNCIONE)
 document.addEventListener("visibilitychange", () => {
     const music = document.getElementById('bg-music');
+    const splash = document.getElementById('splash-screen');
     
     if (!music) return;
 
     if (document.hidden) {
-        // La página no es visible: pausamos la música silenciosamente
         music.pause();
         console.log("QA Log: App en segundo plano - Audio pausado");
     } else {
-        // La página vuelve a ser visible
-        // Solo reanudamos si la experiencia ya inició y no estaba en mute manual
-        const splash = document.getElementById('splash-screen');
+        // Solo reanudamos si ya pasaron el splash screen y no está en mute manual
         if (splash && splash.style.display === 'none' && !isMuted) {
-            music.play().catch(err => console.log("QA Log: Error al reanudar audio:", err));
+            music.play().catch(err => console.log("QA Log: Error al reanudar:", err));
             console.log("QA Log: App en primer plano - Audio reanudado");
         }
     }
 });
-
-}
