@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>INVYRA | Aurora & Matteo - Wedding Experience</title>
+
+    <link rel="icon" type="image/jpeg" href="../../LOGO/FAVICON.jpeg" />
+    <link rel="stylesheet" href="style.css?v=1.0.0" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- PRELOAD GALERÍA -->
+    <link rel="preload" as="image" href="./assets/wedding-ceremony.jpeg" />
+    <link rel="preload" as="image" href="./assets/wedding-reception.jpeg" />
+    <link rel="preload" as="image" href="./assets/wedding-moments.jpeg" />
+
+    <!-- SCRIPTS DE LIBRERÍAS -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  </head>
+
+  <body>
+    <div id="splash-screen">
+      <div class="splash-aura"></div>
+      <div class="splash-bokeh bokeh-a"></div>
+      <div class="splash-bokeh bokeh-b"></div>
+      <div class="splash-bokeh bokeh-c"></div>
+
+      <div class="splash-content">
+        <img
+          src="../../LOGO/VERSIÓN FONDO OSCURO.jpeg"
+          class="splash-logo"
+          alt="INVYRA"
+        />
+
+        <p class="splash-kicker">Wedding Experience</p>
+
+        <button
+          onclick="entrarExperiencia()"
+          class="btn-start-experience"
+          aria-label="Descubrir nuestra historia"
+        >
+          DESCUBRIR NUESTRA HISTORIA
+        </button>
+      </div>
+    </div>
+
+    <main class="invitation-container">
+      <header class="hero-section">
+        <div class="cinematic-bg hero-atmosphere"></div>
+        <div class="wedding-haze hero-atmosphere"></div>
+        <div class="soft-light light-one hero-atmosphere"></div>
+        <div class="soft-light light-two hero-atmosphere"></div>
+        <div class="soft-light light-three hero-atmosphere"></div>
+        <div class="wedding-bokeh hero-atmosphere"></div>
+        <div class="wedding-shimmer hero-atmosphere"></div>
+        <div class="cinematic-overlay hero-atmosphere"></div>
+
+        <div class="hero-content">
+          <img
+            src="../../LOGO/FAVICON.jpeg"
+            alt="Invyra Logo"
+            class="brand-logo-img reveal-item"
+          />
+
+          <h2 class="pre-title reveal-item">
+            TENEMOS EL HONOR DE INVITARTE A NUESTRA BODA
+          </h2>
+
+          <h1 class="main-title reveal-title">
+            Aurora<br />
+            & Matteo
+          </h1>
+
+          <p class="celebrant-name reveal-item">
+            14 · FEB · 2027
+          </p>
+
+          <p class="hero-subtitle reveal-item">
+            Una celebración de amor, elegancia y momentos inolvidables.
+          </p>
+        </div>
+      </header>
+
+      <section class="story-section section-reveal">
+        <p class="section-label">NUESTRA HISTORIA</p>
+
+        <h2 class="section-title">El inicio de un para siempre</h2>
+
+        <p class="story-text">
+          Hay momentos que cambian el rumbo de una vida. El nuestro comenzó con
+          una mirada, creció entre risas, promesas y sueños compartidos, y hoy
+          nos trae hasta este día: el inicio de una nueva historia juntos.
+        </p>
+      </section>
+
+      <section class="countdown-section section-reveal">
+        <p class="section-label">NUESTRO DÍA SE ACERCA</p>
+
+        <div id="countdown" class="glass-card">
+          <div class="time-unit">
+            <span id="days">00</span>
+            <small>DÍAS</small>
+          </div>
+
+          <div class="time-unit">
+            <span id="hours">00</span>
+            <small>HRS</small>
+          </div>
+
+          <div class="time-unit">
+            <span id="mins">00</span>
+            <small>MIN</small>
+          </div>
+
+          <div class="time-unit">
+            <span id="secs">00</span>
+            <small>SEG</small>
+          </div>
+        </div>
+      </section>
+
+      <section class="details-section section-reveal">
+        <div class="detail-item">
+          <span>CEREMONIA</span>
+          <p>14 · FEB · 2027 · 17:30 HRS</p>
+        </div>
+
+        <div class="detail-item">
+          <span>RECEPCIÓN</span>
+          <p>20:00 HRS</p>
+        </div>
+
+        <div class="detail-item">
+          <span>LUGAR</span>
+          <p>Hacienda Valentina — Jardín Imperial</p>
+        </div>
+      </section>
+
+      <section class="dress-code-section section-reveal">
+        <p class="section-label">DRESS CODE</p>
+
+        <div class="dress-card">
+          <h2>Formal Elegante</h2>
+          <p>
+            Te invitamos a vestir en tonos neutros, negro, champagne o dorado
+            suave.
+          </p>
+        </div>
+      </section>
+
+      <section class="itinerary-section section-reveal">
+        <p class="section-label">ITINERARIO</p>
+
+        <div class="timeline-card">
+          <div class="timeline-item">
+            <span>17:30</span>
+            <p>Ceremonia</p>
+          </div>
+
+          <div class="timeline-item">
+            <span>19:00</span>
+            <p>Cóctel de bienvenida</p>
+          </div>
+
+          <div class="timeline-item">
+            <span>20:00</span>
+            <p>Recepción</p>
+          </div>
+
+          <div class="timeline-item">
+            <span>21:30</span>
+            <p>Primer baile</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="gallery-section section-reveal">
+        <p class="section-label">GALERÍA</p>
+
+        <div class="gallery-grid">
+          <div
+            class="gallery-item gallery-one"
+            role="img"
+            aria-label="Ceremonia de boda elegante"
+          >
+            <span>Ceremonia</span>
+          </div>
+
+          <div
+            class="gallery-item gallery-two"
+            role="img"
+            aria-label="Recepción de boda elegante"
+          >
+            <span>Recepción</span>
+          </div>
+
+          <div
+            class="gallery-item gallery-three"
+            role="img"
+            aria-label="Momentos especiales de boda"
+          >
+            <span>Momentos</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="gift-section section-reveal">
+        <p class="section-label">MESA DE REGALOS</p>
+
+        <div class="gift-card">
+          <h2>Tu presencia es nuestro mejor regalo</h2>
+          <p>
+            Si deseas tener un detalle con nosotros, hemos preparado una mesa de
+            regalos para acompañarnos en esta nueva etapa.
+          </p>
+
+          <a
+            href="#"
+            class="secondary-button"
+            aria-label="Ver mesa de regalos"
+          >
+            VER MESA DE REGALOS
+          </a>
+        </div>
+      </section>
+
+      <footer class="action-section">
+        <div class="rsvp-form">
+          <input
+            type="text"
+            id="nombreInvitado"
+            placeholder="Tu nombre completo"
+            autocomplete="off"
+          />
+
+          <button
+            id="btn-confirmar"
+            class="btn-rsvp"
+            onclick="confirmarAsistencia()"
+            aria-label="Confirmar asistencia"
+          >
+            CONFIRMAR ASISTENCIA
+          </button>
+        </div>
+
+        <div class="location-container">
+          <p class="location-text">VER UBICACIÓN</p>
+
+          <a
+            href="https://maps.app.goo.gl/KtPtKCTe2NxgLfVV7"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="location-link"
+            aria-label="Abrir ubicación en Google Maps"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="44"
+              height="44"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#D4AF37"
+              stroke-width="1.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
+              ></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+          </a>
+        </div>
+
+        <div class="closing-section section-reveal">
+          <img
+            src="../../LOGO/FAVICON.jpeg"
+            alt="Invyra"
+            class="closing-logo"
+          />
+
+          <p>
+            Gracias por ser parte de este momento tan especial.
+          </p>
+
+          <span>Aurora & Matteo</span>
+        </div>
+      </footer>
+    </main>
+
+    <div id="rsvp-modal" class="modal hidden">
+      <div class="modal-content">
+        <h3>¡TODO LISTO!</h3>
+        <p>Redirigiendo a WhatsApp para completar tu confirmación...</p>
+      </div>
+    </div>
+
+    <audio id="bg-music" loop>
+      <source src="../../music/violin-luxury.mp3" type="audio/mpeg" />
+    </audio>
+
+    <script src="script.js?v=1.0.0"></script>
+  </body>
+</html>
