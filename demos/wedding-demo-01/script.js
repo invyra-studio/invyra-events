@@ -1,12 +1,11 @@
 /**
  * INVYRA - Wedding Legacy Demo
- * Luxury Wedding Experience
- * Visual system: Classic envelope + ivory champagne sage palette
+ * Fix: Splash button / open invitation
  */
 
-document.body.classList.add('js-enabled');
+document.body.classList.add("js-enabled");
 
-if (typeof gsap !== 'undefined') {
+if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
 }
 
@@ -14,34 +13,18 @@ const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyJ3LoQZeOTN2D621SNo
 const TELEFONO_RSVP = "525516986744";
 const FECHA_EVENTO = "Feb 14, 2027 17:30:00";
 
-function entrarExperiencia() {
-    const splash = document.getElementById('splash-screen');
-    const music = document.getElementById('bg-music');
-
-    splash.classList.add('opening');
-
-    gsap.to(splash, {
-        opacity: 0,
-        duration: 1.15,
-        delay: 0.55,
-        ease: "power2.inOut",
-        onComplete: () => {
-            splash.style.display = 'none';
-            initScrollReveal();
-        }
-    });
-
-    music.volume = 0;
-    music.play().catch(err => console.log("Interacción requerida:", err));
-
-    gsap.to(music, {
-        volume: 0.34,
-        duration: 4,
-        ease: "power1.inOut"
-    });
+function initHeroReveal() {
+    if (typeof gsap === "undefined") {
+        document.querySelectorAll(".hero-atmosphere, .reveal-item, .reveal-title, .hero-info-card").forEach(el => {
+            el.style.opacity = "1";
+            el.style.filter = "blur(0px)";
+            el.style.transform = "none";
+        });
+        return;
+    }
 
     const revealTL = gsap.timeline({
-        delay: 0.55,
+        delay: 0.2,
         defaults: {
             ease: "power3.out",
             duration: 1.25
@@ -78,22 +61,24 @@ function entrarExperiencia() {
             filter: "blur(0px)",
             duration: 1.6
         }, "-=0.7")
-        .to(".celebrant-name", {
+        .to(".hero-info-card", {
             opacity: 1,
             y: 0,
             filter: "blur(0px)",
             duration: 1.1
-        }, "-=1.0")
-        .to(".hero-subtitle", {
-            opacity: 1,
-            y: 0,
-            filter: "blur(0px)",
-            duration: 1.1
-        }, "-=0.9");
+        }, "-=1.0");
 }
 
 function initScrollReveal() {
-    document.querySelectorAll('.section-reveal').forEach(section => {
+    if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
+        document.querySelectorAll(".section-reveal").forEach(section => {
+            section.style.opacity = "1";
+            section.style.transform = "none";
+        });
+        return;
+    }
+
+    document.querySelectorAll(".section-reveal").forEach(section => {
         gsap.fromTo(section,
             {
                 opacity: 0,
@@ -113,20 +98,60 @@ function initScrollReveal() {
         );
     });
 
-    gsap.to(".location-link", {
-        scrollTrigger: {
-            trigger: ".location-container",
-            start: "top 95%"
-        },
-        y: -5,
-        repeat: -1,
-        yoyo: true,
-        duration: 2,
-        ease: "sine.inOut"
-    });
-
     ScrollTrigger.refresh();
 }
+
+function entrarExperiencia() {
+    const splash = document.getElementById("splash-screen");
+    const music = document.getElementById("bg-music");
+
+    if (!splash) return;
+
+    splash.classList.add("opening");
+
+    if (music) {
+        music.volume = 0;
+        music.play().catch(err => console.log("Audio requiere interacción:", err));
+
+        if (typeof gsap !== "undefined") {
+            gsap.to(music, {
+                volume: 0.34,
+                duration: 4,
+                ease: "power1.inOut"
+            });
+        } else {
+            music.volume = 0.34;
+        }
+    }
+
+    if (typeof gsap !== "undefined") {
+        gsap.to(splash, {
+            opacity: 0,
+            duration: 1.15,
+            delay: 0.55,
+            ease: "power2.inOut",
+            onComplete: () => {
+                splash.style.display = "none";
+                initHeroReveal();
+                initScrollReveal();
+            }
+        });
+    } else {
+        splash.style.display = "none";
+        initHeroReveal();
+        initScrollReveal();
+    }
+}
+
+window.entrarExperiencia = entrarExperiencia;
+
+document.addEventListener("DOMContentLoaded", () => {
+    const startButton = document.querySelector(".btn-start-experience");
+
+    if (startButton) {
+        startButton.addEventListener("click", entrarExperiencia);
+    }
+});
 
 const targetDate = new Date(FECHA_EVENTO).getTime();
 
@@ -135,87 +160,113 @@ setInterval(() => {
     const diff = targetDate - now;
 
     if (diff > 0) {
-        document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
-        document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
-        document.getElementById('mins').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
-        document.getElementById('secs').innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
+        const days = document.getElementById("days");
+        const hours = document.getElementById("hours");
+        const mins = document.getElementById("mins");
+        const secs = document.getElementById("secs");
+
+        if (!days || !hours || !mins || !secs) return;
+
+        days.innerText = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, "0");
+        hours.innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, "0");
+        mins.innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, "0");
+        secs.innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, "0");
     }
 }, 1000);
 
 async function confirmarAsistencia() {
-    const inputNombre = document.getElementById('nombreInvitado');
-    const btnConfirmar = document.getElementById('btn-confirmar');
-    const modal = document.getElementById('rsvp-modal');
+    const inputNombre = document.getElementById("nombreInvitado");
+    const inputMensaje = document.getElementById("mensajeInvitado");
+    const asistenciaSeleccionada = document.querySelector('input[name="asistencia"]:checked');
+    const btnConfirmar = document.getElementById("btn-confirmar");
+    const modal = document.getElementById("rsvp-modal");
+
     const nombre = inputNombre.value.trim();
+    const mensajeInvitado = inputMensaje.value.trim();
+    const asistencia = asistenciaSeleccionada ? asistenciaSeleccionada.value : "Asistiré";
 
     if (!nombre) {
-        gsap.to(inputNombre, {
-            x: 10,
-            duration: 0.1,
-            repeat: 5,
-            yoyo: true
-        });
+        if (typeof gsap !== "undefined") {
+            gsap.to(inputNombre, {
+                x: 10,
+                duration: 0.1,
+                repeat: 5,
+                yoyo: true
+            });
+        }
 
         inputNombre.style.border = "1px solid #b65b5b";
 
         setTimeout(() => {
-            inputNombre.style.border = "1px solid rgba(184, 138, 68, 0.28)";
+            inputNombre.style.border = "1px solid #111";
         }, 2000);
 
         return;
     }
 
-    modal.classList.remove('hidden');
+    modal.classList.remove("hidden");
 
-    gsap.from(".modal-content", {
-        opacity: 0,
-        scale: 0.8,
-        duration: 0.5,
-        ease: "back.out(1.7)"
-    });
+    if (typeof gsap !== "undefined") {
+        gsap.from(".modal-content", {
+            opacity: 0,
+            scale: 0.8,
+            duration: 0.5,
+            ease: "back.out(1.7)"
+        });
+    }
 
-    btnConfirmar.innerText = "PROCESANDO...";
+    btnConfirmar.innerText = "Procesando...";
     btnConfirmar.disabled = true;
 
     try {
         await fetch(SCRIPT_URL, {
-            method: 'POST',
-            mode: 'no-cors',
+            method: "POST",
+            mode: "no-cors",
             body: JSON.stringify({
                 nombre: nombre,
-                asistencia: "Confirmado",
+                asistencia: asistencia,
+                mensaje: mensajeInvitado,
                 evento: "Boda Aurora & Matteo"
             })
         });
 
-        btnConfirmar.innerText = "¡TODO LISTO!";
+        btnConfirmar.innerText = "¡Todo listo!";
 
-        const mensaje = encodeURIComponent(
-            `¡Hola! Confirmo mi asistencia a la boda de Aurora & Matteo.\n\n*Invitado:* ${nombre}`
+        const mensajeWhatsApp = encodeURIComponent(
+            `¡Hola! Confirmo mi respuesta para la boda de Aurora & Matteo.\n\n` +
+            `*Invitado:* ${nombre}\n` +
+            `*Asistencia:* ${asistencia}\n` +
+            `*Mensaje:* ${mensajeInvitado || "Sin mensaje"}`
         );
 
         setTimeout(() => {
-            window.open(`https://wa.me/${TELEFONO_RSVP}?text=${mensaje}`, '_blank');
-            modal.classList.add('hidden');
-        }, 2800);
+            window.open(`https://wa.me/${TELEFONO_RSVP}?text=${mensajeWhatsApp}`, "_blank");
+            modal.classList.add("hidden");
+
+            btnConfirmar.disabled = false;
+            btnConfirmar.innerText = "Confirmar asistencia";
+        }, 2200);
 
     } catch (error) {
         console.error("Error:", error);
-        modal.classList.add('hidden');
+        modal.classList.add("hidden");
         btnConfirmar.disabled = false;
+        btnConfirmar.innerText = "Confirmar asistencia";
     }
 }
 
+window.confirmarAsistencia = confirmarAsistencia;
+
 document.addEventListener("visibilitychange", () => {
-    const music = document.getElementById('bg-music');
-    const splash = document.getElementById('splash-screen');
+    const music = document.getElementById("bg-music");
+    const splash = document.getElementById("splash-screen");
 
     if (!music) return;
 
     if (document.hidden) {
         music.pause();
     } else {
-        if (splash && splash.style.display === 'none') {
+        if (splash && splash.style.display === "none") {
             music.play().catch(err => console.log("Error al reanudar:", err));
         }
     }

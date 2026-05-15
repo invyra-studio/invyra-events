@@ -6,19 +6,19 @@
     <title>INVYRA | Aurora & Matteo - Wedding Experience</title>
 
     <link rel="icon" type="image/jpeg" href="../../LOGO/FAVICON.jpeg" />
-    <link rel="stylesheet" href="style.css?v=1.0.1" />
+    <link rel="stylesheet" href="style.css?v=1.0.3" />
 
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
-    <!-- PRELOAD GALERÍA -->
     <link rel="preload" as="image" href="./assets/wedding-ceremony.jpeg" />
     <link rel="preload" as="image" href="./assets/wedding-reception.jpeg" />
     <link rel="preload" as="image" href="./assets/wedding-moments.jpeg" />
+    <link rel="preload" as="image" href="./assets/dress-men.jpeg" />
+    <link rel="preload" as="image" href="./assets/dress-women.jpeg" />
 
-    <!-- SCRIPTS DE LIBRERÍAS -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   </head>
@@ -40,14 +40,13 @@
             />
 
             <p class="splash-kicker">Wedding Experience</p>
-
             <h1 class="envelope-title">Aurora & Matteo</h1>
-
             <p class="envelope-date">14 · FEB · 2027</p>
           </div>
         </div>
 
         <button
+          type="button"
           onclick="entrarExperiencia()"
           class="btn-start-experience"
           aria-label="Abrir invitación"
@@ -74,7 +73,9 @@
             class="brand-logo-img reveal-item"
           />
 
-          <p class="hero-kicker reveal-item">Con la bendición de Dios y nuestras familias</p>
+          <p class="hero-kicker reveal-item">
+            Con la bendición de Dios y nuestras familias
+          </p>
 
           <h2 class="pre-title reveal-item">
             TENEMOS EL HONOR DE INVITARTE A NUESTRA BODA
@@ -86,13 +87,13 @@
             Matteo
           </h1>
 
-          <p class="celebrant-name reveal-item">
-            14 · FEB · 2027
-          </p>
+          <div class="hero-info-card reveal-item">
+            <p class="celebrant-name">14 · FEB · 2027</p>
 
-          <p class="hero-subtitle reveal-item">
-            Una celebración de amor, elegancia y momentos inolvidables.
-          </p>
+            <p class="hero-subtitle">
+              Una celebración de amor, elegancia y momentos inolvidables.
+            </p>
+          </div>
         </div>
       </header>
 
@@ -158,39 +159,109 @@
       </section>
 
       <section class="details-section section-reveal">
-        <div class="detail-item">
-          <span>CEREMONIA</span>
-          <p>14 · FEB · 2027 · 17:30 HRS</p>
-        </div>
+        <p class="section-label">CEREMONIA & RECEPCIÓN</p>
 
-        <div class="detail-item">
-          <span>RECEPCIÓN</span>
-          <p>20:00 HRS</p>
-        </div>
+        <div class="event-cards">
+          <article class="event-card">
+            <h2>CEREMONIA RELIGIOSA</h2>
 
-        <div class="detail-item">
-          <span>LUGAR</span>
-          <p>Hacienda Valentina — Jardín Imperial</p>
+            <p class="event-place">
+              Parroquia de San Agustín<br />
+              Centro Histórico
+            </p>
+
+            <div class="event-icon">
+              <svg viewBox="0 0 64 64" width="64" height="64" fill="none">
+                <path d="M32 8v10" stroke="currentColor" stroke-width="2" />
+                <path d="M22 28v-8h20v8" stroke="currentColor" stroke-width="2" />
+                <path d="M16 54V30l16-12 16 12v24H16Z" stroke="currentColor" stroke-width="2" />
+                <path d="M28 54V40a4 4 0 0 1 8 0v14" stroke="currentColor" stroke-width="2" />
+                <path d="M20 54h24" stroke="currentColor" stroke-width="2" />
+              </svg>
+            </div>
+
+            <p class="event-time">17:30 HRS</p>
+
+            <a
+              href="https://maps.app.goo.gl/KtPtKCTe2NxgLfVV7"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="map-button"
+            >
+              VER EN GOOGLE MAPS
+            </a>
+          </article>
+
+          <article class="event-card">
+            <h2>RECEPCIÓN</h2>
+
+            <p class="event-place">
+              Hacienda Valentina<br />
+              Jardín Imperial
+            </p>
+
+            <div class="event-icon">
+              <svg viewBox="0 0 64 64" width="64" height="64" fill="none">
+                <path d="M24 10l8 34" stroke="currentColor" stroke-width="2" />
+                <path d="M40 10l-8 34" stroke="currentColor" stroke-width="2" />
+                <path d="M24 10c-8 8-6 18 4 22" stroke="currentColor" stroke-width="2" />
+                <path d="M40 10c8 8 6 18-4 22" stroke="currentColor" stroke-width="2" />
+                <path d="M32 44v12" stroke="currentColor" stroke-width="2" />
+                <path d="M24 56h16" stroke="currentColor" stroke-width="2" />
+              </svg>
+            </div>
+
+            <p class="event-time">20:00 HRS</p>
+
+            <a
+              href="https://maps.app.goo.gl/KtPtKCTe2NxgLfVV7"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="map-button"
+            >
+              VER EN GOOGLE MAPS
+            </a>
+          </article>
         </div>
       </section>
 
       <section class="dress-code-section section-reveal">
-        <p class="section-label">DRESS CODE</p>
+        <p class="dress-script">Código de vestimenta</p>
 
-        <div class="dress-card">
-          <h2>Formal Elegante</h2>
-          <p>
-            Te invitamos a vestir en tonos neutros, champagne, salvia, dorado
-            suave o negro elegante.
-          </p>
+        <div class="dress-layout">
+          <div class="dress-column">
+            <div class="dress-image-wrap">
+              <img
+                src="./assets/dress-men.jpeg"
+                alt="Ejemplo de vestimenta formal para hombres"
+                class="dress-image"
+              />
+            </div>
 
-          <div class="palette-row">
-            <span class="tone tone-ivory"></span>
-            <span class="tone tone-champagne"></span>
-            <span class="tone tone-gold"></span>
-            <span class="tone tone-sage"></span>
-            <span class="tone tone-espresso"></span>
+            <h3>HOMBRES</h3>
+            <p>Etiqueta</p>
           </div>
+
+          <div class="dress-column">
+            <div class="dress-image-wrap">
+              <img
+                src="./assets/dress-women.jpeg"
+                alt="Ejemplo de vestimenta formal para mujeres"
+                class="dress-image"
+              />
+            </div>
+
+            <h3>MUJERES</h3>
+            <p>Etiqueta · No blanco</p>
+          </div>
+        </div>
+
+        <div class="palette-row">
+          <span class="tone tone-ivory"></span>
+          <span class="tone tone-champagne"></span>
+          <span class="tone tone-gold"></span>
+          <span class="tone tone-sage"></span>
+          <span class="tone tone-espresso"></span>
         </div>
       </section>
 
@@ -260,62 +331,67 @@
             regalos para acompañarnos en esta nueva etapa.
           </p>
 
-          <a
-            href="#"
-            class="secondary-button"
-            aria-label="Ver mesa de regalos"
-          >
+          <a href="#" class="secondary-button" aria-label="Ver mesa de regalos">
             VER MESA DE REGALOS
           </a>
         </div>
       </section>
 
       <footer class="action-section">
-        <div class="rsvp-form">
-          <input
-            type="text"
-            id="nombreInvitado"
-            placeholder="Tu nombre completo"
-            autocomplete="off"
-          />
+        <div class="rsvp-card">
+          <h2>¡ESTÁS INVITADO!</h2>
 
-          <button
-            id="btn-confirmar"
-            class="btn-rsvp"
-            onclick="confirmarAsistencia()"
-            aria-label="Confirmar asistencia"
-          >
-            CONFIRMAR ASISTENCIA
-          </button>
-        </div>
+          <div class="ornament-line">
+            <span></span>
+          </div>
 
-        <div class="location-container">
-          <p class="location-text">VER UBICACIÓN</p>
-
-          <a
-            href="https://maps.app.goo.gl/KtPtKCTe2NxgLfVV7"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="location-link"
-            aria-label="Abrir ubicación en Google Maps"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="44"
-              height="44"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#B88A44"
-              stroke-width="1.3"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path
-                d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
-              ></path>
-              <circle cx="12" cy="10" r="3"></circle>
+          <div class="rsvp-envelope-icon">
+            <svg viewBox="0 0 64 64" width="46" height="46" fill="none">
+              <rect x="10" y="18" width="44" height="32" rx="2" stroke="currentColor" stroke-width="2" />
+              <path d="M10 20l22 18 22-18" stroke="currentColor" stroke-width="2" />
+              <path d="M24 31c0-5 8-5 8 0c0-5 8-5 8 0c0 7-8 12-8 12s-8-5-8-12Z" stroke="currentColor" stroke-width="2" />
             </svg>
-          </a>
+          </div>
+
+          <div class="rsvp-form">
+            <input
+              type="text"
+              id="nombreInvitado"
+              placeholder="Nombre de invitado o familia"
+              autocomplete="off"
+            />
+
+            <div class="attendance-group">
+              <p>Confirmo que</p>
+
+              <div class="attendance-options">
+                <label>
+                  <input type="radio" name="asistencia" value="Asistiré" checked />
+                  <span>Asistiré</span>
+                </label>
+
+                <label>
+                  <input type="radio" name="asistencia" value="No asistiré" />
+                  <span>No asistiré</span>
+                </label>
+              </div>
+            </div>
+
+            <textarea
+              id="mensajeInvitado"
+              placeholder="Puedes dejar un mensaje (opcional)"
+            ></textarea>
+
+            <button
+              type="button"
+              id="btn-confirmar"
+              class="btn-rsvp"
+              onclick="confirmarAsistencia()"
+              aria-label="Confirmar asistencia"
+            >
+              Confirmar asistencia
+            </button>
+          </div>
         </div>
 
         <div class="closing-section section-reveal">
@@ -345,6 +421,6 @@
       <source src="../../music/violin-luxury.mp3" type="audio/mpeg" />
     </audio>
 
-    <script src="script.js?v=1.0.1"></script>
+    <script src="script.js?v=1.0.3"></script>
   </body>
 </html>

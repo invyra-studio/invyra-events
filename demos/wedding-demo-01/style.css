@@ -3,7 +3,7 @@
 :root {
     --ivory: #F7F1E8;
     --cream: #EFE6D8;
-    --paper: #F4EBDD;
+    --paper: #FBF8F2;
     --champagne: #D8C3A5;
     --gold: #B88A44;
     --gold-soft: #C9A96A;
@@ -12,9 +12,6 @@
     --espresso: #2B241E;
     --soft-brown: #4A3C32;
     --muted: #8C7E6F;
-    --white-soft: #66584B;
-    --glass: rgba(255, 255, 255, 0.36);
-    --glass-border: rgba(184, 138, 68, 0.26);
     --shadow-soft: rgba(43, 36, 30, 0.18);
 }
 
@@ -37,7 +34,6 @@ body {
     font-family: "Montserrat", sans-serif;
     margin: 0;
     min-height: 100vh;
-    overflow-x: hidden;
 }
 
 img,
@@ -46,7 +42,7 @@ svg {
 }
 
 /* ==============================
-   SPLASH — CLASSIC WEDDING ENVELOPE
+   SPLASH
    ============================== */
 
 #splash-screen {
@@ -219,7 +215,7 @@ svg {
 }
 
 /* ==============================
-   GENERAL LAYOUT
+   LAYOUT
    ============================== */
 
 .invitation-container {
@@ -234,7 +230,6 @@ svg {
 .hero-section {
     position: relative;
     width: 100%;
-    max-width: 100%;
     min-height: 100svh;
     display: flex;
     align-items: center;
@@ -246,14 +241,12 @@ svg {
 .hero-content {
     position: relative;
     width: 100%;
-    max-width: 100%;
-    overflow: hidden;
     text-align: center;
     z-index: 8;
 }
 
 /* ==============================
-   WEDDING HERO ATMOSPHERE
+   HERO BACKGROUND
    ============================== */
 
 .cinematic-bg {
@@ -336,8 +329,8 @@ svg {
     inset: 0;
     z-index: -1;
     background:
-        radial-gradient(circle at center, rgba(255, 255, 255, 0.12), rgba(43, 36, 30, 0.22) 84%),
-        linear-gradient(to bottom, rgba(247, 241, 232, 0.08), rgba(43, 36, 30, 0.26));
+        radial-gradient(circle at center, rgba(255, 255, 255, 0.22), rgba(43, 36, 30, 0.18) 78%),
+        linear-gradient(to bottom, rgba(247, 241, 232, 0.04), rgba(43, 36, 30, 0.23));
 }
 
 /* ==============================
@@ -348,8 +341,6 @@ svg {
     width: 92px;
     max-width: 26vw;
     margin-bottom: 34px;
-    image-rendering: -webkit-optimize-contrast;
-    transform: translateZ(0);
     opacity: 0.88;
     filter: drop-shadow(0 14px 24px rgba(43, 36, 30, 0.12));
 }
@@ -361,12 +352,11 @@ svg {
     text-transform: uppercase;
     margin: 0 auto 20px;
     max-width: 360px;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .pre-title {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 700;
+    font-weight: 800;
     color: var(--soft-brown);
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -380,10 +370,8 @@ svg {
     font-family: "Cormorant Garamond", serif;
     font-size: clamp(3.7rem, 15vw, 6rem);
     line-height: 0.74;
-    letter-spacing: 0.005em;
     color: var(--espresso);
     text-shadow: 0 12px 28px rgba(43, 36, 30, 0.10);
-    text-transform: none;
     font-weight: 500;
     margin: 0;
 }
@@ -393,23 +381,37 @@ svg {
     color: var(--gold);
 }
 
+.hero-info-card {
+    width: min(100%, 390px);
+    margin: 34px auto 0;
+    padding: 18px 18px 20px;
+    background: rgba(255, 255, 255, 0.34);
+    border: 1px solid rgba(184, 138, 68, 0.20);
+    border-radius: 22px;
+    box-shadow: 0 18px 45px rgba(43, 36, 30, 0.12);
+    backdrop-filter: blur(10px);
+}
+
 .celebrant-name {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 700;
-    color: var(--gold);
+    font-weight: 900;
+    color: #A87429;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    margin-top: 42px;
+    margin: 0 0 14px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.40);
 }
 
 .hero-subtitle {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 500;
-    color: var(--soft-brown);
-    line-height: 1.75;
-    max-width: 360px;
-    margin: 18px auto 0;
+    font-weight: 700;
+    color: #3C3028;
+    line-height: 1.65;
+    max-width: 330px;
+    margin: 0 auto;
 }
+
+/* ==============================
+   REVEAL
+   ============================== */
 
 .reveal-item,
 .reveal-title {
@@ -437,7 +439,6 @@ svg {
    ============================== */
 
 .section-label {
-    font-family: "Montserrat", sans-serif;
     font-weight: 800;
     color: var(--olive);
     letter-spacing: 0.14em;
@@ -518,11 +519,9 @@ svg {
     font-weight: 600;
 }
 
-.time-unit small {
-    color: var(--soft-brown);
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-}
+/* ==============================
+   PARENTS
+   ============================== */
 
 .parents-section {
     padding: 48px 0 26px;
@@ -534,19 +533,12 @@ svg {
 }
 
 .parent-card,
-.details-section,
-.dress-card,
 .timeline-card,
 .gift-card {
-    background:
-        linear-gradient(145deg, rgba(255,255,255,0.52), rgba(255,255,255,0.18)),
-        rgba(255, 255, 255, 0.28);
+    background: rgba(255, 255, 255, 0.46);
     border: 1px solid rgba(184, 138, 68, 0.22);
     box-shadow: 0 24px 70px var(--shadow-soft);
-}
-
-.parent-card {
-    padding: 28px 20px;
+    padding: 30px 22px;
 }
 
 .parent-card span {
@@ -565,63 +557,152 @@ svg {
     margin: 14px 0 0;
 }
 
+/* ==============================
+   EVENT CARDS
+   ============================== */
+
 .details-section {
-    padding: 34px 24px;
-    margin-bottom: 52px;
+    padding: 54px 0;
 }
 
-.detail-item {
-    margin-bottom: 30px;
+.event-cards {
+    display: grid;
+    gap: 22px;
 }
 
-.detail-item:last-child {
-    margin-bottom: 0;
+.event-card {
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid rgba(184, 138, 68, 0.32);
+    border-radius: 22px;
+    padding: 38px 24px 34px;
+    box-shadow: 0 22px 55px rgba(43, 36, 30, 0.13);
 }
 
-.detail-item span {
-    display: block;
-    font-weight: 800;
-    color: var(--olive);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-}
-
-.detail-item p {
-    font-weight: 500;
-    color: var(--soft-brown);
-    letter-spacing: 0.03em;
-    margin: 0;
-    line-height: 1.45;
-}
-
-.dress-code-section,
-.itinerary-section,
-.gallery-section,
-.gift-section {
-    padding: 48px 0;
-}
-
-.dress-card,
-.timeline-card,
-.gift-card {
-    padding: 34px 24px;
-    text-align: center;
-}
-
-.dress-card h2,
-.gift-card h2 {
+.event-card h2 {
     font-family: "Cormorant Garamond", serif;
-    color: var(--espresso);
-    font-size: 2.35rem;
-    font-weight: 500;
-    margin: 0 0 12px;
+    color: #111;
+    font-size: clamp(2rem, 8vw, 3rem);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    line-height: 1;
+    margin: 0 0 28px;
 }
 
-.dress-card p,
-.gift-card p {
-    color: var(--soft-brown);
-    line-height: 1.75;
+.event-place {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    color: #111;
+    font-size: 1.35rem;
+    line-height: 1.2;
+    margin: 0 0 28px;
+}
+
+.event-icon {
+    color: #111;
+    margin: 20px 0 24px;
+}
+
+.event-time {
+    font-family: "Cormorant Garamond", serif;
+    color: #111;
+    font-size: 1.35rem;
+    margin: 0 0 22px;
+}
+
+.map-button,
+.secondary-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 230px;
+    min-height: 50px;
+    padding: 0 26px;
+    border-radius: 999px;
+    background: #f3f0e9;
+    border: 1px solid rgba(43, 36, 30, 0.14);
+    color: #111;
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 800;
+    box-shadow: 0 4px 0 #111;
+    transition: 0.28s ease;
+}
+
+.map-button:hover,
+.secondary-button:hover {
+    background: #e8dfcf;
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #111;
+}
+
+/* ==============================
+   DRESS CODE
+   ============================== */
+
+.dress-code-section {
+    padding: 70px 0 54px;
+}
+
+.dress-script {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: clamp(2.8rem, 13vw, 4.8rem);
+    color: #111;
+    line-height: 0.9;
+    margin: 0 0 46px;
+}
+
+.dress-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    align-items: end;
+}
+
+.dress-column {
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+}
+
+.dress-image-wrap {
+    width: 132px;
+    height: 200px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: dressFloat 4.6s ease-in-out infinite alternate;
+}
+
+.dress-column:nth-child(2) .dress-image-wrap {
+    animation-delay: 0.7s;
+}
+
+.dress-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter:
+        drop-shadow(0 18px 22px rgba(43, 36, 30, 0.16))
+        contrast(1.05);
+}
+
+.dress-column h3 {
+    font-family: "Cormorant Garamond", serif;
+    color: #111;
+    font-size: 1.7rem;
+    letter-spacing: 0.08em;
+    margin: 0 0 8px;
+}
+
+.dress-column p {
+    font-family: "Cormorant Garamond", serif;
+    color: #111;
+    font-size: 1.45rem;
+    line-height: 1.1;
     margin: 0;
 }
 
@@ -629,7 +710,7 @@ svg {
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin-top: 24px;
+    margin-top: 30px;
 }
 
 .tone {
@@ -645,6 +726,16 @@ svg {
 .tone-gold { background: #B88A44; }
 .tone-sage { background: #A6A88E; }
 .tone-espresso { background: #2B241E; }
+
+/* ==============================
+   ITINERARY / GALLERY / GIFT
+   ============================== */
+
+.itinerary-section,
+.gallery-section,
+.gift-section {
+    padding: 48px 0;
+}
 
 .timeline-item {
     display: flex;
@@ -673,13 +764,22 @@ svg {
     font-weight: 500;
 }
 
-/* ==============================
-   GALLERY — REAL IMAGES
-   ============================== */
+.gift-card h2 {
+    font-family: "Cormorant Garamond", serif;
+    color: var(--espresso);
+    font-size: 2.35rem;
+    font-weight: 500;
+    margin: 0 0 12px;
+}
+
+.gift-card p {
+    color: var(--soft-brown);
+    line-height: 1.75;
+    margin: 0;
+}
 
 .gallery-grid {
     display: grid;
-    grid-template-columns: 1fr;
     gap: 18px;
 }
 
@@ -718,119 +818,172 @@ svg {
 
 .gallery-one {
     background-image: url("./assets/wedding-ceremony.jpeg");
-    background-position: center;
 }
 
 .gallery-two {
     background-image: url("./assets/wedding-reception.jpeg");
-    background-position: center;
 }
 
 .gallery-three {
     background-image: url("./assets/wedding-moments.jpeg");
-    background-position: center;
 }
 
-.secondary-button {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 26px;
-    padding: 14px 22px;
-    border: 1px solid rgba(184, 138, 68, 0.42);
-    color: var(--espresso);
-    background: rgba(255, 255, 255, 0.26);
-    text-decoration: none;
-    font-size: 0.75rem;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    transition: 0.35s ease;
-}
-
-.secondary-button:hover {
-    background: rgba(184, 138, 68, 0.12);
-}
+/* ==============================
+   RSVP
+   ============================== */
 
 .action-section {
     opacity: 1 !important;
     transform: none !important;
     visibility: visible !important;
     display: block;
-    margin-top: 48px;
+    margin-top: 50px;
     margin-bottom: 90px;
+}
+
+.rsvp-card {
+    background: rgba(255, 255, 255, 0.90);
+    border: 1px solid rgba(184, 138, 68, 0.32);
+    border-radius: 26px;
+    padding: 42px 24px 44px;
+    box-shadow: 0 24px 60px rgba(43, 36, 30, 0.16);
+}
+
+.rsvp-card h2 {
+    font-family: "Cormorant Garamond", serif;
+    color: #111;
+    font-size: clamp(2.4rem, 10vw, 4rem);
+    line-height: 0.95;
+    margin: 0 0 28px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.ornament-line {
+    width: 170px;
+    height: 1px;
+    background: #111;
+    margin: 0 auto 34px;
+    position: relative;
+}
+
+.ornament-line span {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 18px;
+    height: 18px;
+    background: #111;
+    transform: translate(-50%, -50%) rotate(45deg);
+    clip-path: polygon(50% 0%, 61% 36%, 100% 50%, 61% 64%, 50% 100%, 39% 64%, 0% 50%, 39% 36%);
+}
+
+.rsvp-envelope-icon {
+    color: #111;
+    margin-bottom: 24px;
+    text-align: center;
 }
 
 .rsvp-form {
     width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+#nombreInvitado,
+#mensajeInvitado {
+    width: 100%;
+    background: #fff;
+    border: 1px solid #111;
+    color: #111;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 14px 16px;
+    border-radius: 0;
 }
 
 #nombreInvitado {
-    width: 100%;
-    padding: 15px;
-    background: rgba(255, 255, 255, 0.34);
-    border: 1px solid rgba(184, 138, 68, 0.28);
-    color: var(--espresso);
-    margin-bottom: 20px;
-    border-radius: 0;
-    text-align: center;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 600;
+    margin-bottom: 28px;
 }
 
-#nombreInvitado::placeholder {
-    color: var(--muted);
+#mensajeInvitado {
+    min-height: 130px;
+    resize: vertical;
+    margin: 24px 0 28px;
 }
 
-#nombreInvitado:focus {
+#nombreInvitado::placeholder,
+#mensajeInvitado::placeholder {
+    color: rgba(0, 0, 0, 0.72);
+}
+
+#nombreInvitado:focus,
+#mensajeInvitado:focus {
     outline: none;
-    border-color: rgba(184, 138, 68, 0.66);
-    box-shadow: 0 0 25px rgba(184, 138, 68, 0.12);
+    border-color: #111;
+    box-shadow: 0 0 0 2px rgba(184, 138, 68, 0.16);
+}
+
+.attendance-group {
+    color: #111;
+    font-family: "Montserrat", sans-serif;
+}
+
+.attendance-group p {
+    margin: 0 0 18px;
+    font-weight: 800;
+}
+
+.attendance-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.attendance-group label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.attendance-group input {
+    width: 18px;
+    height: 18px;
+    accent-color: #111;
 }
 
 .btn-rsvp {
-    border: 1px solid rgba(184, 138, 68, 0.48);
-    background: var(--espresso);
-    color: var(--ivory);
-    padding: 1rem 2rem;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 800;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
+    max-width: 280px;
+    min-height: 54px;
+    margin: 0 auto;
+    border-radius: 999px;
+    background: #f3f0e9;
+    border: 1px solid rgba(43, 36, 30, 0.14);
+    color: #111;
+    font-size: 0.9rem;
+    font-weight: 800;
+    box-shadow: 0 4px 0 #111;
     cursor: pointer;
-    transition: 0.35s ease;
+    transition: 0.28s ease;
 }
 
 .btn-rsvp:hover {
-    background: var(--gold);
-    color: var(--ivory);
-    box-shadow: 0 0 30px rgba(184, 138, 68, 0.22);
+    background: #e8dfcf;
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #111;
 }
 
-.location-container {
-    margin-top: 38px;
-    text-align: center;
-}
-
-.location-text {
-    font-weight: 800;
-    color: var(--soft-brown);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 18px;
-}
-
-.location-link {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-}
-
-.location-link svg {
-    stroke: var(--gold);
-}
+/* ==============================
+   CLOSING / MODAL
+   ============================== */
 
 .closing-section {
     margin-top: 78px;
@@ -969,6 +1122,20 @@ svg {
     }
 }
 
+@keyframes dressFloat {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-12px);
+    }
+}
+
+/* ==============================
+   MOBILE
+   ============================== */
+
 @media (max-width: 768px) {
     .envelope-stage {
         padding: 0 28px;
@@ -988,33 +1155,69 @@ svg {
 
     .main-title {
         font-size: clamp(3.4rem, 16vw, 4.8rem);
-        max-width: 100%;
     }
 
     .pre-title,
-    .celebrant-name,
     .hero-subtitle,
     .hero-kicker {
         max-width: 100%;
         padding: 0 10px;
     }
 
+    .hero-info-card {
+        width: calc(100% - 18px);
+        padding: 16px 14px 18px;
+    }
+
+    .event-card {
+        padding: 34px 18px 32px;
+    }
+
+    .event-card h2 {
+        font-size: 2.25rem;
+        letter-spacing: 0.1em;
+    }
+
+    .dress-layout {
+        gap: 10px;
+    }
+
+    .dress-column {
+        min-height: 280px;
+    }
+
+    .dress-image-wrap {
+        width: 108px;
+        height: 170px;
+        margin-bottom: 28px;
+    }
+
+    .dress-column h3 {
+        font-size: 1.35rem;
+    }
+
+    .dress-column p {
+        font-size: 1.15rem;
+    }
+
     .gallery-item {
         height: 300px;
+    }
+
+    .rsvp-card {
+        padding: 38px 18px 40px;
+    }
+
+    .rsvp-form {
+        max-width: 100%;
+    }
+
+    .attendance-options {
+        gap: 18px;
     }
 
     .action-section {
         margin-top: 34px;
         margin-bottom: 100px;
-    }
-
-    #nombreInvitado,
-    .btn-rsvp {
-        width: 100%;
-        max-width: 100%;
-    }
-
-    .location-container {
-        margin-top: 36px;
     }
 }
