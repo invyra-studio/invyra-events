@@ -1,7 +1,7 @@
 /**
  * INVYRA - Wedding Legacy Demo
  * Luxury Wedding Experience
- * Visual system: Romantic bokeh + champagne haze
+ * Visual system: Classic envelope + ivory champagne sage palette
  */
 
 document.body.classList.add('js-enabled');
@@ -18,9 +18,12 @@ function entrarExperiencia() {
     const splash = document.getElementById('splash-screen');
     const music = document.getElementById('bg-music');
 
+    splash.classList.add('opening');
+
     gsap.to(splash, {
         opacity: 0,
-        duration: 1.25,
+        duration: 1.15,
+        delay: 0.55,
         ease: "power2.inOut",
         onComplete: () => {
             splash.style.display = 'none';
@@ -38,6 +41,7 @@ function entrarExperiencia() {
     });
 
     const revealTL = gsap.timeline({
+        delay: 0.55,
         defaults: {
             ease: "power3.out",
             duration: 1.25
@@ -55,6 +59,12 @@ function entrarExperiencia() {
             filter: "blur(0px)",
             duration: 1.2
         }, "-=1.0")
+        .to(".hero-kicker", {
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+            duration: 1.0
+        }, "-=0.8")
         .to(".pre-title", {
             opacity: 1,
             y: 0,
@@ -146,10 +156,10 @@ async function confirmarAsistencia() {
             yoyo: true
         });
 
-        inputNombre.style.border = "1px solid #ff4444";
+        inputNombre.style.border = "1px solid #b65b5b";
 
         setTimeout(() => {
-            inputNombre.style.border = "1px solid rgba(239, 227, 207, 0.2)";
+            inputNombre.style.border = "1px solid rgba(184, 138, 68, 0.28)";
         }, 2000);
 
         return;

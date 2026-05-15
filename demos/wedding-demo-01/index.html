@@ -6,7 +6,7 @@
     <title>INVYRA | Aurora & Matteo - Wedding Experience</title>
 
     <link rel="icon" type="image/jpeg" href="../../LOGO/FAVICON.jpeg" />
-    <link rel="stylesheet" href="style.css?v=1.0.0" />
+    <link rel="stylesheet" href="style.css?v=1.0.1" />
 
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
@@ -25,26 +25,34 @@
 
   <body>
     <div id="splash-screen">
-      <div class="splash-aura"></div>
-      <div class="splash-bokeh bokeh-a"></div>
-      <div class="splash-bokeh bokeh-b"></div>
-      <div class="splash-bokeh bokeh-c"></div>
+      <div class="splash-floral-glow"></div>
+      <div class="splash-soft-grain"></div>
 
-      <div class="splash-content">
-        <img
-          src="../../LOGO/VERSIÓN FONDO OSCURO.jpeg"
-          class="splash-logo"
-          alt="INVYRA"
-        />
+      <div class="envelope-stage">
+        <div class="envelope-card">
+          <div class="envelope-flap"></div>
 
-        <p class="splash-kicker">Wedding Experience</p>
+          <div class="envelope-body">
+            <img
+              src="../../LOGO/FAVICON.jpeg"
+              class="envelope-logo"
+              alt="INVYRA"
+            />
+
+            <p class="splash-kicker">Wedding Experience</p>
+
+            <h1 class="envelope-title">Aurora & Matteo</h1>
+
+            <p class="envelope-date">14 · FEB · 2027</p>
+          </div>
+        </div>
 
         <button
           onclick="entrarExperiencia()"
           class="btn-start-experience"
-          aria-label="Descubrir nuestra historia"
+          aria-label="Abrir invitación"
         >
-          DESCUBRIR NUESTRA HISTORIA
+          ABRIR INVITACIÓN
         </button>
       </div>
     </div>
@@ -55,7 +63,6 @@
         <div class="wedding-haze hero-atmosphere"></div>
         <div class="soft-light light-one hero-atmosphere"></div>
         <div class="soft-light light-two hero-atmosphere"></div>
-        <div class="soft-light light-three hero-atmosphere"></div>
         <div class="wedding-bokeh hero-atmosphere"></div>
         <div class="wedding-shimmer hero-atmosphere"></div>
         <div class="cinematic-overlay hero-atmosphere"></div>
@@ -67,13 +74,16 @@
             class="brand-logo-img reveal-item"
           />
 
+          <p class="hero-kicker reveal-item">Con la bendición de Dios y nuestras familias</p>
+
           <h2 class="pre-title reveal-item">
             TENEMOS EL HONOR DE INVITARTE A NUESTRA BODA
           </h2>
 
           <h1 class="main-title reveal-title">
             Aurora<br />
-            & Matteo
+            <span>&</span><br />
+            Matteo
           </h1>
 
           <p class="celebrant-name reveal-item">
@@ -85,6 +95,13 @@
           </p>
         </div>
       </header>
+
+      <section class="quote-section section-reveal">
+        <p class="quote-mark">“</p>
+        <p class="quote-text">
+          Dos almas, una historia, y la promesa de caminar juntos para siempre.
+        </p>
+      </section>
 
       <section class="story-section section-reveal">
         <p class="section-label">NUESTRA HISTORIA</p>
@@ -124,6 +141,22 @@
         </div>
       </section>
 
+      <section class="parents-section section-reveal">
+        <p class="section-label">CON AMOR NOS ACOMPAÑAN</p>
+
+        <div class="parents-grid">
+          <div class="parent-card">
+            <span>Padres de la novia</span>
+            <p>Elena Martínez<br />Roberto Salazar</p>
+          </div>
+
+          <div class="parent-card">
+            <span>Padres del novio</span>
+            <p>Claudia Moretti<br />Alessandro Ricci</p>
+          </div>
+        </div>
+      </section>
+
       <section class="details-section section-reveal">
         <div class="detail-item">
           <span>CEREMONIA</span>
@@ -147,9 +180,17 @@
         <div class="dress-card">
           <h2>Formal Elegante</h2>
           <p>
-            Te invitamos a vestir en tonos neutros, negro, champagne o dorado
-            suave.
+            Te invitamos a vestir en tonos neutros, champagne, salvia, dorado
+            suave o negro elegante.
           </p>
+
+          <div class="palette-row">
+            <span class="tone tone-ivory"></span>
+            <span class="tone tone-champagne"></span>
+            <span class="tone tone-gold"></span>
+            <span class="tone tone-sage"></span>
+            <span class="tone tone-espresso"></span>
+          </div>
         </div>
       </section>
 
@@ -264,8 +305,8 @@
               height="44"
               viewBox="0 0 24 24"
               fill="none"
-              stroke="#D4AF37"
-              stroke-width="1.2"
+              stroke="#B88A44"
+              stroke-width="1.3"
               stroke-linecap="round"
               stroke-linejoin="round"
             >
@@ -304,6 +345,6 @@
       <source src="../../music/violin-luxury.mp3" type="audio/mpeg" />
     </audio>
 
-    <script src="script.js?v=1.0.0"></script>
+    <script src="script.js?v=1.0.1"></script>
   </body>
 </html>

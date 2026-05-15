@@ -1,18 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
 
 :root {
-    --gold: #C9A96A;
-    --gold-soft: #D6B36A;
     --ivory: #F7F1E8;
-    --champagne: #EFE3CF;
-    --white-soft: #D9D2C7;
-    --muted: #9A8F80;
-    --bg-dark: #050403;
-    --espresso: #120E0B;
-    --soft-beige: #D8C7AE;
-    --glass: rgba(247, 241, 232, 0.05);
-    --glass-border: rgba(239, 227, 207, 0.18);
-    --gold-button: rgba(239, 227, 207, 0.32);
+    --cream: #EFE6D8;
+    --paper: #F4EBDD;
+    --champagne: #D8C3A5;
+    --gold: #B88A44;
+    --gold-soft: #C9A96A;
+    --olive: #6F735C;
+    --sage: #A6A88E;
+    --espresso: #2B241E;
+    --soft-brown: #4A3C32;
+    --muted: #8C7E6F;
+    --white-soft: #66584B;
+    --glass: rgba(255, 255, 255, 0.36);
+    --glass-border: rgba(184, 138, 68, 0.26);
+    --shadow-soft: rgba(43, 36, 30, 0.18);
 }
 
 * {
@@ -27,8 +30,10 @@ body {
 }
 
 body {
-    background-color: var(--bg-dark);
-    color: var(--ivory);
+    background:
+        radial-gradient(circle at 50% 0%, rgba(184, 138, 68, 0.10), transparent 34%),
+        linear-gradient(180deg, #f7f1e8 0%, #efe6d8 52%, #e6d8c3 100%);
+    color: var(--espresso);
     font-family: "Montserrat", sans-serif;
     margin: 0;
     min-height: 100vh;
@@ -41,7 +46,7 @@ svg {
 }
 
 /* ==============================
-   SPLASH — WEDDING INTRO
+   SPLASH — CLASSIC WEDDING ENVELOPE
    ============================== */
 
 #splash-screen {
@@ -50,9 +55,9 @@ svg {
     width: 100vw;
     height: 100vh;
     background:
-        radial-gradient(circle at 50% 42%, rgba(239, 227, 207, 0.12), transparent 34%),
-        radial-gradient(circle at 50% 52%, rgba(201, 169, 106, 0.10), transparent 44%),
-        linear-gradient(160deg, #030302 0%, #080604 48%, #140f0a 100%);
+        radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.58), transparent 36%),
+        radial-gradient(circle at 50% 70%, rgba(111, 115, 92, 0.12), transparent 38%),
+        linear-gradient(160deg, #f7f1e8 0%, #efe6d8 52%, #d8c3a5 100%);
     z-index: 10000;
     display: flex;
     justify-content: center;
@@ -61,74 +66,122 @@ svg {
     overflow: hidden;
 }
 
-.splash-aura {
+.splash-floral-glow {
     position: absolute;
-    width: 520px;
-    height: 520px;
+    width: 620px;
+    height: 620px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(239, 227, 207, 0.16), transparent 64%);
-    filter: blur(20px);
+    background:
+        radial-gradient(circle, rgba(255, 255, 255, 0.72), transparent 54%),
+        radial-gradient(circle, rgba(184, 138, 68, 0.16), transparent 72%);
+    filter: blur(18px);
+    opacity: 0.9;
     animation: auraBreath 7s ease-in-out infinite alternate;
 }
 
-.splash-bokeh {
+.splash-soft-grain {
     position: absolute;
-    border-radius: 50%;
-    background: rgba(239, 227, 207, 0.16);
-    filter: blur(8px);
-    animation: bokehFloat 9s ease-in-out infinite alternate;
+    inset: 0;
+    opacity: 0.2;
+    background-image:
+        linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 28px 28px;
+    mix-blend-mode: soft-light;
 }
 
-.bokeh-a {
-    width: 90px;
-    height: 90px;
-    top: 18%;
-    left: 18%;
-}
-
-.bokeh-b {
-    width: 130px;
-    height: 130px;
-    right: 14%;
-    bottom: 22%;
-    animation-duration: 11s;
-}
-
-.bokeh-c {
-    width: 60px;
-    height: 60px;
-    right: 28%;
-    top: 28%;
-    animation-duration: 8s;
-}
-
-.splash-content {
+.envelope-stage {
     position: relative;
     z-index: 2;
     width: 100%;
-    max-width: 420px;
-    margin: 0 auto;
-    padding: 0 24px;
+    max-width: 430px;
+    padding: 0 28px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    overflow: hidden;
 }
 
-.splash-logo {
-    display: block;
+.envelope-card {
+    position: relative;
     width: 100%;
     max-width: 350px;
-    margin: 0 auto;
+    min-height: 240px;
+    background:
+        linear-gradient(145deg, rgba(255,255,255,0.56), transparent 32%),
+        linear-gradient(145deg, #f8f0e4 0%, #eadcc9 100%);
+    border: 1px solid rgba(184, 138, 68, 0.42);
+    box-shadow:
+        0 28px 80px rgba(43, 36, 30, 0.22),
+        inset 0 0 0 1px rgba(255,255,255,0.38);
+    overflow: hidden;
+    transform-origin: center;
+}
+
+.envelope-card::before,
+.envelope-card::after {
+    content: "";
+    position: absolute;
+    width: 72%;
+    height: 1px;
+    background: rgba(184, 138, 68, 0.32);
+    top: 50%;
+}
+
+.envelope-card::before {
+    left: -8%;
+    transform: rotate(32deg);
+}
+
+.envelope-card::after {
+    right: -8%;
+    transform: rotate(-32deg);
+}
+
+.envelope-flap {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(145deg, transparent 49.5%, rgba(184, 138, 68, 0.22) 50%, transparent 50.5%),
+        linear-gradient(35deg, transparent 49.5%, rgba(184, 138, 68, 0.16) 50%, transparent 50.5%);
+    opacity: 0.95;
+}
+
+.envelope-body {
+    position: relative;
+    z-index: 2;
+    padding: 34px 24px 30px;
+}
+
+.envelope-logo {
+    width: 68px;
+    margin-bottom: 16px;
+    filter: drop-shadow(0 8px 20px rgba(43, 36, 30, 0.16));
 }
 
 .splash-kicker {
-    margin: 22px 0 0;
-    color: rgba(239, 227, 207, 0.78);
-    font-size: 0.72rem;
+    margin: 0 0 14px;
+    color: var(--olive);
+    font-size: 0.68rem;
+    font-weight: 700;
     letter-spacing: 0.22em;
     text-transform: uppercase;
+}
+
+.envelope-title {
+    font-family: "Cormorant Garamond", serif;
+    color: var(--espresso);
+    font-size: clamp(2.45rem, 12vw, 3.7rem);
+    font-weight: 500;
+    line-height: 0.92;
+    margin: 0;
+}
+
+.envelope-date {
+    margin: 18px 0 0;
+    color: var(--gold);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
 }
 
 .btn-start-experience {
@@ -137,14 +190,14 @@ svg {
     align-items: center;
     width: 100%;
     max-width: 350px;
-    margin: 38px auto 0;
-    background: rgba(247, 241, 232, 0.025);
-    color: var(--champagne);
-    border: 1px solid rgba(239, 227, 207, 0.38);
+    margin: 36px auto 0;
+    background: rgba(255, 255, 255, 0.28);
+    color: var(--espresso);
+    border: 1px solid rgba(184, 138, 68, 0.62);
     padding: 15px 20px;
     font-family: "Montserrat", sans-serif;
-    font-weight: 500;
-    letter-spacing: 0.1em;
+    font-weight: 700;
+    letter-spacing: 0.12em;
     cursor: pointer;
     text-transform: uppercase;
     text-align: center;
@@ -152,8 +205,17 @@ svg {
 }
 
 .btn-start-experience:hover {
-    background: rgba(239, 227, 207, 0.08);
-    box-shadow: 0 0 28px rgba(239, 227, 207, 0.12);
+    background: rgba(184, 138, 68, 0.12);
+    box-shadow: 0 0 28px rgba(184, 138, 68, 0.16);
+}
+
+#splash-screen.opening .envelope-card {
+    animation: envelopeOpen 0.9s ease forwards;
+}
+
+#splash-screen.opening .btn-start-experience {
+    opacity: 0;
+    transform: translateY(12px);
 }
 
 /* ==============================
@@ -161,10 +223,10 @@ svg {
    ============================== */
 
 .invitation-container {
-    width: min(100%, 480px);
-    max-width: 480px;
+    width: min(100%, 500px);
+    max-width: 500px;
     margin: 0 auto;
-    padding: 0 25px 70px;
+    padding: 0 24px 70px;
     text-align: center;
     overflow-x: hidden;
 }
@@ -177,7 +239,7 @@ svg {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 120px 0 70px;
+    padding: 110px 0 70px;
     overflow: hidden;
 }
 
@@ -199,10 +261,10 @@ svg {
     inset: 0;
     z-index: -6;
     background:
-        radial-gradient(circle at 52% 18%, rgba(247, 241, 232, 0.22), transparent 30%),
-        radial-gradient(circle at 18% 42%, rgba(201, 169, 106, 0.14), transparent 34%),
-        radial-gradient(circle at 85% 76%, rgba(216, 199, 174, 0.12), transparent 38%),
-        linear-gradient(160deg, #050403 0%, #0c0906 42%, #18110b 100%);
+        radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.58), transparent 32%),
+        radial-gradient(circle at 18% 42%, rgba(184, 138, 68, 0.18), transparent 34%),
+        radial-gradient(circle at 88% 74%, rgba(111, 115, 92, 0.16), transparent 38%),
+        linear-gradient(160deg, #f7f1e8 0%, #eadcc9 46%, #cdb89c 100%);
 }
 
 .wedding-haze {
@@ -210,8 +272,8 @@ svg {
     inset: -10%;
     z-index: -5;
     background:
-        radial-gradient(circle at 50% 35%, rgba(247, 241, 232, 0.18), transparent 34%),
-        radial-gradient(circle at 50% 65%, rgba(201, 169, 106, 0.11), transparent 46%);
+        radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.44), transparent 34%),
+        radial-gradient(circle at 50% 65%, rgba(184, 138, 68, 0.12), transparent 46%);
     filter: blur(18px);
     opacity: 0.9;
     animation: hazeBreath 12s ease-in-out infinite alternate;
@@ -221,7 +283,7 @@ svg {
     position: absolute;
     border-radius: 50%;
     filter: blur(80px);
-    opacity: 0.28;
+    opacity: 0.24;
     z-index: -4;
     pointer-events: none;
 }
@@ -231,7 +293,7 @@ svg {
     height: 440px;
     top: 6%;
     left: -180px;
-    background: rgba(239, 227, 207, 0.42);
+    background: rgba(255, 255, 255, 0.7);
     animation: softLightMove 14s ease-in-out infinite alternate;
 }
 
@@ -240,17 +302,8 @@ svg {
     height: 380px;
     right: -160px;
     bottom: 12%;
-    background: rgba(201, 169, 106, 0.28);
+    background: rgba(111, 115, 92, 0.28);
     animation: softLightMove 16s ease-in-out infinite alternate-reverse;
-}
-
-.light-three {
-    width: 260px;
-    height: 260px;
-    left: 30%;
-    bottom: 5%;
-    background: rgba(247, 241, 232, 0.18);
-    animation: softLightMove 18s ease-in-out infinite alternate;
 }
 
 .wedding-bokeh {
@@ -258,13 +311,13 @@ svg {
     inset: 0;
     z-index: -3;
     background:
-        radial-gradient(circle at 18% 20%, rgba(239, 227, 207, 0.18) 0 3px, transparent 5px),
-        radial-gradient(circle at 82% 16%, rgba(239, 227, 207, 0.13) 0 5px, transparent 8px),
-        radial-gradient(circle at 74% 42%, rgba(201, 169, 106, 0.14) 0 4px, transparent 7px),
-        radial-gradient(circle at 24% 72%, rgba(239, 227, 207, 0.16) 0 5px, transparent 8px),
-        radial-gradient(circle at 63% 84%, rgba(201, 169, 106, 0.14) 0 3px, transparent 6px);
+        radial-gradient(circle at 18% 20%, rgba(255, 255, 255, 0.42) 0 4px, transparent 7px),
+        radial-gradient(circle at 82% 16%, rgba(184, 138, 68, 0.18) 0 5px, transparent 8px),
+        radial-gradient(circle at 74% 42%, rgba(111, 115, 92, 0.16) 0 4px, transparent 7px),
+        radial-gradient(circle at 24% 72%, rgba(255, 255, 255, 0.34) 0 5px, transparent 8px),
+        radial-gradient(circle at 63% 84%, rgba(184, 138, 68, 0.18) 0 3px, transparent 6px);
     filter: blur(1px);
-    opacity: 0.75;
+    opacity: 0.68;
     animation: bokehDrift 18s ease-in-out infinite alternate;
 }
 
@@ -273,7 +326,7 @@ svg {
     inset: 0;
     z-index: -2;
     background:
-        linear-gradient(115deg, transparent 0%, rgba(247, 241, 232, 0.06) 42%, transparent 58%);
+        linear-gradient(115deg, transparent 0%, rgba(255, 255, 255, 0.18) 42%, transparent 58%);
     transform: translateX(-120%);
     animation: shimmerSweep 9s ease-in-out infinite;
 }
@@ -283,8 +336,8 @@ svg {
     inset: 0;
     z-index: -1;
     background:
-        radial-gradient(circle at center, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.52) 84%),
-        linear-gradient(to bottom, rgba(0, 0, 0, 0.14), rgba(0, 0, 0, 0.66));
+        radial-gradient(circle at center, rgba(255, 255, 255, 0.12), rgba(43, 36, 30, 0.22) 84%),
+        linear-gradient(to bottom, rgba(247, 241, 232, 0.08), rgba(43, 36, 30, 0.26));
 }
 
 /* ==============================
@@ -292,21 +345,32 @@ svg {
    ============================== */
 
 .brand-logo-img {
-    width: 100px;
-    max-width: 28vw;
-    margin-bottom: 46px;
+    width: 92px;
+    max-width: 26vw;
+    margin-bottom: 34px;
     image-rendering: -webkit-optimize-contrast;
     transform: translateZ(0);
-    opacity: 0.9;
+    opacity: 0.88;
+    filter: drop-shadow(0 14px 24px rgba(43, 36, 30, 0.12));
+}
+
+.hero-kicker {
+    color: var(--olive);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin: 0 auto 20px;
+    max-width: 360px;
+    font-weight: 600;
 }
 
 .pre-title {
     font-family: "Montserrat", sans-serif;
-    font-weight: 500;
-    color: rgba(247, 241, 232, 0.86);
+    font-weight: 700;
+    color: var(--soft-brown);
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    font-size: 0.68rem;
+    font-size: 0.66rem;
     line-height: 1.8;
     margin: 0 auto 28px;
     max-width: 390px;
@@ -314,30 +378,35 @@ svg {
 
 .main-title {
     font-family: "Cormorant Garamond", serif;
-    font-size: clamp(3.7rem, 14vw, 5.9rem);
-    line-height: 0.88;
-    letter-spacing: 0.015em;
-    color: var(--champagne);
-    text-shadow: 0 0 35px rgba(239, 227, 207, 0.18);
+    font-size: clamp(3.7rem, 15vw, 6rem);
+    line-height: 0.74;
+    letter-spacing: 0.005em;
+    color: var(--espresso);
+    text-shadow: 0 12px 28px rgba(43, 36, 30, 0.10);
     text-transform: none;
     font-weight: 500;
     margin: 0;
 }
 
+.main-title span {
+    font-size: 0.68em;
+    color: var(--gold);
+}
+
 .celebrant-name {
     font-family: "Montserrat", sans-serif;
-    font-weight: 500;
+    font-weight: 700;
     color: var(--gold);
-    letter-spacing: 0.16em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    margin-top: 36px;
+    margin-top: 42px;
 }
 
 .hero-subtitle {
     font-family: "Montserrat", sans-serif;
-    font-weight: 400;
-    color: var(--white-soft);
-    line-height: 1.7;
+    font-weight: 500;
+    color: var(--soft-brown);
+    line-height: 1.75;
     max-width: 360px;
     margin: 18px auto 0;
 }
@@ -369,30 +438,50 @@ svg {
 
 .section-label {
     font-family: "Montserrat", sans-serif;
-    font-weight: 500;
-    color: rgba(247, 241, 232, 0.86);
-    letter-spacing: 0.1em;
+    font-weight: 800;
+    color: var(--olive);
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    font-size: 0.82rem;
+    font-size: 0.76rem;
     margin-bottom: 18px;
 }
 
 .section-title {
     font-family: "Cormorant Garamond", serif;
-    color: var(--champagne);
-    font-size: clamp(2.2rem, 8vw, 3.4rem);
+    color: var(--espresso);
+    font-size: clamp(2.3rem, 8vw, 3.5rem);
     font-weight: 500;
-    line-height: 1;
+    line-height: 0.96;
     margin: 16px 0 24px;
 }
 
+.quote-section {
+    padding: 74px 0 42px;
+}
+
+.quote-mark {
+    font-family: "Cormorant Garamond", serif;
+    color: var(--gold);
+    font-size: 5rem;
+    line-height: 0.6;
+    margin: 0;
+}
+
+.quote-text {
+    color: var(--soft-brown);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.8rem;
+    line-height: 1.18;
+    margin: 0 auto;
+    max-width: 390px;
+}
+
 .story-section {
-    padding: 86px 0 60px;
+    padding: 60px 0;
 }
 
 .story-text {
-    font-family: "Montserrat", sans-serif;
-    color: var(--white-soft);
+    color: var(--soft-brown);
     font-size: 0.98rem;
     line-height: 1.9;
     max-width: 390px;
@@ -400,24 +489,23 @@ svg {
 }
 
 .countdown-section {
-    margin-bottom: 48px;
+    margin-bottom: 54px;
 }
 
 .glass-card {
-    background: rgba(247, 241, 232, 0.035);
-    border: 1px solid rgba(239, 227, 207, 0.14);
-    backdrop-filter: blur(10px);
-    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.36);
+    border: 1px solid rgba(184, 138, 68, 0.22);
+    backdrop-filter: blur(12px);
+    border-radius: 28px;
     display: flex;
     justify-content: space-around;
-    padding: 20px 10px;
-    box-shadow: 0 22px 60px rgba(0, 0, 0, 0.35);
+    padding: 22px 10px;
+    box-shadow: 0 22px 60px var(--shadow-soft);
 }
 
 .time-unit {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 600;
-    color: var(--ivory);
+    font-weight: 700;
+    color: var(--soft-brown);
     letter-spacing: 0.03em;
     text-transform: uppercase;
 }
@@ -425,27 +513,61 @@ svg {
 .time-unit span {
     display: block;
     font-family: "Cormorant Garamond", serif;
-    font-size: 1.9rem;
-    color: var(--champagne);
-    font-weight: 500;
+    font-size: 2rem;
+    color: var(--gold);
+    font-weight: 600;
 }
 
 .time-unit small {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 600;
-    color: var(--white-soft);
+    color: var(--soft-brown);
     letter-spacing: 0.03em;
     text-transform: uppercase;
 }
 
+.parents-section {
+    padding: 48px 0 26px;
+}
+
+.parents-grid {
+    display: grid;
+    gap: 16px;
+}
+
+.parent-card,
+.details-section,
+.dress-card,
+.timeline-card,
+.gift-card {
+    background:
+        linear-gradient(145deg, rgba(255,255,255,0.52), rgba(255,255,255,0.18)),
+        rgba(255, 255, 255, 0.28);
+    border: 1px solid rgba(184, 138, 68, 0.22);
+    box-shadow: 0 24px 70px var(--shadow-soft);
+}
+
+.parent-card {
+    padding: 28px 20px;
+}
+
+.parent-card span {
+    color: var(--olive);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.parent-card p {
+    font-family: "Cormorant Garamond", serif;
+    color: var(--espresso);
+    font-size: 1.8rem;
+    line-height: 1.05;
+    margin: 14px 0 0;
+}
+
 .details-section {
-    background: rgba(247, 241, 232, 0.035);
-    border: 1px solid rgba(239, 227, 207, 0.18);
-    padding: 32px 24px;
+    padding: 34px 24px;
     margin-bottom: 52px;
-    color: var(--ivory);
-    font-family: "Montserrat", sans-serif;
-    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.36);
 }
 
 .detail-item {
@@ -458,18 +580,16 @@ svg {
 
 .detail-item span {
     display: block;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 600;
-    color: var(--champagne);
-    letter-spacing: 0.08em;
+    font-weight: 800;
+    color: var(--olive);
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     margin-bottom: 10px;
 }
 
 .detail-item p {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 400;
-    color: var(--white-soft);
+    font-weight: 500;
+    color: var(--soft-brown);
     letter-spacing: 0.03em;
     margin: 0;
     line-height: 1.45;
@@ -485,34 +605,52 @@ svg {
 .dress-card,
 .timeline-card,
 .gift-card {
-    border: 1px solid rgba(239, 227, 207, 0.18);
-    background: rgba(247, 241, 232, 0.035);
     padding: 34px 24px;
     text-align: center;
-    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.36);
 }
 
 .dress-card h2,
 .gift-card h2 {
     font-family: "Cormorant Garamond", serif;
-    color: var(--champagne);
-    font-size: 2.25rem;
+    color: var(--espresso);
+    font-size: 2.35rem;
     font-weight: 500;
     margin: 0 0 12px;
 }
 
 .dress-card p,
 .gift-card p {
-    color: var(--white-soft);
+    color: var(--soft-brown);
     line-height: 1.75;
     margin: 0;
 }
+
+.palette-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+.tone {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1px solid rgba(43, 36, 30, 0.16);
+    box-shadow: 0 8px 18px rgba(43, 36, 30, 0.12);
+}
+
+.tone-ivory { background: #F7F1E8; }
+.tone-champagne { background: #D8C3A5; }
+.tone-gold { background: #B88A44; }
+.tone-sage { background: #A6A88E; }
+.tone-espresso { background: #2B241E; }
 
 .timeline-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid rgba(239, 227, 207, 0.14);
+    border-bottom: 1px solid rgba(184, 138, 68, 0.18);
     padding: 16px 0;
     gap: 18px;
 }
@@ -523,14 +661,16 @@ svg {
 
 .timeline-item span {
     font-family: "Cormorant Garamond", serif;
-    color: var(--champagne);
-    font-size: 1.8rem;
+    color: var(--gold);
+    font-size: 1.9rem;
+    font-weight: 600;
 }
 
 .timeline-item p {
     margin: 0;
-    color: var(--white-soft);
+    color: var(--soft-brown);
     text-align: right;
+    font-weight: 500;
 }
 
 /* ==============================
@@ -545,9 +685,9 @@ svg {
 
 .gallery-item {
     position: relative;
-    height: 300px;
-    border: 1px solid rgba(239, 227, 207, 0.18);
-    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.36);
+    height: 320px;
+    border: 1px solid rgba(184, 138, 68, 0.24);
+    box-shadow: 0 24px 70px var(--shadow-soft);
     overflow: hidden;
     background-size: cover;
     background-position: center;
@@ -559,8 +699,8 @@ svg {
     position: absolute;
     inset: 0;
     background:
-        linear-gradient(to bottom, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.62)),
-        radial-gradient(circle at center, transparent 35%, rgba(0, 0, 0, 0.28) 100%);
+        linear-gradient(to bottom, rgba(255,255,255,0.02), rgba(43, 36, 30, 0.56)),
+        radial-gradient(circle at center, transparent 38%, rgba(43, 36, 30, 0.20) 100%);
     z-index: 1;
 }
 
@@ -569,11 +709,11 @@ svg {
     left: 22px;
     bottom: 22px;
     z-index: 2;
-    font-family: "Montserrat", sans-serif;
-    color: var(--champagne);
-    letter-spacing: 0.12em;
+    color: var(--ivory);
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    font-size: 0.72rem;
+    font-size: 0.74rem;
+    font-weight: 800;
 }
 
 .gallery-one {
@@ -597,18 +737,19 @@ svg {
     align-items: center;
     margin-top: 26px;
     padding: 14px 22px;
-    border: 1px solid rgba(239, 227, 207, 0.32);
-    color: var(--champagne);
-    background: rgba(247, 241, 232, 0.025);
+    border: 1px solid rgba(184, 138, 68, 0.42);
+    color: var(--espresso);
+    background: rgba(255, 255, 255, 0.26);
     text-decoration: none;
     font-size: 0.75rem;
+    font-weight: 800;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     transition: 0.35s ease;
 }
 
 .secondary-button:hover {
-    background: rgba(239, 227, 207, 0.08);
+    background: rgba(184, 138, 68, 0.12);
 }
 
 .action-section {
@@ -627,14 +768,14 @@ svg {
 #nombreInvitado {
     width: 100%;
     padding: 15px;
-    background: rgba(247, 241, 232, 0.035);
-    border: 1px solid rgba(239, 227, 207, 0.2);
-    color: var(--ivory);
+    background: rgba(255, 255, 255, 0.34);
+    border: 1px solid rgba(184, 138, 68, 0.28);
+    color: var(--espresso);
     margin-bottom: 20px;
-    border-radius: 4px;
+    border-radius: 0;
     text-align: center;
     font-family: "Montserrat", sans-serif;
-    font-weight: 400;
+    font-weight: 600;
 }
 
 #nombreInvitado::placeholder {
@@ -643,18 +784,18 @@ svg {
 
 #nombreInvitado:focus {
     outline: none;
-    border-color: rgba(239, 227, 207, 0.55);
-    box-shadow: 0 0 25px rgba(239, 227, 207, 0.1);
+    border-color: rgba(184, 138, 68, 0.66);
+    box-shadow: 0 0 25px rgba(184, 138, 68, 0.12);
 }
 
 .btn-rsvp {
-    border: 1px solid rgba(239, 227, 207, 0.32);
-    background: rgba(247, 241, 232, 0.035);
-    color: var(--champagne);
+    border: 1px solid rgba(184, 138, 68, 0.48);
+    background: var(--espresso);
+    color: var(--ivory);
     padding: 1rem 2rem;
     font-family: "Montserrat", sans-serif;
-    font-weight: 700;
-    letter-spacing: 0.04em;
+    font-weight: 800;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     width: 100%;
     cursor: pointer;
@@ -662,9 +803,9 @@ svg {
 }
 
 .btn-rsvp:hover {
-    background: rgba(239, 227, 207, 0.10);
-    box-shadow: 0 0 30px rgba(239, 227, 207, 0.12);
+    background: var(--gold);
     color: var(--ivory);
+    box-shadow: 0 0 30px rgba(184, 138, 68, 0.22);
 }
 
 .location-container {
@@ -673,10 +814,9 @@ svg {
 }
 
 .location-text {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 500;
-    color: var(--ivory);
-    letter-spacing: 0.05em;
+    font-weight: 800;
+    color: var(--soft-brown);
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     margin-bottom: 18px;
 }
@@ -689,7 +829,7 @@ svg {
 }
 
 .location-link svg {
-    stroke: var(--champagne);
+    stroke: var(--gold);
 }
 
 .closing-section {
@@ -699,12 +839,12 @@ svg {
 
 .closing-logo {
     width: 72px;
-    opacity: 0.9;
+    opacity: 0.88;
     margin-bottom: 20px;
 }
 
 .closing-section p {
-    color: var(--white-soft);
+    color: var(--soft-brown);
     line-height: 1.7;
     margin: 0 auto 18px;
     max-width: 340px;
@@ -712,14 +852,14 @@ svg {
 
 .closing-section span {
     font-family: "Cormorant Garamond", serif;
-    color: var(--champagne);
-    font-size: 2rem;
+    color: var(--espresso);
+    font-size: 2.2rem;
 }
 
 .modal {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.95);
+    background: rgba(43,36,30,0.88);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -734,10 +874,11 @@ svg {
 }
 
 .modal-content {
-    border: 1px solid rgba(239, 227, 207, 0.35);
+    background: var(--paper);
+    border: 1px solid rgba(184, 138, 68, 0.35);
     padding: 50px 30px;
-    border-radius: 16px;
     text-align: center;
+    color: var(--espresso);
 }
 
 /* ==============================
@@ -753,18 +894,6 @@ svg {
     to {
         transform: scale(1.08);
         opacity: 1;
-    }
-}
-
-@keyframes bokehFloat {
-    from {
-        transform: translate3d(0, 0, 0) scale(1);
-        opacity: 0.22;
-    }
-
-    to {
-        transform: translate3d(24px, -22px, 0) scale(1.12);
-        opacity: 0.42;
     }
 }
 
@@ -793,12 +922,12 @@ svg {
 @keyframes bokehDrift {
     from {
         transform: translateY(0) scale(1);
-        opacity: 0.55;
+        opacity: 0.5;
     }
 
     to {
         transform: translateY(-28px) scale(1.04);
-        opacity: 0.86;
+        opacity: 0.78;
     }
 }
 
@@ -814,7 +943,7 @@ svg {
 
     55% {
         transform: translateX(120%);
-        opacity: 0.55;
+        opacity: 0.42;
     }
 
     100% {
@@ -823,38 +952,55 @@ svg {
     }
 }
 
+@keyframes envelopeOpen {
+    0% {
+        transform: scale(1) rotateX(0deg);
+        opacity: 1;
+    }
+
+    45% {
+        transform: scale(1.03) translateY(-8px);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(0.96) translateY(20px);
+        opacity: 0;
+    }
+}
+
 @media (max-width: 768px) {
-    .splash-content {
-        max-width: 100%;
+    .envelope-stage {
         padding: 0 28px;
     }
 
-    .splash-logo {
+    .envelope-card {
         max-width: 340px;
+        min-height: 236px;
     }
 
     .btn-start-experience {
-        max-width: 100%;
+        max-width: 340px;
         padding: 15px 18px;
         letter-spacing: 0.08em;
         font-size: 0.76rem;
     }
 
     .main-title {
-        font-size: clamp(3.3rem, 15vw, 4.5rem);
-        letter-spacing: 0.01em;
+        font-size: clamp(3.4rem, 16vw, 4.8rem);
         max-width: 100%;
     }
 
     .pre-title,
     .celebrant-name,
-    .hero-subtitle {
+    .hero-subtitle,
+    .hero-kicker {
         max-width: 100%;
         padding: 0 10px;
     }
 
     .gallery-item {
-        height: 280px;
+        height: 300px;
     }
 
     .action-section {
