@@ -1,6 +1,6 @@
 /**
  * INVYRA - Wedding Legacy Demo
- * Fix: Splash button / open invitation
+ * Fix: RSVP complete fields + Web App URL integrada
  */
 
 document.body.classList.add("js-enabled");
@@ -9,9 +9,10 @@ if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
 }
 
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyJ3LoQZeOTN2D621SNoNpN4ymGL4ml_k3tFm3V5X2p6Dm1yaKvA_WUrnIWLv5M-tue/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw_r0T5FmXnHC5QUI6-talG8sXVywgmxvisnGtW9g26Xt-2ni1uk1Ffy-arETKwYmPt/exec";
 const TELEFONO_RSVP = "525516986744";
 const FECHA_EVENTO = "Feb 14, 2027 17:30:00";
+const EVENTO_NOMBRE = "Boda Aurora & Matteo";
 
 function initHeroReveal() {
     if (typeof gsap === "undefined") {
@@ -181,8 +182,10 @@ async function confirmarAsistencia() {
     const btnConfirmar = document.getElementById("btn-confirmar");
     const modal = document.getElementById("rsvp-modal");
 
+    if (!inputNombre || !btnConfirmar || !modal) return;
+
     const nombre = inputNombre.value.trim();
-    const mensajeInvitado = inputMensaje.value.trim();
+    const mensajeInvitado = inputMensaje ? inputMensaje.value.trim() : "";
     const asistencia = asistenciaSeleccionada ? asistenciaSeleccionada.value : "Asistiré";
 
     if (!nombre) {
@@ -218,16 +221,18 @@ async function confirmarAsistencia() {
     btnConfirmar.innerText = "Procesando...";
     btnConfirmar.disabled = true;
 
+    const payload = {
+        nombre: nombre,
+        asistencia: asistencia,
+        mensaje: mensajeInvitado,
+        evento: EVENTO_NOMBRE
+    };
+
     try {
         await fetch(SCRIPT_URL, {
             method: "POST",
             mode: "no-cors",
-            body: JSON.stringify({
-                nombre: nombre,
-                asistencia: asistencia,
-                mensaje: mensajeInvitado,
-                evento: "Boda Aurora & Matteo"
-            })
+            body: JSON.stringify(payload)
         });
 
         btnConfirmar.innerText = "¡Todo listo!";
@@ -241,14 +246,21 @@ async function confirmarAsistencia() {
 
         setTimeout(() => {
             window.open(`https://wa.me/${TELEFONO_RSVP}?text=${mensajeWhatsApp}`, "_blank");
-            modal.classList.add("hidden");
 
+            modal.classList.add("hidden");
             btnConfirmar.disabled = false;
             btnConfirmar.innerText = "Confirmar asistencia";
+
+            inputNombre.value = "";
+            if (inputMensaje) inputMensaje.value = "";
+
+            const asistirRadio = document.querySelector('input[name="asistencia"][value="Asistiré"]');
+            if (asistirRadio) asistirRadio.checked = true;
         }, 2200);
 
     } catch (error) {
         console.error("Error:", error);
+
         modal.classList.add("hidden");
         btnConfirmar.disabled = false;
         btnConfirmar.innerText = "Confirmar asistencia";
