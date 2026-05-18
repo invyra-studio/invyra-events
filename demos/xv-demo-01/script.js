@@ -1,6 +1,8 @@
 /**
  * INVYRA - XV Glam Demo
+ * Version 1.0.1
  * Nivel: Signature
+ * Server-side RSVP validation through Google Sheets / Apps Script
  */
 
 document.body.classList.add("js-enabled");
@@ -9,7 +11,11 @@ if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
 }
 
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw_r0T5FmXnHC5QUI6-talG8sXVywgmxvisnGtW9g26Xt-2ni1uk1Ffy-arETKwYmPt/exec";
+/**
+ * IMPORTANTE:
+ * Reemplaza esta URL cuando tengas el Apps Script exclusivo de xv-demo-01.
+ */
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzJz6sBTdrgkDSQwTD3Gcl3gzDOj4qE3HYBjSfMbWo99uRUM_DAluFzH5uNhcm2UKIxVw/exec";
 const TELEFONO_RSVP = "525516986744";
 const FECHA_EVENTO = "Nov 21, 2026 20:00:00";
 const EVENTO_NOMBRE = "XV Glam Valentina";
@@ -68,6 +74,38 @@ function initHeroReveal() {
             filter: "blur(0px)",
             duration: 1.1
         }, "-=0.8");
+
+    gsap.to(".hero-content", {
+        y: -8,
+        duration: 4.8,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+    });
+
+    gsap.to(".main-title", {
+        textShadow: "0 0 34px rgba(216, 180, 106, 0.48), 0 0 80px rgba(255, 138, 203, 0.34)",
+        duration: 2.8,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+    });
+
+    gsap.to(".celebrant-name", {
+        textShadow: "0 0 42px rgba(255, 138, 203, 0.42), 0 0 72px rgba(91, 42, 134, 0.35)",
+        duration: 3.4,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+    });
+
+    gsap.to(".hero-info-card", {
+        boxShadow: "0 18px 70px rgba(255, 138, 203, 0.28), 0 0 38px rgba(216, 180, 106, 0.14)",
+        duration: 3.2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+    });
 }
 
 function initScrollReveal() {
@@ -175,17 +213,99 @@ setInterval(() => {
     }
 }, 1000);
 
+function setModalContent(title, message) {
+    const modalTitle = document.getElementById("modal-title");
+    const modalMessage = document.getElementById("modal-message");
+
+    if (modalTitle) modalTitle.textContent = title;
+    if (modalMessage) modalMessage.textContent = message;
+}
+
+function showModal() {
+    const modal = document.getElementById("rsvp-modal");
+
+    if (!modal) return;
+
+    modal.classList.remove("hidden");
+
+    if (typeof gsap !== "undefined") {
+        gsap.from(".modal-content", {
+            opacity: 0,
+            scale: 0.8,
+            duration: 0.5,
+            ease: "back.out(1.7)"
+        });
+    }
+}
+
+function hideModal(delay = 3600) {
+    const modal = document.getElementById("rsvp-modal");
+
+    if (!modal) return;
+
+    setTimeout(() => {
+        modal.classList.add("hidden");
+    }, delay);
+}
+
+function sendRsvpToAppsScript(data) {
+    return new Promise((resolve, reject) => {
+        if (!SCRIPT_URL || SCRIPT_URL === "PEGA_AQUI_LA_URL_DEL_APPS_SCRIPT_DE_XV") {
+            reject(new Error("Falta configurar la URL del Apps Script de XV."));
+            return;
+        }
+
+        const callbackName = `invyraCallback_${Date.now()}_${Math.floor(Math.random() * 10000)}`;
+        const script = document.createElement("script");
+
+        const timeout = setTimeout(() => {
+            cleanup();
+            reject(new Error("Tiempo de espera agotado al conectar con Apps Script."));
+        }, 12000);
+
+        function cleanup() {
+            clearTimeout(timeout);
+            delete window[callbackName];
+
+            if (script && script.parentNode) {
+                script.parentNode.removeChild(script);
+            }
+        }
+
+        window[callbackName] = response => {
+            cleanup();
+            resolve(response);
+        };
+
+        const params = new URLSearchParams({
+            callback: callbackName,
+            nombre: data.nombre,
+            asistencia: data.asistencia,
+            mensaje: data.mensaje,
+            evento: data.evento
+        });
+
+        script.src = `${SCRIPT_URL}?${params.toString()}`;
+
+        script.onerror = () => {
+            cleanup();
+            reject(new Error("No se pudo conectar con Apps Script."));
+        };
+
+        document.body.appendChild(script);
+    });
+}
+
 async function confirmarAsistencia() {
     const inputNombre = document.getElementById("nombreInvitado");
     const inputMensaje = document.getElementById("mensajeInvitado");
     const asistenciaSeleccionada = document.querySelector('input[name="asistencia"]:checked');
     const btnConfirmar = document.getElementById("btn-confirmar");
-    const modal = document.getElementById("rsvp-modal");
 
-    if (!inputNombre || !btnConfirmar || !modal) return;
+    if (!inputNombre || !inputMensaje || !btnConfirmar) return;
 
     const nombre = inputNombre.value.trim();
-    const mensajeInvitado = inputMensaje ? inputMensaje.value.trim() : "";
+    const mensajeInvitado = inputMensaje.value.trim();
     const asistencia = asistenciaSeleccionada ? asistenciaSeleccionada.value : "Asistiré";
 
     if (!nombre) {
@@ -207,63 +327,78 @@ async function confirmarAsistencia() {
         return;
     }
 
-    modal.classList.remove("hidden");
-
-    if (typeof gsap !== "undefined") {
-        gsap.from(".modal-content", {
-            opacity: 0,
-            scale: 0.8,
-            duration: 0.5,
-            ease: "back.out(1.7)"
-        });
-    }
-
     btnConfirmar.innerText = "Procesando...";
     btnConfirmar.disabled = true;
 
-    const payload = {
-        nombre: nombre,
-        asistencia: asistencia,
-        mensaje: mensajeInvitado,
-        evento: EVENTO_NOMBRE
-    };
-
     try {
-        await fetch(SCRIPT_URL, {
-            method: "POST",
-            mode: "no-cors",
-            body: JSON.stringify(payload)
+        const response = await sendRsvpToAppsScript({
+            nombre,
+            asistencia,
+            mensaje: mensajeInvitado,
+            evento: EVENTO_NOMBRE
         });
 
-        btnConfirmar.innerText = "¡Todo listo!";
+        if (response && response.status === "duplicate") {
+            setModalContent(
+                "ASISTENCIA YA REGISTRADA",
+                "Ya existe una respuesta registrada con este nombre para este evento."
+            );
 
-        const mensajeWhatsApp = encodeURIComponent(
-            `¡Hola! Confirmo mi respuesta para los XV de Valentina.\n\n` +
-            `*Invitado:* ${nombre}\n` +
-            `*Asistencia:* ${asistencia}\n` +
-            `*Mensaje:* ${mensajeInvitado || "Sin mensaje"}`
-        );
+            showModal();
 
-        setTimeout(() => {
-            window.open(`https://wa.me/${TELEFONO_RSVP}?text=${mensajeWhatsApp}`, "_blank");
+            btnConfirmar.innerText = "Asistencia ya registrada";
+            btnConfirmar.disabled = true;
 
-            modal.classList.add("hidden");
-            btnConfirmar.disabled = false;
-            btnConfirmar.innerText = "CONFIRMAR ASISTENCIA";
+            hideModal(5200);
+            return;
+        }
 
-            inputNombre.value = "";
-            if (inputMensaje) inputMensaje.value = "";
+        if (response && response.status === "success") {
+            setModalContent(
+                "¡RESPUESTA REGISTRADA!",
+                "Gracias por confirmar. En un momento abriremos WhatsApp para completar tu mensaje."
+            );
 
-            const asistirRadio = document.querySelector('input[name="asistencia"][value="Asistiré"]');
-            if (asistirRadio) asistirRadio.checked = true;
-        }, 2200);
+            showModal();
+
+            btnConfirmar.innerText = "¡Todo listo!";
+
+            const mensajeWhatsApp = encodeURIComponent(
+                `¡Hola! Confirmo mi respuesta para los XV de Valentina.\n\n` +
+                `*Invitado:* ${nombre}\n` +
+                `*Asistencia:* ${asistencia}\n` +
+                `*Mensaje:* ${mensajeInvitado || "Sin mensaje"}`
+            );
+
+            setTimeout(() => {
+                window.open(`https://wa.me/${TELEFONO_RSVP}?text=${mensajeWhatsApp}`, "_blank");
+
+                const modal = document.getElementById("rsvp-modal");
+                if (modal) modal.classList.add("hidden");
+
+                btnConfirmar.innerText = "Asistencia ya registrada";
+                btnConfirmar.disabled = true;
+            }, 3200);
+
+            return;
+        }
+
+        throw new Error("Respuesta inesperada de Apps Script.");
 
     } catch (error) {
         console.error("Error:", error);
 
-        modal.classList.add("hidden");
+        setModalContent(
+            "NO SE PUDO REGISTRAR",
+            "Ocurrió un detalle al guardar tu respuesta. Inténtalo nuevamente en unos segundos."
+        );
+
+        showModal();
+
         btnConfirmar.disabled = false;
         btnConfirmar.innerText = "CONFIRMAR ASISTENCIA";
+
+        hideModal(4200);
     }
 }
 

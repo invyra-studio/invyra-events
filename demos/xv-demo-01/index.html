@@ -6,12 +6,16 @@
     <title>INVYRA | Valentina XV - Glam Experience</title>
 
     <link rel="icon" type="image/jpeg" href="../../LOGO/FAVICON.jpeg" />
-    <link rel="stylesheet" href="style.css?v=1.0.0" />
+    <link rel="stylesheet" href="style.css?v=1.0.1" />
 
     <link
       href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
+
+    <link rel="preload" as="image" href="./assets/xv-entrada.jpeg" />
+    <link rel="preload" as="image" href="./assets/xv-vals.jpeg" />
+    <link rel="preload" as="image" href="./assets/xv-fiesta.jpeg" />
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
@@ -23,6 +27,7 @@
       <div class="glam-orb orb-two"></div>
       <div class="glam-orb orb-three"></div>
       <div class="glitter-layer"></div>
+      <div class="diamond-rain"></div>
 
       <div class="splash-content">
         <img
@@ -57,6 +62,7 @@
         <div class="hero-spotlight spotlight-two hero-atmosphere"></div>
         <div class="hero-glitter hero-atmosphere"></div>
         <div class="hero-shine hero-atmosphere"></div>
+        <div class="hero-diamonds hero-atmosphere"></div>
         <div class="hero-overlay hero-atmosphere"></div>
 
         <div class="hero-content">
@@ -200,15 +206,27 @@
         <p class="section-label">GALERÍA</p>
 
         <div class="gallery-grid">
-          <div class="gallery-item gallery-one">
+          <div
+            class="gallery-item gallery-one"
+            role="img"
+            aria-label="Entrada glam de XV años"
+          >
             <span>Entrada</span>
           </div>
 
-          <div class="gallery-item gallery-two">
+          <div
+            class="gallery-item gallery-two"
+            role="img"
+            aria-label="Vals elegante de XV años"
+          >
             <span>Vals</span>
           </div>
 
-          <div class="gallery-item gallery-three">
+          <div
+            class="gallery-item gallery-three"
+            role="img"
+            aria-label="Fiesta glam de XV años"
+          >
             <span>Fiesta</span>
           </div>
         </div>
@@ -218,6 +236,10 @@
         <div class="rsvp-card">
           <h2>Confirma tu asistencia</h2>
 
+          <div class="ornament-line">
+            <span></span>
+          </div>
+
           <p class="rsvp-copy">
             Tu presencia hará esta noche aún más especial.
           </p>
@@ -226,7 +248,7 @@
             <input
               type="text"
               id="nombreInvitado"
-              placeholder="Tu nombre completo"
+              placeholder="Nombre de invitado o familia"
               autocomplete="off"
             />
 
@@ -278,8 +300,10 @@
 
     <div id="rsvp-modal" class="modal hidden">
       <div class="modal-content">
-        <h3>¡TODO LISTO!</h3>
-        <p>Redirigiendo a WhatsApp para completar tu confirmación...</p>
+        <h3 id="modal-title">¡TODO LISTO!</h3>
+        <p id="modal-message">
+          Redirigiendo a WhatsApp para completar tu confirmación...
+        </p>
       </div>
     </div>
 
@@ -287,6 +311,6 @@
       <source src="../../music/violin-luxury.mp3" type="audio/mpeg" />
     </audio>
 
-    <script src="script.js?v=1.0.0"></script>
+    <script src="script.js?v=1.0.1"></script>
   </body>
 </html>
