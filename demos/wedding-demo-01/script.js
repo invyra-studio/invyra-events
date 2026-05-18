@@ -1,6 +1,11 @@
 /**
  * INVYRA - Wedding Legacy Demo
- * Fix: Splash button / open invitation / RSVP completo
+ * Version 1.0.7
+ * Updates:
+ * - Premium RSVP modal
+ * - Local visual lock after confirmation
+ * - RSVP complete payload for Google Sheets
+ * - Safer open invitation flow
  */
 
 document.body.classList.add("js-enabled");
@@ -12,6 +17,8 @@ if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw_r0T5FmXnHC5QUI6-talG8sXVywgmxvisnGtW9g26Xt-2ni1uk1Ffy-arETKwYmPt/exec";
 const TELEFONO_RSVP = "525516986744";
 const FECHA_EVENTO = "Feb 14, 2027 17:30:00";
+
+const RSVP_STORAGE_KEY = "invyra_rsvp_boda_aurora_matteo";
 
 function initHeroReveal() {
     if (typeof gsap === "undefined") {
@@ -145,13 +152,58 @@ function entrarExperiencia() {
 
 window.entrarExperiencia = entrarExperiencia;
 
-document.addEventListener("DOMContentLoaded", () => {
-    const startButton = document.querySelector(".btn-start-experience");
+/* ==============================
+   RSVP LOCAL STATUS
+   ============================== */
 
-    if (startButton) {
-        startButton.addEventListener("click", entrarExperiencia);
+function hasAlreadyConfirmed() {
+    return localStorage.getItem(RSVP_STORAGE_KEY) === "true";
+}
+
+function lockRsvpForm() {
+    const form = document.querySelector(".rsvp-form");
+    const btnConfirmar = document.getElementById("btn-confirmar");
+    const inputNombre = document.getElementById("nombreInvitado");
+    const inputMensaje = document.getElementById("mensajeInvitado");
+    const radios = document.querySelectorAll('input[name="asistencia"]');
+
+    if (form) {
+        form.classList.add("rsvp-locked");
+    }
+
+    if (btnConfirmar) {
+        btnConfirmar.innerText = "ASISTENCIA YA REGISTRADA";
+        btnConfirmar.disabled = true;
+        btnConfirmar.classList.add("rsvp-disabled");
+    }
+
+    if (inputNombre) {
+        inputNombre.disabled = true;
+    }
+
+    if (inputMensaje) {
+        inputMensaje.disabled = true;
+    }
+
+    radios.forEach(radio => {
+        radio.disabled = true;
+    });
+}
+
+function markRsvpAsConfirmed() {
+    localStorage.setItem(RSVP_STORAGE_KEY, "true");
+    lockRsvpForm();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    if (hasAlreadyConfirmed()) {
+        lockRsvpForm();
     }
 });
+
+/* ==============================
+   COUNTDOWN
+   ============================== */
 
 const targetDate = new Date(FECHA_EVENTO).getTime();
 
@@ -174,12 +226,23 @@ setInterval(() => {
     }
 }, 1000);
 
+/* ==============================
+   RSVP FLOW
+   ============================== */
+
 async function confirmarAsistencia() {
+    if (hasAlreadyConfirmed()) {
+        lockRsvpForm();
+        return;
+    }
+
     const inputNombre = document.getElementById("nombreInvitado");
     const inputMensaje = document.getElementById("mensajeInvitado");
     const asistenciaSeleccionada = document.querySelector('input[name="asistencia"]:checked');
     const btnConfirmar = document.getElementById("btn-confirmar");
     const modal = document.getElementById("rsvp-modal");
+
+    if (!inputNombre || !inputMensaje || !btnConfirmar || !modal) return;
 
     const nombre = inputNombre.value.trim();
     const mensajeInvitado = inputMensaje.value.trim();
@@ -209,8 +272,8 @@ async function confirmarAsistencia() {
     if (typeof gsap !== "undefined") {
         gsap.from(".modal-content", {
             opacity: 0,
-            scale: 0.8,
-            duration: 0.5,
+            scale: 0.86,
+            duration: 0.55,
             ease: "back.out(1.7)"
         });
     }
@@ -231,6 +294,7 @@ async function confirmarAsistencia() {
         });
 
         btnConfirmar.innerText = "¡Todo listo!";
+        markRsvpAsConfirmed();
 
         const mensajeWhatsApp = encodeURIComponent(
             `¡Hola! Confirmo mi respuesta para la boda de Aurora & Matteo.\n\n` +
@@ -242,20 +306,23 @@ async function confirmarAsistencia() {
         setTimeout(() => {
             window.open(`https://wa.me/${TELEFONO_RSVP}?text=${mensajeWhatsApp}`, "_blank");
             modal.classList.add("hidden");
-
-            btnConfirmar.disabled = false;
-            btnConfirmar.innerText = "Confirmar asistencia";
-        }, 2200);
+        }, 2400);
 
     } catch (error) {
         console.error("Error:", error);
+
         modal.classList.add("hidden");
         btnConfirmar.disabled = false;
         btnConfirmar.innerText = "Confirmar asistencia";
+        btnConfirmar.classList.remove("rsvp-disabled");
     }
 }
 
 window.confirmarAsistencia = confirmarAsistencia;
+
+/* ==============================
+   AUDIO VISIBILITY
+   ============================== */
 
 document.addEventListener("visibilitychange", () => {
     const music = document.getElementById("bg-music");
@@ -271,3 +338,10 @@ document.addEventListener("visibilitychange", () => {
         }
     }
 });
+
+/* 
+   QA helper para pruebas locales:
+   Pega esto en consola si necesitas volver a probar el RSVP:
+
+   localStorage.removeItem("invyra_rsvp_boda_aurora_matteo");
+*/

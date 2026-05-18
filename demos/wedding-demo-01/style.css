@@ -992,6 +992,22 @@ svg {
     box-shadow: 0 2px 0 #111;
 }
 
+.btn-rsvp:disabled,
+.btn-rsvp.rsvp-disabled {
+    background: #ded6c9;
+    color: rgba(17, 17, 17, 0.58);
+    border-color: rgba(43, 36, 30, 0.10);
+    box-shadow: none;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.rsvp-form.rsvp-locked input,
+.rsvp-form.rsvp-locked textarea {
+    opacity: 0.72;
+    pointer-events: none;
+}
+
 /* ==============================
    CLOSING / MODAL
    ============================== */
@@ -1038,11 +1054,26 @@ svg {
 }
 
 .modal-content {
+    width: min(88%, 420px);
     background: var(--paper);
     border: 1px solid rgba(184, 138, 68, 0.35);
-    padding: 50px 30px;
+    padding: 48px 30px;
     text-align: center;
     color: var(--espresso);
+    box-shadow: 0 30px 80px rgba(43, 36, 30, 0.22);
+}
+
+.modal-content h3 {
+    margin: 0 0 18px;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.modal-content p {
+    margin: 0;
+    line-height: 1.7;
+    color: var(--soft-brown);
 }
 
 /* ==============================
