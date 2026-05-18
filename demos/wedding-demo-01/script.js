@@ -1,7 +1,8 @@
 /**
  * INVYRA - Wedding Legacy Demo
- * Version 1.0.8
+ * Version 1.0.9
  * Server-side RSVP validation through Google Sheets / Apps Script
+ * Update: Longer duplicate RSVP modal display
  */
 
 document.body.classList.add("js-enabled");
@@ -254,6 +255,25 @@ function sendRsvpToAppsScript(data) {
     });
 }
 
+function bloquearFormularioComoRegistrado() {
+    const inputNombre = document.getElementById("nombreInvitado");
+    const inputMensaje = document.getElementById("mensajeInvitado");
+    const btnConfirmar = document.getElementById("btn-confirmar");
+    const radios = document.querySelectorAll('input[name="asistencia"]');
+
+    if (inputNombre) inputNombre.disabled = true;
+    if (inputMensaje) inputMensaje.disabled = true;
+
+    radios.forEach(radio => {
+        radio.disabled = true;
+    });
+
+    if (btnConfirmar) {
+        btnConfirmar.innerText = "Asistencia ya registrada";
+        btnConfirmar.disabled = true;
+    }
+}
+
 async function confirmarAsistencia() {
     const inputNombre = document.getElementById("nombreInvitado");
     const inputMensaje = document.getElementById("mensajeInvitado");
@@ -299,15 +319,18 @@ async function confirmarAsistencia() {
         if (response && response.status === "duplicate") {
             setModalContent(
                 "ASISTENCIA YA REGISTRADA",
-                "Ya existe una respuesta registrada con este nombre para este evento."
+                "Ya tenemos una respuesta asociada a este nombre. Gracias por formar parte de este momento especial."
             );
 
             showModal();
 
-            btnConfirmar.innerText = "Asistencia ya registrada";
-            btnConfirmar.disabled = true;
+            setTimeout(() => {
+                const modal = document.getElementById("rsvp-modal");
+                if (modal) modal.classList.add("hidden");
 
-            hideModal(3000);
+                bloquearFormularioComoRegistrado();
+            }, 5200);
+
             return;
         }
 
@@ -334,9 +357,8 @@ async function confirmarAsistencia() {
                 const modal = document.getElementById("rsvp-modal");
                 if (modal) modal.classList.add("hidden");
 
-                btnConfirmar.innerText = "Asistencia ya registrada";
-                btnConfirmar.disabled = true;
-            }, 2400);
+                bloquearFormularioComoRegistrado();
+            }, 3200);
 
             return;
         }
@@ -356,7 +378,7 @@ async function confirmarAsistencia() {
         btnConfirmar.disabled = false;
         btnConfirmar.innerText = "Confirmar asistencia";
 
-        hideModal(3200);
+        hideModal(3600);
     }
 }
 
