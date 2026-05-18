@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>INVYRA | Baby Shower Yeison - Celestial Baby Luxury</title>
+
+    <link rel="icon" type="image/jpeg" href="../../LOGO/FAVICON.jpeg" />
+    <link rel="stylesheet" href="style.css?v=1.0.1" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&family=Great+Vibes&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  </head>
+
+  <body>
+    <div id="splash-screen">
+      <div class="splash-night-gradient"></div>
+      <div class="splash-aurora"></div>
+      <div class="splash-cloud cloud-one"></div>
+      <div class="splash-cloud cloud-two"></div>
+      <div class="splash-cloud cloud-three"></div>
+      <div class="splash-stars"></div>
+      <div class="splash-constellation"></div>
+      <div class="splash-moon"></div>
+      <div class="splash-soft-glow"></div>
+
+      <div class="splash-content">
+        <img
+          src="../../LOGO/FAVICON.jpeg"
+          class="splash-logo"
+          alt="INVYRA"
+        />
+
+        <p class="splash-kicker">Baby Shower</p>
+
+        <h1 class="splash-title">Yeison</h1>
+
+        <p class="splash-subtitle">
+          Un pedacito de cielo viene en camino
+        </p>
+
+        <button
+          type="button"
+          onclick="entrarExperiencia()"
+          class="btn-start-experience"
+          aria-label="Abrir invitación"
+        >
+          ABRIR INVITACIÓN
+        </button>
+      </div>
+    </div>
+
+    <main class="invitation-container">
+      <header class="hero-section">
+        <div class="hero-night hero-atmosphere"></div>
+        <div class="hero-aurora hero-atmosphere"></div>
+        <div class="hero-clouds hero-atmosphere"></div>
+        <div class="hero-starfield hero-atmosphere"></div>
+        <div class="hero-constellation hero-atmosphere"></div>
+        <div class="hero-moon-wrap hero-atmosphere">
+          <div class="hero-moon"></div>
+        </div>
+        <div class="hero-light-beam hero-atmosphere"></div>
+        <div class="hero-veil hero-atmosphere"></div>
+
+        <div class="hero-content">
+          <img
+            src="../../LOGO/FAVICON.jpeg"
+            alt="Invyra Logo"
+            class="brand-logo-img reveal-item"
+          />
+
+          <p class="hero-kicker reveal-item">
+            Con mucho amor esperamos a
+          </p>
+
+          <h1 class="main-title reveal-title">
+            Yeison
+          </h1>
+
+          <p class="hero-phrase reveal-item">
+            Un pedacito de cielo viene en camino
+          </p>
+
+          <div class="hero-info-card reveal-item">
+            <p class="event-date">20 · JUL · 2026</p>
+
+            <p class="hero-subtitle">
+              Acompáñanos a celebrar una dulce espera llena de amor,
+              ternura y momentos inolvidables.
+            </p>
+          </div>
+        </div>
+      </header>
+
+      <section class="blessing-section section-reveal">
+        <div class="section-star-orbit"></div>
+
+        <p class="section-label">UNA DULCE ESPERA</p>
+
+        <h2 class="section-title">
+          El cielo nos regala una nueva ilusión
+        </h2>
+
+        <p>
+          Hay alegrías que llegan suavemente, como una estrella que ilumina el
+          corazón. Muy pronto llegará Yeison, y queremos compartir contigo este
+          momento tan especial.
+        </p>
+      </section>
+
+      <section class="countdown-section section-reveal">
+        <p class="section-label">FALTA MUY POCO</p>
+
+        <div id="countdown" class="countdown-card celestial-card">
+          <div class="card-glow"></div>
+
+          <div class="time-unit">
+            <span id="days">00</span>
+            <small>DÍAS</small>
+          </div>
+
+          <div class="time-unit">
+            <span id="hours">00</span>
+            <small>HRS</small>
+          </div>
+
+          <div class="time-unit">
+            <span id="mins">00</span>
+            <small>MIN</small>
+          </div>
+
+          <div class="time-unit">
+            <span id="secs">00</span>
+            <small>SEG</small>
+          </div>
+        </div>
+      </section>
+
+      <section class="details-section section-reveal">
+        <p class="section-label">DETALLES DEL EVENTO</p>
+
+        <div class="detail-card celestial-card">
+          <span>Fecha</span>
+          <p>20 de julio de 2026</p>
+        </div>
+
+        <div class="detail-card celestial-card">
+          <span>Hora</span>
+          <p>16:00 hrs</p>
+        </div>
+
+        <div class="detail-card celestial-card">
+          <span>Lugar</span>
+          <p>Salón Jardín “Los Tulipanes”</p>
+        </div>
+
+        <a
+          href="https://maps.app.goo.gl/MraiUWwE2iNivKKR7"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="map-button"
+        >
+          VER UBICACIÓN
+        </a>
+      </section>
+
+      <section class="theme-section section-reveal">
+        <p class="section-label">TONOS SUGERIDOS</p>
+
+        <div class="theme-card celestial-card">
+          <div class="mini-moon-icon"></div>
+
+          <h2>Celestial Baby Luxury</h2>
+
+          <p>
+            Te sugerimos vestir en tonos claros, suaves y elegantes:
+            blanco nube, azul cielo, perla, champagne o dorado suave.
+          </p>
+
+          <div class="palette-row">
+            <span class="tone tone-cloud"></span>
+            <span class="tone tone-sky"></span>
+            <span class="tone tone-pearl"></span>
+            <span class="tone tone-champagne"></span>
+            <span class="tone tone-gold"></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="gift-section section-reveal">
+        <p class="section-label">MESA DE REGALOS</p>
+
+        <div class="gift-card celestial-card">
+          <div class="gift-stars"></div>
+
+          <h2>Tu cariño es nuestro mejor regalo</h2>
+
+          <p>
+            Si deseas tener un detalle para Yeison, puedes acompañarnos con un
+            regalito especial para esta nueva etapa.
+          </p>
+
+          <a
+            href="https://mesaderegalos.liverpool.com.mx/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="secondary-button"
+            aria-label="Ver mesa de regalos"
+            >
+            VER MESA DE REGALOS
+        </a>
+        </div>
+      </section>
+
+      <section class="wishes-section section-reveal">
+        <p class="section-label">LLUVIA DE DESEOS</p>
+
+        <div class="wish-card celestial-card">
+          <div class="wish-constellation"></div>
+
+          <h2>Deja un deseo para el bebé</h2>
+
+          <p>
+            Tu mensaje será parte de un recuerdo especial para Yeison y su
+            familia.
+          </p>
+        </div>
+      </section>
+
+      <footer class="action-section section-reveal">
+        <div class="rsvp-card celestial-card">
+          <div class="rsvp-stars"></div>
+
+          <h2>Confirma tu asistencia</h2>
+
+          <div class="ornament-line">
+            <span></span>
+          </div>
+
+          <p class="rsvp-copy">
+            Será muy especial contar contigo en esta celebración.
+          </p>
+
+          <div class="rsvp-form">
+            <input
+              type="text"
+              id="nombreInvitado"
+              placeholder="Nombre de invitado o familia"
+              autocomplete="off"
+            />
+
+            <div class="attendance-group">
+              <p>Confirmo que</p>
+
+              <div class="attendance-options">
+                <label>
+                  <input type="radio" name="asistencia" value="Asistiré" checked />
+                  <span>Asistiré</span>
+                </label>
+
+                <label>
+                  <input type="radio" name="asistencia" value="No asistiré" />
+                  <span>No asistiré</span>
+                </label>
+              </div>
+            </div>
+
+            <select id="pasesInvitado" aria-label="Número de pases">
+              <option value="1 pase">1 pase</option>
+              <option value="2 pases">2 pases</option>
+              <option value="3 pases">3 pases</option>
+              <option value="4 pases">4 pases</option>
+              <option value="Más de 4 pases">Más de 4 pases</option>
+            </select>
+
+            <textarea
+              id="mensajeInvitado"
+              placeholder="Deja un deseo para el bebé"
+            ></textarea>
+
+            <button
+              type="button"
+              id="btn-confirmar"
+              class="btn-rsvp"
+              onclick="confirmarAsistencia()"
+            >
+              CONFIRMAR ASISTENCIA
+            </button>
+          </div>
+        </div>
+
+        <div class="closing-section">
+          <img
+            src="../../LOGO/FAVICON.jpeg"
+            alt="Invyra"
+            class="closing-logo"
+          />
+
+          <p>Gracias por acompañarnos en esta dulce espera.</p>
+
+          <span>Baby Shower de Yeison</span>
+        </div>
+      </footer>
+    </main>
+
+    <div id="rsvp-modal" class="modal hidden">
+      <div class="modal-content">
+        <div class="modal-stars"></div>
+
+        <h3 id="modal-title">¡TODO LISTO!</h3>
+
+        <p id="modal-message">
+          Guardando tu respuesta...
+        </p>
+      </div>
+    </div>
+
+    <audio id="bg-music" loop>
+      <source src="../../music/violin-luxury.mp3" type="audio/mpeg" />
+    </audio>
+
+    <script src="script.js?v=1.0.1"></script>
+  </body>
+</html>
