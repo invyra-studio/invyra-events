@@ -1,8 +1,8 @@
 /**
  * INVYRA - XV Glam Demo
- * Version 1.0.1
+ * Version 1.0.2
  * Nivel: Signature
- * Server-side RSVP validation through Google Sheets / Apps Script
+ * Fix: stable mobile hero effects + RSVP validation
  */
 
 document.body.classList.add("js-enabled");
@@ -11,10 +11,6 @@ if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
 }
 
-/**
- * IMPORTANTE:
- * Reemplaza esta URL cuando tengas el Apps Script exclusivo de xv-demo-01.
- */
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzJz6sBTdrgkDSQwTD3Gcl3gzDOj4qE3HYBjSfMbWo99uRUM_DAluFzH5uNhcm2UKIxVw/exec";
 const TELEFONO_RSVP = "525516986744";
 const FECHA_EVENTO = "Nov 21, 2026 20:00:00";
@@ -22,11 +18,14 @@ const EVENTO_NOMBRE = "XV Glam Valentina";
 
 function initHeroReveal() {
     if (typeof gsap === "undefined") {
-        document.querySelectorAll(".hero-atmosphere, .reveal-item, .reveal-title, .hero-info-card").forEach(el => {
-            el.style.opacity = "1";
-            el.style.filter = "blur(0px)";
-            el.style.transform = "none";
-        });
+        document
+            .querySelectorAll(".hero-atmosphere, .reveal-item, .reveal-title, .hero-info-card")
+            .forEach(el => {
+                el.style.opacity = "1";
+                el.style.filter = "blur(0px)";
+                el.style.transform = "none";
+            });
+
         return;
     }
 
@@ -76,32 +75,16 @@ function initHeroReveal() {
         }, "-=0.8");
 
     gsap.to(".hero-content", {
-        y: -8,
-        duration: 4.8,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut"
-    });
-
-    gsap.to(".main-title", {
-        textShadow: "0 0 34px rgba(216, 180, 106, 0.48), 0 0 80px rgba(255, 138, 203, 0.34)",
-        duration: 2.8,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut"
-    });
-
-    gsap.to(".celebrant-name", {
-        textShadow: "0 0 42px rgba(255, 138, 203, 0.42), 0 0 72px rgba(91, 42, 134, 0.35)",
-        duration: 3.4,
+        y: -6,
+        duration: 5.2,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut"
     });
 
     gsap.to(".hero-info-card", {
-        boxShadow: "0 18px 70px rgba(255, 138, 203, 0.28), 0 0 38px rgba(216, 180, 106, 0.14)",
-        duration: 3.2,
+        boxShadow: "0 18px 58px rgba(255, 138, 203, 0.22), 0 0 28px rgba(216, 180, 106, 0.12)",
+        duration: 3.8,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut"
@@ -114,11 +97,13 @@ function initScrollReveal() {
             section.style.opacity = "1";
             section.style.transform = "none";
         });
+
         return;
     }
 
     document.querySelectorAll(".section-reveal").forEach(section => {
-        gsap.fromTo(section,
+        gsap.fromTo(
+            section,
             {
                 opacity: 0,
                 y: 55
@@ -192,6 +177,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+/* ==============================
+   COUNTDOWN
+   ============================== */
+
 const targetDate = new Date(FECHA_EVENTO).getTime();
 
 setInterval(() => {
@@ -206,12 +195,27 @@ setInterval(() => {
 
         if (!days || !hours || !mins || !secs) return;
 
-        days.innerText = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, "0");
-        hours.innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, "0");
-        mins.innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, "0");
-        secs.innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, "0");
+        days.innerText = Math.floor(diff / (1000 * 60 * 60 * 24))
+            .toString()
+            .padStart(2, "0");
+
+        hours.innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+            .toString()
+            .padStart(2, "0");
+
+        mins.innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
+            .toString()
+            .padStart(2, "0");
+
+        secs.innerText = Math.floor((diff % (1000 * 60)) / 1000)
+            .toString()
+            .padStart(2, "0");
     }
 }, 1000);
+
+/* ==============================
+   MODAL HELPERS
+   ============================== */
 
 function setModalContent(title, message) {
     const modalTitle = document.getElementById("modal-title");
@@ -247,6 +251,10 @@ function hideModal(delay = 3600) {
         modal.classList.add("hidden");
     }, delay);
 }
+
+/* ==============================
+   APPS SCRIPT JSONP
+   ============================== */
 
 function sendRsvpToAppsScript(data) {
     return new Promise((resolve, reject) => {
@@ -295,6 +303,10 @@ function sendRsvpToAppsScript(data) {
         document.body.appendChild(script);
     });
 }
+
+/* ==============================
+   RSVP FLOW
+   ============================== */
 
 async function confirmarAsistencia() {
     const inputNombre = document.getElementById("nombreInvitado");
@@ -384,7 +396,6 @@ async function confirmarAsistencia() {
         }
 
         throw new Error("Respuesta inesperada de Apps Script.");
-
     } catch (error) {
         console.error("Error:", error);
 
@@ -403,6 +414,10 @@ async function confirmarAsistencia() {
 }
 
 window.confirmarAsistencia = confirmarAsistencia;
+
+/* ==============================
+   AUDIO VISIBILITY HANDLER
+   ============================== */
 
 document.addEventListener("visibilitychange", () => {
     const music = document.getElementById("bg-music");

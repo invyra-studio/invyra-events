@@ -71,6 +71,8 @@ svg {
     filter: blur(35px);
     opacity: 0.75;
     animation: orbFloat 7s ease-in-out infinite alternate;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .orb-one {
@@ -109,18 +111,22 @@ svg {
         radial-gradient(circle at 28% 78%, rgba(255,255,255,0.72) 0 1px, transparent 3px),
         radial-gradient(circle at 55% 38%, rgba(216,180,106,0.78) 0 1px, transparent 3px);
     opacity: 0.75;
-    animation: glitterPulse 3.8s ease-in-out infinite alternate;
+    animation: glitterPulse 4.6s ease-in-out infinite alternate;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .diamond-rain {
     position: absolute;
     inset: -10%;
     background:
-        linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.10) 48%, transparent 52%),
-        linear-gradient(60deg, transparent 0%, rgba(216,180,106,0.10) 48%, transparent 52%);
+        linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.08) 48%, transparent 52%),
+        linear-gradient(60deg, transparent 0%, rgba(216,180,106,0.08) 48%, transparent 52%);
     background-size: 180px 180px;
-    opacity: 0.32;
-    animation: diamondRain 9s linear infinite;
+    opacity: 0.26;
+    animation: diamondRain 14s linear infinite;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .splash-content {
@@ -229,10 +235,12 @@ svg {
     z-index: 8;
     width: 100%;
     text-align: center;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 /* ==============================
-   HERO ATMOSPHERE — RUNWAY GLAM
+   HERO ATMOSPHERE — RUNWAY GLAM STABLE
    ============================== */
 
 .hero-bg {
@@ -240,31 +248,29 @@ svg {
     inset: 0;
     z-index: -6;
     background:
-        radial-gradient(circle at 50% 18%, rgba(255, 138, 203, 0.28), transparent 30%),
-        radial-gradient(circle at 20% 42%, rgba(216, 180, 106, 0.20), transparent 34%),
-        radial-gradient(circle at 86% 75%, rgba(91, 42, 134, 0.38), transparent 38%),
+        radial-gradient(circle at 50% 18%, rgba(255, 138, 203, 0.24), transparent 30%),
+        radial-gradient(circle at 20% 42%, rgba(216, 180, 106, 0.16), transparent 34%),
+        radial-gradient(circle at 86% 75%, rgba(91, 42, 134, 0.32), transparent 38%),
         linear-gradient(160deg, #07050a 0%, #18091f 46%, #050308 100%);
     overflow: hidden;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .hero-bg::before {
     content: "";
     position: absolute;
-    inset: -25%;
+    inset: -18%;
     background:
-        conic-gradient(
-            from 180deg,
-            transparent 0deg,
-            rgba(255, 138, 203, 0.16) 42deg,
-            transparent 92deg,
-            rgba(216, 180, 106, 0.13) 138deg,
-            transparent 210deg,
-            rgba(91, 42, 134, 0.20) 278deg,
-            transparent 360deg
-        );
-    filter: blur(38px);
-    opacity: 0.85;
-    animation: glamAuroraSpin 18s linear infinite;
+        radial-gradient(circle at 50% 36%, rgba(255, 138, 203, 0.18), transparent 34%),
+        radial-gradient(circle at 22% 40%, rgba(216, 180, 106, 0.12), transparent 32%),
+        radial-gradient(circle at 82% 62%, rgba(91, 42, 134, 0.20), transparent 36%);
+    filter: blur(34px);
+    opacity: 0.82;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: opacity, transform;
+    animation: glamAuroraBreath 8s ease-in-out infinite alternate;
 }
 
 .hero-bg::after {
@@ -272,10 +278,13 @@ svg {
     position: absolute;
     inset: 0;
     background:
-        linear-gradient(115deg, transparent 0%, rgba(255, 255, 255, 0.055) 45%, transparent 55%),
-        linear-gradient(245deg, transparent 0%, rgba(255, 138, 203, 0.08) 42%, transparent 58%);
-    opacity: 0.75;
-    animation: runwaySweep 7s ease-in-out infinite;
+        linear-gradient(115deg, transparent 0%, rgba(255, 255, 255, 0.045) 45%, transparent 55%),
+        linear-gradient(245deg, transparent 0%, rgba(255, 138, 203, 0.055) 42%, transparent 58%);
+    opacity: 0.58;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: opacity, transform;
+    animation: runwaySweep 9s ease-in-out infinite;
 }
 
 .hero-spotlight {
@@ -287,26 +296,28 @@ svg {
     background:
         linear-gradient(
             to bottom,
-            rgba(255, 255, 255, 0.24),
-            rgba(255, 138, 203, 0.10) 36%,
+            rgba(255, 255, 255, 0.18),
+            rgba(255, 138, 203, 0.08) 36%,
             transparent 82%
         );
-    filter: blur(22px);
+    filter: blur(20px);
     transform-origin: top;
-    opacity: 0.62;
-    mix-blend-mode: screen;
+    opacity: 0.46;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: opacity, transform;
 }
 
 .spotlight-one {
     left: -4%;
     transform: rotate(18deg);
-    animation: spotlightDanceOne 6.5s ease-in-out infinite alternate;
+    animation: spotlightDanceOne 7.5s ease-in-out infinite alternate;
 }
 
 .spotlight-two {
     right: -4%;
     transform: rotate(-18deg);
-    animation: spotlightDanceTwo 7.5s ease-in-out infinite alternate-reverse;
+    animation: spotlightDanceTwo 8.5s ease-in-out infinite alternate-reverse;
 }
 
 .hero-glitter {
@@ -314,15 +325,17 @@ svg {
     inset: 0;
     z-index: -4;
     background:
-        radial-gradient(circle at 18% 16%, rgba(255,255,255,0.95) 0 1px, transparent 3px),
-        radial-gradient(circle at 70% 12%, rgba(216,180,106,0.95) 0 1px, transparent 3px),
-        radial-gradient(circle at 88% 44%, rgba(255,138,203,0.9) 0 1px, transparent 3px),
-        radial-gradient(circle at 24% 68%, rgba(255,255,255,0.75) 0 1px, transparent 3px),
-        radial-gradient(circle at 52% 84%, rgba(216,180,106,0.85) 0 1px, transparent 3px),
-        radial-gradient(circle at 46% 28%, rgba(255,255,255,0.70) 0 1px, transparent 3px),
-        radial-gradient(circle at 62% 58%, rgba(255,138,203,0.75) 0 1px, transparent 3px);
-    opacity: 0.85;
-    animation: glitterDrift 8s ease-in-out infinite alternate;
+        radial-gradient(circle at 18% 16%, rgba(255,255,255,0.85) 0 1px, transparent 3px),
+        radial-gradient(circle at 70% 12%, rgba(216,180,106,0.82) 0 1px, transparent 3px),
+        radial-gradient(circle at 88% 44%, rgba(255,138,203,0.76) 0 1px, transparent 3px),
+        radial-gradient(circle at 24% 68%, rgba(255,255,255,0.68) 0 1px, transparent 3px),
+        radial-gradient(circle at 52% 84%, rgba(216,180,106,0.72) 0 1px, transparent 3px),
+        radial-gradient(circle at 46% 28%, rgba(255,255,255,0.62) 0 1px, transparent 3px),
+        radial-gradient(circle at 62% 58%, rgba(255,138,203,0.66) 0 1px, transparent 3px);
+    opacity: 0.78;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    animation: glitterDrift 9s ease-in-out infinite alternate;
 }
 
 .hero-shine {
@@ -330,9 +343,10 @@ svg {
     inset: 0;
     z-index: -3;
     background:
-        linear-gradient(105deg, transparent 0%, rgba(255, 255, 255, 0.14) 44%, transparent 56%);
-    transform: translateX(-130%);
-    animation: shimmerSweep 5.8s ease-in-out infinite;
+        linear-gradient(105deg, transparent 0%, rgba(255, 255, 255, 0.10) 44%, transparent 56%);
+    transform: translateX(-130%) translateZ(0);
+    backface-visibility: hidden;
+    animation: shimmerSweep 7.8s ease-in-out infinite;
 }
 
 .hero-diamonds {
@@ -340,11 +354,13 @@ svg {
     inset: 0;
     z-index: -2;
     background:
-        linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.045) 50%, transparent 52%),
-        linear-gradient(60deg, transparent 0%, rgba(255,138,203,0.045) 50%, transparent 52%);
+        linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.035) 50%, transparent 52%),
+        linear-gradient(60deg, transparent 0%, rgba(255,138,203,0.035) 50%, transparent 52%);
     background-size: 120px 120px;
-    opacity: 0.28;
-    animation: diamondRain 12s linear infinite;
+    opacity: 0.22;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    animation: diamondRain 16s linear infinite;
 }
 
 .hero-overlay {
@@ -352,7 +368,7 @@ svg {
     inset: 0;
     z-index: -1;
     background:
-        radial-gradient(circle at 50% 42%, rgba(255, 138, 203, 0.10), transparent 35%),
+        radial-gradient(circle at 50% 42%, rgba(255, 138, 203, 0.08), transparent 35%),
         radial-gradient(circle at center, rgba(0,0,0,0.04), rgba(0,0,0,0.72) 82%),
         linear-gradient(to bottom, rgba(0,0,0,0.05), rgba(0,0,0,0.74));
 }
@@ -715,11 +731,11 @@ svg {
 }
 
 .gallery-two {
-    background-image: url("./assets/xv-vals.jpeg");
+    background-image: url("./assets/xv-fiesta.jpeg");
 }
 
 .gallery-three {
-    background-image: url("./assets/xv-fiesta.jpeg");
+    background-image: url("./assets/xv-vals.jpeg");
 }
 
 .gallery-item span {
@@ -988,54 +1004,56 @@ svg {
     }
 }
 
-@keyframes glamAuroraSpin {
+@keyframes glamAuroraBreath {
     from {
-        transform: rotate(0deg) scale(1);
+        opacity: 0.46;
+        transform: scale(1) translate3d(0, 0, 0);
     }
 
     to {
-        transform: rotate(360deg) scale(1.08);
+        opacity: 0.86;
+        transform: scale(1.06) translate3d(0, -14px, 0);
     }
 }
 
 @keyframes runwaySweep {
     0% {
         transform: translateX(-18%) scale(1);
-        opacity: 0.35;
+        opacity: 0.32;
     }
 
     50% {
-        transform: translateX(18%) scale(1.04);
-        opacity: 0.85;
+        transform: translateX(18%) scale(1.03);
+        opacity: 0.64;
     }
 
     100% {
         transform: translateX(-18%) scale(1);
-        opacity: 0.35;
+        opacity: 0.32;
     }
 }
 
 @keyframes spotlightDanceOne {
     from {
-        opacity: 0.35;
-        transform: rotate(10deg) translateX(-22px);
+        opacity: 0.28;
+        transform: rotate(10deg) translateX(-18px);
     }
 
     to {
-        opacity: 0.75;
-        transform: rotate(24deg) translateX(34px);
+        opacity: 0.52;
+        transform: rotate(22deg) translateX(28px);
     }
 }
 
 @keyframes spotlightDanceTwo {
     from {
-        opacity: 0.38;
-        transform: rotate(-10deg) translateX(22px);
+        opacity: 0.30;
+        transform: rotate(-10deg) translateX(18px);
     }
 
     to {
-        opacity: 0.78;
-        transform: rotate(-24deg) translateX(-34px);
+        opacity: 0.54;
+        transform: rotate(-22deg) translateX(-28px);
     }
 }
 
@@ -1043,33 +1061,31 @@ svg {
     from {
         opacity: 0.42;
         transform: translate3d(0, 0, 0) scale(1);
-        filter: blur(0px);
     }
 
     to {
-        opacity: 0.95;
-        transform: translate3d(0, -26px, 0) scale(1.05);
-        filter: blur(0.4px);
+        opacity: 0.84;
+        transform: translate3d(0, -20px, 0) scale(1.03);
     }
 }
 
 @keyframes shimmerSweep {
     0% {
-        transform: translateX(-130%);
+        transform: translateX(-130%) translateZ(0);
         opacity: 0;
     }
 
     35% {
-        opacity: 1;
+        opacity: 0.75;
     }
 
     55% {
-        transform: translateX(130%);
-        opacity: 0.46;
+        transform: translateX(130%) translateZ(0);
+        opacity: 0.36;
     }
 
     100% {
-        transform: translateX(130%);
+        transform: translateX(130%) translateZ(0);
         opacity: 0;
     }
 }
@@ -1095,6 +1111,39 @@ svg {
 
     .hero-section {
         padding: 100px 0 72px;
+    }
+
+    .hero-bg::before {
+        filter: blur(26px);
+        opacity: 0.62;
+        animation-duration: 10s;
+    }
+
+    .hero-bg::after {
+        opacity: 0.42;
+        animation-duration: 11s;
+    }
+
+    .hero-spotlight {
+        width: 170px;
+        height: 680px;
+        filter: blur(18px);
+        opacity: 0.36;
+    }
+
+    .hero-glitter {
+        opacity: 0.62;
+        animation-duration: 11s;
+    }
+
+    .hero-shine {
+        opacity: 0.52;
+        animation-duration: 9s;
+    }
+
+    .hero-diamonds {
+        opacity: 0.16;
+        animation-duration: 20s;
     }
 
     .main-title {
