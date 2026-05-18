@@ -6,13 +6,12 @@
     <title>INVYRA | Midnight Gala - Erza</title>
 
     <link rel="icon" type="image/jpeg" href="../../LOGO/FAVICON.jpeg" />
-    <link rel="stylesheet" href="style.css?v=1.1.6" />
+    <link rel="stylesheet" href="style.css?v=1.1.7" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
 
-    <!-- SCRIPTS DE LIBRERÍAS -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
@@ -29,13 +28,13 @@
 
         <div class="loader-bar"></div>
 
-        <button onclick="entrarGala()" class="btn-start-experience">
+        <button type="button" onclick="entrarGala()" class="btn-start-experience">
           DESCUBRIR INVITACIÓN
         </button>
       </div>
     </div>
 
-    <div class="invitation-container">
+    <main class="invitation-container">
       <div class="overlay"></div>
 
       <header class="hero-section">
@@ -113,22 +112,64 @@
         </div>
       </section>
 
-      <footer class="action-section">
-        <div class="rsvp-form">
-          <input
-            type="text"
-            id="nombreInvitado"
-            placeholder="Tu nombre completo"
-            autocomplete="off"
-          />
+      <footer class="action-section section-reveal">
+        <div class="rsvp-card">
+          <h2>Confirma tu asistencia</h2>
 
-          <button
-            id="btn-confirmar"
-            class="btn-rsvp"
-            onclick="confirmarAsistencia()"
-          >
-            CONFIRMAR ASISTENCIA
-          </button>
+          <div class="ornament-line">
+            <span></span>
+          </div>
+
+          <div class="rsvp-envelope-icon">
+            <svg viewBox="0 0 64 64" width="46" height="46" fill="none">
+              <rect x="10" y="18" width="44" height="32" rx="2" stroke="currentColor" stroke-width="2" />
+              <path d="M10 20l22 18 22-18" stroke="currentColor" stroke-width="2" />
+              <path d="M24 31c0-5 8-5 8 0c0-5 8-5 8 0c0 7-8 12-8 12s-8-5-8-12Z" stroke="currentColor" stroke-width="2" />
+            </svg>
+          </div>
+
+          <p class="rsvp-copy">
+            Tu presencia hará esta noche aún más especial.
+          </p>
+
+          <div class="rsvp-form">
+            <input
+              type="text"
+              id="nombreInvitado"
+              placeholder="Nombre de invitado o familia"
+              autocomplete="off"
+            />
+
+            <div class="attendance-group">
+              <p>Confirmo que</p>
+
+              <div class="attendance-options">
+                <label>
+                  <input type="radio" name="asistencia" value="Asistiré" checked />
+                  <span>Asistiré</span>
+                </label>
+
+                <label>
+                  <input type="radio" name="asistencia" value="No asistiré" />
+                  <span>No asistiré</span>
+                </label>
+              </div>
+            </div>
+
+            <textarea
+              id="mensajeInvitado"
+              placeholder="Puedes dejar un mensaje opcional"
+            ></textarea>
+
+            <button
+              type="button"
+              id="btn-confirmar"
+              class="btn-rsvp"
+              onclick="confirmarAsistencia()"
+            >
+              CONFIRMAR ASISTENCIA
+            </button>
+          </div>
         </div>
 
         <div class="location-container">
@@ -158,8 +199,20 @@
             </svg>
           </a>
         </div>
+
+        <div class="closing-section">
+          <img
+            src="../../LOGO/FAVICON.jpeg"
+            alt="Invyra"
+            class="closing-logo"
+          />
+
+          <p>Gracias por ser parte de esta noche especial.</p>
+
+          <span>Midnight Gala</span>
+        </div>
       </footer>
-    </div>
+    </main>
 
     <div id="rsvp-modal" class="modal hidden">
       <div class="modal-content">
@@ -172,6 +225,6 @@
       <source src="../../music/violin-luxury.mp3" type="audio/mpeg" />
     </audio>
 
-    <script src="script.js?v=1.1.6"></script>
+    <script src="script.js?v=1.1.7"></script>
   </body>
 </html>

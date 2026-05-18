@@ -1,0 +1,952 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap');
+
+:root {
+    --black: #07050a;
+    --night: #12091c;
+    --purple: #5b2a86;
+    --deep-purple: #2a143f;
+    --pink: #d86ba8;
+    --hot-pink: #ff8acb;
+    --blush: #f4c7dc;
+    --gold: #d8b46a;
+    --champagne: #f2dfb8;
+    --silver: #d8d8e2;
+    --white: #fff8fb;
+    --muted: #cbb6ca;
+    --glass: rgba(255, 255, 255, 0.07);
+    --glass-border: rgba(255, 255, 255, 0.18);
+    --shadow-glow: rgba(216, 107, 168, 0.35);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 50% 0%, rgba(216, 107, 168, 0.20), transparent 34%),
+        linear-gradient(180deg, #07050a 0%, #12091c 48%, #08050c 100%);
+    color: var(--white);
+    font-family: "Montserrat", sans-serif;
+}
+
+img,
+svg {
+    max-width: 100%;
+}
+
+/* ==============================
+   SPLASH — XV GLAM
+   ============================== */
+
+#splash-screen {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    text-align: center;
+    background:
+        radial-gradient(circle at 50% 44%, rgba(255, 138, 203, 0.22), transparent 32%),
+        radial-gradient(circle at 50% 68%, rgba(216, 180, 106, 0.16), transparent 36%),
+        linear-gradient(160deg, #07050a 0%, #170b26 50%, #050308 100%);
+}
+
+.glam-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(35px);
+    opacity: 0.75;
+    animation: orbFloat 7s ease-in-out infinite alternate;
+}
+
+.orb-one {
+    width: 320px;
+    height: 320px;
+    background: rgba(216, 107, 168, 0.38);
+    top: 10%;
+    left: -110px;
+}
+
+.orb-two {
+    width: 280px;
+    height: 280px;
+    background: rgba(91, 42, 134, 0.48);
+    right: -100px;
+    bottom: 15%;
+    animation-delay: 1s;
+}
+
+.orb-three {
+    width: 220px;
+    height: 220px;
+    background: rgba(216, 180, 106, 0.24);
+    left: 38%;
+    bottom: 5%;
+    animation-delay: 1.8s;
+}
+
+.glitter-layer {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 18% 24%, rgba(255,255,255,0.85) 0 1px, transparent 3px),
+        radial-gradient(circle at 72% 18%, rgba(216,180,106,0.9) 0 1px, transparent 3px),
+        radial-gradient(circle at 84% 58%, rgba(255,138,203,0.8) 0 1px, transparent 3px),
+        radial-gradient(circle at 28% 78%, rgba(255,255,255,0.72) 0 1px, transparent 3px),
+        radial-gradient(circle at 55% 38%, rgba(216,180,106,0.78) 0 1px, transparent 3px);
+    opacity: 0.75;
+    animation: glitterPulse 3.8s ease-in-out infinite alternate;
+}
+
+.splash-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 420px;
+    padding: 0 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.splash-logo {
+    width: 86px;
+    margin-bottom: 26px;
+    box-shadow: 0 0 45px rgba(216, 180, 106, 0.20);
+}
+
+.splash-kicker {
+    margin: 0 0 16px;
+    color: var(--champagne);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+}
+
+.splash-title {
+    font-family: "Playfair Display", serif;
+    color: var(--white);
+    font-size: clamp(3.2rem, 14vw, 5rem);
+    line-height: 0.92;
+    margin: 0;
+    font-weight: 700;
+    text-shadow:
+        0 0 26px rgba(255, 138, 203, 0.32),
+        0 0 52px rgba(91, 42, 134, 0.32);
+}
+
+.splash-subtitle {
+    margin: 18px 0 0;
+    color: var(--blush);
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+}
+
+.btn-start-experience {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 350px;
+    margin: 38px auto 0;
+    padding: 15px 20px;
+    border: 1px solid rgba(216, 180, 106, 0.62);
+    background:
+        linear-gradient(135deg, rgba(216, 107, 168, 0.20), rgba(216, 180, 106, 0.12));
+    color: var(--champagne);
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 0 34px rgba(216, 107, 168, 0.18);
+    transition: 0.32s ease;
+}
+
+.btn-start-experience:hover {
+    transform: translateY(-2px);
+    background:
+        linear-gradient(135deg, rgba(255, 138, 203, 0.28), rgba(216, 180, 106, 0.18));
+    box-shadow: 0 0 45px rgba(216, 107, 168, 0.32);
+}
+
+#splash-screen.opening .splash-content {
+    animation: glamExit 0.9s ease forwards;
+}
+
+/* ==============================
+   LAYOUT
+   ============================== */
+
+.invitation-container {
+    width: min(100%, 500px);
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 0 24px 72px;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+.hero-section {
+    position: relative;
+    width: 100%;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 110px 0 72px;
+    overflow: hidden;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 8;
+    width: 100%;
+    text-align: center;
+}
+
+/* ==============================
+   HERO ATMOSPHERE
+   ============================== */
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -6;
+    background:
+        radial-gradient(circle at 50% 16%, rgba(255, 138, 203, 0.24), transparent 30%),
+        radial-gradient(circle at 20% 42%, rgba(216, 180, 106, 0.18), transparent 34%),
+        radial-gradient(circle at 86% 75%, rgba(91, 42, 134, 0.34), transparent 38%),
+        linear-gradient(160deg, #07050a 0%, #160b22 46%, #050308 100%);
+}
+
+.hero-spotlight {
+    position: absolute;
+    width: 280px;
+    height: 740px;
+    top: -120px;
+    z-index: -5;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.16), transparent 75%);
+    filter: blur(24px);
+    transform-origin: top;
+    opacity: 0.48;
+}
+
+.spotlight-one {
+    left: 4%;
+    transform: rotate(18deg);
+    animation: spotlightMove 6s ease-in-out infinite alternate;
+}
+
+.spotlight-two {
+    right: 4%;
+    transform: rotate(-18deg);
+    animation: spotlightMove 7s ease-in-out infinite alternate-reverse;
+}
+
+.hero-glitter {
+    position: absolute;
+    inset: 0;
+    z-index: -4;
+    background:
+        radial-gradient(circle at 16% 19%, rgba(255,255,255,0.9) 0 1px, transparent 3px),
+        radial-gradient(circle at 72% 14%, rgba(216,180,106,0.85) 0 1px, transparent 3px),
+        radial-gradient(circle at 88% 44%, rgba(255,138,203,0.82) 0 1px, transparent 3px),
+        radial-gradient(circle at 26% 72%, rgba(255,255,255,0.74) 0 1px, transparent 3px),
+        radial-gradient(circle at 52% 84%, rgba(216,180,106,0.8) 0 1px, transparent 3px);
+    opacity: 0.78;
+    animation: glitterPulse 3.8s ease-in-out infinite alternate;
+}
+
+.hero-shine {
+    position: absolute;
+    inset: 0;
+    z-index: -3;
+    background:
+        linear-gradient(115deg, transparent 0%, rgba(255, 255, 255, 0.12) 42%, transparent 58%);
+    transform: translateX(-120%);
+    animation: shimmerSweep 8s ease-in-out infinite;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+        radial-gradient(circle at center, rgba(0,0,0,0.05), rgba(0,0,0,0.70) 82%),
+        linear-gradient(to bottom, rgba(0,0,0,0.06), rgba(0,0,0,0.70));
+}
+
+/* ==============================
+   HERO TEXT
+   ============================== */
+
+.brand-logo-img {
+    width: 92px;
+    max-width: 26vw;
+    margin-bottom: 34px;
+    opacity: 0.92;
+    box-shadow: 0 0 36px rgba(216, 180, 106, 0.12);
+}
+
+.hero-kicker {
+    color: var(--blush);
+    font-size: 0.78rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin: 0 auto 18px;
+    font-weight: 800;
+}
+
+.main-title {
+    font-family: "Cinzel", serif;
+    font-size: clamp(5.4rem, 28vw, 8.8rem);
+    line-height: 0.8;
+    margin: 0;
+    color: var(--champagne);
+    font-weight: 700;
+    text-shadow:
+        0 0 24px rgba(216, 180, 106, 0.28),
+        0 0 60px rgba(216, 107, 168, 0.22);
+}
+
+.celebrant-name {
+    font-family: "Playfair Display", serif;
+    color: var(--white);
+    font-size: clamp(3rem, 14vw, 5rem);
+    font-weight: 700;
+    line-height: 0.92;
+    margin: 12px 0 0;
+    text-shadow: 0 0 35px rgba(255, 138, 203, 0.28);
+}
+
+.hero-info-card {
+    width: min(100%, 390px);
+    margin: 34px auto 0;
+    padding: 18px 18px 20px;
+    border: 1px solid rgba(216, 180, 106, 0.28);
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.10), rgba(216, 107, 168, 0.08));
+    border-radius: 24px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 18px 50px rgba(216, 107, 168, 0.18);
+}
+
+.event-date {
+    margin: 0 0 14px;
+    color: var(--gold);
+    font-weight: 900;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.hero-subtitle {
+    margin: 0 auto;
+    color: var(--white);
+    font-weight: 600;
+    line-height: 1.7;
+    max-width: 330px;
+}
+
+/* ==============================
+   REVEAL
+   ============================== */
+
+.reveal-item,
+.reveal-title {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(30px);
+    will-change: opacity, transform, filter;
+}
+
+.reveal-title {
+    transform: translateY(40px) scale(0.95);
+}
+
+.hero-atmosphere {
+    opacity: 0;
+}
+
+.section-reveal {
+    opacity: 0;
+    transform: translateY(80px);
+}
+
+/* ==============================
+   SECTIONS
+   ============================== */
+
+.section-label {
+    font-size: 0.76rem;
+    font-weight: 900;
+    color: var(--gold);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+}
+
+.quote-section {
+    padding: 72px 0 46px;
+}
+
+.quote-mark {
+    color: var(--hot-pink);
+    font-size: 2.2rem;
+    margin: 0 0 12px;
+}
+
+.quote-text {
+    font-family: "Playfair Display", serif;
+    color: var(--white);
+    font-size: 1.9rem;
+    line-height: 1.15;
+    margin: 0 auto;
+    max-width: 390px;
+}
+
+.countdown-section {
+    margin-bottom: 56px;
+}
+
+.glass-card {
+    background:
+        linear-gradient(135deg, rgba(255,255,255,0.10), rgba(255,138,203,0.07));
+    border: 1px solid rgba(216, 180, 106, 0.26);
+    backdrop-filter: blur(12px);
+    border-radius: 28px;
+    display: flex;
+    justify-content: space-around;
+    padding: 22px 10px;
+    box-shadow: 0 22px 60px rgba(0, 0, 0, 0.28);
+}
+
+.time-unit {
+    font-weight: 800;
+    color: var(--white);
+    text-transform: uppercase;
+}
+
+.time-unit span {
+    display: block;
+    font-family: "Playfair Display", serif;
+    font-size: 2rem;
+    color: var(--gold);
+    font-weight: 700;
+}
+
+.time-unit small {
+    font-size: 0.72rem;
+}
+
+/* ==============================
+   DETAILS
+   ============================== */
+
+.details-section {
+    padding: 56px 0;
+}
+
+.detail-card,
+.dress-card,
+.timeline-card,
+.rsvp-card {
+    background:
+        linear-gradient(135deg, rgba(255,255,255,0.10), rgba(216,107,168,0.07));
+    border: 1px solid rgba(216, 180, 106, 0.24);
+    border-radius: 26px;
+    box-shadow:
+        0 22px 60px rgba(0,0,0,0.26),
+        0 0 40px rgba(216,107,168,0.08);
+}
+
+.detail-card {
+    padding: 24px 20px;
+    margin-bottom: 16px;
+}
+
+.detail-card span {
+    display: block;
+    color: var(--gold);
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.detail-card p {
+    margin: 0;
+    color: var(--white);
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.map-button,
+.btn-rsvp {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 54px;
+    padding: 0 28px;
+    border-radius: 999px;
+    border: 1px solid rgba(216, 180, 106, 0.56);
+    background:
+        linear-gradient(135deg, rgba(255, 138, 203, 0.34), rgba(216, 180, 106, 0.22));
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    box-shadow: 0 0 30px rgba(216, 107, 168, 0.20);
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.map-button {
+    margin-top: 18px;
+}
+
+.map-button:hover,
+.btn-rsvp:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 44px rgba(216, 107, 168, 0.34);
+}
+
+/* ==============================
+   DRESS CODE
+   ============================== */
+
+.dress-code-section,
+.itinerary-section,
+.gallery-section {
+    padding: 52px 0;
+}
+
+.dress-card {
+    padding: 34px 24px;
+}
+
+.dress-card h2 {
+    font-family: "Playfair Display", serif;
+    color: var(--white);
+    font-size: 2.4rem;
+    margin: 0 0 14px;
+}
+
+.dress-card p {
+    color: var(--muted);
+    line-height: 1.75;
+    margin: 0;
+}
+
+.palette-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 26px;
+}
+
+.tone {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.22);
+    box-shadow: 0 0 18px rgba(255,255,255,0.10);
+}
+
+.tone-black { background: #08070b; }
+.tone-blush { background: #f4c7dc; }
+.tone-gold { background: #d8b46a; }
+.tone-silver { background: #d8d8e2; }
+.tone-purple { background: #5b2a86; }
+
+/* ==============================
+   TIMELINE
+   ============================== */
+
+.timeline-card {
+    padding: 32px 24px;
+}
+
+.timeline-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(216, 180, 106, 0.18);
+}
+
+.timeline-item:last-child {
+    border-bottom: none;
+}
+
+.timeline-item span {
+    font-family: "Playfair Display", serif;
+    color: var(--gold);
+    font-size: 1.9rem;
+    font-weight: 700;
+}
+
+.timeline-item p {
+    margin: 0;
+    color: var(--white);
+    text-align: right;
+    font-weight: 600;
+}
+
+/* ==============================
+   GALLERY
+   ============================== */
+
+.gallery-grid {
+    display: grid;
+    gap: 18px;
+}
+
+.gallery-item {
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+    border: 1px solid rgba(216, 180, 106, 0.24);
+    border-radius: 26px;
+    box-shadow:
+        0 22px 60px rgba(0,0,0,0.28),
+        0 0 34px rgba(216,107,168,0.12);
+}
+
+.gallery-item::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(to bottom, rgba(0,0,0,0.10), rgba(0,0,0,0.62)),
+        radial-gradient(circle at 50% 18%, rgba(255,255,255,0.22), transparent 34%);
+    z-index: 1;
+}
+
+.gallery-one {
+    background:
+        radial-gradient(circle at 50% 28%, rgba(255,138,203,0.28), transparent 34%),
+        linear-gradient(135deg, #2a143f, #08050c);
+}
+
+.gallery-two {
+    background:
+        radial-gradient(circle at 35% 32%, rgba(216,180,106,0.28), transparent 34%),
+        linear-gradient(135deg, #160b22, #07050a);
+}
+
+.gallery-three {
+    background:
+        radial-gradient(circle at 66% 35%, rgba(255,255,255,0.18), transparent 34%),
+        linear-gradient(135deg, #5b2a86, #08050c);
+}
+
+.gallery-item span {
+    position: absolute;
+    z-index: 2;
+    left: 24px;
+    bottom: 24px;
+    color: var(--champagne);
+    font-size: 0.76rem;
+    font-weight: 900;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+/* ==============================
+   RSVP
+   ============================== */
+
+.action-section {
+    margin-top: 54px;
+    margin-bottom: 96px;
+}
+
+.rsvp-card {
+    padding: 38px 22px 42px;
+}
+
+.rsvp-card h2 {
+    font-family: "Playfair Display", serif;
+    color: var(--white);
+    font-size: clamp(2.2rem, 10vw, 3.4rem);
+    line-height: 0.98;
+    margin: 0 0 14px;
+}
+
+.rsvp-copy {
+    color: var(--muted);
+    margin: 0 auto 28px;
+    max-width: 340px;
+    line-height: 1.7;
+}
+
+.rsvp-form {
+    width: 100%;
+    max-width: 370px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+#nombreInvitado,
+#mensajeInvitado {
+    width: 100%;
+    background: rgba(255,255,255,0.10);
+    border: 1px solid rgba(216, 180, 106, 0.28);
+    color: var(--white);
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 15px 16px;
+    border-radius: 16px;
+}
+
+#nombreInvitado {
+    margin-bottom: 24px;
+}
+
+#mensajeInvitado {
+    min-height: 120px;
+    resize: vertical;
+    margin: 22px 0 28px;
+}
+
+#nombreInvitado::placeholder,
+#mensajeInvitado::placeholder {
+    color: rgba(255,255,255,0.58);
+}
+
+#nombreInvitado:focus,
+#mensajeInvitado:focus {
+    outline: none;
+    border-color: rgba(255, 138, 203, 0.78);
+    box-shadow: 0 0 0 3px rgba(216, 107, 168, 0.15);
+}
+
+.attendance-group {
+    color: var(--white);
+}
+
+.attendance-group p {
+    margin: 0 0 16px;
+    font-weight: 900;
+}
+
+.attendance-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+.attendance-options label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.attendance-options input {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--hot-pink);
+}
+
+.btn-rsvp {
+    width: 100%;
+}
+
+.closing-section {
+    margin-top: 74px;
+}
+
+.closing-logo {
+    width: 72px;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+.closing-section p {
+    color: var(--muted);
+    line-height: 1.7;
+    margin: 0 auto 18px;
+    max-width: 340px;
+}
+
+.closing-section span {
+    font-family: "Playfair Display", serif;
+    color: var(--champagne);
+    font-size: 2.1rem;
+}
+
+/* ==============================
+   MODAL
+   ============================== */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(7, 5, 10, 0.92);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20000;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.modal:not(.hidden) {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    width: min(90%, 360px);
+    padding: 44px 28px;
+    border-radius: 24px;
+    border: 1px solid rgba(216, 180, 106, 0.32);
+    background:
+        linear-gradient(135deg, rgba(255,255,255,0.12), rgba(216,107,168,0.10)),
+        #12091c;
+    color: var(--white);
+    text-align: center;
+    box-shadow: 0 0 44px rgba(216, 107, 168, 0.22);
+}
+
+/* ==============================
+   ANIMATIONS
+   ============================== */
+
+@keyframes orbFloat {
+    from {
+        transform: translateY(0) scale(1);
+    }
+
+    to {
+        transform: translateY(-26px) scale(1.08);
+    }
+}
+
+@keyframes glitterPulse {
+    from {
+        opacity: 0.38;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0.86;
+        transform: scale(1.03);
+    }
+}
+
+@keyframes glamExit {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0.94) translateY(22px);
+    }
+}
+
+@keyframes spotlightMove {
+    from {
+        opacity: 0.32;
+        transform: rotate(15deg) translateX(0);
+    }
+
+    to {
+        opacity: 0.58;
+        transform: rotate(22deg) translateX(28px);
+    }
+}
+
+@keyframes shimmerSweep {
+    0% {
+        transform: translateX(-120%);
+        opacity: 0;
+    }
+
+    35% {
+        opacity: 1;
+    }
+
+    55% {
+        transform: translateX(120%);
+        opacity: 0.46;
+    }
+
+    100% {
+        transform: translateX(120%);
+        opacity: 0;
+    }
+}
+
+/* ==============================
+   MOBILE
+   ============================== */
+
+@media (max-width: 768px) {
+    .invitation-container {
+        padding: 0 22px 72px;
+    }
+
+    .splash-title {
+        font-size: clamp(3rem, 16vw, 4.5rem);
+    }
+
+    .btn-start-experience {
+        max-width: 340px;
+        font-size: 0.76rem;
+        letter-spacing: 0.08em;
+    }
+
+    .hero-section {
+        padding: 100px 0 72px;
+    }
+
+    .main-title {
+        font-size: clamp(5rem, 30vw, 7.6rem);
+    }
+
+    .celebrant-name {
+        font-size: clamp(2.8rem, 15vw, 4.4rem);
+    }
+
+    .hero-info-card {
+        width: calc(100% - 16px);
+    }
+
+    .gallery-item {
+        height: 280px;
+    }
+
+    .rsvp-card {
+        padding: 36px 18px 40px;
+    }
+
+    .attendance-options {
+        gap: 16px;
+    }
+}

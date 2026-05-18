@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap');
 
 :root {
     --gold: #D6B36A;
@@ -12,7 +12,10 @@
     --gold-button: rgba(214, 179, 106, 0.5);
 }
 
-* { box-sizing: border-box; }
+* {
+    box-sizing: border-box;
+}
+
 html,
 body {
     width: 100%;
@@ -29,37 +32,76 @@ body {
     overflow-x: hidden;
 }
 
+img,
+svg {
+    max-width: 100%;
+}
+
+/* ==============================
+   SPLASH
+   ============================== */
+
 #splash-screen {
     position: fixed;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100vw;
     height: 100vh;
     background-color: #000;
     z-index: 10000;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.splash-content {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 .splash-logo {
-    width: 80%;
+    display: block;
+    width: 100%;
     max-width: 350px;
+    margin: 0 auto;
 }
 
 .btn-start-experience {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 350px;
+    margin: 40px auto 0;
     background: transparent;
     color: var(--gold);
     border: 1px solid rgba(214, 179, 106, 0.65);
-    padding: 15px 35px;
+    padding: 15px 20px;
     font-family: "Montserrat", sans-serif;
-    font-weight: 500;
-    letter-spacing: 0.18em;
+    font-weight: 600;
+    letter-spacing: 0.16em;
     cursor: pointer;
     text-transform: uppercase;
-    margin-top: 40px;
+    text-align: center;
+    transition: 0.35s ease;
 }
+
+.btn-start-experience:hover {
+    background: rgba(214, 179, 106, 0.10);
+    box-shadow: 0 0 28px rgba(214, 179, 106, 0.14);
+}
+
+/* ==============================
+   HERO
+   ============================== */
 
 .hero-section {
     position: relative;
@@ -79,6 +121,8 @@ body {
     max-width: 100%;
     overflow: hidden;
     text-align: center;
+    position: relative;
+    z-index: 5;
 }
 
 .cinematic-bg {
@@ -137,7 +181,6 @@ body {
 }
 
 .pre-title {
-    font-family: "Montserrat", sans-serif;
     font-weight: 600;
     color: var(--white);
     letter-spacing: 0.08em;
@@ -156,7 +199,6 @@ body {
 }
 
 .celebrant-name {
-    font-family: "Montserrat", sans-serif;
     font-weight: 600;
     color: var(--white);
     letter-spacing: 0.04em;
@@ -164,10 +206,11 @@ body {
 }
 
 .hero-subtitle {
-    font-family: "Montserrat", sans-serif;
     font-weight: 400;
     color: var(--white-soft);
     line-height: 1.45;
+    max-width: 360px;
+    margin: 16px auto 0;
 }
 
 .reveal-item,
@@ -186,6 +229,10 @@ body {
     opacity: 0;
 }
 
+/* ==============================
+   LAYOUT / SECTIONS
+   ============================== */
+
 .invitation-container {
     width: min(100%, 450px);
     max-width: 450px;
@@ -195,16 +242,15 @@ body {
     overflow-x: hidden;
 }
 
-.countdown-section {
-    margin-bottom: 40px;
-}
-
 .section-label {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--white);
     letter-spacing: 0.06em;
     text-transform: uppercase;
+}
+
+.countdown-section {
+    margin-bottom: 40px;
 }
 
 .glass-card {
@@ -219,7 +265,6 @@ body {
 }
 
 .time-unit {
-    font-family: "Montserrat", sans-serif;
     font-weight: 600;
     color: var(--white);
     letter-spacing: 0.03em;
@@ -235,12 +280,15 @@ body {
 }
 
 .time-unit small {
-    font-family: "Montserrat", sans-serif;
     font-weight: 600;
     color: var(--white);
     letter-spacing: 0.03em;
     text-transform: uppercase;
 }
+
+/* ==============================
+   DETAILS
+   ============================== */
 
 .details-section {
     background: rgba(0, 0, 0, 0.5);
@@ -248,39 +296,190 @@ body {
     padding: 25px;
     margin-bottom: 40px;
     color: var(--white);
-    font-family: "Montserrat", sans-serif;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
 }
 
+.detail-item {
+    margin-bottom: 24px;
+}
+
+.detail-item:last-child {
+    margin-bottom: 0;
+}
+
 .detail-item span {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--white);
     letter-spacing: 0.05em;
     text-transform: uppercase;
 }
 
 .detail-item p {
-    font-family: "Montserrat", sans-serif;
     font-weight: 400;
     color: var(--white);
     letter-spacing: 0.03em;
 }
 
+/* ==============================
+   RSVP — PREMIUM CARD
+   ============================== */
+
 .action-section {
-    margin-bottom: 40px;
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+    display: block;
+    margin-top: 44px;
+    margin-bottom: 90px;
+}
+
+.rsvp-card {
+    background:
+        linear-gradient(145deg, rgba(255,255,255,0.075), rgba(255,255,255,0.025)),
+        rgba(0, 0, 0, 0.42);
+    border: 1px solid rgba(214, 179, 106, 0.34);
+    border-radius: 24px;
+    padding: 38px 22px 42px;
+    box-shadow:
+        0 24px 70px rgba(0, 0, 0, 0.36),
+        0 0 44px rgba(214, 179, 106, 0.08);
+    backdrop-filter: blur(12px);
+}
+
+.rsvp-card h2 {
+    font-family: "Cormorant Garamond", serif;
+    color: var(--gold);
+    font-size: clamp(2.25rem, 10vw, 3.4rem);
+    line-height: 0.95;
+    margin: 0 0 24px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.ornament-line {
+    width: 160px;
+    height: 1px;
+    background: rgba(214, 179, 106, 0.58);
+    margin: 0 auto 30px;
+    position: relative;
+}
+
+.ornament-line span {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 16px;
+    height: 16px;
+    background: var(--gold);
+    transform: translate(-50%, -50%) rotate(45deg);
+    clip-path: polygon(50% 0%, 61% 36%, 100% 50%, 61% 64%, 50% 100%, 39% 64%, 0% 50%, 39% 36%);
+}
+
+.rsvp-envelope-icon {
+    color: var(--gold);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.rsvp-copy {
+    color: var(--white-soft);
+    line-height: 1.65;
+    margin: 0 auto 28px;
+    max-width: 330px;
+}
+
+.rsvp-form {
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+#nombreInvitado,
+#mensajeInvitado {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.62);
+    border: 1px solid rgba(214, 179, 106, 0.34);
+    color: var(--white);
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 15px 16px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+#nombreInvitado {
+    margin-bottom: 24px;
+}
+
+#mensajeInvitado {
+    min-height: 120px;
+    resize: vertical;
+    margin: 24px 0 28px;
+    text-align: left;
+}
+
+#nombreInvitado::placeholder,
+#mensajeInvitado::placeholder {
+    color: var(--muted);
+}
+
+#nombreInvitado:focus,
+#mensajeInvitado:focus {
+    outline: none;
+    border-color: rgba(214, 179, 106, 0.80);
+    box-shadow: 0 0 25px rgba(214, 179, 106, 0.12);
+}
+
+.attendance-group {
+    color: var(--white);
+}
+
+.attendance-group p {
+    margin: 0 0 16px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 0.82rem;
+}
+
+.attendance-options {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+.attendance-options label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--white-soft);
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.attendance-options input {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--gold);
 }
 
 .btn-rsvp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     border: 1px solid var(--gold-button);
     background: transparent;
     color: var(--gold);
     padding: 1rem 2rem;
     font-family: "Montserrat", sans-serif;
-    font-weight: 700;
-    letter-spacing: 0.04em;
+    font-weight: 800;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    width: 100%;
     cursor: pointer;
     transition: 0.35s ease;
 }
@@ -291,44 +490,61 @@ body {
     color: var(--white);
 }
 
-#nombreInvitado {
-    width: 100%;
-    padding: 15px;
-    background: rgba(0, 0, 0, 0.6);
-    border: 1px solid var(--glass-border);
-    color: var(--white);
-    margin-bottom: 20px;
-    border-radius: 4px;
-    text-align: center;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 400;
-}
-
-#nombreInvitado::placeholder {
-    color: var(--muted);
-}
-
-#nombreInvitado:focus {
-    outline: none;
-    border-color: rgba(214, 179, 106, 0.75);
-    box-shadow: 0 0 25px rgba(214, 179, 106, 0.12);
-}
+/* ==============================
+   LOCATION / CLOSING
+   ============================== */
 
 .location-container {
-    margin-top: 35px;
+    margin-top: 42px;
+    text-align: center;
 }
 
 .location-text {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 500;
+    font-weight: 700;
     color: var(--white);
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
+    margin-bottom: 18px;
+}
+
+.location-link {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
 }
 
 .location-link svg {
     stroke: var(--gold);
 }
+
+.closing-section {
+    margin-top: 72px;
+    text-align: center;
+}
+
+.closing-logo {
+    width: 72px;
+    opacity: 0.9;
+    margin-bottom: 20px;
+}
+
+.closing-section p {
+    color: var(--white-soft);
+    line-height: 1.7;
+    margin: 0 auto 18px;
+    max-width: 330px;
+}
+
+.closing-section span {
+    font-family: "Cormorant Garamond", serif;
+    color: var(--gold);
+    font-size: 2rem;
+}
+
+/* ==============================
+   MODAL
+   ============================== */
 
 .modal {
     position: fixed;
@@ -352,128 +568,21 @@ body {
     padding: 50px 30px;
     border-radius: 16px;
     text-align: center;
+    background: #050505;
 }
+
+/* ==============================
+   REVEALS
+   ============================== */
 
 .js-enabled .section-reveal {
     opacity: 0;
     transform: translateY(80px);
 }
 
-@media (max-width: 768px) {
-    .main-title {
-        font-size: clamp(2.6rem, 12vw, 3.2rem);
-        letter-spacing: 0.04em;
-        max-width: 100%;
-        overflow-wrap: normal;
-    }
-
-    .pre-title,
-    .celebrant-name,
-    .hero-subtitle {
-        max-width: 100%;
-        padding: 0 10px;
-    }
-}
-
-img,
-svg {
-    max-width: 100%;
-}
-
 /* ==============================
-   FIX MOBILE — ACTION SECTION
+   MOBILE
    ============================== */
-
-.action-section {
-    opacity: 1 !important;
-    transform: none !important;
-    visibility: visible !important;
-    display: block;
-    margin-top: 40px;
-    margin-bottom: 90px;
-}
-
-.rsvp-form {
-    width: 100%;
-}
-
-.location-container {
-    margin-top: 38px;
-    text-align: center;
-}
-
-.location-text {
-    margin-bottom: 18px;
-}
-
-.location-link {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-}
-
-@media (max-width: 768px) {
-    .action-section {
-        opacity: 1 !important;
-        transform: none !important;
-        visibility: visible !important;
-        display: block;
-        margin-top: 34px;
-        margin-bottom: 100px;
-    }
-
-    #nombreInvitado,
-    .btn-rsvp {
-        width: 100%;
-        max-width: 100%;
-    }
-
-    .location-container {
-        margin-top: 36px;
-    }
-}
-
-/* ==============================
-   FIX SPLASH CENTERING
-   ============================== */
-
-#splash-screen {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    overflow: hidden;
-}
-
-.splash-content {
-    width: 100%;
-    max-width: 420px;
-    margin: 0 auto;
-    padding: 0 24px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.splash-logo {
-    display: block;
-    width: 100%;
-    max-width: 350px;
-    margin: 0 auto;
-}
-
-.btn-start-experience {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-width: 350px;
-    margin: 40px auto 0;
-    text-align: center;
-}
 
 @media (max-width: 768px) {
     .splash-content {
@@ -490,5 +599,43 @@ svg {
         padding: 15px 18px;
         letter-spacing: 0.14em;
         font-size: 0.82rem;
+    }
+
+    .main-title {
+        font-size: clamp(2.6rem, 12vw, 3.2rem);
+        letter-spacing: 0.04em;
+        max-width: 100%;
+        overflow-wrap: normal;
+    }
+
+    .pre-title,
+    .celebrant-name,
+    .hero-subtitle {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+
+    .action-section {
+        margin-top: 36px;
+        margin-bottom: 100px;
+    }
+
+    .rsvp-card {
+        padding: 36px 18px 40px;
+    }
+
+    #nombreInvitado,
+    #mensajeInvitado,
+    .btn-rsvp {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .attendance-options {
+        gap: 16px;
+    }
+
+    .location-container {
+        margin-top: 38px;
     }
 }

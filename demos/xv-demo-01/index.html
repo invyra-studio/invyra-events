@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>INVYRA | Valentina XV - Glam Experience</title>
+
+    <link rel="icon" type="image/jpeg" href="../../LOGO/FAVICON.jpeg" />
+    <link rel="stylesheet" href="style.css?v=1.0.0" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  </head>
+
+  <body>
+    <div id="splash-screen">
+      <div class="glam-orb orb-one"></div>
+      <div class="glam-orb orb-two"></div>
+      <div class="glam-orb orb-three"></div>
+      <div class="glitter-layer"></div>
+
+      <div class="splash-content">
+        <img
+          src="../../LOGO/FAVICON.jpeg"
+          class="splash-logo"
+          alt="INVYRA"
+        />
+
+        <p class="splash-kicker">XV Glam Experience</p>
+
+        <h1 class="splash-title">
+          Valentina
+        </h1>
+
+        <p class="splash-subtitle">Una noche para brillar</p>
+
+        <button
+          type="button"
+          onclick="entrarExperiencia()"
+          class="btn-start-experience"
+          aria-label="Entrar a la invitación"
+        >
+          ENTRAR A LA EXPERIENCIA
+        </button>
+      </div>
+    </div>
+
+    <main class="invitation-container">
+      <header class="hero-section">
+        <div class="hero-bg hero-atmosphere"></div>
+        <div class="hero-spotlight spotlight-one hero-atmosphere"></div>
+        <div class="hero-spotlight spotlight-two hero-atmosphere"></div>
+        <div class="hero-glitter hero-atmosphere"></div>
+        <div class="hero-shine hero-atmosphere"></div>
+        <div class="hero-overlay hero-atmosphere"></div>
+
+        <div class="hero-content">
+          <img
+            src="../../LOGO/FAVICON.jpeg"
+            alt="Invyra Logo"
+            class="brand-logo-img reveal-item"
+          />
+
+          <p class="hero-kicker reveal-item">
+            Estás invitado a celebrar mis
+          </p>
+
+          <h1 class="main-title reveal-title">
+            XV
+          </h1>
+
+          <h2 class="celebrant-name reveal-item">
+            Valentina
+          </h2>
+
+          <div class="hero-info-card reveal-item">
+            <p class="event-date">21 · NOV · 2026</p>
+
+            <p class="hero-subtitle">
+              Una noche llena de luces, música, glamour y momentos inolvidables.
+            </p>
+          </div>
+        </div>
+      </header>
+
+      <section class="quote-section section-reveal">
+        <p class="quote-mark">✦</p>
+        <p class="quote-text">
+          Hay noches que no se repiten. Esta será una de ellas.
+        </p>
+      </section>
+
+      <section class="countdown-section section-reveal">
+        <p class="section-label">LA NOCHE GLAM SE ACERCA</p>
+
+        <div id="countdown" class="glass-card">
+          <div class="time-unit">
+            <span id="days">00</span>
+            <small>DÍAS</small>
+          </div>
+
+          <div class="time-unit">
+            <span id="hours">00</span>
+            <small>HRS</small>
+          </div>
+
+          <div class="time-unit">
+            <span id="mins">00</span>
+            <small>MIN</small>
+          </div>
+
+          <div class="time-unit">
+            <span id="secs">00</span>
+            <small>SEG</small>
+          </div>
+        </div>
+      </section>
+
+      <section class="details-section section-reveal">
+        <p class="section-label">DETALLES DEL EVENTO</p>
+
+        <div class="detail-card">
+          <span>FECHA</span>
+          <p>21 · NOV · 2026</p>
+        </div>
+
+        <div class="detail-card">
+          <span>HORA</span>
+          <p>20:00 HRS</p>
+        </div>
+
+        <div class="detail-card">
+          <span>LUGAR</span>
+          <p>Salón Crystal Night — Jardín Imperial</p>
+        </div>
+
+        <a
+          href="https://maps.app.goo.gl/KtPtKCTe2NxgLfVV7"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="map-button"
+        >
+          VER UBICACIÓN
+        </a>
+      </section>
+
+      <section class="dress-code-section section-reveal">
+        <p class="section-label">DRESS CODE</p>
+
+        <div class="dress-card">
+          <h2>Glam Elegante</h2>
+
+          <p>
+            Te invitamos a vestir en tonos negro, rosa blush, dorado, plateado
+            o champagne. Brilla sin miedo.
+          </p>
+
+          <div class="palette-row">
+            <span class="tone tone-black"></span>
+            <span class="tone tone-blush"></span>
+            <span class="tone tone-gold"></span>
+            <span class="tone tone-silver"></span>
+            <span class="tone tone-purple"></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="itinerary-section section-reveal">
+        <p class="section-label">ITINERARIO</p>
+
+        <div class="timeline-card">
+          <div class="timeline-item">
+            <span>20:00</span>
+            <p>Recepción de invitados</p>
+          </div>
+
+          <div class="timeline-item">
+            <span>21:00</span>
+            <p>Entrada especial</p>
+          </div>
+
+          <div class="timeline-item">
+            <span>21:30</span>
+            <p>Vals</p>
+          </div>
+
+          <div class="timeline-item">
+            <span>22:30</span>
+            <p>Fiesta & música</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="gallery-section section-reveal">
+        <p class="section-label">GALERÍA</p>
+
+        <div class="gallery-grid">
+          <div class="gallery-item gallery-one">
+            <span>Entrada</span>
+          </div>
+
+          <div class="gallery-item gallery-two">
+            <span>Vals</span>
+          </div>
+
+          <div class="gallery-item gallery-three">
+            <span>Fiesta</span>
+          </div>
+        </div>
+      </section>
+
+      <footer class="action-section section-reveal">
+        <div class="rsvp-card">
+          <h2>Confirma tu asistencia</h2>
+
+          <p class="rsvp-copy">
+            Tu presencia hará esta noche aún más especial.
+          </p>
+
+          <div class="rsvp-form">
+            <input
+              type="text"
+              id="nombreInvitado"
+              placeholder="Tu nombre completo"
+              autocomplete="off"
+            />
+
+            <div class="attendance-group">
+              <p>Confirmo que</p>
+
+              <div class="attendance-options">
+                <label>
+                  <input type="radio" name="asistencia" value="Asistiré" checked />
+                  <span>Asistiré</span>
+                </label>
+
+                <label>
+                  <input type="radio" name="asistencia" value="No asistiré" />
+                  <span>No asistiré</span>
+                </label>
+              </div>
+            </div>
+
+            <textarea
+              id="mensajeInvitado"
+              placeholder="Puedes dejar un mensaje opcional"
+            ></textarea>
+
+            <button
+              type="button"
+              id="btn-confirmar"
+              class="btn-rsvp"
+              onclick="confirmarAsistencia()"
+            >
+              CONFIRMAR ASISTENCIA
+            </button>
+          </div>
+        </div>
+
+        <div class="closing-section">
+          <img
+            src="../../LOGO/FAVICON.jpeg"
+            alt="Invyra"
+            class="closing-logo"
+          />
+
+          <p>Gracias por ser parte de esta noche tan especial.</p>
+
+          <span>Valentina XV</span>
+        </div>
+      </footer>
+    </main>
+
+    <div id="rsvp-modal" class="modal hidden">
+      <div class="modal-content">
+        <h3>¡TODO LISTO!</h3>
+        <p>Redirigiendo a WhatsApp para completar tu confirmación...</p>
+      </div>
+    </div>
+
+    <audio id="bg-music" loop>
+      <source src="../../music/violin-luxury.mp3" type="audio/mpeg" />
+    </audio>
+
+    <script src="script.js?v=1.0.0"></script>
+  </body>
+</html>

@@ -1,6 +1,6 @@
 /**
- * INVYRA - Birthday Demo 01
- * Midnight Gala RSVP Premium
+ * INVYRA - XV Glam Demo
+ * Nivel: Signature
  */
 
 document.body.classList.add("js-enabled");
@@ -9,118 +9,14 @@ if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
 }
 
-/*
-  IMPORTANTE:
-  Reemplaza esta URL por la nueva Web App URL del Google Sheets
-  exclusivo de birthday-demo-01. Debe terminar en /exec.
-*/
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwpV7Xn9bgxBkV2B6x6YJ1wfxPfXPB3g8IWI-IhlpXBEk6IFFT8Ay0sfhHLLr58yVoc/exec";
-
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw_r0T5FmXnHC5QUI6-talG8sXVywgmxvisnGtW9g26Xt-2ni1uk1Ffy-arETKwYmPt/exec";
 const TELEFONO_RSVP = "525516986744";
-const FECHA_EVENTO = "Aug 16, 2026 21:00:00";
-const EVENTO_NOMBRE = "Birthday Demo 01 - Midnight Gala Erza";
+const FECHA_EVENTO = "Nov 21, 2026 20:00:00";
+const EVENTO_NOMBRE = "XV Glam Valentina";
 
-function initParticles() {
-    const commonConfig = (direction) => ({
-        particles: {
-            number: {
-                value: 120,
-                density: {
-                    enable: true,
-                    value_area: 800
-                }
-            },
-            color: {
-                value: "#c5a059"
-            },
-            shape: {
-                type: "circle"
-            },
-            opacity: {
-                value: 0.8,
-                random: false,
-                anim: {
-                    enable: true,
-                    speed: 1,
-                    opacity_min: 0.4,
-                    sync: false
-                }
-            },
-            size: {
-                value: 1.5,
-                random: true,
-                anim: {
-                    enable: false
-                }
-            },
-            line_linked: {
-                enable: false
-            },
-            move: {
-                enable: true,
-                speed: 0.7,
-                direction: direction,
-                random: true,
-                straight: false,
-                out_mode: "out"
-            }
-        },
-        interactivity: {
-            detect_on: "canvas",
-            events: {
-                onhover: {
-                    enable: false
-                }
-            }
-        },
-        retina_detect: true
-    });
-
-    if (typeof particlesJS !== "undefined") {
-        particlesJS("particles-top", commonConfig("bottom"));
-        particlesJS("particles-bottom", commonConfig("top"));
-    }
-}
-
-initParticles();
-
-function entrarGala() {
-    const splash = document.getElementById("splash-screen");
-    const music = document.getElementById("bg-music");
-
-    if (!splash) return;
-
-    if (typeof gsap !== "undefined") {
-        gsap.to(splash, {
-            opacity: 0,
-            duration: 1.2,
-            onComplete: () => {
-                splash.style.display = "none";
-                initScrollReveal();
-            }
-        });
-    } else {
-        splash.style.display = "none";
-        initScrollReveal();
-    }
-
-    if (music) {
-        music.volume = 0;
-        music.play().catch(err => console.log("Interacción requerida:", err));
-
-        if (typeof gsap !== "undefined") {
-            gsap.to(music, {
-                volume: 0.35,
-                duration: 4,
-                ease: "power1.inOut"
-            });
-        } else {
-            music.volume = 0.35;
-        }
-    }
-
+function initHeroReveal() {
     if (typeof gsap === "undefined") {
-        document.querySelectorAll(".hero-atmosphere, .reveal-item, .reveal-title").forEach(el => {
+        document.querySelectorAll(".hero-atmosphere, .reveal-item, .reveal-title, .hero-info-card").forEach(el => {
             el.style.opacity = "1";
             el.style.filter = "blur(0px)";
             el.style.transform = "none";
@@ -129,6 +25,7 @@ function entrarGala() {
     }
 
     const revealTL = gsap.timeline({
+        delay: 0.2,
         defaults: {
             ease: "power3.out",
             duration: 1.25
@@ -138,15 +35,15 @@ function entrarGala() {
     revealTL
         .to(".hero-atmosphere", {
             opacity: 1,
-            duration: 1.5
+            duration: 1.4
         })
         .to(".brand-logo-img", {
             opacity: 1,
             y: 0,
             filter: "blur(0px)",
-            duration: 1.2
-        }, "-=1.0")
-        .to(".pre-title", {
+            duration: 1.1
+        }, "-=0.9")
+        .to(".hero-kicker", {
             opacity: 1,
             y: 0,
             filter: "blur(0px)",
@@ -157,23 +54,21 @@ function entrarGala() {
             y: 0,
             scale: 1,
             filter: "blur(0px)",
-            duration: 1.6
+            duration: 1.4
         }, "-=0.7")
         .to(".celebrant-name", {
             opacity: 1,
             y: 0,
             filter: "blur(0px)",
             duration: 1.1
-        }, "-=1.0")
-        .to(".hero-subtitle", {
+        }, "-=0.9")
+        .to(".hero-info-card", {
             opacity: 1,
             y: 0,
             filter: "blur(0px)",
             duration: 1.1
-        }, "-=0.9");
+        }, "-=0.8");
 }
-
-window.entrarGala = entrarGala;
 
 function initScrollReveal() {
     if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
@@ -188,36 +83,76 @@ function initScrollReveal() {
         gsap.fromTo(section,
             {
                 opacity: 0,
-                y: 50
+                y: 55
             },
             {
                 scrollTrigger: {
                     trigger: section,
-                    start: "top 90%",
+                    start: "top 88%",
                     toggleActions: "play none none none"
                 },
                 opacity: 1,
                 y: 0,
-                duration: 1.5,
+                duration: 1.3,
                 ease: "power3.out"
             }
         );
     });
 
-    gsap.to(".location-link", {
-        scrollTrigger: {
-            trigger: ".location-container",
-            start: "top 95%"
-        },
-        y: -5,
-        repeat: -1,
-        yoyo: true,
-        duration: 2,
-        ease: "sine.inOut"
-    });
-
     ScrollTrigger.refresh();
 }
+
+function entrarExperiencia() {
+    const splash = document.getElementById("splash-screen");
+    const music = document.getElementById("bg-music");
+
+    if (!splash) return;
+
+    splash.classList.add("opening");
+
+    if (music) {
+        music.volume = 0;
+        music.play().catch(err => console.log("Audio requiere interacción:", err));
+
+        if (typeof gsap !== "undefined") {
+            gsap.to(music, {
+                volume: 0.34,
+                duration: 4,
+                ease: "power1.inOut"
+            });
+        } else {
+            music.volume = 0.34;
+        }
+    }
+
+    if (typeof gsap !== "undefined") {
+        gsap.to(splash, {
+            opacity: 0,
+            duration: 1.1,
+            delay: 0.45,
+            ease: "power2.inOut",
+            onComplete: () => {
+                splash.style.display = "none";
+                initHeroReveal();
+                initScrollReveal();
+            }
+        });
+    } else {
+        splash.style.display = "none";
+        initHeroReveal();
+        initScrollReveal();
+    }
+}
+
+window.entrarExperiencia = entrarExperiencia;
+
+document.addEventListener("DOMContentLoaded", () => {
+    const startButton = document.querySelector(".btn-start-experience");
+
+    if (startButton) {
+        startButton.addEventListener("click", entrarExperiencia);
+    }
+});
 
 const targetDate = new Date(FECHA_EVENTO).getTime();
 
@@ -263,10 +198,10 @@ async function confirmarAsistencia() {
             });
         }
 
-        inputNombre.style.border = "1px solid #ff4444";
+        inputNombre.style.border = "1px solid #ff6fbd";
 
         setTimeout(() => {
-            inputNombre.style.border = "1px solid rgba(214, 179, 106, 0.34)";
+            inputNombre.style.border = "1px solid rgba(216, 180, 106, 0.28)";
         }, 2000);
 
         return;
@@ -283,7 +218,7 @@ async function confirmarAsistencia() {
         });
     }
 
-    btnConfirmar.innerText = "PROCESANDO...";
+    btnConfirmar.innerText = "Procesando...";
     btnConfirmar.disabled = true;
 
     const payload = {
@@ -300,10 +235,10 @@ async function confirmarAsistencia() {
             body: JSON.stringify(payload)
         });
 
-        btnConfirmar.innerText = "¡TODO LISTO!";
+        btnConfirmar.innerText = "¡Todo listo!";
 
         const mensajeWhatsApp = encodeURIComponent(
-            `¡Hola! Confirmo mi respuesta para la Midnight Gala.\n\n` +
+            `¡Hola! Confirmo mi respuesta para los XV de Valentina.\n\n` +
             `*Invitado:* ${nombre}\n` +
             `*Asistencia:* ${asistencia}\n` +
             `*Mensaje:* ${mensajeInvitado || "Sin mensaje"}`
@@ -321,7 +256,7 @@ async function confirmarAsistencia() {
 
             const asistirRadio = document.querySelector('input[name="asistencia"][value="Asistiré"]');
             if (asistirRadio) asistirRadio.checked = true;
-        }, 2400);
+        }, 2200);
 
     } catch (error) {
         console.error("Error:", error);
@@ -342,11 +277,9 @@ document.addEventListener("visibilitychange", () => {
 
     if (document.hidden) {
         music.pause();
-        console.log("QA Log: App en segundo plano - Audio pausado");
     } else {
         if (splash && splash.style.display === "none") {
-            music.play().catch(err => console.log("QA Log: Error al reanudar:", err));
-            console.log("QA Log: App en primer plano - Audio reanudado");
+            music.play().catch(err => console.log("Error al reanudar:", err));
         }
     }
 });
