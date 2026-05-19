@@ -713,6 +713,7 @@ svg {
 .rsvp-card h2,
 .rsvp-copy,
 .rsvp-form,
+.rsvp-package-label,
 .mini-cradle-icon,
 .palette-row {
     position: relative;
@@ -842,6 +843,36 @@ svg {
 
 .rsvp-card {
     padding: 42px 22px 46px;
+    transition:
+        border-color 0.35s ease,
+        box-shadow 0.35s ease,
+        transform 0.35s ease;
+}
+
+.rsvp-card.rsvp-not-attending {
+    border-color: rgba(123, 132, 148, 0.28);
+    box-shadow:
+        0 22px 58px rgba(23,40,70,0.14),
+        0 0 26px rgba(143,199,236,0.08),
+        inset 0 0 0 1px rgba(255,255,255,0.38);
+}
+
+.rsvp-package-label {
+    width: fit-content;
+    margin: 0 auto 18px;
+    padding: 7px 14px;
+    border: 1px solid rgba(201, 155, 74, 0.36);
+    border-radius: 999px;
+    color: var(--gold-deep);
+    font-size: 0.66rem;
+    font-weight: 900;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    background:
+        linear-gradient(135deg, rgba(255,255,255,0.88), rgba(205,233,251,0.34), rgba(230,201,143,0.22));
+    box-shadow:
+        0 12px 26px rgba(23,40,70,0.08),
+        inset 0 0 0 1px rgba(255,255,255,0.48);
 }
 
 .ornament-line {
@@ -890,6 +921,11 @@ svg {
     border-radius: 18px;
     text-align: center;
     box-shadow: inset 0 0 0 1px rgba(255,255,255,0.44);
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        opacity 0.3s ease,
+        filter 0.3s ease;
 }
 
 #nombreInvitado {
@@ -900,6 +936,12 @@ svg {
     min-height: 124px;
     resize: vertical;
     margin: 22px 0 28px;
+}
+
+#pasesInvitado {
+    appearance: none;
+    cursor: pointer;
+    padding-right: 42px;
 }
 
 #nombreInvitado::placeholder,
@@ -915,6 +957,13 @@ svg {
     box-shadow:
         0 0 0 3px rgba(143, 199, 236, 0.20),
         inset 0 0 0 1px rgba(255,255,255,0.44);
+}
+
+#nombreInvitado:disabled,
+#mensajeInvitado:disabled,
+#pasesInvitado:disabled {
+    opacity: 0.58;
+    cursor: not-allowed;
 }
 
 .attendance-group {
@@ -947,6 +996,13 @@ svg {
     cursor: pointer;
     font-weight: 700;
     color: var(--text-soft);
+    transition:
+        color 0.25s ease,
+        opacity 0.25s ease;
+}
+
+.attendance-options label:hover {
+    color: var(--gold-deep);
 }
 
 .attendance-options input {
@@ -955,13 +1011,29 @@ svg {
     accent-color: var(--sky);
 }
 
+.attendance-options input:disabled + span {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
 .companions-field {
+    position: relative;
     width: 100%;
     margin: 0 0 22px;
     transition:
         opacity 0.3s ease,
         filter 0.3s ease,
         transform 0.3s ease;
+}
+
+.companions-field::after {
+    content: "⌄";
+    position: absolute;
+    right: 18px;
+    bottom: 14px;
+    color: var(--gold-deep);
+    font-size: 1rem;
+    pointer-events: none;
 }
 
 .field-label {
@@ -975,9 +1047,13 @@ svg {
 }
 
 .companions-field.is-disabled {
-    opacity: 0.45;
+    opacity: 0.48;
     filter: grayscale(0.35);
     transform: scale(0.985);
+}
+
+.companions-field.is-disabled::after {
+    opacity: 0.45;
 }
 
 .companions-field.is-disabled #pasesInvitado {
@@ -992,6 +1068,16 @@ svg {
     opacity: 0.62;
     cursor: not-allowed;
     transform: none;
+    box-shadow:
+        0 10px 26px rgba(23,40,70,0.10),
+        inset 0 0 0 1px rgba(255,255,255,0.38);
+}
+
+.btn-rsvp:disabled:hover {
+    transform: none;
+    box-shadow:
+        0 10px 26px rgba(23,40,70,0.10),
+        inset 0 0 0 1px rgba(255,255,255,0.38);
 }
 
 .closing-section {
@@ -1312,8 +1398,21 @@ svg {
         padding: 36px 18px 40px;
     }
 
+    .rsvp-package-label {
+        font-size: 0.6rem;
+        letter-spacing: 0.1em;
+    }
+
     .attendance-options {
         gap: 16px;
+    }
+
+    #pasesInvitado {
+        padding-right: 42px;
+    }
+
+    .companions-field::after {
+        right: 16px;
     }
 
     .celestial-card,
@@ -1326,11 +1425,6 @@ svg {
         border-radius: 26px;
     }
 
-    /* ==============================
-    MOBILE SPLASH STABILITY FIX
-   ============================== */
-
-    @media (max-width: 768px) {
     #splash-screen,
     .splash-base,
     .splash-halo,
@@ -1374,6 +1468,5 @@ svg {
         transform: none !important;
         backface-visibility: hidden;
         -webkit-backface-visibility: hidden;
-    }
     }
 }

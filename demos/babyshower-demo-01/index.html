@@ -7,7 +7,7 @@
     <title>INVYRA | Baby Shower Yeison - Celestial Cradle</title>
 
     <link rel="icon" type="image/jpeg" href="../../LOGO/FAVICON.jpeg" />
-    <link rel="stylesheet" href="style.css?v=1.0.1" />
+    <link rel="stylesheet" href="style.css?v=1.0.2" />
 
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800;900&family=Great+Vibes&display=swap"
@@ -19,12 +19,6 @@
   </head>
 
   <body>
-    <!-- ==============================
-      SPLASH / OPENING
-      Nueva arquitectura limpia:
-      pocas capas, sin blur excesivo ni choques de animación.
-    =============================== -->
-
     <div id="splash-screen" aria-label="Pantalla de bienvenida">
       <div class="splash-base"></div>
       <div class="splash-halo"></div>
@@ -68,13 +62,7 @@
       </div>
     </div>
 
-    <!-- ==============================
-      INVITACIÓN
-    =============================== -->
-
     <main class="invitation-container">
-      <!-- HERO -->
-
       <header class="hero-section">
         <div class="hero-bg"></div>
         <div class="hero-sky-glow"></div>
@@ -99,9 +87,7 @@
             Con mucho amor esperamos a
           </p>
 
-          <h1 class="main-title reveal-title">
-            Yeison
-          </h1>
+          <h1 class="main-title reveal-title">Yeison</h1>
 
           <p class="hero-phrase reveal-item">
             Un pedacito de cielo viene en camino
@@ -117,8 +103,6 @@
           </div>
         </div>
       </header>
-
-      <!-- BLESSING -->
 
       <section class="blessing-section section-reveal">
         <div class="section-icon">
@@ -137,8 +121,6 @@
           momento tan especial.
         </p>
       </section>
-
-      <!-- COUNTDOWN -->
 
       <section class="countdown-section section-reveal">
         <p class="section-label">FALTA MUY POCO</p>
@@ -168,8 +150,6 @@
         </div>
       </section>
 
-      <!-- DETAILS -->
-
       <section class="details-section section-reveal">
         <p class="section-label">DETALLES DEL EVENTO</p>
 
@@ -193,12 +173,11 @@
           target="_blank"
           rel="noopener noreferrer"
           class="map-button"
+          aria-label="Ver ubicación del evento en Google Maps"
         >
           VER UBICACIÓN
         </a>
       </section>
-
-      <!-- THEME -->
 
       <section class="theme-section section-reveal">
         <p class="section-label">TONOS SUGERIDOS</p>
@@ -225,8 +204,6 @@
         </div>
       </section>
 
-      <!-- GIFT -->
-
       <section class="gift-section section-reveal">
         <p class="section-label">MESA DE REGALOS</p>
 
@@ -252,8 +229,6 @@
         </div>
       </section>
 
-      <!-- WISHES -->
-
       <section class="wishes-section section-reveal">
         <p class="section-label">LLUVIA DE DESEOS</p>
 
@@ -269,11 +244,11 @@
         </div>
       </section>
 
-      <!-- RSVP -->
-
       <footer class="action-section section-reveal">
         <div class="rsvp-card celestial-card">
           <div class="card-stars"></div>
+
+          <p class="rsvp-package-label">Experiencia Signature</p>
 
           <h2>Confirma tu asistencia</h2>
 
@@ -282,7 +257,8 @@
           </div>
 
           <p class="rsvp-copy">
-            Será muy especial contar contigo en esta celebración.
+            Tu presencia hará esta celebración aún más especial. Confirma tu
+            respuesta y cuéntanos si asistirás con acompañantes.
           </p>
 
           <div class="rsvp-form">
@@ -291,6 +267,7 @@
               id="nombreInvitado"
               placeholder="Nombre de invitado o familia"
               autocomplete="off"
+              aria-label="Nombre de invitado o familia"
             />
 
             <div class="attendance-group">
@@ -322,7 +299,7 @@
 
             <div class="companions-field" id="companions-field">
               <label for="pasesInvitado" class="field-label">
-                Acompañantes
+                Número de acompañantes
               </label>
 
               <select id="pasesInvitado" aria-label="Número de acompañantes">
@@ -338,13 +315,15 @@
 
             <textarea
               id="mensajeInvitado"
-              placeholder="Deja un deseo para el bebé"
+              placeholder="Deja un deseo para Yeison (opcional)"
+              aria-label="Deseo opcional para Yeison"
             ></textarea>
 
             <button
               type="button"
               id="btn-confirmar"
               class="btn-rsvp"
+              aria-label="Confirmar asistencia"
             >
               CONFIRMAR ASISTENCIA
             </button>
@@ -365,26 +344,23 @@
       </footer>
     </main>
 
-    <!-- MODAL -->
-
     <div id="rsvp-modal" class="modal hidden" aria-live="polite">
       <div class="modal-content">
         <div class="modal-stars"></div>
 
-        <h3 id="modal-title">¡TODO LISTO!</h3>
+        <h3 id="modal-title">¡RESPUESTA REGISTRADA!</h3>
 
         <p id="modal-message">
-          Guardando tu respuesta...
+          Gracias por confirmar. En un momento abriremos WhatsApp para completar
+          tu mensaje.
         </p>
       </div>
     </div>
-
-    <!-- AUDIO -->
 
     <audio id="bg-music" loop>
       <source src="../../music/violin-luxury.mp3" type="audio/mpeg" />
     </audio>
 
-    <script src="script.js?v=1.0.1"></script>
+    <script src="script.js?v=1.0.2"></script>
   </body>
 </html>
