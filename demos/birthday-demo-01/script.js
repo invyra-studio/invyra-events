@@ -14,7 +14,6 @@ if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
 
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwpV7Xn9bgxBkV2B6x6YJ1wfxPfXPB3g8IWI-IhlpXBEk6IFFT8Ay0sfhHLLr58yVoc/exec";
 const TELEFONO_RSVP = "525516986744";
-const FECHA_EVENTO = "Aug 16, 2026 21:00:00";
 const EVENTO_NOMBRE = "Birthday Demo 01 - Midnight Gala Erza";
 
 function initParticles() {
@@ -226,26 +225,6 @@ function initScrollReveal() {
     ScrollTrigger.refresh();
 }
 
-const targetDate = new Date(FECHA_EVENTO).getTime();
-
-setInterval(() => {
-    const now = new Date().getTime();
-    const diff = targetDate - now;
-
-    if (diff > 0) {
-        const days = document.getElementById("days");
-        const hours = document.getElementById("hours");
-        const mins = document.getElementById("mins");
-        const secs = document.getElementById("secs");
-
-        if (!days || !hours || !mins || !secs) return;
-
-        days.innerText = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, "0");
-        hours.innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, "0");
-        mins.innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, "0");
-        secs.innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, "0");
-    }
-}, 1000);
 
 function initRsvpState() {
     const radios = document.querySelectorAll('input[name="asistencia"]');
