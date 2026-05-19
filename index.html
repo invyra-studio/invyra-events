@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>INVYRA | Premium Digital Events</title>
+
+    <meta
+      name="description"
+      content="INVYRA crea invitaciones digitales premium para bodas, XV años, baby shower, cumpleaños y eventos especiales."
+    />
+
+    <link rel="icon" type="image/jpeg" href="./LOGO/FAVICON.jpeg" />
+    <link rel="stylesheet" href="./style.css?v=1.0.0" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800;900&family=Great+Vibes&display=swap"
+      rel="stylesheet"
+    />
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"
+      defer
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"
+      defer
+    ></script>
+    <script src="./script.js?v=1.0.0" defer></script>
+  </head>
+
+  <body>
+    <div class="site-bg">
+      <div class="bg-orb bg-orb-one"></div>
+      <div class="bg-orb bg-orb-two"></div>
+      <div class="bg-grain"></div>
+      <div class="bg-lines"></div>
+    </div>
+
+    <header class="site-header">
+      <a href="#inicio" class="brand" aria-label="Ir al inicio">
+        <img src="./LOGO/FAVICON.jpeg" alt="INVYRA" class="brand-logo" />
+
+        <div class="brand-text">
+          <span>INVYRA</span>
+          <small>Premium Digital Events</small>
+        </div>
+      </a>
+
+      <button
+        type="button"
+        class="nav-toggle"
+        id="nav-toggle"
+        aria-label="Abrir menú"
+      >
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav">
+        <a href="#paquetes">Paquetes</a>
+        <a href="#demos">Demos</a>
+        <a href="#extras">Extras</a>
+        <a href="#faq">FAQ</a>
+        <a href="#cotizar" class="nav-cta">Cotizar</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero-section" id="inicio">
+        <div class="hero-decoration hero-decoration-left"></div>
+        <div class="hero-decoration hero-decoration-right"></div>
+
+        <div class="hero-content">
+          <p class="eyebrow reveal-item">Invitaciones digitales premium</p>
+
+          <h1 class="hero-title reveal-title">
+            Experiencias digitales para eventos que merecen recordarse.
+          </h1>
+
+          <p class="hero-copy reveal-item">
+            Creamos invitaciones digitales elegantes, animadas y funcionales
+            para compartir los detalles de tu evento, confirmar asistencia y
+            ofrecer una experiencia memorable desde el primer enlace.
+          </p>
+
+          <div class="hero-actions reveal-item">
+            <a
+              href="https://wa.me/525535690278?text=Hola%20INVYRA%2C%20me%20gustar%C3%ADa%20cotizar%20una%20invitaci%C3%B3n%20digital."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-primary"
+            >
+              Cotizar por WhatsApp
+            </a>
+
+            <a href="#demos" class="btn btn-secondary">
+              Ver demos
+            </a>
+          </div>
+
+          <div class="hero-proof reveal-item">
+            <span>RSVP conectado</span>
+            <span>Diseño personalizado</span>
+            <span>Publicación en línea</span>
+          </div>
+        </div>
+
+        <div class="hero-card reveal-item">
+          <div class="hero-card-inner">
+            <img src="./LOGO/FAVICON.jpeg" alt="INVYRA" class="hero-card-logo" />
+
+            <p class="hero-card-kicker">INVYRA Studio</p>
+
+            <h2>Tu evento, convertido en una experiencia digital.</h2>
+
+            <div class="hero-card-list">
+              <span>✦ Bodas</span>
+              <span>✦ XV años</span>
+              <span>✦ Baby Shower</span>
+              <span>✦ Cumpleaños</span>
+              <span>✦ Bautizos</span>
+              <span>✦ Eventos especiales</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="intro-section section-reveal">
+        <p class="section-kicker">¿Qué es INVYRA?</p>
+
+        <h2 class="section-title">
+          Una forma más elegante de invitar, organizar y emocionar.
+        </h2>
+
+        <p class="section-copy">
+          INVYRA combina diseño visual, animación, música, ubicación, RSVP y
+          secciones personalizadas para crear invitaciones digitales que se
+          sienten como una extensión del evento.
+        </p>
+      </section>
+
+      <section class="packages-section section-reveal" id="paquetes">
+        <div class="section-heading">
+          <p class="section-kicker">Paquetes</p>
+
+          <h2 class="section-title">
+            Tres niveles para distintos tipos de evento.
+          </h2>
+
+          <p class="section-copy">
+            Desde una invitación rápida y funcional hasta una experiencia
+            completa tipo mini sitio web.
+          </p>
+        </div>
+
+        <div class="image-showcase">
+          <img
+            src="./assets/img/paquetes-sin-precios.png"
+            alt="Paquetes INVYRA"
+            class="showcase-image"
+          />
+        </div>
+
+        <div class="package-cards">
+          <article class="package-mini-card">
+            <span>01</span>
+            <h3>Esencial</h3>
+            <p>
+              Ideal para cumpleaños sencillos, reuniones y eventos pequeños que
+              necesitan una invitación elegante y funcional.
+            </p>
+          </article>
+
+          <article class="package-mini-card">
+            <span>02</span>
+            <h3>Signature</h3>
+            <p>
+              Pensado para eventos formales, familiares o especiales que
+              requieren más presencia visual y secciones extra.
+            </p>
+          </article>
+
+          <article class="package-mini-card package-mini-card-dark">
+            <span>03</span>
+            <h3>Legacy</h3>
+            <p>
+              La experiencia completa: una invitación tipo mini sitio web para
+              contar una historia y organizar cada detalle.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="demos-section section-reveal" id="demos">
+        <div class="section-heading">
+          <p class="section-kicker">Portafolio</p>
+
+          <h2 class="section-title">
+            Demos listas para explorar.
+          </h2>
+
+          <p class="section-copy">
+            Cada demo representa un tipo de evento y un nivel de experiencia
+            dentro de INVYRA.
+          </p>
+        </div>
+
+        <div class="demos-grid">
+          <article class="demo-card">
+            <div class="demo-card-top">
+              <span class="demo-tag">Esencial</span>
+              <span class="demo-number">01</span>
+            </div>
+
+            <h3>Birthday Demo</h3>
+
+            <p>
+              Cumpleaños elegante, rápido y funcional. Perfecto para mostrar el
+              paquete de entrada.
+            </p>
+
+            <a
+              href="./demos/birthday-demo-01/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="demo-link"
+            >
+              Ver demo
+            </a>
+          </article>
+
+          <article class="demo-card">
+            <div class="demo-card-top">
+              <span class="demo-tag">Signature</span>
+              <span class="demo-number">02</span>
+            </div>
+
+            <h3>Baby Shower Demo</h3>
+
+            <p>
+              Experiencia tierna, premium y familiar con RSVP para
+              acompañantes.
+            </p>
+
+            <a
+              href="./demos/babyshower-demo-01/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="demo-link"
+            >
+              Ver demo
+            </a>
+          </article>
+
+          <article class="demo-card">
+            <div class="demo-card-top">
+              <span class="demo-tag">Signature Glam</span>
+              <span class="demo-number">03</span>
+            </div>
+
+            <h3>XV Demo</h3>
+
+            <p>
+              Una invitación glam con cuenta regresiva, dress code, galería,
+              itinerario y RSVP avanzado.
+            </p>
+
+            <a
+              href="./demos/xv-demo-01/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="demo-link"
+            >
+              Ver demo
+            </a>
+          </article>
+
+          <article class="demo-card demo-card-dark">
+            <div class="demo-card-top">
+              <span class="demo-tag">Legacy</span>
+              <span class="demo-number">04</span>
+            </div>
+
+            <h3>Wedding Demo</h3>
+
+            <p>
+              La experiencia completa: historia, ceremonia, recepción, menú,
+              mesa de regalos, galería y RSVP avanzado.
+            </p>
+
+            <a
+              href="./demos/wedding-demo-01/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="demo-link"
+            >
+              Ver demo
+            </a>
+          </article>
+        </div>
+      </section>
+
+      <section class="extras-section section-reveal" id="extras">
+        <div class="section-heading">
+          <p class="section-kicker">Adicionales</p>
+
+          <h2 class="section-title">
+            Personaliza tu experiencia.
+          </h2>
+
+          <p class="section-copy">
+            Agrega funciones y detalles especiales según el tipo de evento y el
+            paquete contratado.
+          </p>
+        </div>
+
+        <div class="image-showcase">
+          <img
+            src="./assets/img/extras-sin-precios.png"
+            alt="Opciones adicionales INVYRA"
+            class="showcase-image"
+          />
+        </div>
+      </section>
+
+      <section class="process-section section-reveal" id="proceso">
+        <div class="section-heading">
+          <p class="section-kicker">Proceso</p>
+
+          <h2 class="section-title">
+            ¿Cómo creamos tu invitación?
+          </h2>
+        </div>
+
+        <div class="process-grid">
+          <article class="process-card">
+            <span>01</span>
+            <h3>Elegimos la experiencia</h3>
+            <p>
+              Definimos el tipo de evento, paquete, temática, colores y
+              adicionales que necesitas.
+            </p>
+          </article>
+
+          <article class="process-card">
+            <span>02</span>
+            <h3>Reunimos la información</h3>
+            <p>
+              Recibimos nombres, fecha, ubicación, fotos, música, textos y
+              detalles importantes.
+            </p>
+          </article>
+
+          <article class="process-card">
+            <span>03</span>
+            <h3>Diseñamos tu demo</h3>
+            <p>
+              Creamos una primera versión visual y funcional para que puedas
+              revisarla.
+            </p>
+          </article>
+
+          <article class="process-card">
+            <span>04</span>
+            <h3>Publicamos tu invitación</h3>
+            <p>
+              Entregamos un enlace listo para compartir por WhatsApp, redes o
+              mensaje directo.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="faq-section section-reveal" id="faq">
+        <div class="section-heading">
+          <p class="section-kicker">Preguntas frecuentes</p>
+
+          <h2 class="section-title">
+            Todo lo que necesitas saber antes de cotizar.
+          </h2>
+        </div>
+
+        <div class="faq-list">
+          <article class="faq-item">
+            <button type="button" class="faq-question">
+              <span>¿Cómo es el método de pago?</span>
+              <strong>+</strong>
+            </button>
+
+            <div class="faq-answer">
+              <p>
+                Para comenzar se solicita un anticipo y el resto se liquida
+                antes de la entrega final o publicación de la invitación.
+              </p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button type="button" class="faq-question">
+              <span>¿Cómo se empieza a desarrollar la invitación?</span>
+              <strong>+</strong>
+            </button>
+
+            <div class="faq-answer">
+              <p>
+                Primero elegimos el paquete, definimos el estilo visual y
+                reunimos la información necesaria del evento.
+              </p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button type="button" class="faq-question">
+              <span>¿Cómo veré mi invitación?</span>
+              <strong>+</strong>
+            </button>
+
+            <div class="faq-answer">
+              <p>
+                Recibirás un enlace de vista previa para revisar la invitación
+                desde tu celular o computadora.
+              </p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button type="button" class="faq-question">
+              <span>¿Cómo podré compartir mi invitación?</span>
+              <strong>+</strong>
+            </button>
+
+            <div class="faq-answer">
+              <p>
+                Podrás compartirla mediante un enlace por WhatsApp, redes
+                sociales, mensaje directo o código QR si lo necesitas.
+              </p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button type="button" class="faq-question">
+              <span>¿Cuáles son los tiempos de entrega?</span>
+              <strong>+</strong>
+            </button>
+
+            <div class="faq-answer">
+              <p>
+                El tiempo depende del paquete y la complejidad del diseño. Las
+                invitaciones más sencillas pueden estar listas más rápido que
+                una experiencia Legacy completa.
+              </p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button type="button" class="faq-question">
+              <span>¿Dónde se ubican?</span>
+              <strong>+</strong>
+            </button>
+
+            <div class="faq-answer">
+              <p>
+                INVYRA trabaja de forma digital, por lo que podemos crear y
+                entregar invitaciones en línea sin importar la ubicación del
+                evento.
+              </p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button type="button" class="faq-question">
+              <span>
+                ¿Con cuánto tiempo de anticipación debo mandar a hacer mi
+                invitación?
+              </span>
+              <strong>+</strong>
+            </button>
+
+            <div class="faq-answer">
+              <p>
+                Lo ideal es solicitarla con al menos dos o tres semanas de
+                anticipación, especialmente si deseas una experiencia muy
+                personalizada.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="quote-form-section section-reveal" id="cotizar">
+        <div class="quote-card">
+          <div class="quote-content">
+            <p class="section-kicker">Cotización</p>
+
+            <h2 class="section-title">
+              Comienza tu experiencia INVYRA.
+            </h2>
+
+            <p class="section-copy">
+              Cuéntanos qué tipo de evento tienes en mente y te ayudamos a
+              elegir el paquete ideal.
+            </p>
+
+            <a
+              href="https://wa.me/525516986744?text=Hola%20INVYRA%2C%20quiero%20crear%20mi%20experiencia%20digital.%20Me%20gustar%C3%ADa%20cotizar%20una%20invitaci%C3%B3n."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-primary"
+            >
+              Solicitar cotización
+            </a>
+          </div>
+
+          <form class="quote-form" id="quote-form">
+            <div class="form-row">
+              <label for="clientName">Nombre</label>
+              <input
+                type="text"
+                id="clientName"
+                placeholder="Tu nombre"
+                autocomplete="name"
+              />
+            </div>
+
+            <div class="form-row">
+              <label for="eventType">Tipo de evento</label>
+              <select id="eventType">
+                <option value="">Selecciona una opción</option>
+                <option value="Boda">Boda</option>
+                <option value="XV años">XV años</option>
+                <option value="Baby Shower">Baby Shower</option>
+                <option value="Cumpleaños">Cumpleaños</option>
+                <option value="Bautizo">Bautizo</option>
+                <option value="Primera comunión">Primera comunión</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <label for="packageType">Paquete de interés</label>
+              <select id="packageType">
+                <option value="">Selecciona una opción</option>
+                <option value="Esencial">Esencial</option>
+                <option value="Signature">Signature</option>
+                <option value="Legacy">Legacy</option>
+                <option value="Aún no sé">Aún no sé</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <label for="eventDate">Fecha del evento</label>
+              <input type="date" id="eventDate" />
+            </div>
+
+            <div class="form-row">
+              <label for="message">Detalles adicionales</label>
+              <textarea
+                id="message"
+                placeholder="Cuéntanos colores, temática, extras o cualquier idea especial."
+              ></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-secondary form-submit">
+              Preparar mensaje
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <section class="final-cta-section section-reveal">
+        <img src="./LOGO/FAVICON.jpeg" alt="INVYRA" class="final-logo" />
+
+        <p class="section-kicker">INVYRA</p>
+
+        <h2>
+          Tu invitación puede ser el primer momento inolvidable de tu evento.
+        </h2>
+
+        <a
+          href="https://wa.me/525516986744?text=Hola%20INVYRA%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20invitaciones%20digitales."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-primary"
+        >
+          Hablar por WhatsApp
+        </a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>INVYRA · Premium Digital Events</p>
+      <span>Experiencias digitales para eventos</span>
+    </footer>
+
+    <a
+      href="https://wa.me/525516986744?text=Hola%20INVYRA%2C%20me%20gustar%C3%ADa%20cotizar%20una%20invitaci%C3%B3n%20digital."
+      target="_blank"
+      rel="noopener noreferrer"
+      class="floating-whatsapp"
+      aria-label="Contactar por WhatsApp"
+    >
+      WhatsApp
+    </a>
+  </body>
+</html>
