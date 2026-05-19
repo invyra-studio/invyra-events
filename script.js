@@ -1,6 +1,6 @@
 /**
  * INVYRA - Landing Page
- * Version 1.0.0
+ * Version 1.0.1
  * Premium Digital Events
  * Main landing interactions
  */
@@ -17,8 +17,7 @@ if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
 
 const INVYRA_WHATSAPP_NUMBER = "525535690278";
 
-const WHATSAPP_BASE_MESSAGE =
-    "Hola INVYRA, quiero crear mi experiencia digital. Me gustaría cotizar una invitación.";
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /* ==============================
    MOBILE NAV
@@ -31,19 +30,25 @@ function initMobileNav() {
 
     if (!navToggle || !siteNav) return;
 
-    navToggle.addEventListener("click", () => {
+    function closeNav() {
+        document.body.classList.remove("nav-open");
+        navToggle.setAttribute("aria-label", "Abrir menú");
+    }
+
+    function toggleNav() {
         document.body.classList.toggle("nav-open");
 
         const isOpen = document.body.classList.contains("nav-open");
-
         navToggle.setAttribute("aria-label", isOpen ? "Cerrar menú" : "Abrir menú");
+    }
+
+    navToggle.addEventListener("click", event => {
+        event.stopPropagation();
+        toggleNav();
     });
 
     navLinks.forEach(link => {
-        link.addEventListener("click", () => {
-            document.body.classList.remove("nav-open");
-            navToggle.setAttribute("aria-label", "Abrir menú");
-        });
+        link.addEventListener("click", closeNav);
     });
 
     document.addEventListener("click", event => {
@@ -51,8 +56,7 @@ function initMobileNav() {
         const clickedToggle = navToggle.contains(event.target);
 
         if (!clickedInsideNav && !clickedToggle) {
-            document.body.classList.remove("nav-open");
-            navToggle.setAttribute("aria-label", "Abrir menú");
+            closeNav();
         }
     });
 }
@@ -117,19 +121,17 @@ function initActiveNavLinks() {
     if (!sections.length || !navLinks.length) return;
 
     function updateActiveLink() {
-        let currentSectionId = "";
+        let currentSectionId = "inicio";
+        const scrollReference = window.scrollY + 180;
 
         sections.forEach(section => {
-            const sectionTop = section.offsetTop - 150;
-
-            if (window.scrollY >= sectionTop) {
+            if (scrollReference >= section.offsetTop) {
                 currentSectionId = section.getAttribute("id");
             }
         });
 
         navLinks.forEach(link => {
             const href = link.getAttribute("href");
-
             link.classList.toggle("active", href === `#${currentSectionId}`);
         });
     }
@@ -145,16 +147,19 @@ function initActiveNavLinks() {
    REVEAL ANIMATIONS
    ============================== */
 
-function initAnimations() {
-    if (typeof gsap === "undefined") {
-        document
-            .querySelectorAll(".reveal-item, .reveal-title, .section-reveal")
-            .forEach(element => {
-                element.style.opacity = "1";
-                element.style.transform = "none";
-                element.style.filter = "blur(0px)";
-            });
+function setVisibleFallback() {
+    document
+        .querySelectorAll(".reveal-item, .reveal-title, .section-reveal")
+        .forEach(element => {
+            element.style.opacity = "1";
+            element.style.transform = "none";
+            element.style.filter = "blur(0px)";
+        });
+}
 
+function initAnimations() {
+    if (typeof gsap === "undefined" || prefersReducedMotion) {
+        setVisibleFallback();
         return;
     }
 
@@ -195,12 +200,7 @@ function initAnimations() {
         }, "-=0.72");
 
     if (typeof ScrollTrigger === "undefined") {
-        document.querySelectorAll(".section-reveal").forEach(section => {
-            section.style.opacity = "1";
-            section.style.transform = "none";
-            section.style.filter = "blur(0px)";
-        });
-
+        setVisibleFallback();
         return;
     }
 
@@ -227,27 +227,29 @@ function initAnimations() {
         );
     });
 
-    gsap.utils.toArray(".package-mini-card, .demo-card, .process-card, .faq-item").forEach((card, index) => {
-        gsap.fromTo(
-            card,
-            {
-                opacity: 0,
-                y: 28
-            },
-            {
-                scrollTrigger: {
-                    trigger: card,
-                    start: "top 92%",
-                    toggleActions: "play none none none"
+    gsap.utils
+        .toArray(".package-mini-card, .demo-card, .process-card, .faq-item")
+        .forEach((card, index) => {
+            gsap.fromTo(
+                card,
+                {
+                    opacity: 0,
+                    y: 28
                 },
-                opacity: 1,
-                y: 0,
-                duration: 0.75,
-                ease: "power3.out",
-                delay: Math.min(index * 0.04, 0.24)
-            }
-        );
-    });
+                {
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 92%",
+                        toggleActions: "play none none none"
+                    },
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.75,
+                    ease: "power3.out",
+                    delay: Math.min(index * 0.04, 0.24)
+                }
+            );
+        });
 
     initSubtleMotion();
 
@@ -255,7 +257,7 @@ function initAnimations() {
 }
 
 function initSubtleMotion() {
-    if (typeof gsap === "undefined") return;
+    if (typeof gsap === "undefined" || prefersReducedMotion) return;
 
     gsap.to(".bg-orb-one", {
         x: 28,
