@@ -6,7 +6,7 @@
     <title>INVYRA | Baby Shower Yeison - Celestial Baby Luxury</title>
 
     <link rel="icon" type="image/jpeg" href="../../LOGO/FAVICON.jpeg" />
-    <link rel="stylesheet" href="style.css?v=1.0.2" />
+    <link rel="stylesheet" href="style.css?v=1.0.4" />
 
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&family=Great+Vibes&display=swap"
@@ -20,10 +20,21 @@
   <body>
     <div id="splash-screen">
       <div class="splash-night-gradient ambient-layer"></div>
+
+      <div class="splash-sky-opening ambient-layer">
+        <div class="sky-opening-glow"></div>
+      </div>
+
       <div class="splash-aurora ambient-layer"></div>
+
       <div class="splash-cloud cloud-one ambient-layer"></div>
       <div class="splash-cloud cloud-two ambient-layer"></div>
       <div class="splash-cloud cloud-three ambient-layer"></div>
+
+      <div class="cloud-curtain curtain-left ambient-layer"></div>
+      <div class="cloud-curtain curtain-right ambient-layer"></div>
+      <div class="cloud-curtain curtain-bottom ambient-layer"></div>
+
       <div class="splash-stars ambient-layer"></div>
       <div class="splash-constellation ambient-layer"></div>
       <div class="splash-moon ambient-layer"></div>
@@ -58,6 +69,7 @@
     <main class="invitation-container">
       <header class="hero-section">
         <div class="hero-night hero-atmosphere ambient-layer"></div>
+        <div class="hero-cloud-reveal hero-atmosphere ambient-layer"></div>
         <div class="hero-aurora hero-atmosphere ambient-layer"></div>
         <div class="hero-clouds hero-atmosphere ambient-layer"></div>
         <div class="hero-starfield hero-atmosphere ambient-layer"></div>
@@ -261,9 +273,10 @@
               <p>Confirmo que</p>
 
               <div class="attendance-options">
-                <label>
+                <label for="asistencia-si">
                   <input
                     type="radio"
+                    id="asistencia-si"
                     name="asistencia"
                     value="Asistiré"
                     checked
@@ -271,9 +284,10 @@
                   <span>Asistiré</span>
                 </label>
 
-                <label>
+                <label for="asistencia-no">
                   <input
                     type="radio"
+                    id="asistencia-no"
                     name="asistencia"
                     value="No asistiré"
                   />
@@ -282,13 +296,19 @@
               </div>
             </div>
 
-            <select id="pasesInvitado" aria-label="Número de pases">
-              <option value="1 pase">1 pase</option>
-              <option value="2 pases">2 pases</option>
-              <option value="3 pases">3 pases</option>
-              <option value="4 pases">4 pases</option>
-              <option value="Más de 4 pases">Más de 4 pases</option>
-            </select>
+            <div class="companions-field" id="companions-field">
+              <label for="pasesInvitado" class="field-label">
+                Acompañantes
+              </label>
+
+              <select id="pasesInvitado" aria-label="Número de acompañantes">
+                <option value="Solo yo">Solo yo</option>
+                <option value="1 acompañante">1 acompañante</option>
+                <option value="2 acompañantes">2 acompañantes</option>
+                <option value="3 acompañantes">3 acompañantes</option>
+                <option value="Más de 3 acompañantes">Más de 3 acompañantes</option>
+              </select>
+            </div>
 
             <textarea
               id="mensajeInvitado"
@@ -336,6 +356,6 @@
       <source src="../../music/violin-luxury.mp3" type="audio/mpeg" />
     </audio>
 
-    <script src="script.js?v=1.0.2"></script>
+    <script src="script.js?v=1.0.4"></script>
   </body>
 </html>

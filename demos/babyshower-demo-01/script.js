@@ -1,10 +1,9 @@
 /**
  * INVYRA - Baby Shower Demo
- * Version 1.0.2
+ * Version 1.0.4
  * Nivel: Legacy emocional
  * Celestial Baby Luxury
- * Fix: separación limpia entre CSS ambient animations y GSAP motion
- * RSVP automático por Google Sheets / Apps Script
+ * Fix: Cloud Reveal unique motion + companions rule + RSVP JSONP
  */
 
 document.body.classList.add("js-enabled");
@@ -13,15 +12,13 @@ if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
 }
 
-/**
- * Reemplaza esta URL por la URL /exec del Apps Script de babyshower-demo-01.
- */
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxeqwH1PtkO5Uvf17IrPu2V5gCOMQlVYkWIVFTG0U_8YzglZyL6nUAyEq-prqYoJ7cP/exec";
 const TELEFONO_RSVP = "525516986744";
 const FECHA_EVENTO = "Jul 20, 2026 16:00:00";
 const EVENTO_NOMBRE = "Baby Shower de Yeison";
 
 const isMobile = window.matchMedia("(max-width: 768px)").matches;
+let experienceOpening = false;
 
 /* ==============================
    FALLBACK
@@ -38,23 +35,23 @@ function revealFallback() {
 }
 
 /* ==============================
-   SPLASH MOTION — GSAP SOLO CONTENIDO
+   SPLASH IDLE MOTION
    ============================== */
 
 function initSplashIdleMotion() {
     if (typeof gsap === "undefined") return;
 
     gsap.to(".splash-content", {
-        y: isMobile ? -4 : -8,
-        duration: 4.8,
+        y: isMobile ? -3 : -8,
+        duration: 5.6,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut"
     });
 
     gsap.to(".splash-logo", {
-        scale: isMobile ? 1.025 : 1.04,
-        duration: 3.8,
+        scale: isMobile ? 1.018 : 1.04,
+        duration: 4.4,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut"
@@ -62,16 +59,34 @@ function initSplashIdleMotion() {
 
     gsap.to(".splash-title", {
         textShadow:
-            "0 14px 34px rgba(23,40,70,0.14), 0 0 46px rgba(255,255,255,0.72)",
-        duration: 3.6,
+            "0 14px 34px rgba(23,40,70,0.14), 0 0 42px rgba(255,255,255,0.64)",
+        duration: 4.2,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut"
     });
+
+    gsap.to(".sky-opening-glow", {
+        scale: isMobile ? 1.04 : 1.08,
+        opacity: 0.96,
+        duration: 5.8,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+    });
+
+    gsap.to(".cloud-curtain", {
+        y: isMobile ? -6 : -10,
+        duration: 6.2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        stagger: 0.4
+    });
 }
 
 /* ==============================
-   HERO REVEAL — GSAP SOLO TEXTO / CONTENIDO
+   HERO REVEAL
    ============================== */
 
 function initHeroReveal() {
@@ -95,61 +110,45 @@ function initHeroReveal() {
             filter: "blur(0px)",
             duration: 1.05
         })
-        .to(
-            ".hero-kicker",
-            {
-                opacity: 1,
-                y: 0,
-                filter: "blur(0px)",
-                duration: 0.95
-            },
-            "-=0.72"
-        )
-        .to(
-            ".reveal-title",
-            {
-                opacity: 1,
-                y: 0,
-                scale: 1,
-                filter: "blur(0px)",
-                duration: 1.35
-            },
-            "-=0.62"
-        )
-        .to(
-            ".hero-phrase",
-            {
-                opacity: 1,
-                y: 0,
-                filter: "blur(0px)",
-                duration: 1
-            },
-            "-=0.78"
-        )
-        .to(
-            ".hero-info-card",
-            {
-                opacity: 1,
-                y: 0,
-                filter: "blur(0px)",
-                duration: 1
-            },
-            "-=0.72"
-        );
+        .to(".hero-kicker", {
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+            duration: 0.95
+        }, "-=0.72")
+        .to(".reveal-title", {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            filter: "blur(0px)",
+            duration: 1.35
+        }, "-=0.62")
+        .to(".hero-phrase", {
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+            duration: 1
+        }, "-=0.78")
+        .to(".hero-info-card", {
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+            duration: 1
+        }, "-=0.72");
 
     initHeroIdleMotion();
 }
 
 /* ==============================
-   HERO IDLE — GSAP SOLO CONTENIDO
+   HERO IDLE
    ============================== */
 
 function initHeroIdleMotion() {
     if (typeof gsap === "undefined") return;
 
     gsap.to(".hero-content", {
-        y: isMobile ? -4 : -8,
-        duration: 5.6,
+        y: isMobile ? -3 : -8,
+        duration: 5.8,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut"
@@ -157,8 +156,8 @@ function initHeroIdleMotion() {
 
     gsap.to(".main-title", {
         textShadow:
-            "0 16px 34px rgba(23,40,70,0.14), 0 0 44px rgba(255,255,255,0.72), 0 0 28px rgba(143,199,236,0.34)",
-        duration: 3.8,
+            "0 16px 34px rgba(23,40,70,0.14), 0 0 40px rgba(255,255,255,0.68), 0 0 24px rgba(143,199,236,0.30)",
+        duration: 4.2,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut"
@@ -166,8 +165,8 @@ function initHeroIdleMotion() {
 
     gsap.to(".hero-phrase", {
         textShadow:
-            "0 0 28px rgba(255,255,255,0.78), 0 0 24px rgba(230,201,143,0.34)",
-        duration: 3.6,
+            "0 0 26px rgba(255,255,255,0.72), 0 0 22px rgba(230,201,143,0.30)",
+        duration: 4,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut"
@@ -176,7 +175,7 @@ function initHeroIdleMotion() {
     gsap.to(".hero-info-card", {
         boxShadow:
             "0 28px 82px rgba(23,40,70,0.22), 0 0 42px rgba(143,199,236,0.22), inset 0 0 0 1px rgba(255,255,255,0.48)",
-        duration: 4.2,
+        duration: 4.6,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut"
@@ -184,7 +183,7 @@ function initHeroIdleMotion() {
 }
 
 /* ==============================
-   SCROLL REVEAL — GSAP SOLO SECCIONES / CARDS
+   SCROLL REVEAL
    ============================== */
 
 function initScrollReveal() {
@@ -237,15 +236,40 @@ function initScrollReveal() {
 }
 
 /* ==============================
-   OPEN EXPERIENCE
+   OPEN EXPERIENCE — CLOUD REVEAL
    ============================== */
+
+function finishOpeningExperience(splash) {
+    if (!splash) return;
+
+    splash.style.display = "none";
+    splash.style.opacity = "0";
+
+    initHeroReveal();
+    initScrollReveal();
+}
+
+function killSplashTweens() {
+    if (typeof gsap === "undefined") return;
+
+    gsap.killTweensOf(".splash-content");
+    gsap.killTweensOf(".splash-logo");
+    gsap.killTweensOf(".splash-title");
+    gsap.killTweensOf(".sky-opening-glow");
+    gsap.killTweensOf(".cloud-curtain");
+    gsap.killTweensOf(".splash-cloud");
+    gsap.killTweensOf(".splash-moon");
+    gsap.killTweensOf(".splash-soft-glow");
+}
 
 function entrarExperiencia() {
     const splash = document.getElementById("splash-screen");
     const music = document.getElementById("bg-music");
 
     if (!splash) return;
+    if (experienceOpening) return;
 
+    experienceOpening = true;
     splash.classList.add("opening");
 
     if (music) {
@@ -263,51 +287,134 @@ function entrarExperiencia() {
         }
     }
 
+    const emergencyClose = setTimeout(() => {
+        finishOpeningExperience(splash);
+    }, 3000);
+
     if (typeof gsap !== "undefined") {
+        killSplashTweens();
+
         const openTL = gsap.timeline({
             defaults: {
-                ease: "power2.inOut"
+                ease: "power3.inOut"
             },
             onComplete: () => {
-                splash.style.display = "none";
-                initHeroReveal();
-                initScrollReveal();
+                clearTimeout(emergencyClose);
+                finishOpeningExperience(splash);
             }
         });
 
         openTL
             .to(".splash-content", {
                 opacity: 0,
-                y: 28,
-                scale: 0.96,
-                filter: "blur(10px)",
-                duration: 0.78
+                y: -22,
+                scale: 0.97,
+                filter: "blur(8px)",
+                duration: 0.62
             })
-            .to(
-                splash,
-                {
-                    opacity: 0,
-                    duration: 0.72
-                },
-                "-=0.22"
-            );
+            .to(".curtain-left", {
+                x: isMobile ? -260 : -360,
+                opacity: 0.22,
+                duration: 1.15
+            }, "-=0.28")
+            .to(".curtain-right", {
+                x: isMobile ? 260 : 360,
+                opacity: 0.22,
+                duration: 1.15
+            }, "<")
+            .to(".curtain-bottom", {
+                y: isMobile ? 170 : 220,
+                opacity: 0.12,
+                duration: 1.15
+            }, "<")
+            .to(".splash-cloud.cloud-one", {
+                x: isMobile ? -130 : -180,
+                y: -20,
+                opacity: 0.18,
+                duration: 1
+            }, "-=0.92")
+            .to(".splash-cloud.cloud-two", {
+                x: isMobile ? 130 : 180,
+                y: -20,
+                opacity: 0.18,
+                duration: 1
+            }, "<")
+            .to(".splash-moon", {
+                scale: 1.22,
+                opacity: 0,
+                filter: "blur(12px)",
+                duration: 0.9
+            }, "-=0.72")
+            .to(".splash-soft-glow, .splash-sky-opening", {
+                scale: 1.18,
+                opacity: 0,
+                duration: 0.9
+            }, "<")
+            .to(splash, {
+                opacity: 0,
+                duration: 0.55
+            }, "-=0.30");
     } else {
-        splash.style.display = "none";
-        initHeroReveal();
-        initScrollReveal();
+        clearTimeout(emergencyClose);
+        finishOpeningExperience(splash);
     }
 }
 
 window.entrarExperiencia = entrarExperiencia;
 
+/* ==============================
+   RSVP UI — ACOMPAÑANTES
+   ============================== */
+
+function updateCompanionsState() {
+    const asistenciaSeleccionada = document.querySelector('input[name="asistencia"]:checked');
+    const companionsField = document.getElementById("companions-field");
+    const inputPases = document.getElementById("pasesInvitado");
+
+    if (!asistenciaSeleccionada || !companionsField || !inputPases) return;
+
+    const noAsistira = asistenciaSeleccionada.value === "No asistiré";
+
+    if (noAsistira) {
+        inputPases.value = "Solo yo";
+        inputPases.disabled = true;
+        companionsField.classList.add("is-disabled");
+        inputPases.setAttribute("aria-disabled", "true");
+    } else {
+        inputPases.disabled = false;
+        companionsField.classList.remove("is-disabled");
+        inputPases.setAttribute("aria-disabled", "false");
+    }
+}
+
+function initRsvpControls() {
+    const attendanceRadios = document.querySelectorAll('input[name="asistencia"]');
+
+    attendanceRadios.forEach(radio => {
+        radio.addEventListener("change", updateCompanionsState);
+    });
+
+    updateCompanionsState();
+}
+
+/* ==============================
+   DOM READY
+   ============================== */
+
 document.addEventListener("DOMContentLoaded", () => {
     const startButton = document.querySelector(".btn-start-experience");
 
     if (startButton) {
-        startButton.addEventListener("click", entrarExperiencia);
+        startButton.onclick = entrarExperiencia;
+
+        startButton.addEventListener("touchstart", event => {
+            event.preventDefault();
+            entrarExperiencia();
+        }, { passive: false });
     }
 
     initSplashIdleMotion();
+    initRsvpControls();
 });
 
 /* ==============================
@@ -411,8 +518,8 @@ function hideModal(delay = 3800) {
 
 function sendRsvpToAppsScript(data) {
     return new Promise((resolve, reject) => {
-        if (!SCRIPT_URL || SCRIPT_URL === "PEGA_AQUI_LA_URL_DEL_APPS_SCRIPT_BABYSHOWER") {
-            reject(new Error("Falta configurar la URL del Apps Script de Baby Shower."));
+        if (!SCRIPT_URL || !SCRIPT_URL.includes("script.google.com/macros/s/")) {
+            reject(new Error("URL de Apps Script inválida."));
             return;
         }
 
@@ -422,7 +529,7 @@ function sendRsvpToAppsScript(data) {
         const timeout = setTimeout(() => {
             cleanup();
             reject(new Error("Tiempo de espera agotado al conectar con Apps Script."));
-        }, 12000);
+        }, 15000);
 
         function cleanup() {
             clearTimeout(timeout);
@@ -473,8 +580,9 @@ async function confirmarAsistencia() {
 
     const nombre = inputNombre.value.trim();
     const mensajeInvitado = inputMensaje.value.trim();
-    const pases = inputPases.value.trim();
     const asistencia = asistenciaSeleccionada ? asistenciaSeleccionada.value : "Asistiré";
+    const noAsistira = asistencia === "No asistiré";
+    const acompanantes = noAsistira ? "No aplica" : inputPases.value.trim();
 
     if (!nombre) {
         if (typeof gsap !== "undefined") {
@@ -502,7 +610,7 @@ async function confirmarAsistencia() {
         const response = await sendRsvpToAppsScript({
             nombre,
             asistencia,
-            pases,
+            pases: acompanantes,
             mensaje: mensajeInvitado,
             evento: EVENTO_NOMBRE
         });
@@ -536,7 +644,7 @@ async function confirmarAsistencia() {
                 `¡Hola! Confirmo mi respuesta para el Baby Shower de Yeison.\n\n` +
                 `*Invitado:* ${nombre}\n` +
                 `*Asistencia:* ${asistencia}\n` +
-                `*Pases:* ${pases}\n` +
+                `*Acompañantes:* ${acompanantes}\n` +
                 `*Deseo para el bebé:* ${mensajeInvitado || "Sin mensaje"}`
             );
 
@@ -559,7 +667,7 @@ async function confirmarAsistencia() {
 
         setModalContent(
             "NO SE PUDO REGISTRAR",
-            "Ocurrió un detalle al guardar tu respuesta. Inténtalo nuevamente en unos segundos."
+            "No pudimos conectar con el registro. Revisa que el Apps Script esté publicado como aplicación web y con acceso para cualquier usuario."
         );
 
         showModal();
@@ -567,7 +675,7 @@ async function confirmarAsistencia() {
         btnConfirmar.disabled = false;
         btnConfirmar.innerText = "CONFIRMAR ASISTENCIA";
 
-        hideModal(4200);
+        hideModal(5200);
     }
 }
 

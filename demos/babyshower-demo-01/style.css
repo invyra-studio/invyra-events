@@ -60,7 +60,7 @@ svg {
 }
 
 /* ==============================
-   SPLASH — CELESTIAL BABY LUXURY
+   SPLASH — CLOUD REVEAL BABY LUXURY
    ============================== */
 
 #splash-screen {
@@ -73,128 +73,208 @@ svg {
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    background: #edf8ff;
+}
+
+#splash-screen > div:not(.splash-content) {
+    pointer-events: none;
+}
+
+.splash-content,
+.btn-start-experience {
+    pointer-events: auto;
 }
 
 .splash-night-gradient {
     position: absolute;
     inset: 0;
+    z-index: 0;
     background:
-        radial-gradient(circle at 50% 36%, rgba(255, 255, 255, 0.92), transparent 24%),
-        radial-gradient(circle at 42% 52%, rgba(143, 199, 236, 0.50), transparent 34%),
-        radial-gradient(circle at 66% 72%, rgba(230, 201, 143, 0.30), transparent 36%),
-        linear-gradient(160deg, #dff1ff 0%, #fff7ec 52%, #ead4ba 100%);
+        radial-gradient(circle at 50% 34%, rgba(255, 255, 255, 0.96), transparent 24%),
+        radial-gradient(circle at 42% 52%, rgba(143, 199, 236, 0.52), transparent 34%),
+        radial-gradient(circle at 68% 76%, rgba(230, 201, 143, 0.28), transparent 36%),
+        linear-gradient(160deg, #dff1ff 0%, #fff9ef 52%, #ead4ba 100%);
+}
+
+.splash-sky-opening {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+        radial-gradient(circle at 50% 48%, rgba(255,255,255,0.64), transparent 24%),
+        radial-gradient(circle at 50% 54%, rgba(205,233,251,0.34), transparent 42%);
+    opacity: 0.82;
+    animation: skyOpeningBreath 10s ease-in-out infinite alternate;
+}
+
+.sky-opening-glow {
+    position: absolute;
+    width: 430px;
+    height: 430px;
+    left: 50%;
+    top: 50%;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    background:
+        radial-gradient(circle, rgba(255,255,255,0.78), rgba(205,233,251,0.24) 46%, transparent 72%);
+    filter: blur(8px);
+    opacity: 0.84;
+}
+
+.splash-moon {
+    position: absolute;
+    z-index: 2;
+    width: 340px;
+    height: 340px;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 42% 36%, rgba(255,255,255,1), rgba(255,250,242,0.68) 44%, rgba(230,201,143,0.24) 62%, transparent 78%);
+    opacity: 0.74;
+    box-shadow:
+        0 0 70px rgba(255,255,255,0.52),
+        0 0 118px rgba(143,199,236,0.30),
+        0 0 145px rgba(230,201,143,0.14);
+    animation: moonSoftPulse 13s ease-in-out infinite alternate;
+}
+
+.splash-soft-glow {
+    position: absolute;
+    z-index: 3;
+    width: 620px;
+    height: 620px;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle, rgba(255,255,255,0.28), rgba(143,199,236,0.10) 48%, transparent 72%);
+    filter: blur(18px);
+    opacity: 0.66;
+    animation: softGlowBreath 13s ease-in-out infinite alternate;
 }
 
 .splash-aurora {
     position: absolute;
+    z-index: 2;
     inset: -28%;
     background:
         conic-gradient(
             from 120deg,
             transparent 0deg,
-            rgba(143, 199, 236, 0.36) 46deg,
+            rgba(143, 199, 236, 0.18) 46deg,
             transparent 92deg,
-            rgba(255, 255, 255, 0.42) 136deg,
-            rgba(230, 201, 143, 0.28) 184deg,
+            rgba(255, 255, 255, 0.28) 136deg,
+            rgba(230, 201, 143, 0.16) 184deg,
             transparent 240deg,
-            rgba(243, 213, 216, 0.30) 290deg,
+            rgba(243, 213, 216, 0.16) 290deg,
             transparent 360deg
         );
-    filter: blur(34px);
-    opacity: 0.9;
-    animation: auroraBreath 9s ease-in-out infinite alternate;
+    filter: blur(42px);
+    opacity: 0.58;
+    animation: auroraBreath 14s ease-in-out infinite alternate;
 }
 
 .splash-cloud {
     position: absolute;
+    z-index: 4;
     height: 150px;
     border-radius: 999px;
     background:
         radial-gradient(circle at 24% 52%, rgba(255,255,255,0.88), transparent 34%),
-        radial-gradient(circle at 54% 40%, rgba(255,255,255,0.80), transparent 36%),
-        radial-gradient(circle at 78% 58%, rgba(255,255,255,0.74), transparent 34%);
-    filter: blur(14px);
-    opacity: 0.72;
-    animation: cloudDrift 11s ease-in-out infinite alternate;
+        radial-gradient(circle at 54% 40%, rgba(255,255,255,0.78), transparent 36%),
+        radial-gradient(circle at 78% 58%, rgba(255,255,255,0.68), transparent 34%);
+    filter: blur(15px);
+    opacity: 0.62;
+    animation: cloudDrift 16s ease-in-out infinite alternate;
 }
 
 .cloud-one {
-    width: 520px;
-    top: 14%;
-    left: -210px;
+    width: 540px;
+    top: 10%;
+    left: -240px;
 }
 
 .cloud-two {
-    width: 480px;
-    right: -210px;
-    bottom: 12%;
+    width: 500px;
+    right: -230px;
+    bottom: 13%;
     animation-delay: 1.3s;
 }
 
 .cloud-three {
-    width: 360px;
+    width: 380px;
     left: 28%;
-    bottom: -42px;
-    opacity: 0.48;
+    bottom: -46px;
+    opacity: 0.42;
     animation-delay: 2s;
+}
+
+.cloud-curtain {
+    position: absolute;
+    z-index: 6;
+    background:
+        radial-gradient(circle at 28% 42%, rgba(255,255,255,0.92), transparent 32%),
+        radial-gradient(circle at 62% 58%, rgba(255,255,255,0.78), transparent 34%),
+        radial-gradient(circle at 82% 48%, rgba(205,233,251,0.36), transparent 34%);
+    filter: blur(18px);
+    opacity: 0.72;
+    border-radius: 999px;
+}
+
+.curtain-left {
+    width: 440px;
+    height: 620px;
+    left: -270px;
+    top: 10%;
+    animation: curtainLeftBreath 13s ease-in-out infinite alternate;
+}
+
+.curtain-right {
+    width: 440px;
+    height: 620px;
+    right: -270px;
+    top: 10%;
+    animation: curtainRightBreath 13s ease-in-out infinite alternate;
+}
+
+.curtain-bottom {
+    width: 760px;
+    height: 230px;
+    left: 50%;
+    bottom: -120px;
+    transform: translateX(-50%);
+    animation: curtainBottomBreath 14s ease-in-out infinite alternate;
 }
 
 .splash-stars {
     position: absolute;
+    z-index: 5;
     inset: 0;
     background:
-        radial-gradient(circle at 16% 22%, rgba(201,155,74,0.96) 0 2px, transparent 5px),
-        radial-gradient(circle at 74% 17%, rgba(255,255,255,1) 0 2px, transparent 5px),
-        radial-gradient(circle at 82% 58%, rgba(143,199,236,1) 0 2px, transparent 5px),
-        radial-gradient(circle at 24% 75%, rgba(255,255,255,0.96) 0 2px, transparent 5px),
-        radial-gradient(circle at 56% 30%, rgba(201,155,74,0.88) 0 2px, transparent 5px),
-        radial-gradient(circle at 62% 84%, rgba(243,213,216,0.88) 0 2px, transparent 5px),
-        radial-gradient(circle at 38% 48%, rgba(255,255,255,0.82) 0 1.6px, transparent 4px),
-        radial-gradient(circle at 90% 30%, rgba(201,155,74,0.82) 0 1.6px, transparent 4px);
-    opacity: 0.9;
-    animation: starTwinkle 4.4s ease-in-out infinite alternate;
+        radial-gradient(circle at 16% 22%, rgba(201,155,74,0.78) 0 2px, transparent 5px),
+        radial-gradient(circle at 74% 17%, rgba(255,255,255,0.86) 0 2px, transparent 5px),
+        radial-gradient(circle at 82% 58%, rgba(143,199,236,0.84) 0 2px, transparent 5px),
+        radial-gradient(circle at 24% 75%, rgba(255,255,255,0.78) 0 2px, transparent 5px),
+        radial-gradient(circle at 56% 30%, rgba(201,155,74,0.68) 0 2px, transparent 5px),
+        radial-gradient(circle at 62% 84%, rgba(243,213,216,0.68) 0 2px, transparent 5px),
+        radial-gradient(circle at 38% 48%, rgba(255,255,255,0.68) 0 1.6px, transparent 4px),
+        radial-gradient(circle at 90% 30%, rgba(201,155,74,0.64) 0 1.6px, transparent 4px);
+    opacity: 0.72;
+    animation: starTwinkle 6s ease-in-out infinite alternate;
 }
 
 .splash-constellation {
     position: absolute;
+    z-index: 5;
     inset: 0;
-    opacity: 0.38;
+    opacity: 0.22;
     background:
-        linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.24) 49%, transparent 51%),
-        linear-gradient(60deg, transparent 0%, rgba(201,155,74,0.20) 49%, transparent 51%);
+        linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.14) 49%, transparent 51%),
+        linear-gradient(60deg, transparent 0%, rgba(201,155,74,0.12) 49%, transparent 51%);
     background-size: 150px 150px;
-    animation: constellationPulse 7s ease-in-out infinite alternate;
-}
-
-.splash-moon {
-    position: absolute;
-    width: 350px;
-    height: 350px;
-    border-radius: 50%;
-    background:
-        radial-gradient(circle at 42% 36%, rgba(255,255,255,1), rgba(255,250,242,0.76) 44%, rgba(230,201,143,0.34) 62%, transparent 78%);
-    opacity: 0.92;
-    box-shadow:
-        0 0 90px rgba(255,255,255,0.72),
-        0 0 150px rgba(143,199,236,0.42),
-        0 0 190px rgba(230,201,143,0.20);
-    animation: moonSoftPulse 8s ease-in-out infinite alternate;
-}
-
-.splash-soft-glow {
-    position: absolute;
-    width: 620px;
-    height: 620px;
-    border-radius: 50%;
-    background:
-        radial-gradient(circle, rgba(255,255,255,0.36), rgba(143,199,236,0.14) 48%, transparent 72%);
-    filter: blur(18px);
-    animation: softGlowBreath 9s ease-in-out infinite alternate;
+    animation: constellationPulse 10s ease-in-out infinite alternate;
 }
 
 .splash-content {
     position: relative;
-    z-index: 5;
+    z-index: 8;
     width: 100%;
     max-width: 430px;
     padding: 0 28px;
@@ -268,7 +348,7 @@ svg {
 }
 
 #splash-screen.opening .splash-content {
-    animation: cradleExit 1s ease forwards;
+    animation: none;
 }
 
 /* ==============================
@@ -315,18 +395,31 @@ svg {
 }
 
 /* ==============================
-   HERO — DREAM SKY
+   HERO — CLOUD DREAM SKY
    ============================== */
 
 .hero-night {
     position: absolute;
     inset: 0;
-    z-index: -8;
+    z-index: -9;
     background:
         radial-gradient(circle at 50% 20%, rgba(255,255,255,0.78), transparent 28%),
         radial-gradient(circle at 24% 48%, rgba(143,199,236,0.52), transparent 34%),
         radial-gradient(circle at 82% 72%, rgba(243,213,216,0.30), transparent 38%),
         linear-gradient(160deg, #dff1ff 0%, #fff7ec 58%, #ead4ba 100%);
+}
+
+.hero-cloud-reveal {
+    position: absolute;
+    inset: -4%;
+    z-index: -8;
+    background:
+        radial-gradient(ellipse at 18% 26%, rgba(255,255,255,0.62), transparent 32%),
+        radial-gradient(ellipse at 82% 30%, rgba(255,255,255,0.58), transparent 34%),
+        radial-gradient(ellipse at 50% 92%, rgba(255,255,255,0.48), transparent 30%);
+    filter: blur(12px);
+    opacity: 0.74;
+    animation: heroCloudRevealBreath 14s ease-in-out infinite alternate;
 }
 
 .hero-aurora {
@@ -337,17 +430,17 @@ svg {
         conic-gradient(
             from 210deg,
             transparent 0deg,
-            rgba(143,199,236,0.36) 48deg,
-            rgba(255,255,255,0.28) 86deg,
+            rgba(143,199,236,0.26) 48deg,
+            rgba(255,255,255,0.20) 86deg,
             transparent 126deg,
-            rgba(230,201,143,0.24) 174deg,
+            rgba(230,201,143,0.16) 174deg,
             transparent 238deg,
-            rgba(243,213,216,0.26) 294deg,
+            rgba(243,213,216,0.18) 294deg,
             transparent 360deg
         );
-    filter: blur(36px);
-    opacity: 0.9;
-    animation: auroraBreath 10s ease-in-out infinite alternate;
+    filter: blur(42px);
+    opacity: 0.62;
+    animation: auroraBreath 14s ease-in-out infinite alternate;
 }
 
 .hero-clouds {
@@ -360,7 +453,7 @@ svg {
         radial-gradient(ellipse at 52% 86%, rgba(255,255,255,0.44), transparent 28%),
         radial-gradient(ellipse at 34% 66%, rgba(205,233,251,0.30), transparent 30%);
     filter: blur(10px);
-    animation: cloudDriftHero 14s ease-in-out infinite alternate;
+    animation: cloudDriftHero 17s ease-in-out infinite alternate;
 }
 
 .hero-starfield {
@@ -368,16 +461,16 @@ svg {
     inset: 0;
     z-index: -5;
     background:
-        radial-gradient(circle at 21% 18%, rgba(201,155,74,0.90) 0 2px, transparent 5px),
-        radial-gradient(circle at 68% 22%, rgba(255,255,255,1) 0 2px, transparent 5px),
-        radial-gradient(circle at 84% 46%, rgba(143,199,236,0.98) 0 2px, transparent 5px),
-        radial-gradient(circle at 30% 68%, rgba(243,213,216,0.88) 0 2px, transparent 5px),
-        radial-gradient(circle at 56% 82%, rgba(201,155,74,0.84) 0 2px, transparent 5px),
-        radial-gradient(circle at 46% 34%, rgba(255,255,255,0.88) 0 1.6px, transparent 4px),
-        radial-gradient(circle at 76% 74%, rgba(255,255,255,0.78) 0 1.6px, transparent 4px),
-        radial-gradient(circle at 14% 52%, rgba(143,199,236,0.82) 0 1.6px, transparent 4px);
-    opacity: 0.92;
-    animation: starTwinkle 4.6s ease-in-out infinite alternate;
+        radial-gradient(circle at 21% 18%, rgba(201,155,74,0.78) 0 2px, transparent 5px),
+        radial-gradient(circle at 68% 22%, rgba(255,255,255,0.90) 0 2px, transparent 5px),
+        radial-gradient(circle at 84% 46%, rgba(143,199,236,0.84) 0 2px, transparent 5px),
+        radial-gradient(circle at 30% 68%, rgba(243,213,216,0.72) 0 2px, transparent 5px),
+        radial-gradient(circle at 56% 82%, rgba(201,155,74,0.70) 0 2px, transparent 5px),
+        radial-gradient(circle at 46% 34%, rgba(255,255,255,0.76) 0 1.6px, transparent 4px),
+        radial-gradient(circle at 76% 74%, rgba(255,255,255,0.68) 0 1.6px, transparent 4px),
+        radial-gradient(circle at 14% 52%, rgba(143,199,236,0.70) 0 1.6px, transparent 4px);
+    opacity: 0.78;
+    animation: starTwinkle 6.4s ease-in-out infinite alternate;
 }
 
 .hero-constellation {
@@ -385,11 +478,11 @@ svg {
     inset: -10%;
     z-index: -4;
     background:
-        linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.20) 49%, transparent 51%),
-        linear-gradient(60deg, transparent 0%, rgba(201,155,74,0.18) 49%, transparent 51%);
+        linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.14) 49%, transparent 51%),
+        linear-gradient(60deg, transparent 0%, rgba(201,155,74,0.12) 49%, transparent 51%);
     background-size: 130px 130px;
-    opacity: 0.38;
-    animation: constellationPulse 8s ease-in-out infinite alternate;
+    opacity: 0.24;
+    animation: constellationPulse 11s ease-in-out infinite alternate;
 }
 
 .hero-moon-wrap {
@@ -400,7 +493,7 @@ svg {
     top: 14%;
     transform: translateX(-50%) translateZ(0);
     z-index: -3;
-    animation: heroMoonBreath 9s ease-in-out infinite alternate;
+    animation: heroMoonBreath 13s ease-in-out infinite alternate;
 }
 
 .hero-moon {
@@ -408,12 +501,12 @@ svg {
     height: 100%;
     border-radius: 50%;
     background:
-        radial-gradient(circle at 42% 36%, rgba(255,255,255,1), rgba(255,250,242,0.72) 44%, rgba(230,201,143,0.30) 62%, transparent 78%);
+        radial-gradient(circle at 42% 36%, rgba(255,255,255,1), rgba(255,250,242,0.66) 44%, rgba(230,201,143,0.22) 62%, transparent 78%);
     box-shadow:
-        0 0 90px rgba(255,255,255,0.62),
-        0 0 155px rgba(143,199,236,0.42),
-        0 0 190px rgba(230,201,143,0.22);
-    opacity: 0.94;
+        0 0 78px rgba(255,255,255,0.48),
+        0 0 130px rgba(143,199,236,0.30),
+        0 0 150px rgba(230,201,143,0.14);
+    opacity: 0.82;
 }
 
 .hero-light-beam {
@@ -421,10 +514,10 @@ svg {
     inset: 0;
     z-index: -2;
     background:
-        linear-gradient(115deg, transparent 0%, rgba(255,255,255,0.20) 42%, transparent 56%);
+        linear-gradient(115deg, transparent 0%, rgba(255,255,255,0.16) 42%, transparent 56%);
     transform: translateX(-130%);
     opacity: 0;
-    animation: softBeam 10s ease-in-out infinite;
+    animation: softBeam 15s ease-in-out infinite;
 }
 
 .hero-veil {
@@ -552,7 +645,7 @@ svg {
     border-radius: 50%;
     margin: 0 auto 24px;
     position: relative;
-    animation: slowSpin 18s linear infinite;
+    animation: slowSpin 24s linear infinite;
 }
 
 .section-star-orbit::before,
@@ -671,7 +764,7 @@ svg {
     transform: translate(-50%, -50%);
     background: radial-gradient(circle, rgba(143,199,236,0.24), transparent 70%);
     filter: blur(8px);
-    animation: cardGlowBreath 6s ease-in-out infinite alternate;
+    animation: cardGlowBreath 9s ease-in-out infinite alternate;
 }
 
 .time-unit {
@@ -828,7 +921,7 @@ svg {
         radial-gradient(circle at 84% 74%, rgba(143,199,236,0.54) 0 1px, transparent 4px),
         radial-gradient(circle at 30% 84%, rgba(243,213,216,0.46) 0 1px, transparent 4px);
     opacity: 0.52;
-    animation: starTwinkle 4.8s ease-in-out infinite alternate;
+    animation: starTwinkle 6.5s ease-in-out infinite alternate;
 }
 
 /* ==============================
@@ -894,9 +987,12 @@ svg {
     box-shadow: inset 0 0 0 1px rgba(255,255,255,0.40);
 }
 
-#nombreInvitado,
-#pasesInvitado {
+#nombreInvitado {
     margin-bottom: 24px;
+}
+
+#pasesInvitado {
+    margin-bottom: 0;
 }
 
 #mensajeInvitado {
@@ -956,6 +1052,35 @@ svg {
     width: 18px;
     height: 18px;
     accent-color: var(--sky);
+}
+
+.companions-field {
+    width: 100%;
+    margin: 0 0 22px;
+    transition:
+        opacity 0.3s ease,
+        filter 0.3s ease,
+        transform 0.3s ease;
+}
+
+.field-label {
+    display: block;
+    margin: 0 0 10px;
+    color: var(--gold-deep);
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.companions-field.is-disabled {
+    opacity: 0.45;
+    filter: grayscale(0.35);
+    transform: scale(0.985);
+}
+
+.companions-field.is-disabled #pasesInvitado {
+    cursor: not-allowed;
 }
 
 .btn-rsvp {
@@ -1053,15 +1178,27 @@ svg {
    ANIMATIONS — CSS AMBIENT ONLY
    ============================== */
 
-@keyframes auroraBreath {
+@keyframes skyOpeningBreath {
     from {
-        opacity: 0.72;
+        opacity: 0.64;
         transform: scale(0.98) translateZ(0);
     }
 
     to {
-        opacity: 0.96;
+        opacity: 0.92;
         transform: scale(1.04) translateZ(0);
+    }
+}
+
+@keyframes auroraBreath {
+    from {
+        opacity: 0.46;
+        transform: scale(0.985) translateZ(0);
+    }
+
+    to {
+        opacity: 0.72;
+        transform: scale(1.025) translateZ(0);
     }
 }
 
@@ -1071,75 +1208,115 @@ svg {
     }
 
     to {
-        transform: translate3d(30px, -18px, 0) scale(1.04);
+        transform: translate3d(24px, -12px, 0) scale(1.025);
+    }
+}
+
+@keyframes curtainLeftBreath {
+    from {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+
+    to {
+        transform: translate3d(24px, -10px, 0) scale(1.03);
+    }
+}
+
+@keyframes curtainRightBreath {
+    from {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+
+    to {
+        transform: translate3d(-24px, -10px, 0) scale(1.03);
+    }
+}
+
+@keyframes curtainBottomBreath {
+    from {
+        transform: translateX(-50%) translateY(0) scale(1);
+    }
+
+    to {
+        transform: translateX(-50%) translateY(-12px) scale(1.03);
     }
 }
 
 @keyframes cloudDriftHero {
     from {
-        transform: translate3d(-12px, 0, 0) scale(1);
+        transform: translate3d(-8px, 0, 0) scale(1);
     }
 
     to {
-        transform: translate3d(22px, -16px, 0) scale(1.04);
+        transform: translate3d(16px, -10px, 0) scale(1.025);
+    }
+}
+
+@keyframes heroCloudRevealBreath {
+    from {
+        opacity: 0.52;
+        transform: scale(0.99) translateZ(0);
+    }
+
+    to {
+        opacity: 0.82;
+        transform: scale(1.035) translateZ(0);
     }
 }
 
 @keyframes starTwinkle {
     from {
         opacity: 0.48;
-        transform: scale(1);
     }
 
     to {
-        opacity: 0.92;
-        transform: scale(1.03);
+        opacity: 0.82;
     }
 }
 
 @keyframes constellationPulse {
     from {
-        opacity: 0.26;
+        opacity: 0.16;
     }
 
     to {
-        opacity: 0.46;
+        opacity: 0.32;
     }
 }
 
 @keyframes moonSoftPulse {
     from {
-        opacity: 0.78;
-        transform: scale(0.98) translateZ(0);
+        opacity: 0.62;
+        transform: scale(0.99) translateZ(0);
     }
 
     to {
-        opacity: 0.96;
-        transform: scale(1.04) translateZ(0);
+        opacity: 0.82;
+        transform: scale(1.025) translateZ(0);
     }
 }
 
 @keyframes heroMoonBreath {
     from {
-        opacity: 0.84;
-        transform: translateX(-50%) translateY(0) scale(0.99) translateZ(0);
+        opacity: 0.70;
+        transform: translateX(-50%) translateY(0) scale(0.995) translateZ(0);
     }
 
     to {
-        opacity: 0.98;
-        transform: translateX(-50%) translateY(-10px) scale(1.03) translateZ(0);
+        opacity: 0.88;
+        transform: translateX(-50%) translateY(-6px) scale(1.02) translateZ(0);
     }
 }
 
 @keyframes softGlowBreath {
     from {
-        opacity: 0.48;
-        transform: scale(0.96) translateZ(0);
+        opacity: 0.36;
+        transform: scale(0.98) translateZ(0);
     }
 
     to {
-        opacity: 0.84;
-        transform: scale(1.08) translateZ(0);
+        opacity: 0.62;
+        transform: scale(1.04) translateZ(0);
     }
 }
 
@@ -1162,12 +1339,12 @@ svg {
     }
 
     35% {
-        opacity: 0.68;
+        opacity: 0.38;
     }
 
     55% {
         transform: translateX(130%);
-        opacity: 0.30;
+        opacity: 0.18;
     }
 
     100% {
@@ -1186,23 +1363,6 @@ svg {
     }
 }
 
-@keyframes cradleExit {
-    0% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-
-    45% {
-        opacity: 1;
-        transform: translateY(-10px) scale(1.02);
-    }
-
-    100% {
-        opacity: 0;
-        transform: translateY(26px) scale(0.95);
-    }
-}
-
 /* ==============================
    MOBILE
    ============================== */
@@ -1217,66 +1377,127 @@ svg {
     }
 
     .splash-cloud {
-        opacity: 0.58;
-        filter: blur(16px);
+        opacity: 0.50;
+        filter: blur(17px);
+        animation-duration: 17s;
+    }
+
+    .cloud-one {
+        width: 430px;
+        left: -250px;
+        top: 12%;
+    }
+
+    .cloud-two {
+        width: 420px;
+        right: -250px;
+        bottom: 14%;
+    }
+
+    .cloud-three {
+        width: 330px;
+        left: 18%;
+        bottom: -54px;
+    }
+
+    .cloud-curtain {
+        opacity: 0.72;
+        filter: blur(20px);
+    }
+
+    .curtain-left {
+        width: 360px;
+        height: 600px;
+        left: -250px;
+        top: 12%;
+    }
+
+    .curtain-right {
+        width: 360px;
+        height: 600px;
+        right: -250px;
+        top: 12%;
+    }
+
+    .curtain-bottom {
+        width: 620px;
+        height: 220px;
+        bottom: -120px;
     }
 
     .splash-aurora {
-        opacity: 0.92;
-        filter: blur(30px);
-        animation-duration: 10s;
+        opacity: 0.52;
+        filter: blur(44px);
+        animation-duration: 15s;
     }
 
     .splash-stars {
-        opacity: 0.95;
+        opacity: 0.70;
+        animation-duration: 7.5s;
     }
 
     .splash-constellation {
-        opacity: 0.42;
+        opacity: 0.20;
         background-size: 130px 130px;
-        animation-duration: 8s;
+        animation-duration: 12s;
     }
 
     .splash-moon {
-        width: 320px;
-        height: 320px;
-        opacity: 0.96;
-        animation-duration: 10s;
+        width: 290px;
+        height: 290px;
+        opacity: 0.72;
+        animation-duration: 15s;
+    }
+
+    .splash-soft-glow {
+        opacity: 0.52;
+        animation-duration: 15s;
+    }
+
+    .sky-opening-glow {
+        width: 330px;
+        height: 330px;
     }
 
     .hero-section {
         padding: 100px 0 72px;
     }
 
+    .hero-cloud-reveal {
+        opacity: 0.68;
+        animation-duration: 16s;
+    }
+
     .hero-aurora {
-        opacity: 0.9;
-        filter: blur(32px);
-        animation-duration: 11s;
+        opacity: 0.56;
+        filter: blur(44px);
+        animation-duration: 15s;
     }
 
     .hero-starfield {
-        opacity: 0.96;
+        opacity: 0.72;
+        animation-duration: 7.5s;
     }
 
     .hero-constellation {
-        opacity: 0.42;
+        opacity: 0.20;
         background-size: 115px 115px;
-        animation-duration: 9s;
+        animation-duration: 13s;
     }
 
     .hero-moon-wrap {
-        width: 330px;
-        height: 330px;
+        width: 310px;
+        height: 310px;
         top: 15%;
-        animation-duration: 11s;
+        animation-duration: 15s;
     }
 
     .hero-moon {
-        opacity: 0.96;
+        opacity: 0.78;
     }
 
     .hero-light-beam {
-        animation-duration: 12s;
+        animation-duration: 16s;
     }
 
     .main-title {
