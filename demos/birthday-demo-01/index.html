@@ -6,7 +6,7 @@
     <title>INVYRA | Midnight Gala - Erza</title>
 
     <link rel="icon" type="image/jpeg" href="../../LOGO/FAVICON.jpeg" />
-    <link rel="stylesheet" href="style.css?v=1.1.7" />
+    <link rel="stylesheet" href="style.css?v=1.1.8" />
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
@@ -28,7 +28,12 @@
 
         <div class="loader-bar"></div>
 
-        <button type="button" onclick="entrarGala()" class="btn-start-experience">
+        <button
+          type="button"
+          onclick="entrarGala()"
+          class="btn-start-experience"
+          aria-label="Abrir invitación"
+        >
           DESCUBRIR INVITACIÓN
         </button>
       </div>
@@ -114,6 +119,8 @@
 
       <footer class="action-section section-reveal">
         <div class="rsvp-card">
+          <p class="rsvp-package-label">Experiencia Esencial</p>
+
           <h2>Confirma tu asistencia</h2>
 
           <div class="ornament-line">
@@ -122,14 +129,31 @@
 
           <div class="rsvp-envelope-icon">
             <svg viewBox="0 0 64 64" width="46" height="46" fill="none">
-              <rect x="10" y="18" width="44" height="32" rx="2" stroke="currentColor" stroke-width="2" />
-              <path d="M10 20l22 18 22-18" stroke="currentColor" stroke-width="2" />
-              <path d="M24 31c0-5 8-5 8 0c0-5 8-5 8 0c0 7-8 12-8 12s-8-5-8-12Z" stroke="currentColor" stroke-width="2" />
+              <rect
+                x="10"
+                y="18"
+                width="44"
+                height="32"
+                rx="2"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+              <path
+                d="M10 20l22 18 22-18"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+              <path
+                d="M24 31c0-5 8-5 8 0c0-5 8-5 8 0c0 7-8 12-8 12s-8-5-8-12Z"
+                stroke="currentColor"
+                stroke-width="2"
+              />
             </svg>
           </div>
 
           <p class="rsvp-copy">
-            Tu presencia hará esta noche aún más especial.
+            Tu presencia hará esta noche aún más especial. Confirma tu respuesta
+            para ayudarnos a preparar cada detalle.
           </p>
 
           <div class="rsvp-form">
@@ -138,6 +162,7 @@
               id="nombreInvitado"
               placeholder="Nombre de invitado o familia"
               autocomplete="off"
+              aria-label="Nombre de invitado o familia"
             />
 
             <div class="attendance-group">
@@ -145,7 +170,12 @@
 
               <div class="attendance-options">
                 <label>
-                  <input type="radio" name="asistencia" value="Asistiré" checked />
+                  <input
+                    type="radio"
+                    name="asistencia"
+                    value="Asistiré"
+                    checked
+                  />
                   <span>Asistiré</span>
                 </label>
 
@@ -158,7 +188,8 @@
 
             <textarea
               id="mensajeInvitado"
-              placeholder="Puedes dejar un mensaje opcional"
+              placeholder="Puedes dejar un mensaje para Erza (opcional)"
+              aria-label="Mensaje opcional para la festejada"
             ></textarea>
 
             <button
@@ -166,6 +197,7 @@
               id="btn-confirmar"
               class="btn-rsvp"
               onclick="confirmarAsistencia()"
+              aria-label="Confirmar asistencia"
             >
               CONFIRMAR ASISTENCIA
             </button>
@@ -180,6 +212,7 @@
             target="_blank"
             rel="noopener noreferrer"
             class="location-link"
+            aria-label="Ver ubicación del evento en Google Maps"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -216,8 +249,11 @@
 
     <div id="rsvp-modal" class="modal hidden">
       <div class="modal-content">
-        <h3>¡TODO LISTO!</h3>
-        <p>Redirigiendo a WhatsApp para completar tu registro...</p>
+        <h3 id="modal-title">¡RESPUESTA REGISTRADA!</h3>
+        <p id="modal-message">
+          Gracias por confirmar tu respuesta. En un momento abriremos WhatsApp
+          para completar tu mensaje.
+        </p>
       </div>
     </div>
 
@@ -225,6 +261,6 @@
       <source src="../../music/violin-luxury.mp3" type="audio/mpeg" />
     </audio>
 
-    <script src="script.js?v=1.1.7"></script>
+    <script src="script.js?v=1.1.8"></script>
   </body>
 </html>

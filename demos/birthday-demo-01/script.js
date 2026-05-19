@@ -1,6 +1,9 @@
 /**
  * INVYRA - Birthday Demo 01
  * Midnight Gala RSVP Premium
+ * Version 1.1.8
+ * Server-side RSVP validation through Google Sheets / Apps Script
+ * Update: Standardized Essential RSVP flow
  */
 
 document.body.classList.add("js-enabled");
@@ -9,13 +12,7 @@ if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
 }
 
-/*
-  IMPORTANTE:
-  Reemplaza esta URL por la nueva Web App URL del Google Sheets
-  exclusivo de birthday-demo-01. Debe terminar en /exec.
-*/
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwpV7Xn9bgxBkV2B6x6YJ1wfxPfXPB3g8IWI-IhlpXBEk6IFFT8Ay0sfhHLLr58yVoc/exec";
-
 const TELEFONO_RSVP = "525516986744";
 const FECHA_EVENTO = "Aug 16, 2026 21:00:00";
 const EVENTO_NOMBRE = "Birthday Demo 01 - Midnight Gala Erza";
@@ -175,6 +172,16 @@ function entrarGala() {
 
 window.entrarGala = entrarGala;
 
+document.addEventListener("DOMContentLoaded", () => {
+    const startButton = document.querySelector(".btn-start-experience");
+
+    if (startButton) {
+        startButton.addEventListener("click", entrarGala);
+    }
+
+    initRsvpState();
+});
+
 function initScrollReveal() {
     if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
         document.querySelectorAll(".section-reveal").forEach(section => {
@@ -240,37 +247,45 @@ setInterval(() => {
     }
 }, 1000);
 
-async function confirmarAsistencia() {
-    const inputNombre = document.getElementById("nombreInvitado");
-    const inputMensaje = document.getElementById("mensajeInvitado");
+function initRsvpState() {
+    const radios = document.querySelectorAll('input[name="asistencia"]');
+
+    radios.forEach(radio => {
+        radio.addEventListener("change", actualizarEstadoAsistencia);
+    });
+
+    actualizarEstadoAsistencia();
+}
+
+function actualizarEstadoAsistencia() {
     const asistenciaSeleccionada = document.querySelector('input[name="asistencia"]:checked');
     const btnConfirmar = document.getElementById("btn-confirmar");
+    const rsvpCard = document.querySelector(".rsvp-card");
+
+    const asistencia = asistenciaSeleccionada ? asistenciaSeleccionada.value : "Asistiré";
+    const noAsiste = asistencia === "No asistiré";
+
+    if (rsvpCard) {
+        rsvpCard.classList.toggle("rsvp-not-attending", noAsiste);
+    }
+
+    if (btnConfirmar && !btnConfirmar.disabled) {
+        btnConfirmar.innerText = noAsiste ? "ENVIAR RESPUESTA" : "CONFIRMAR ASISTENCIA";
+    }
+}
+
+function setModalContent(title, message) {
+    const modalTitle = document.getElementById("modal-title");
+    const modalMessage = document.getElementById("modal-message");
+
+    if (modalTitle) modalTitle.textContent = title;
+    if (modalMessage) modalMessage.textContent = message;
+}
+
+function showModal() {
     const modal = document.getElementById("rsvp-modal");
 
-    if (!inputNombre || !btnConfirmar || !modal) return;
-
-    const nombre = inputNombre.value.trim();
-    const mensajeInvitado = inputMensaje ? inputMensaje.value.trim() : "";
-    const asistencia = asistenciaSeleccionada ? asistenciaSeleccionada.value : "Asistiré";
-
-    if (!nombre) {
-        if (typeof gsap !== "undefined") {
-            gsap.to(inputNombre, {
-                x: 10,
-                duration: 0.1,
-                repeat: 5,
-                yoyo: true
-            });
-        }
-
-        inputNombre.style.border = "1px solid #ff4444";
-
-        setTimeout(() => {
-            inputNombre.style.border = "1px solid rgba(214, 179, 106, 0.34)";
-        }, 2000);
-
-        return;
-    }
+    if (!modal) return;
 
     modal.classList.remove("hidden");
 
@@ -282,53 +297,190 @@ async function confirmarAsistencia() {
             ease: "back.out(1.7)"
         });
     }
+}
+
+function hideModal(delay = 2800) {
+    const modal = document.getElementById("rsvp-modal");
+
+    if (!modal) return;
+
+    setTimeout(() => {
+        modal.classList.add("hidden");
+    }, delay);
+}
+
+function sendRsvpToAppsScript(data) {
+    return new Promise((resolve, reject) => {
+        const callbackName = `invyraBirthdayCallback_${Date.now()}_${Math.floor(Math.random() * 10000)}`;
+        const script = document.createElement("script");
+
+        const timeout = setTimeout(() => {
+            cleanup();
+            reject(new Error("Tiempo de espera agotado al conectar con Apps Script."));
+        }, 12000);
+
+        function cleanup() {
+            clearTimeout(timeout);
+            delete window[callbackName];
+
+            if (script && script.parentNode) {
+                script.parentNode.removeChild(script);
+            }
+        }
+
+        window[callbackName] = response => {
+            cleanup();
+            resolve(response);
+        };
+
+        const params = new URLSearchParams({
+            callback: callbackName,
+            nombre: data.nombre,
+            asistencia: data.asistencia,
+            mensaje: data.mensaje,
+            evento: data.evento
+        });
+
+        script.src = `${SCRIPT_URL}?${params.toString()}`;
+
+        script.onerror = () => {
+            cleanup();
+            reject(new Error("No se pudo conectar con Apps Script."));
+        };
+
+        document.body.appendChild(script);
+    });
+}
+
+function bloquearFormularioComoRegistrado() {
+    const inputNombre = document.getElementById("nombreInvitado");
+    const inputMensaje = document.getElementById("mensajeInvitado");
+    const btnConfirmar = document.getElementById("btn-confirmar");
+    const radios = document.querySelectorAll('input[name="asistencia"]');
+
+    if (inputNombre) inputNombre.disabled = true;
+    if (inputMensaje) inputMensaje.disabled = true;
+
+    radios.forEach(radio => {
+        radio.disabled = true;
+    });
+
+    if (btnConfirmar) {
+        btnConfirmar.innerText = "RESPUESTA YA REGISTRADA";
+        btnConfirmar.disabled = true;
+    }
+}
+
+function marcarCampoInvalido(campo) {
+    if (!campo) return;
+
+    if (typeof gsap !== "undefined") {
+        gsap.to(campo, {
+            x: 10,
+            duration: 0.1,
+            repeat: 5,
+            yoyo: true
+        });
+    }
+
+    campo.style.border = "1px solid #ff4444";
+
+    setTimeout(() => {
+        campo.style.border = "1px solid rgba(214, 179, 106, 0.34)";
+    }, 2000);
+}
+
+async function confirmarAsistencia() {
+    const inputNombre = document.getElementById("nombreInvitado");
+    const inputMensaje = document.getElementById("mensajeInvitado");
+    const asistenciaSeleccionada = document.querySelector('input[name="asistencia"]:checked');
+    const btnConfirmar = document.getElementById("btn-confirmar");
+
+    if (!inputNombre || !inputMensaje || !btnConfirmar) return;
+
+    const nombre = inputNombre.value.trim();
+    const mensajeInvitado = inputMensaje.value.trim();
+    const asistencia = asistenciaSeleccionada ? asistenciaSeleccionada.value : "Asistiré";
+
+    if (!nombre) {
+        marcarCampoInvalido(inputNombre);
+        return;
+    }
 
     btnConfirmar.innerText = "PROCESANDO...";
     btnConfirmar.disabled = true;
 
-    const payload = {
-        nombre: nombre,
-        asistencia: asistencia,
-        mensaje: mensajeInvitado,
-        evento: EVENTO_NOMBRE
-    };
-
     try {
-        await fetch(SCRIPT_URL, {
-            method: "POST",
-            mode: "no-cors",
-            body: JSON.stringify(payload)
+        const response = await sendRsvpToAppsScript({
+            nombre,
+            asistencia,
+            mensaje: mensajeInvitado,
+            evento: EVENTO_NOMBRE
         });
 
-        btnConfirmar.innerText = "¡TODO LISTO!";
+        if (response && response.status === "duplicate") {
+            setModalContent(
+                "RESPUESTA YA REGISTRADA",
+                "Ya tenemos una respuesta asociada a este nombre. Gracias por formar parte de esta noche especial."
+            );
 
-        const mensajeWhatsApp = encodeURIComponent(
-            `¡Hola! Confirmo mi respuesta para la Midnight Gala.\n\n` +
-            `*Invitado:* ${nombre}\n` +
-            `*Asistencia:* ${asistencia}\n` +
-            `*Mensaje:* ${mensajeInvitado || "Sin mensaje"}`
-        );
+            showModal();
 
-        setTimeout(() => {
-            window.open(`https://wa.me/${TELEFONO_RSVP}?text=${mensajeWhatsApp}`, "_blank");
+            setTimeout(() => {
+                const modal = document.getElementById("rsvp-modal");
+                if (modal) modal.classList.add("hidden");
 
-            modal.classList.add("hidden");
-            btnConfirmar.disabled = false;
-            btnConfirmar.innerText = "CONFIRMAR ASISTENCIA";
+                bloquearFormularioComoRegistrado();
+            }, 5200);
 
-            inputNombre.value = "";
-            if (inputMensaje) inputMensaje.value = "";
+            return;
+        }
 
-            const asistirRadio = document.querySelector('input[name="asistencia"][value="Asistiré"]');
-            if (asistirRadio) asistirRadio.checked = true;
-        }, 2400);
+        if (response && response.status === "success") {
+            setModalContent(
+                "¡RESPUESTA REGISTRADA!",
+                "Gracias por confirmar tu respuesta. En un momento abriremos WhatsApp para completar tu mensaje."
+            );
+
+            showModal();
+
+            btnConfirmar.innerText = "¡TODO LISTO!";
+
+            const mensajeWhatsApp = encodeURIComponent(
+                `¡Hola! Confirmo mi respuesta para la Midnight Gala.\n\n` +
+                `*Invitado:* ${nombre}\n` +
+                `*Asistencia:* ${asistencia}\n` +
+                `*Mensaje:* ${mensajeInvitado || "Sin mensaje"}`
+            );
+
+            setTimeout(() => {
+                window.open(`https://wa.me/${TELEFONO_RSVP}?text=${mensajeWhatsApp}`, "_blank");
+
+                const modal = document.getElementById("rsvp-modal");
+                if (modal) modal.classList.add("hidden");
+
+                bloquearFormularioComoRegistrado();
+            }, 3200);
+
+            return;
+        }
+
+        throw new Error("Respuesta inesperada de Apps Script.");
 
     } catch (error) {
         console.error("Error:", error);
 
-        modal.classList.add("hidden");
+        setModalContent(
+            "NO SE PUDO REGISTRAR",
+            "Ocurrió un detalle al guardar tu respuesta. Inténtalo nuevamente en unos segundos."
+        );
+
+        showModal();
+
         btnConfirmar.disabled = false;
-        btnConfirmar.innerText = "CONFIRMAR ASISTENCIA";
+        btnConfirmar.innerText = asistencia === "No asistiré" ? "ENVIAR RESPUESTA" : "CONFIRMAR ASISTENCIA";
+
+        hideModal(3600);
     }
 }
 
@@ -342,11 +494,9 @@ document.addEventListener("visibilitychange", () => {
 
     if (document.hidden) {
         music.pause();
-        console.log("QA Log: App en segundo plano - Audio pausado");
     } else {
         if (splash && splash.style.display === "none") {
-            music.play().catch(err => console.log("QA Log: Error al reanudar:", err));
-            console.log("QA Log: App en primer plano - Audio reanudado");
+            music.play().catch(err => console.log("Error al reanudar:", err));
         }
     }
 });
