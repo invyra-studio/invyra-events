@@ -12,7 +12,7 @@
     />
 
     <link rel="icon" type="image/jpeg" href="./LOGO/FAVICON.jpeg" />
-    <link rel="stylesheet" href="./style.css?v=1.0.1" />
+    <link rel="stylesheet" href="./style.css?v=1.0.2" />
 
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800;900&family=Great+Vibes&display=swap"
@@ -27,7 +27,7 @@
       src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"
       defer
     ></script>
-    <script src="./script.js?v=1.0.1" defer></script>
+    <script src="./script.js?v=1.0.2" defer></script>
   </head>
 
   <body>
@@ -76,13 +76,15 @@
           <p class="eyebrow reveal-item">Invitaciones digitales premium</p>
 
           <h1 class="hero-title reveal-title">
-            Invitaciones digitales que convierten tu evento en una experiencia memorable.
+            Invitaciones digitales que convierten tu evento en una experiencia
+            memorable.
           </h1>
 
           <p class="hero-copy reveal-item">
             Diseñamos invitaciones digitales premium con animación, música,
             ubicación, confirmación de asistencia y detalles personalizados para
-            que tus invitados vivan la emoción del evento desde el primer enlace.
+            que tus invitados vivan la emoción del evento desde el primer
+            enlace.
           </p>
 
           <div class="hero-actions reveal-item">
@@ -95,9 +97,7 @@
               Cotizar por WhatsApp
             </a>
 
-            <a href="#demos" class="btn btn-secondary">
-              Ver demos
-            </a>
+            <a href="#demos" class="btn btn-secondary">Ver demos</a>
           </div>
 
           <div class="hero-proof reveal-item">
@@ -109,7 +109,11 @@
 
         <div class="hero-card reveal-item">
           <div class="hero-card-inner">
-            <img src="./LOGO/FAVICON.jpeg" alt="INVYRA" class="hero-card-logo" />
+            <img
+              src="./LOGO/FAVICON.jpeg"
+              alt="INVYRA"
+              class="hero-card-logo"
+            />
 
             <p class="hero-card-kicker">INVYRA Studio</p>
 
@@ -267,8 +271,9 @@
             <h3>XV Demo</h3>
 
             <p>
-              Una experiencia glam y dinámica para XV años, con cuenta regresiva,
-              dress code, galería, itinerario y confirmación avanzada.
+              Una experiencia glam y dinámica para XV años, con cuenta
+              regresiva, dress code, galería, itinerario y confirmación
+              avanzada.
             </p>
 
             <a
@@ -291,7 +296,8 @@
 
             <p>
               Una invitación tipo mini sitio web para boda, con historia,
-              ceremonia, recepción, menú, mesa de regalos, galería y RSVP avanzado.
+              ceremonia, recepción, menú, mesa de regalos, galería y RSVP
+              avanzado.
             </p>
 
             <a
@@ -310,14 +316,12 @@
         <div class="section-heading">
           <p class="section-kicker">Adicionales</p>
 
-          <h2 class="section-title">
-            Haz tu invitación aún más especial.
-          </h2>
+          <h2 class="section-title">Haz tu invitación aún más especial.</h2>
 
           <p class="section-copy">
-            Añade detalles únicos como música personalizada, nombre del invitado,
-            galería ampliada, secciones extra o publicación en línea según el
-            tipo de evento y el paquete elegido.
+            Añade detalles únicos como música personalizada, nombre del
+            invitado, galería ampliada, secciones extra o publicación en línea
+            según el tipo de evento y el paquete elegido.
           </p>
         </div>
 
@@ -334,9 +338,7 @@
         <div class="section-heading">
           <p class="section-kicker">Proceso</p>
 
-          <h2 class="section-title">
-            Así construimos tu experiencia digital.
-          </h2>
+          <h2 class="section-title">Así construimos tu experiencia digital.</h2>
         </div>
 
         <div class="process-grid">
@@ -515,29 +517,62 @@
               rel="noopener noreferrer"
               class="btn btn-primary"
             >
-              Solicitar cotización
+              Cotizar por WhatsApp
             </a>
           </div>
 
-          <form class="quote-form" id="quote-form">
+          <form class="quote-form" id="quote-form" novalidate>
             <div class="form-row">
-              <label for="clientName">Nombre</label>
+              <label for="clientName">Nombre completo</label>
               <input
                 type="text"
                 id="clientName"
+                name="clientName"
                 placeholder="Tu nombre"
                 autocomplete="name"
+                pattern="[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]+"
+                title="Escribe solo letras y espacios"
+                required
+              />
+            </div>
+
+            <div class="form-row">
+              <label for="clientPhone">WhatsApp</label>
+              <input
+                type="tel"
+                id="clientPhone"
+                name="clientPhone"
+                placeholder="Ej. 5535690278"
+                autocomplete="tel"
+                inputmode="numeric"
+                minlength="10"
+                maxlength="10"
+                pattern="[0-9]{10}"
+                title="Escribe un número de WhatsApp de 10 dígitos"
+                required
+              />
+            </div>
+
+            <div class="form-row">
+              <label for="clientEmail">Correo electrónico opcional</label>
+              <input
+                type="email"
+                id="clientEmail"
+                name="clientEmail"
+                placeholder="correo@ejemplo.com"
+                autocomplete="email"
               />
             </div>
 
             <div class="form-row">
               <label for="eventType">Tipo de evento</label>
-              <select id="eventType">
+              <select id="eventType" name="eventType" required>
                 <option value="">Selecciona una opción</option>
                 <option value="Boda">Boda</option>
                 <option value="XV años">XV años</option>
                 <option value="Baby Shower">Baby Shower</option>
                 <option value="Cumpleaños">Cumpleaños</option>
+                <option value="Fiesta infantil">Fiesta infantil</option>
                 <option value="Bautizo">Bautizo</option>
                 <option value="Primera comunión">Primera comunión</option>
                 <option value="Otro">Otro</option>
@@ -545,31 +580,165 @@
             </div>
 
             <div class="form-row">
+              <label for="eventDate">Fecha del evento</label>
+              <input type="date" id="eventDate" name="eventDate" />
+            </div>
+
+            <div class="form-row">
+              <label for="eventLocation">Ciudad o zona del evento</label>
+              <input
+                type="text"
+                id="eventLocation"
+                name="eventLocation"
+                placeholder="Ej. Tulancingo, Pachuca, CDMX / Aún por definir"
+              />
+            </div>
+
+            <div class="form-row">
               <label for="packageType">Paquete de interés</label>
-              <select id="packageType">
+              <select id="packageType" name="packageType" required>
                 <option value="">Selecciona una opción</option>
                 <option value="Esencial">Esencial</option>
                 <option value="Signature">Signature</option>
                 <option value="Legacy">Legacy</option>
-                <option value="Aún no sé">Aún no sé</option>
+                <option value="Aún no sé cuál elegir">
+                  Aún no sé cuál elegir
+                </option>
               </select>
             </div>
 
             <div class="form-row">
-              <label for="eventDate">Fecha del evento</label>
-              <input type="date" id="eventDate" />
+              <label>Adicionales de interés</label>
+
+              <p class="form-hint" id="extrasHint">
+                Selecciona primero un paquete para ver qué adicionales aplican.
+              </p>
+
+              <div class="extras-checklist" id="extrasChecklist">
+                <label
+                  class="check-option"
+                  data-packages="Esencial,Signature,Legacy"
+                >
+                  <input
+                    type="checkbox"
+                    name="extras"
+                    value="Dominio personalizado"
+                  />
+                  <span>Dominio personalizado</span>
+                </label>
+
+                <label class="check-option" data-packages="Esencial,Signature">
+                  <input
+                    type="checkbox"
+                    name="extras"
+                    value="Video de portada"
+                  />
+                  <span>Video de portada</span>
+                </label>
+
+                <label class="check-option" data-packages="Esencial,Signature">
+                  <input
+                    type="checkbox"
+                    name="extras"
+                    value="Nombre del invitado"
+                  />
+                  <span>Nombre del invitado</span>
+                </label>
+
+                <label class="check-option" data-packages="Esencial">
+                  <input
+                    type="checkbox"
+                    name="extras"
+                    value="Confirmación automática"
+                  />
+                  <span>Confirmación automática</span>
+                </label>
+
+                <label class="check-option" data-packages="Esencial">
+                  <input
+                    type="checkbox"
+                    name="extras"
+                    value="Galería ampliada"
+                  />
+                  <span>Galería ampliada</span>
+                </label>
+
+                <label class="check-option" data-packages="Esencial,Signature">
+                  <input
+                    type="checkbox"
+                    name="extras"
+                    value="Secciones extra / mesa de regalos"
+                  />
+                  <span>Secciones extra / mesa de regalos</span>
+                </label>
+
+                <label class="check-option" data-packages="Esencial">
+                  <input
+                    type="checkbox"
+                    name="extras"
+                    value="Cuenta regresiva"
+                  />
+                  <span>Cuenta regresiva</span>
+                </label>
+
+                <label class="check-option" data-packages="Esencial">
+                  <input
+                    type="checkbox"
+                    name="extras"
+                    value="Publicación en línea"
+                  />
+                  <span>Publicación en línea</span>
+                </label>
+
+                <label class="check-option" data-packages="Esencial,Signature">
+                  <input
+                    type="checkbox"
+                    name="extras"
+                    value="Música personalizada"
+                  />
+                  <span>Música personalizada</span>
+                </label>
+
+                <label class="check-option" data-packages="Signature">
+                  <input type="checkbox" name="extras" value="Itinerario" />
+                  <span>Itinerario</span>
+                </label>
+              </div>
             </div>
 
             <div class="form-row">
-              <label for="message">Detalles adicionales</label>
+              <label for="themeColors">Colores o temática deseada</label>
               <textarea
-                id="message"
-                placeholder="Cuéntanos colores, temática, extras o cualquier idea especial."
+                id="themeColors"
+                name="themeColors"
+                placeholder="Ej. dorado y negro, celestial, floral, elegante, infantil... o escribe: Aún no lo decido."
               ></textarea>
             </div>
 
+            <div class="form-row">
+              <label for="eventIdea">Cuéntanos tu idea</label>
+              <textarea
+                id="eventIdea"
+                name="eventIdea"
+                placeholder="Cuéntanos qué tienes en mente, qué te gustaría transmitir o qué detalles no pueden faltar."
+              ></textarea>
+            </div>
+
+            <div class="form-row">
+              <label for="referralSource">¿Cómo conociste INVYRA?</label>
+              <select id="referralSource" name="referralSource">
+                <option value="">Selecciona una opción</option>
+                <option value="TikTok">TikTok</option>
+                <option value="Instagram">Instagram</option>
+                <option value="WhatsApp">WhatsApp</option>
+                <option value="Recomendación">Recomendación</option>
+                <option value="Página web">Página web</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
+
             <button type="submit" class="btn btn-secondary form-submit">
-              Preparar mensaje
+              Enviar solicitud
             </button>
           </form>
         </div>
@@ -598,6 +767,39 @@
     <footer class="site-footer">
       <p>INVYRA · Premium Digital Events</p>
       <span>Experiencias digitales para eventos</span>
+
+      <div class="social-links" aria-label="Redes sociales de INVYRA">
+        <a
+          href="https://www.instagram.com/invyra.studio/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="social-link"
+          aria-label="Instagram de INVYRA"
+        >
+          <span class="social-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" role="img">
+              <path
+                d="M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4A5.8 5.8 0 0 1 16.2 22H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2Zm0 2A3.8 3.8 0 0 0 4 7.8v8.4A3.8 3.8 0 0 0 7.8 20h8.4a3.8 3.8 0 0 0 3.8-3.8V7.8A3.8 3.8 0 0 0 16.2 4H7.8Zm4.2 3.2A4.8 4.8 0 1 1 7.2 12 4.8 4.8 0 0 1 12 7.2Zm0 2A2.8 2.8 0 1 0 14.8 12 2.8 2.8 0 0 0 12 9.2Zm5-2.55a1.15 1.15 0 1 1-1.15 1.15A1.15 1.15 0 0 1 17 6.65Z"
+              />
+            </svg>
+          </span>
+          Instagram
+        </a>
+
+        <span
+          class="social-link social-link-muted"
+          aria-label="TikTok de INVYRA próximamente"
+        >
+          <span class="social-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" role="img">
+              <path
+                d="M14 3h3c.2 1.5.8 2.7 1.8 3.6A6.4 6.4 0 0 0 22 8.1v3.1a8.7 8.7 0 0 1-4.7-1.4v5.7a5.6 5.6 0 1 1-5.6-5.6c.4 0 .8 0 1.2.1v3.2a2.5 2.5 0 1 0 1.1 2.1V3Z"
+              />
+            </svg>
+          </span>
+          TikTok próximamente
+        </span>
+      </div>
     </footer>
 
     <a

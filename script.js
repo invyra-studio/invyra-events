@@ -1,8 +1,8 @@
 /**
  * INVYRA - Landing Page
- * Version 1.0.1
+ * Version 1.0.2
  * Premium Digital Events
- * Main landing interactions
+ * Quote form connected to Google Sheets + WhatsApp
  */
 
 document.body.classList.add("js-enabled");
@@ -16,6 +16,9 @@ if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
    ============================== */
 
 const INVYRA_WHATSAPP_NUMBER = "525535690278";
+
+const SCRIPT_URL =
+    "https://script.google.com/macros/s/AKfycbwvkuj1XGIoV6nxZhq2YPdpytfAaftlEXJElHnRy-hcGHZKM5jF2ERaF7JFSNwiCOBD/exec";
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -305,7 +308,119 @@ function initSubtleMotion() {
 }
 
 /* ==============================
-   QUOTE FORM → WHATSAPP
+   FORM SETUP
+   ============================== */
+
+function initQuoteFormEnhancements() {
+    initNameInputRules();
+    initPhoneInputRules();
+    initEventDateRules();
+    initPackageExtrasRules();
+}
+
+function initNameInputRules() {
+    const nameInput = document.getElementById("clientName");
+
+    if (!nameInput) return;
+
+    nameInput.addEventListener("input", () => {
+        nameInput.value = nameInput.value
+            .replace(/[^A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]/g, "")
+            .replace(/\s+/g, " ")
+            .replace(/^\s+/g, "");
+    });
+
+    nameInput.addEventListener("blur", () => {
+        nameInput.value = toTitleCase(nameInput.value.trim());
+    });
+}
+
+function initPhoneInputRules() {
+    const phoneInput = document.getElementById("clientPhone");
+
+    if (!phoneInput) return;
+
+    phoneInput.addEventListener("input", () => {
+        phoneInput.value = phoneInput.value.replace(/\D/g, "").slice(0, 10);
+    });
+}
+
+function initEventDateRules() {
+    const eventDateInput = document.getElementById("eventDate");
+
+    if (!eventDateInput) return;
+
+    const today = getTodayISODate();
+    eventDateInput.min = today;
+
+    if (eventDateInput.value && eventDateInput.value < today) {
+        eventDateInput.value = "";
+    }
+}
+
+function initPackageExtrasRules() {
+    const packageSelect = document.getElementById("packageType");
+
+    if (!packageSelect) return;
+
+    packageSelect.addEventListener("change", updateExtrasByPackage);
+
+    updateExtrasByPackage();
+}
+
+function updateExtrasByPackage() {
+    const packageSelect = document.getElementById("packageType");
+    const hint = document.getElementById("extrasHint");
+    const selectedPackage = packageSelect ? packageSelect.value : "";
+    const options = document.querySelectorAll(".check-option[data-packages]");
+
+    options.forEach(option => {
+        const input = option.querySelector('input[type="checkbox"]');
+        const allowedPackages = (option.dataset.packages || "")
+            .split(",")
+            .map(value => value.trim())
+            .filter(Boolean);
+
+        const isAllowed = selectedPackage && allowedPackages.includes(selectedPackage);
+
+        option.classList.toggle("is-disabled", !isAllowed);
+
+        if (input) {
+            input.disabled = !isAllowed;
+
+            if (!isAllowed) {
+                input.checked = false;
+            }
+        }
+    });
+
+    if (!hint) return;
+
+    if (!selectedPackage) {
+        hint.textContent = "Selecciona primero un paquete para ver qué adicionales aplican.";
+        return;
+    }
+
+    if (selectedPackage === "Legacy") {
+        hint.textContent = "Legacy ya incluye la mayoría de funciones premium. Solo se muestran adicionales realmente aplicables.";
+        return;
+    }
+
+    if (selectedPackage === "Signature") {
+        hint.textContent = "Estos adicionales complementan la experiencia Signature sin repetir funciones ya incluidas.";
+        return;
+    }
+
+    if (selectedPackage === "Esencial") {
+        hint.textContent = "Puedes agregar funciones extra para elevar la experiencia Esencial según tu evento.";
+        return;
+    }
+
+    hint.textContent = "Selecciona los adicionales que te interesen o marca “Aún no lo sé”.";
+}
+
+/* ==============================
+   QUOTE FORM → GOOGLE SHEETS + WHATSAPP
    ============================== */
 
 function initQuoteForm() {
@@ -313,46 +428,217 @@ function initQuoteForm() {
 
     if (!form) return;
 
-    form.addEventListener("submit", event => {
+    form.addEventListener("submit", async event => {
         event.preventDefault();
 
-        const clientName = getInputValue("clientName");
-        const eventType = getInputValue("eventType");
-        const packageType = getInputValue("packageType");
-        const eventDate = getInputValue("eventDate");
-        const message = getInputValue("message");
+        const submitButton = form.querySelector(".form-submit");
+        const leadData = getLeadFormData();
+        const validation = validateLeadData(leadData);
 
-        const hasUsefulData =
-            clientName ||
-            eventType ||
-            packageType ||
-            eventDate ||
-            message;
-
-        if (!hasUsefulData) {
-            showFormFeedback("Agrega al menos un dato para preparar tu mensaje.", "error");
-            highlightEmptyForm();
+        if (!validation.isValid) {
+            showFormFeedback(validation.message, "error");
+            highlightFields(validation.fields);
             return;
         }
 
-        const formattedDate = formatDate(eventDate);
+        setFormLoading(true, submitButton);
 
-        const whatsappMessage =
-            `Hola INVYRA, quiero cotizar una invitación digital.\n\n` +
-            `*Nombre:* ${clientName || "No especificado"}\n` +
-            `*Tipo de evento:* ${eventType || "No especificado"}\n` +
-            `*Paquete de interés:* ${packageType || "No especificado"}\n` +
-            `*Fecha del evento:* ${formattedDate || "No especificada"}\n` +
-            `*Detalles adicionales:* ${message || "Sin detalles adicionales"}`;
+        try {
+            showFormFeedback("Registrando tu solicitud...", "warning");
 
-        const whatsappUrl = buildWhatsAppUrl(whatsappMessage);
+            const response = await submitLeadToGoogleSheets(leadData);
 
-        showFormFeedback("Mensaje preparado. Abriendo WhatsApp...", "success");
+            if (response.status === "success") {
+                showFormFeedback("Solicitud registrada. Abriendo WhatsApp...", "success");
 
-        setTimeout(() => {
-            window.open(whatsappUrl, "_blank");
-        }, 650);
+                setTimeout(() => {
+                    window.open(buildWhatsAppUrl(buildWhatsappMessage(leadData)), "_blank");
+                    resetQuoteForm(form);
+                    updateExtrasByPackage();
+                    initEventDateRules();
+                    setFormLoading(false, submitButton);
+                }, 750);
+
+                return;
+            }
+
+            if (response.status === "duplicate") {
+                showFormFeedback(
+                    "Ya existe una solicitud con este WhatsApp para ese tipo de evento. Abriremos WhatsApp para darle seguimiento.",
+                    "warning"
+                );
+
+                setTimeout(() => {
+                    window.open(buildWhatsAppUrl(buildWhatsappMessage(leadData)), "_blank");
+                    setFormLoading(false, submitButton);
+                }, 950);
+
+                return;
+            }
+
+            showFormFeedback(
+                response.message || "No pudimos registrar la solicitud, pero puedes continuar por WhatsApp.",
+                "error"
+            );
+
+            setTimeout(() => {
+                window.open(buildWhatsAppUrl(buildWhatsappMessage(leadData)), "_blank");
+                setFormLoading(false, submitButton);
+            }, 1200);
+        } catch (error) {
+            console.error("Error al registrar lead:", error);
+
+            showFormFeedback(
+                "Hubo un detalle al guardar la solicitud, pero abriremos WhatsApp para continuar.",
+                "error"
+            );
+
+            setTimeout(() => {
+                window.open(buildWhatsAppUrl(buildWhatsappMessage(leadData)), "_blank");
+                setFormLoading(false, submitButton);
+            }, 1200);
+        }
     });
+}
+
+function getLeadFormData() {
+    return {
+        nombre: getInputValue("clientName"),
+        whatsapp: normalizePhone(getInputValue("clientPhone")),
+        correo: getInputValue("clientEmail"),
+        tipoEvento: getInputValue("eventType"),
+        fechaEvento: getInputValue("eventDate"),
+        ciudadLugar: getInputValue("eventLocation"),
+        paquete: getInputValue("packageType"),
+        adicionales: getCheckedValues("extras"),
+        coloresTematica: getInputValue("themeColors"),
+        ideaEvento: getInputValue("eventIdea"),
+        comoConocio: getInputValue("referralSource")
+    };
+}
+
+function validateLeadData(data) {
+    const missingFields = [];
+
+    if (!data.nombre) missingFields.push("clientName");
+    if (!data.whatsapp) missingFields.push("clientPhone");
+    if (!data.tipoEvento) missingFields.push("eventType");
+    if (!data.paquete) missingFields.push("packageType");
+
+    if (missingFields.length) {
+        return {
+            isValid: false,
+            fields: missingFields,
+            message: "Completa nombre, WhatsApp, tipo de evento y paquete de interés."
+        };
+    }
+
+    if (!isValidName(data.nombre)) {
+        return {
+            isValid: false,
+            fields: ["clientName"],
+            message: "El nombre solo debe incluir letras y espacios."
+        };
+    }
+
+    if (!/^\d{10}$/.test(data.whatsapp)) {
+        return {
+            isValid: false,
+            fields: ["clientPhone"],
+            message: "El WhatsApp debe tener exactamente 10 dígitos."
+        };
+    }
+
+    if (data.fechaEvento && data.fechaEvento < getTodayISODate()) {
+        return {
+            isValid: false,
+            fields: ["eventDate"],
+            message: "La fecha del evento no puede ser anterior al día de hoy."
+        };
+    }
+
+    return {
+        isValid: true,
+        fields: [],
+        message: ""
+    };
+}
+
+function submitLeadToGoogleSheets(data) {
+    return new Promise((resolve, reject) => {
+        const callbackName = `invyraLeadCallback_${Date.now()}_${Math.floor(Math.random() * 100000)}`;
+        const script = document.createElement("script");
+
+        const params = new URLSearchParams({
+            callback: callbackName,
+            nombre: data.nombre,
+            whatsapp: data.whatsapp,
+            correo: data.correo,
+            tipoEvento: data.tipoEvento,
+            fechaEvento: data.fechaEvento,
+            ciudadLugar: data.ciudadLugar,
+            paquete: data.paquete,
+            adicionales: data.adicionales,
+            coloresTematica: data.coloresTematica,
+            ideaEvento: data.ideaEvento,
+            comoConocio: data.comoConocio
+        });
+
+        const timeout = window.setTimeout(() => {
+            cleanup();
+            reject(new Error("Tiempo de espera agotado al registrar la solicitud."));
+        }, 12000);
+
+        function cleanup() {
+            window.clearTimeout(timeout);
+
+            if (script.parentNode) {
+                script.parentNode.removeChild(script);
+            }
+
+            try {
+                delete window[callbackName];
+            } catch (error) {
+                window[callbackName] = undefined;
+            }
+        }
+
+        window[callbackName] = response => {
+            cleanup();
+            resolve(response);
+        };
+
+        script.onerror = () => {
+            cleanup();
+            reject(new Error("No se pudo conectar con Google Sheets."));
+        };
+
+        script.src = `${SCRIPT_URL}?${params.toString()}`;
+        document.body.appendChild(script);
+    });
+}
+
+function buildWhatsappMessage(data) {
+    const formattedDate = formatDate(data.fechaEvento);
+
+    return (
+        `Hola INVYRA, quiero cotizar una invitación digital.\n\n` +
+        `*Nombre:* ${data.nombre || "No especificado"}\n` +
+        `*WhatsApp:* ${data.whatsapp || "No especificado"}\n` +
+        `*Correo:* ${data.correo || "No especificado"}\n` +
+        `*Tipo de evento:* ${data.tipoEvento || "No especificado"}\n` +
+        `*Fecha del evento:* ${formattedDate || "No definida"}\n` +
+        `*Ciudad / zona:* ${data.ciudadLugar || "No especificado"}\n` +
+        `*Paquete de interés:* ${data.paquete || "No especificado"}\n` +
+        `*Adicionales:* ${data.adicionales || "No especificado"}\n` +
+        `*Colores / temática:* ${data.coloresTematica || "No definido"}\n` +
+        `*Idea del evento:* ${data.ideaEvento || "Sin detalles adicionales"}\n` +
+        `*Cómo conocí INVYRA:* ${data.comoConocio || "No especificado"}`
+    );
+}
+
+function buildWhatsAppUrl(message) {
+    return `https://wa.me/${INVYRA_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 }
 
 function getInputValue(id) {
@@ -363,8 +649,44 @@ function getInputValue(id) {
     return input.value.trim();
 }
 
-function buildWhatsAppUrl(message) {
-    return `https://wa.me/${INVYRA_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+function getCheckedValues(name) {
+    const checkedInputs = document.querySelectorAll(`input[name="${name}"]:checked:not(:disabled)`);
+
+    if (!checkedInputs.length) return "";
+
+    return Array.from(checkedInputs)
+        .map(input => input.value.trim())
+        .filter(Boolean)
+        .join(", ");
+}
+
+function normalizePhone(phone) {
+    return phone
+        .toString()
+        .trim()
+        .replace(/\D/g, "")
+        .slice(0, 10);
+}
+
+function isValidName(name) {
+    return /^[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]+$/.test(name.trim());
+}
+
+function toTitleCase(text) {
+    return text
+        .toLowerCase()
+        .split(" ")
+        .filter(Boolean)
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
+}
+
+function getTodayISODate() {
+    const today = new Date();
+    const timezoneOffset = today.getTimezoneOffset() * 60000;
+    const localDate = new Date(today.getTime() - timezoneOffset);
+
+    return localDate.toISOString().split("T")[0];
 }
 
 function formatDate(dateValue) {
@@ -375,6 +697,23 @@ function formatDate(dateValue) {
     if (!year || !month || !day) return dateValue;
 
     return `${day}/${month}/${year}`;
+}
+
+function setFormLoading(isLoading, submitButton) {
+    const form = document.getElementById("quote-form");
+
+    if (!form || !submitButton) return;
+
+    form.classList.toggle("is-submitting", isLoading);
+    submitButton.disabled = isLoading;
+    submitButton.classList.toggle("is-loading", isLoading);
+    submitButton.textContent = isLoading ? "Enviando solicitud..." : "Enviar solicitud";
+}
+
+function resetQuoteForm(form) {
+    if (!form) return;
+
+    form.reset();
 }
 
 function showFormFeedback(message, type = "success") {
@@ -391,23 +730,21 @@ function showFormFeedback(message, type = "success") {
     }
 
     feedback.textContent = message;
-    feedback.classList.remove("success", "error");
+    feedback.classList.remove("success", "error", "warning");
     feedback.classList.add(type);
 
-    setTimeout(() => {
-        feedback.textContent = "";
-        feedback.classList.remove("success", "error");
-    }, 4200);
+    if (type !== "warning") {
+        setTimeout(() => {
+            feedback.textContent = "";
+            feedback.classList.remove("success", "error", "warning");
+        }, 5200);
+    }
 }
 
-function highlightEmptyForm() {
-    const fields = [
-        document.getElementById("clientName"),
-        document.getElementById("eventType"),
-        document.getElementById("packageType"),
-        document.getElementById("eventDate"),
-        document.getElementById("message")
-    ].filter(Boolean);
+function highlightFields(fieldIds) {
+    const fields = fieldIds
+        .map(id => document.getElementById(id))
+        .filter(Boolean);
 
     fields.forEach(field => {
         field.classList.add("field-warning");
@@ -472,6 +809,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initFaqAccordion();
     initHeaderScrollState();
     initActiveNavLinks();
+    initQuoteFormEnhancements();
     initQuoteForm();
     initWhatsappLinks();
     initImageFallbacks();
