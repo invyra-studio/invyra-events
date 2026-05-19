@@ -1,8 +1,8 @@
 /**
  * INVYRA - XV Glam Demo
- * Version 1.0.2
- * Nivel: Signature
- * Fix: stable mobile hero effects + RSVP validation
+ * Version 1.0.3
+ * Nivel: Signature Glam / Legacy visual
+ * Update: Standardized RSVP flow with attendance detail
  */
 
 document.body.classList.add("js-enabled");
@@ -175,6 +175,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (startButton) {
         startButton.addEventListener("click", entrarExperiencia);
     }
+
+    initRsvpState();
 });
 
 /* ==============================
@@ -212,6 +214,51 @@ setInterval(() => {
             .padStart(2, "0");
     }
 }, 1000);
+
+/* ==============================
+   RSVP STATE
+   ============================== */
+
+function initRsvpState() {
+    const radios = document.querySelectorAll('input[name="asistencia"]');
+
+    radios.forEach(radio => {
+        radio.addEventListener("change", actualizarEstadoAsistencia);
+    });
+
+    actualizarEstadoAsistencia();
+}
+
+function actualizarEstadoAsistencia() {
+    const asistenciaSeleccionada = document.querySelector('input[name="asistencia"]:checked');
+    const detalleAsistencia = document.getElementById("detalleAsistenciaInvitado");
+    const detalleGroup = document.getElementById("detalleAsistenciaGroup");
+    const btnConfirmar = document.getElementById("btn-confirmar");
+    const rsvpCard = document.querySelector(".rsvp-card");
+
+    const asistencia = asistenciaSeleccionada ? asistenciaSeleccionada.value : "Asistiré";
+    const noAsiste = asistencia === "No asistiré";
+
+    if (detalleAsistencia) {
+        detalleAsistencia.disabled = noAsiste;
+
+        if (noAsiste) {
+            detalleAsistencia.value = "Todo el evento";
+        }
+    }
+
+    if (detalleGroup) {
+        detalleGroup.classList.toggle("is-disabled", noAsiste);
+    }
+
+    if (rsvpCard) {
+        rsvpCard.classList.toggle("rsvp-not-attending", noAsiste);
+    }
+
+    if (btnConfirmar && !btnConfirmar.disabled) {
+        btnConfirmar.innerText = noAsiste ? "ENVIAR RESPUESTA" : "CONFIRMAR ASISTENCIA";
+    }
+}
 
 /* ==============================
    MODAL HELPERS
@@ -263,7 +310,7 @@ function sendRsvpToAppsScript(data) {
             return;
         }
 
-        const callbackName = `invyraCallback_${Date.now()}_${Math.floor(Math.random() * 10000)}`;
+        const callbackName = `invyraXVCallback_${Date.now()}_${Math.floor(Math.random() * 10000)}`;
         const script = document.createElement("script");
 
         const timeout = setTimeout(() => {
@@ -290,7 +337,8 @@ function sendRsvpToAppsScript(data) {
             nombre: data.nombre,
             asistencia: data.asistencia,
             mensaje: data.mensaje,
-            evento: data.evento
+            evento: data.evento,
+            detalleAsistencia: data.detalleAsistencia
         });
 
         script.src = `${SCRIPT_URL}?${params.toString()}`;
@@ -308,9 +356,50 @@ function sendRsvpToAppsScript(data) {
    RSVP FLOW
    ============================== */
 
+function bloquearFormularioComoRegistrado() {
+    const inputNombre = document.getElementById("nombreInvitado");
+    const inputMensaje = document.getElementById("mensajeInvitado");
+    const detalleAsistencia = document.getElementById("detalleAsistenciaInvitado");
+    const btnConfirmar = document.getElementById("btn-confirmar");
+    const radios = document.querySelectorAll('input[name="asistencia"]');
+
+    if (inputNombre) inputNombre.disabled = true;
+    if (inputMensaje) inputMensaje.disabled = true;
+    if (detalleAsistencia) detalleAsistencia.disabled = true;
+
+    radios.forEach(radio => {
+        radio.disabled = true;
+    });
+
+    if (btnConfirmar) {
+        btnConfirmar.innerText = "ASISTENCIA YA REGISTRADA";
+        btnConfirmar.disabled = true;
+    }
+}
+
+function marcarCampoInvalido(campo) {
+    if (!campo) return;
+
+    if (typeof gsap !== "undefined") {
+        gsap.to(campo, {
+            x: 10,
+            duration: 0.1,
+            repeat: 5,
+            yoyo: true
+        });
+    }
+
+    campo.style.border = "1px solid #ff6fbd";
+
+    setTimeout(() => {
+        campo.style.border = "1px solid rgba(216, 180, 106, 0.28)";
+    }, 2000);
+}
+
 async function confirmarAsistencia() {
     const inputNombre = document.getElementById("nombreInvitado");
     const inputMensaje = document.getElementById("mensajeInvitado");
+    const detalleAsistenciaInput = document.getElementById("detalleAsistenciaInvitado");
     const asistenciaSeleccionada = document.querySelector('input[name="asistencia"]:checked');
     const btnConfirmar = document.getElementById("btn-confirmar");
 
@@ -320,26 +409,18 @@ async function confirmarAsistencia() {
     const mensajeInvitado = inputMensaje.value.trim();
     const asistencia = asistenciaSeleccionada ? asistenciaSeleccionada.value : "Asistiré";
 
+    const detalleAsistencia = asistencia === "No asistiré"
+        ? "No aplica"
+        : detalleAsistenciaInput
+            ? detalleAsistenciaInput.value.trim()
+            : "Todo el evento";
+
     if (!nombre) {
-        if (typeof gsap !== "undefined") {
-            gsap.to(inputNombre, {
-                x: 10,
-                duration: 0.1,
-                repeat: 5,
-                yoyo: true
-            });
-        }
-
-        inputNombre.style.border = "1px solid #ff6fbd";
-
-        setTimeout(() => {
-            inputNombre.style.border = "1px solid rgba(216, 180, 106, 0.28)";
-        }, 2000);
-
+        marcarCampoInvalido(inputNombre);
         return;
     }
 
-    btnConfirmar.innerText = "Procesando...";
+    btnConfirmar.innerText = "PROCESANDO...";
     btnConfirmar.disabled = true;
 
     try {
@@ -347,21 +428,25 @@ async function confirmarAsistencia() {
             nombre,
             asistencia,
             mensaje: mensajeInvitado,
-            evento: EVENTO_NOMBRE
+            evento: EVENTO_NOMBRE,
+            detalleAsistencia
         });
 
         if (response && response.status === "duplicate") {
             setModalContent(
                 "ASISTENCIA YA REGISTRADA",
-                "Ya existe una respuesta registrada con este nombre para este evento."
+                "Ya tenemos una respuesta asociada a este nombre. Gracias por formar parte de esta noche especial."
             );
 
             showModal();
 
-            btnConfirmar.innerText = "Asistencia ya registrada";
-            btnConfirmar.disabled = true;
+            setTimeout(() => {
+                const modal = document.getElementById("rsvp-modal");
+                if (modal) modal.classList.add("hidden");
 
-            hideModal(5200);
+                bloquearFormularioComoRegistrado();
+            }, 5200);
+
             return;
         }
 
@@ -373,12 +458,13 @@ async function confirmarAsistencia() {
 
             showModal();
 
-            btnConfirmar.innerText = "¡Todo listo!";
+            btnConfirmar.innerText = "¡TODO LISTO!";
 
             const mensajeWhatsApp = encodeURIComponent(
                 `¡Hola! Confirmo mi respuesta para los XV de Valentina.\n\n` +
                 `*Invitado:* ${nombre}\n` +
                 `*Asistencia:* ${asistencia}\n` +
+                `*Confirmación para:* ${detalleAsistencia}\n` +
                 `*Mensaje:* ${mensajeInvitado || "Sin mensaje"}`
             );
 
@@ -388,8 +474,7 @@ async function confirmarAsistencia() {
                 const modal = document.getElementById("rsvp-modal");
                 if (modal) modal.classList.add("hidden");
 
-                btnConfirmar.innerText = "Asistencia ya registrada";
-                btnConfirmar.disabled = true;
+                bloquearFormularioComoRegistrado();
             }, 3200);
 
             return;
@@ -407,7 +492,7 @@ async function confirmarAsistencia() {
         showModal();
 
         btnConfirmar.disabled = false;
-        btnConfirmar.innerText = "CONFIRMAR ASISTENCIA";
+        btnConfirmar.innerText = asistencia === "No asistiré" ? "ENVIAR RESPUESTA" : "CONFIRMAR ASISTENCIA";
 
         hideModal(4200);
     }

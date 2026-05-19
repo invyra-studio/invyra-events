@@ -782,6 +782,30 @@ svg {
 .rsvp-card {
     padding: 38px 22px 42px;
     text-align: center;
+    transition: 0.35s ease;
+}
+
+.rsvp-card.rsvp-not-attending {
+    border-color: rgba(203, 182, 202, 0.26);
+    box-shadow:
+        0 20px 54px rgba(0,0,0,0.28),
+        0 0 28px rgba(255,255,255,0.04);
+}
+
+.rsvp-package-label {
+    width: fit-content;
+    margin: 0 auto 18px;
+    padding: 7px 14px;
+    border: 1px solid rgba(216, 180, 106, 0.36);
+    border-radius: 999px;
+    color: var(--champagne);
+    font-size: 0.66rem;
+    font-weight: 900;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    background:
+        linear-gradient(135deg, rgba(255, 138, 203, 0.14), rgba(216, 180, 106, 0.09));
+    box-shadow: 0 0 24px rgba(216, 107, 168, 0.10);
 }
 
 .rsvp-card h2 {
@@ -826,7 +850,8 @@ svg {
 }
 
 #nombreInvitado,
-#mensajeInvitado {
+#mensajeInvitado,
+#detalleAsistenciaInvitado {
     width: 100%;
     background: rgba(255,255,255,0.10);
     border: 1px solid rgba(216, 180, 106, 0.28);
@@ -837,6 +862,7 @@ svg {
     padding: 15px 16px;
     border-radius: 16px;
     text-align: center;
+    transition: 0.3s ease;
 }
 
 #nombreInvitado {
@@ -849,6 +875,13 @@ svg {
     margin: 22px 0 28px;
 }
 
+#detalleAsistenciaInvitado {
+    appearance: none;
+    cursor: pointer;
+    background:
+        linear-gradient(135deg, rgba(255,255,255,0.12), rgba(216,107,168,0.08));
+}
+
 #nombreInvitado::placeholder,
 #mensajeInvitado::placeholder {
     color: rgba(255,255,255,0.58);
@@ -856,10 +889,52 @@ svg {
 }
 
 #nombreInvitado:focus,
-#mensajeInvitado:focus {
+#mensajeInvitado:focus,
+#detalleAsistenciaInvitado:focus {
     outline: none;
     border-color: rgba(255, 138, 203, 0.78);
     box-shadow: 0 0 0 3px rgba(216, 107, 168, 0.15);
+}
+
+#nombreInvitado:disabled,
+#mensajeInvitado:disabled,
+#detalleAsistenciaInvitado:disabled {
+    opacity: 0.58;
+    cursor: not-allowed;
+}
+
+.rsvp-field-group {
+    position: relative;
+    margin-top: 24px;
+    text-align: center;
+}
+
+.rsvp-field-group label {
+    display: block;
+    margin-bottom: 12px;
+    color: var(--gold);
+    font-size: 0.74rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.rsvp-field-group::after {
+    content: "⌄";
+    position: absolute;
+    right: 18px;
+    bottom: 14px;
+    color: var(--champagne);
+    font-size: 1rem;
+    pointer-events: none;
+}
+
+.rsvp-field-group.is-disabled {
+    opacity: 0.62;
+}
+
+.rsvp-field-group.is-disabled::after {
+    opacity: 0.45;
 }
 
 .attendance-group {
@@ -888,12 +963,22 @@ svg {
     gap: 8px;
     cursor: pointer;
     font-weight: 600;
+    transition: 0.25s ease;
+}
+
+.attendance-options label:hover {
+    color: var(--champagne);
 }
 
 .attendance-options input {
     width: 18px;
     height: 18px;
     accent-color: var(--hot-pink);
+}
+
+.attendance-options input:disabled + span {
+    opacity: 0.55;
+    cursor: not-allowed;
 }
 
 .btn-rsvp {
@@ -904,6 +989,12 @@ svg {
     opacity: 0.62;
     cursor: not-allowed;
     transform: none;
+    box-shadow: none;
+}
+
+.btn-rsvp:disabled:hover {
+    transform: none;
+    box-shadow: none;
 }
 
 .closing-section {
@@ -1162,13 +1253,13 @@ svg {
     }
 
     .hero-diamonds {
-    opacity: 0.36;
-    animation-duration: 16s;
+        opacity: 0.36;
+        animation-duration: 16s;
     }
 
     .diamond-rain {
-    opacity: 0.50;
-    animation-duration: 13s;
+        opacity: 0.50;
+        animation-duration: 13s;
     }
 
     .main-title {
@@ -1191,7 +1282,25 @@ svg {
         padding: 36px 18px 40px;
     }
 
+    .rsvp-package-label {
+        font-size: 0.6rem;
+        letter-spacing: 0.1em;
+    }
+
+    .rsvp-form {
+        max-width: 100%;
+    }
+
     .attendance-options {
         gap: 16px;
+    }
+
+    .rsvp-field-group label {
+        font-size: 0.68rem;
+        letter-spacing: 0.1em;
+    }
+
+    #detalleAsistenciaInvitado {
+        padding-right: 42px;
     }
 }
