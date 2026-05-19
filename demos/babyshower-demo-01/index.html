@@ -3,13 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>INVYRA | Baby Shower Yeison - Celestial Baby Luxury</title>
+
+    <title>INVYRA | Baby Shower Yeison - Celestial Cradle</title>
 
     <link rel="icon" type="image/jpeg" href="../../LOGO/FAVICON.jpeg" />
-    <link rel="stylesheet" href="style.css?v=1.0.5" />
+    <link rel="stylesheet" href="style.css?v=1.0.0" />
 
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&family=Great+Vibes&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800;900&family=Great+Vibes&display=swap"
       rel="stylesheet"
     />
 
@@ -18,27 +19,28 @@
   </head>
 
   <body>
-    <div id="splash-screen">
-      <div class="splash-night-gradient ambient-layer"></div>
+    <!-- ==============================
+      SPLASH / OPENING
+      Nueva arquitectura limpia:
+      pocas capas, sin blur excesivo ni choques de animación.
+    =============================== -->
 
-      <div class="splash-sky-opening ambient-layer">
-        <div class="sky-opening-glow"></div>
+    <div id="splash-screen" aria-label="Pantalla de bienvenida">
+      <div class="splash-base"></div>
+      <div class="splash-halo"></div>
+      <div class="splash-stars"></div>
+
+      <div class="splash-cloud splash-cloud-left"></div>
+      <div class="splash-cloud splash-cloud-right"></div>
+      <div class="splash-cloud splash-cloud-bottom"></div>
+
+      <div class="splash-cradle">
+        <div class="cradle-moon"></div>
+        <div class="cradle-ring"></div>
+        <div class="cradle-star star-one">✦</div>
+        <div class="cradle-star star-two">✧</div>
+        <div class="cradle-star star-three">✦</div>
       </div>
-
-      <div class="splash-aurora ambient-layer"></div>
-
-      <div class="splash-cloud cloud-one ambient-layer"></div>
-      <div class="splash-cloud cloud-two ambient-layer"></div>
-      <div class="splash-cloud cloud-three ambient-layer"></div>
-
-      <div class="cloud-curtain curtain-left ambient-layer"></div>
-      <div class="cloud-curtain curtain-right ambient-layer"></div>
-      <div class="cloud-curtain curtain-bottom ambient-layer"></div>
-
-      <div class="splash-stars ambient-layer"></div>
-      <div class="splash-constellation ambient-layer"></div>
-      <div class="splash-moon ambient-layer"></div>
-      <div class="splash-soft-glow ambient-layer"></div>
 
       <div class="splash-content">
         <img
@@ -57,8 +59,8 @@
 
         <button
           type="button"
-          onclick="entrarExperiencia()"
           class="btn-start-experience"
+          id="btn-start-experience"
           aria-label="Abrir invitación"
         >
           ABRIR INVITACIÓN
@@ -66,21 +68,25 @@
       </div>
     </div>
 
+    <!-- ==============================
+      INVITACIÓN
+    =============================== -->
+
     <main class="invitation-container">
+      <!-- HERO -->
+
       <header class="hero-section">
-        <div class="hero-night hero-atmosphere ambient-layer"></div>
-        <div class="hero-cloud-reveal hero-atmosphere ambient-layer"></div>
-        <div class="hero-aurora hero-atmosphere ambient-layer"></div>
-        <div class="hero-clouds hero-atmosphere ambient-layer"></div>
-        <div class="hero-starfield hero-atmosphere ambient-layer"></div>
-        <div class="hero-constellation hero-atmosphere ambient-layer"></div>
+        <div class="hero-bg"></div>
+        <div class="hero-sky-glow"></div>
+        <div class="hero-stars"></div>
+        <div class="hero-clouds"></div>
 
-        <div class="hero-moon-wrap hero-atmosphere ambient-layer">
-          <div class="hero-moon"></div>
+        <div class="hero-orbit">
+          <div class="hero-orbit-ring"></div>
+          <span class="orbit-dot dot-one"></span>
+          <span class="orbit-dot dot-two"></span>
+          <span class="orbit-dot dot-three"></span>
         </div>
-
-        <div class="hero-light-beam hero-atmosphere ambient-layer"></div>
-        <div class="hero-veil hero-atmosphere ambient-layer"></div>
 
         <div class="hero-content">
           <img
@@ -112,8 +118,12 @@
         </div>
       </header>
 
+      <!-- BLESSING -->
+
       <section class="blessing-section section-reveal">
-        <div class="section-star-orbit ambient-layer"></div>
+        <div class="section-icon">
+          <span>✦</span>
+        </div>
 
         <p class="section-label">UNA DULCE ESPERA</p>
 
@@ -121,18 +131,20 @@
           El cielo nos regala una nueva ilusión
         </h2>
 
-        <p>
+        <p class="section-copy">
           Hay alegrías que llegan suavemente, como una estrella que ilumina el
           corazón. Muy pronto llegará Yeison, y queremos compartir contigo este
           momento tan especial.
         </p>
       </section>
 
+      <!-- COUNTDOWN -->
+
       <section class="countdown-section section-reveal">
         <p class="section-label">FALTA MUY POCO</p>
 
         <div id="countdown" class="countdown-card celestial-card">
-          <div class="card-glow ambient-layer"></div>
+          <div class="card-shine"></div>
 
           <div class="time-unit">
             <span id="days">00</span>
@@ -155,6 +167,8 @@
           </div>
         </div>
       </section>
+
+      <!-- DETAILS -->
 
       <section class="details-section section-reveal">
         <p class="section-label">DETALLES DEL EVENTO</p>
@@ -184,13 +198,17 @@
         </a>
       </section>
 
+      <!-- THEME -->
+
       <section class="theme-section section-reveal">
         <p class="section-label">TONOS SUGERIDOS</p>
 
         <div class="theme-card celestial-card">
-          <div class="mini-moon-icon ambient-layer"></div>
+          <div class="mini-cradle-icon">
+            <span>☾</span>
+          </div>
 
-          <h2>Celestial Baby Luxury</h2>
+          <h2>Celestial Cradle</h2>
 
           <p>
             Te sugerimos vestir en tonos claros, suaves y elegantes:
@@ -198,20 +216,22 @@
           </p>
 
           <div class="palette-row">
-            <span class="tone tone-cloud"></span>
-            <span class="tone tone-sky"></span>
-            <span class="tone tone-pearl"></span>
-            <span class="tone tone-champagne"></span>
-            <span class="tone tone-gold"></span>
+            <span class="tone tone-cloud" aria-label="Blanco nube"></span>
+            <span class="tone tone-sky" aria-label="Azul cielo"></span>
+            <span class="tone tone-pearl" aria-label="Perla"></span>
+            <span class="tone tone-champagne" aria-label="Champagne"></span>
+            <span class="tone tone-gold" aria-label="Dorado suave"></span>
           </div>
         </div>
       </section>
+
+      <!-- GIFT -->
 
       <section class="gift-section section-reveal">
         <p class="section-label">MESA DE REGALOS</p>
 
         <div class="gift-card celestial-card">
-          <div class="gift-stars ambient-layer"></div>
+          <div class="card-stars"></div>
 
           <h2>Tu cariño es nuestro mejor regalo</h2>
 
@@ -232,11 +252,13 @@
         </div>
       </section>
 
+      <!-- WISHES -->
+
       <section class="wishes-section section-reveal">
         <p class="section-label">LLUVIA DE DESEOS</p>
 
         <div class="wish-card celestial-card">
-          <div class="wish-constellation ambient-layer"></div>
+          <div class="card-stars"></div>
 
           <h2>Deja un deseo para el bebé</h2>
 
@@ -247,9 +269,11 @@
         </div>
       </section>
 
+      <!-- RSVP -->
+
       <footer class="action-section section-reveal">
         <div class="rsvp-card celestial-card">
-          <div class="rsvp-stars ambient-layer"></div>
+          <div class="card-stars"></div>
 
           <h2>Confirma tu asistencia</h2>
 
@@ -306,7 +330,9 @@
                 <option value="1 acompañante">1 acompañante</option>
                 <option value="2 acompañantes">2 acompañantes</option>
                 <option value="3 acompañantes">3 acompañantes</option>
-                <option value="Más de 3 acompañantes">Más de 3 acompañantes</option>
+                <option value="Más de 3 acompañantes">
+                  Más de 3 acompañantes
+                </option>
               </select>
             </div>
 
@@ -319,7 +345,6 @@
               type="button"
               id="btn-confirmar"
               class="btn-rsvp"
-              onclick="confirmarAsistencia()"
             >
               CONFIRMAR ASISTENCIA
             </button>
@@ -340,9 +365,11 @@
       </footer>
     </main>
 
-    <div id="rsvp-modal" class="modal hidden">
+    <!-- MODAL -->
+
+    <div id="rsvp-modal" class="modal hidden" aria-live="polite">
       <div class="modal-content">
-        <div class="modal-stars ambient-layer"></div>
+        <div class="modal-stars"></div>
 
         <h3 id="modal-title">¡TODO LISTO!</h3>
 
@@ -352,10 +379,12 @@
       </div>
     </div>
 
+    <!-- AUDIO -->
+
     <audio id="bg-music" loop>
       <source src="../../music/violin-luxury.mp3" type="audio/mpeg" />
     </audio>
 
-    <script src="script.js?v=1.0.5"></script>
+    <script src="script.js?v=1.0.0"></script>
   </body>
 </html>

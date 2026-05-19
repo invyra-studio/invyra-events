@@ -1,9 +1,9 @@
 /**
  * INVYRA - Baby Shower Demo
- * Version 1.0.4
+ * Version 1.0.0
  * Nivel: Legacy emocional
- * Celestial Baby Luxury
- * Fix: Cloud Reveal unique motion + companions rule + RSVP JSONP
+ * Celestial Cradle Experience
+ * Clean rebuild: stable splash + controlled GSAP + RSVP JSONP
  */
 
 document.body.classList.add("js-enabled");
@@ -19,70 +19,205 @@ const EVENTO_NOMBRE = "Baby Shower de Yeison";
 
 const isMobile = window.matchMedia("(max-width: 768px)").matches;
 let experienceOpening = false;
+let experienceStarted = false;
 
 /* ==============================
-   FALLBACK
+   FALLBACKS
    ============================== */
 
 function revealFallback() {
     document
-        .querySelectorAll(".reveal-item, .reveal-title, .hero-info-card, .section-reveal")
-        .forEach(el => {
-            el.style.opacity = "1";
-            el.style.filter = "blur(0px)";
-            el.style.transform = "none";
+        .querySelectorAll(".reveal-item, .reveal-title, .section-reveal")
+        .forEach(element => {
+            element.style.opacity = "1";
+            element.style.filter = "blur(0px)";
+            element.style.transform = "none";
         });
+}
+
+function safeSetVisible(selector) {
+    document.querySelectorAll(selector).forEach(element => {
+        element.style.opacity = "1";
+        element.style.filter = "blur(0px)";
+        element.style.transform = "none";
+    });
 }
 
 /* ==============================
    SPLASH IDLE MOTION
+   Importante:
+   En móvil NO animamos texto/logo para evitar parpadeo.
    ============================== */
 
 function initSplashIdleMotion() {
     if (typeof gsap === "undefined") return;
 
-    gsap.to(".splash-content", {
-        y: isMobile ? -3 : -8,
-        duration: 5.6,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut"
-    });
+    if (!isMobile) {
+        gsap.to(".splash-content", {
+            y: -6,
+            duration: 5.8,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        });
 
-    gsap.to(".splash-logo", {
-        scale: isMobile ? 1.018 : 1.04,
-        duration: 4.4,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut"
-    });
+        gsap.to(".splash-logo", {
+            scale: 1.035,
+            duration: 4.8,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        });
+    }
 
-    gsap.to(".splash-title", {
-        textShadow:
-            "0 14px 34px rgba(23,40,70,0.14), 0 0 42px rgba(255,255,255,0.64)",
-        duration: 4.2,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut"
-    });
-
-    gsap.to(".sky-opening-glow", {
-        scale: isMobile ? 1.04 : 1.08,
-        opacity: 0.96,
-        duration: 5.8,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut"
-    });
-
-    gsap.to(".cloud-curtain", {
-        y: isMobile ? -6 : -10,
+    gsap.to(".splash-halo", {
+        scale: isMobile ? 1.025 : 1.055,
+        opacity: isMobile ? 0.88 : 0.96,
         duration: 6.2,
         repeat: -1,
         yoyo: true,
-        ease: "sine.inOut",
-        stagger: 0.4
+        ease: "sine.inOut"
     });
+
+    gsap.to(".splash-cradle", {
+        y: isMobile ? -4 : -8,
+        duration: 6.8,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+    });
+
+    gsap.to(".cradle-star", {
+        opacity: 1,
+        scale: 1.12,
+        duration: 3.2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        stagger: 0.35
+    });
+}
+
+function killSplashTweens() {
+    if (typeof gsap === "undefined") return;
+
+    gsap.killTweensOf(".splash-content");
+    gsap.killTweensOf(".splash-logo");
+    gsap.killTweensOf(".splash-halo");
+    gsap.killTweensOf(".splash-cradle");
+    gsap.killTweensOf(".cradle-star");
+}
+
+/* ==============================
+   OPEN EXPERIENCE
+   ============================== */
+
+function finishOpeningExperience() {
+    const splash = document.getElementById("splash-screen");
+
+    if (splash) {
+        splash.style.display = "none";
+        splash.style.opacity = "0";
+        splash.setAttribute("aria-hidden", "true");
+    }
+
+    if (experienceStarted) return;
+
+    experienceStarted = true;
+
+    initHeroReveal();
+    initScrollReveal();
+}
+
+function startMusic() {
+    const music = document.getElementById("bg-music");
+
+    if (!music) return;
+
+    music.volume = 0;
+
+    music.play().catch(error => {
+        console.log("Audio requiere interacción:", error);
+    });
+
+    if (typeof gsap !== "undefined") {
+        gsap.to(music, {
+            volume: 0.32,
+            duration: 4,
+            ease: "power1.inOut"
+        });
+    } else {
+        music.volume = 0.32;
+    }
+}
+
+function entrarExperiencia() {
+    const splash = document.getElementById("splash-screen");
+
+    if (!splash || experienceOpening) return;
+
+    experienceOpening = true;
+    startMusic();
+
+    const emergencyClose = setTimeout(() => {
+        finishOpeningExperience();
+    }, 2600);
+
+    if (typeof gsap === "undefined") {
+        clearTimeout(emergencyClose);
+        finishOpeningExperience();
+        return;
+    }
+
+    killSplashTweens();
+
+    const openTL = gsap.timeline({
+        defaults: {
+            ease: "power3.inOut"
+        },
+        onComplete: () => {
+            clearTimeout(emergencyClose);
+            finishOpeningExperience();
+        }
+    });
+
+    openTL
+        .to(".splash-content", {
+            opacity: 0,
+            y: -18,
+            scale: 0.985,
+            duration: 0.58
+        })
+        .to(".splash-cloud-left", {
+            x: isMobile ? -150 : -210,
+            opacity: 0.22,
+            duration: 0.95
+        }, "-=0.18")
+        .to(".splash-cloud-right", {
+            x: isMobile ? 150 : 210,
+            opacity: 0.22,
+            duration: 0.95
+        }, "<")
+        .to(".splash-cloud-bottom", {
+            y: isMobile ? 130 : 170,
+            opacity: 0.18,
+            duration: 0.95
+        }, "<")
+        .to(".splash-cradle", {
+            y: -24,
+            scale: 1.08,
+            opacity: 0,
+            duration: 0.85
+        }, "-=0.72")
+        .to(".splash-halo", {
+            scale: 1.12,
+            opacity: 0,
+            duration: 0.8
+        }, "<")
+        .to("#splash-screen", {
+            opacity: 0,
+            duration: 0.52
+        }, "-=0.26");
 }
 
 /* ==============================
@@ -91,95 +226,102 @@ function initSplashIdleMotion() {
 
 function initHeroReveal() {
     if (typeof gsap === "undefined") {
-        revealFallback();
+        safeSetVisible(".reveal-item, .reveal-title");
         return;
     }
 
-    const revealTL = gsap.timeline({
-        delay: 0.2,
+    const heroTL = gsap.timeline({
+        delay: 0.12,
         defaults: {
             ease: "power3.out",
-            duration: 1.2
+            duration: 1.08
         }
     });
 
-    revealTL
+    heroTL
         .to(".brand-logo-img", {
             opacity: 1,
             y: 0,
-            filter: "blur(0px)",
-            duration: 1.05
+            filter: "blur(0px)"
         })
         .to(".hero-kicker", {
             opacity: 1,
             y: 0,
-            filter: "blur(0px)",
-            duration: 0.95
+            filter: "blur(0px)"
         }, "-=0.72")
         .to(".reveal-title", {
             opacity: 1,
             y: 0,
             scale: 1,
             filter: "blur(0px)",
-            duration: 1.35
+            duration: 1.25
         }, "-=0.62")
         .to(".hero-phrase", {
             opacity: 1,
             y: 0,
-            filter: "blur(0px)",
-            duration: 1
-        }, "-=0.78")
+            filter: "blur(0px)"
+        }, "-=0.82")
         .to(".hero-info-card", {
             opacity: 1,
             y: 0,
-            filter: "blur(0px)",
-            duration: 1
+            filter: "blur(0px)"
         }, "-=0.72");
 
     initHeroIdleMotion();
 }
 
 /* ==============================
-   HERO IDLE
+   HERO IDLE MOTION
    ============================== */
 
 function initHeroIdleMotion() {
     if (typeof gsap === "undefined") return;
 
     gsap.to(".hero-content", {
-        y: isMobile ? -3 : -8,
-        duration: 5.8,
+        y: isMobile ? -3 : -7,
+        duration: 6.2,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut"
     });
 
-    gsap.to(".main-title", {
-        textShadow:
-            "0 16px 34px rgba(23,40,70,0.14), 0 0 40px rgba(255,255,255,0.68), 0 0 24px rgba(143,199,236,0.30)",
-        duration: 4.2,
+    gsap.to(".hero-sky-glow", {
+        scale: isMobile ? 1.025 : 1.06,
+        opacity: isMobile ? 0.9 : 1,
+        duration: 6.4,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut"
     });
 
-    gsap.to(".hero-phrase", {
-        textShadow:
-            "0 0 26px rgba(255,255,255,0.72), 0 0 22px rgba(230,201,143,0.30)",
-        duration: 4,
+    gsap.to(".hero-orbit", {
+        y: isMobile ? -4 : -8,
+        scale: isMobile ? 1.01 : 1.025,
+        duration: 7,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut"
     });
 
-    gsap.to(".hero-info-card", {
-        boxShadow:
-            "0 28px 82px rgba(23,40,70,0.22), 0 0 42px rgba(143,199,236,0.22), inset 0 0 0 1px rgba(255,255,255,0.48)",
-        duration: 4.6,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut"
-    });
+    if (!isMobile) {
+        gsap.to(".main-title", {
+            textShadow:
+                "0 16px 34px rgba(23,40,70,0.14), 0 0 42px rgba(255,255,255,0.72), 0 0 26px rgba(143,199,236,0.32)",
+            duration: 4.6,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        });
+
+        gsap.to(".hero-info-card", {
+            boxShadow:
+                "0 28px 82px rgba(23,40,70,0.22), 0 0 42px rgba(143,199,236,0.22), inset 0 0 0 1px rgba(255,255,255,0.50)",
+            duration: 4.8,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        });
+    }
 }
 
 /* ==============================
@@ -197,7 +339,7 @@ function initScrollReveal() {
             section,
             {
                 opacity: 0,
-                y: 64,
+                y: 58,
                 filter: "blur(8px)"
             },
             {
@@ -209,7 +351,7 @@ function initScrollReveal() {
                 opacity: 1,
                 y: 0,
                 filter: "blur(0px)",
-                duration: 1.28,
+                duration: 1.18,
                 ease: "power3.out"
             }
         );
@@ -217,13 +359,11 @@ function initScrollReveal() {
 
     if (!isMobile) {
         document
-            .querySelectorAll(
-                ".celestial-card, .detail-card, .theme-card, .gift-card, .wish-card, .rsvp-card, .countdown-card"
-            )
+            .querySelectorAll(".celestial-card, .detail-card, .theme-card, .gift-card, .wish-card, .rsvp-card, .countdown-card")
             .forEach((card, index) => {
                 gsap.to(card, {
-                    y: index % 2 === 0 ? -5 : -3,
-                    duration: 5 + index * 0.12,
+                    y: index % 2 === 0 ? -4 : -2,
+                    duration: 5.4 + index * 0.1,
                     repeat: -1,
                     yoyo: true,
                     ease: "sine.inOut",
@@ -234,188 +374,6 @@ function initScrollReveal() {
 
     ScrollTrigger.refresh();
 }
-
-/* ==============================
-   OPEN EXPERIENCE — CLOUD REVEAL
-   ============================== */
-
-function finishOpeningExperience(splash) {
-    if (!splash) return;
-
-    splash.style.display = "none";
-    splash.style.opacity = "0";
-
-    initHeroReveal();
-    initScrollReveal();
-}
-
-function killSplashTweens() {
-    if (typeof gsap === "undefined") return;
-
-    gsap.killTweensOf(".splash-content");
-    gsap.killTweensOf(".splash-logo");
-    gsap.killTweensOf(".splash-title");
-    gsap.killTweensOf(".sky-opening-glow");
-    gsap.killTweensOf(".cloud-curtain");
-    gsap.killTweensOf(".splash-cloud");
-    gsap.killTweensOf(".splash-moon");
-    gsap.killTweensOf(".splash-soft-glow");
-}
-
-function entrarExperiencia() {
-    const splash = document.getElementById("splash-screen");
-    const music = document.getElementById("bg-music");
-
-    if (!splash) return;
-    if (experienceOpening) return;
-
-    experienceOpening = true;
-    splash.classList.add("opening");
-
-    if (music) {
-        music.volume = 0;
-        music.play().catch(err => console.log("Audio requiere interacción:", err));
-
-        if (typeof gsap !== "undefined") {
-            gsap.to(music, {
-                volume: 0.32,
-                duration: 4,
-                ease: "power1.inOut"
-            });
-        } else {
-            music.volume = 0.32;
-        }
-    }
-
-    const emergencyClose = setTimeout(() => {
-        finishOpeningExperience(splash);
-    }, 3000);
-
-    if (typeof gsap !== "undefined") {
-        killSplashTweens();
-
-        const openTL = gsap.timeline({
-            defaults: {
-                ease: "power3.inOut"
-            },
-            onComplete: () => {
-                clearTimeout(emergencyClose);
-                finishOpeningExperience(splash);
-            }
-        });
-
-        openTL
-            .to(".splash-content", {
-                opacity: 0,
-                y: -22,
-                scale: 0.97,
-                filter: "blur(8px)",
-                duration: 0.62
-            })
-            .to(".curtain-left", {
-                x: isMobile ? -260 : -360,
-                opacity: 0.22,
-                duration: 1.15
-            }, "-=0.28")
-            .to(".curtain-right", {
-                x: isMobile ? 260 : 360,
-                opacity: 0.22,
-                duration: 1.15
-            }, "<")
-            .to(".curtain-bottom", {
-                y: isMobile ? 170 : 220,
-                opacity: 0.12,
-                duration: 1.15
-            }, "<")
-            .to(".splash-cloud.cloud-one", {
-                x: isMobile ? -130 : -180,
-                y: -20,
-                opacity: 0.18,
-                duration: 1
-            }, "-=0.92")
-            .to(".splash-cloud.cloud-two", {
-                x: isMobile ? 130 : 180,
-                y: -20,
-                opacity: 0.18,
-                duration: 1
-            }, "<")
-            .to(".splash-moon", {
-                scale: 1.22,
-                opacity: 0,
-                filter: "blur(12px)",
-                duration: 0.9
-            }, "-=0.72")
-            .to(".splash-soft-glow, .splash-sky-opening", {
-                scale: 1.18,
-                opacity: 0,
-                duration: 0.9
-            }, "<")
-            .to(splash, {
-                opacity: 0,
-                duration: 0.55
-            }, "-=0.30");
-    } else {
-        clearTimeout(emergencyClose);
-        finishOpeningExperience(splash);
-    }
-}
-
-window.entrarExperiencia = entrarExperiencia;
-
-/* ==============================
-   RSVP UI — ACOMPAÑANTES
-   ============================== */
-
-function updateCompanionsState() {
-    const asistenciaSeleccionada = document.querySelector('input[name="asistencia"]:checked');
-    const companionsField = document.getElementById("companions-field");
-    const inputPases = document.getElementById("pasesInvitado");
-
-    if (!asistenciaSeleccionada || !companionsField || !inputPases) return;
-
-    const noAsistira = asistenciaSeleccionada.value === "No asistiré";
-
-    if (noAsistira) {
-        inputPases.value = "Solo yo";
-        inputPases.disabled = true;
-        companionsField.classList.add("is-disabled");
-        inputPases.setAttribute("aria-disabled", "true");
-    } else {
-        inputPases.disabled = false;
-        companionsField.classList.remove("is-disabled");
-        inputPases.setAttribute("aria-disabled", "false");
-    }
-}
-
-function initRsvpControls() {
-    const attendanceRadios = document.querySelectorAll('input[name="asistencia"]');
-
-    attendanceRadios.forEach(radio => {
-        radio.addEventListener("change", updateCompanionsState);
-    });
-
-    updateCompanionsState();
-}
-
-/* ==============================
-   DOM READY
-   ============================== */
-
-document.addEventListener("DOMContentLoaded", () => {
-    const startButton = document.querySelector(".btn-start-experience");
-
-    if (startButton) {
-        startButton.onclick = entrarExperiencia;
-
-        startButton.addEventListener("touchstart", event => {
-            event.preventDefault();
-            entrarExperiencia();
-        }, { passive: false });
-    }
-
-    initSplashIdleMotion();
-    initRsvpControls();
-});
 
 /* ==============================
    COUNTDOWN
@@ -459,8 +417,40 @@ function updateCountdown() {
         .padStart(2, "0");
 }
 
-updateCountdown();
-setInterval(updateCountdown, 1000);
+/* ==============================
+   RSVP UI
+   ============================== */
+
+function updateCompanionsState() {
+    const asistenciaSeleccionada = document.querySelector('input[name="asistencia"]:checked');
+    const companionsField = document.getElementById("companions-field");
+    const inputPases = document.getElementById("pasesInvitado");
+
+    if (!asistenciaSeleccionada || !companionsField || !inputPases) return;
+
+    const noAsistira = asistenciaSeleccionada.value === "No asistiré";
+
+    if (noAsistira) {
+        inputPases.value = "Solo yo";
+        inputPases.disabled = true;
+        inputPases.setAttribute("aria-disabled", "true");
+        companionsField.classList.add("is-disabled");
+    } else {
+        inputPases.disabled = false;
+        inputPases.setAttribute("aria-disabled", "false");
+        companionsField.classList.remove("is-disabled");
+    }
+}
+
+function initRsvpControls() {
+    const attendanceRadios = document.querySelectorAll('input[name="asistencia"]');
+
+    attendanceRadios.forEach(radio => {
+        radio.addEventListener("change", updateCompanionsState);
+    });
+
+    updateCompanionsState();
+}
 
 /* ==============================
    MODAL
@@ -486,23 +476,21 @@ function showModal() {
             ".modal-content",
             {
                 opacity: 0,
-                scale: 0.82,
-                y: 18,
-                filter: "blur(8px)"
+                scale: 0.86,
+                y: 18
             },
             {
                 opacity: 1,
                 scale: 1,
                 y: 0,
-                filter: "blur(0px)",
-                duration: 0.55,
+                duration: 0.5,
                 ease: "back.out(1.7)"
             }
         );
     }
 }
 
-function hideModal(delay = 3800) {
+function hideModal(delay = 4000) {
     const modal = document.getElementById("rsvp-modal");
 
     if (!modal) return;
@@ -566,7 +554,7 @@ function sendRsvpToAppsScript(data) {
 }
 
 /* ==============================
-   RSVP
+   RSVP SUBMIT
    ============================== */
 
 async function confirmarAsistencia() {
@@ -597,7 +585,7 @@ async function confirmarAsistencia() {
         inputNombre.style.border = "1px solid #c99b4a";
 
         setTimeout(() => {
-            inputNombre.style.border = "1px solid rgba(201, 155, 74, 0.30)";
+            inputNombre.style.border = "1px solid rgba(201, 155, 74, 0.32)";
         }, 2000);
 
         return;
@@ -656,18 +644,18 @@ async function confirmarAsistencia() {
 
                 btnConfirmar.innerText = "Asistencia ya registrada";
                 btnConfirmar.disabled = true;
-            }, 3200);
+            }, 3000);
 
             return;
         }
 
-        throw new Error("Respuesta inesperada de Apps Script.");
+        throw new Error(response && response.message ? response.message : "Respuesta inesperada de Apps Script.");
     } catch (error) {
         console.error("Error:", error);
 
         setModalContent(
             "NO SE PUDO REGISTRAR",
-            "No pudimos conectar con el registro. Revisa que el Apps Script esté publicado como aplicación web y con acceso para cualquier usuario."
+            "No pudimos conectar con el registro. Inténtalo nuevamente en unos segundos."
         );
 
         showModal();
@@ -680,6 +668,7 @@ async function confirmarAsistencia() {
 }
 
 window.confirmarAsistencia = confirmarAsistencia;
+window.entrarExperiencia = entrarExperiencia;
 
 /* ==============================
    AUDIO VISIBILITY
@@ -693,9 +682,35 @@ document.addEventListener("visibilitychange", () => {
 
     if (document.hidden) {
         music.pause();
-    } else {
-        if (splash && splash.style.display === "none") {
-            music.play().catch(err => console.log("Error al reanudar:", err));
-        }
+    } else if (splash && splash.style.display === "none") {
+        music.play().catch(error => console.log("Error al reanudar:", error));
     }
+});
+
+/* ==============================
+   DOM READY
+   ============================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+    const startButton = document.getElementById("btn-start-experience");
+    const confirmButton = document.getElementById("btn-confirmar");
+
+    if (startButton) {
+        startButton.addEventListener("click", entrarExperiencia);
+
+        startButton.addEventListener("touchstart", event => {
+            event.preventDefault();
+            entrarExperiencia();
+        }, { passive: false });
+    }
+
+    if (confirmButton) {
+        confirmButton.addEventListener("click", confirmarAsistencia);
+    }
+
+    initSplashIdleMotion();
+    initRsvpControls();
+    updateCountdown();
+
+    setInterval(updateCountdown, 1000);
 });
