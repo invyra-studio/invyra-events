@@ -6,7 +6,7 @@
     <title>INVYRA | Baby Shower Yeison - Celestial Baby Luxury</title>
 
     <link rel="icon" type="image/jpeg" href="../../LOGO/FAVICON.jpeg" />
-    <link rel="stylesheet" href="style.css?v=1.0.1" />
+    <link rel="stylesheet" href="style.css?v=1.0.2" />
 
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&family=Great+Vibes&display=swap"
@@ -19,15 +19,15 @@
 
   <body>
     <div id="splash-screen">
-      <div class="splash-night-gradient"></div>
-      <div class="splash-aurora"></div>
-      <div class="splash-cloud cloud-one"></div>
-      <div class="splash-cloud cloud-two"></div>
-      <div class="splash-cloud cloud-three"></div>
-      <div class="splash-stars"></div>
-      <div class="splash-constellation"></div>
-      <div class="splash-moon"></div>
-      <div class="splash-soft-glow"></div>
+      <div class="splash-night-gradient ambient-layer"></div>
+      <div class="splash-aurora ambient-layer"></div>
+      <div class="splash-cloud cloud-one ambient-layer"></div>
+      <div class="splash-cloud cloud-two ambient-layer"></div>
+      <div class="splash-cloud cloud-three ambient-layer"></div>
+      <div class="splash-stars ambient-layer"></div>
+      <div class="splash-constellation ambient-layer"></div>
+      <div class="splash-moon ambient-layer"></div>
+      <div class="splash-soft-glow ambient-layer"></div>
 
       <div class="splash-content">
         <img
@@ -57,16 +57,18 @@
 
     <main class="invitation-container">
       <header class="hero-section">
-        <div class="hero-night hero-atmosphere"></div>
-        <div class="hero-aurora hero-atmosphere"></div>
-        <div class="hero-clouds hero-atmosphere"></div>
-        <div class="hero-starfield hero-atmosphere"></div>
-        <div class="hero-constellation hero-atmosphere"></div>
-        <div class="hero-moon-wrap hero-atmosphere">
+        <div class="hero-night hero-atmosphere ambient-layer"></div>
+        <div class="hero-aurora hero-atmosphere ambient-layer"></div>
+        <div class="hero-clouds hero-atmosphere ambient-layer"></div>
+        <div class="hero-starfield hero-atmosphere ambient-layer"></div>
+        <div class="hero-constellation hero-atmosphere ambient-layer"></div>
+
+        <div class="hero-moon-wrap hero-atmosphere ambient-layer">
           <div class="hero-moon"></div>
         </div>
-        <div class="hero-light-beam hero-atmosphere"></div>
-        <div class="hero-veil hero-atmosphere"></div>
+
+        <div class="hero-light-beam hero-atmosphere ambient-layer"></div>
+        <div class="hero-veil hero-atmosphere ambient-layer"></div>
 
         <div class="hero-content">
           <img
@@ -99,7 +101,7 @@
       </header>
 
       <section class="blessing-section section-reveal">
-        <div class="section-star-orbit"></div>
+        <div class="section-star-orbit ambient-layer"></div>
 
         <p class="section-label">UNA DULCE ESPERA</p>
 
@@ -118,7 +120,7 @@
         <p class="section-label">FALTA MUY POCO</p>
 
         <div id="countdown" class="countdown-card celestial-card">
-          <div class="card-glow"></div>
+          <div class="card-glow ambient-layer"></div>
 
           <div class="time-unit">
             <span id="days">00</span>
@@ -174,7 +176,7 @@
         <p class="section-label">TONOS SUGERIDOS</p>
 
         <div class="theme-card celestial-card">
-          <div class="mini-moon-icon"></div>
+          <div class="mini-moon-icon ambient-layer"></div>
 
           <h2>Celestial Baby Luxury</h2>
 
@@ -197,7 +199,7 @@
         <p class="section-label">MESA DE REGALOS</p>
 
         <div class="gift-card celestial-card">
-          <div class="gift-stars"></div>
+          <div class="gift-stars ambient-layer"></div>
 
           <h2>Tu cariño es nuestro mejor regalo</h2>
 
@@ -212,9 +214,9 @@
             rel="noopener noreferrer"
             class="secondary-button"
             aria-label="Ver mesa de regalos"
-            >
+          >
             VER MESA DE REGALOS
-        </a>
+          </a>
         </div>
       </section>
 
@@ -222,7 +224,7 @@
         <p class="section-label">LLUVIA DE DESEOS</p>
 
         <div class="wish-card celestial-card">
-          <div class="wish-constellation"></div>
+          <div class="wish-constellation ambient-layer"></div>
 
           <h2>Deja un deseo para el bebé</h2>
 
@@ -235,7 +237,7 @@
 
       <footer class="action-section section-reveal">
         <div class="rsvp-card celestial-card">
-          <div class="rsvp-stars"></div>
+          <div class="rsvp-stars ambient-layer"></div>
 
           <h2>Confirma tu asistencia</h2>
 
@@ -260,12 +262,21 @@
 
               <div class="attendance-options">
                 <label>
-                  <input type="radio" name="asistencia" value="Asistiré" checked />
+                  <input
+                    type="radio"
+                    name="asistencia"
+                    value="Asistiré"
+                    checked
+                  />
                   <span>Asistiré</span>
                 </label>
 
                 <label>
-                  <input type="radio" name="asistencia" value="No asistiré" />
+                  <input
+                    type="radio"
+                    name="asistencia"
+                    value="No asistiré"
+                  />
                   <span>No asistiré</span>
                 </label>
               </div>
@@ -311,7 +322,7 @@
 
     <div id="rsvp-modal" class="modal hidden">
       <div class="modal-content">
-        <div class="modal-stars"></div>
+        <div class="modal-stars ambient-layer"></div>
 
         <h3 id="modal-title">¡TODO LISTO!</h3>
 
@@ -325,6 +336,6 @@
       <source src="../../music/violin-luxury.mp3" type="audio/mpeg" />
     </audio>
 
-    <script src="script.js?v=1.0.1"></script>
+    <script src="script.js?v=1.0.2"></script>
   </body>
 </html>

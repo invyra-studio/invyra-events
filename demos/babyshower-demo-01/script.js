@@ -1,8 +1,9 @@
 /**
  * INVYRA - Baby Shower Demo
- * Version 1.0.1
+ * Version 1.0.2
  * Nivel: Legacy emocional
  * Celestial Baby Luxury
+ * Fix: separación limpia entre CSS ambient animations y GSAP motion
  * RSVP automático por Google Sheets / Apps Script
  */
 
@@ -20,15 +21,15 @@ const TELEFONO_RSVP = "525516986744";
 const FECHA_EVENTO = "Jul 20, 2026 16:00:00";
 const EVENTO_NOMBRE = "Baby Shower de Yeison";
 
+const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
 /* ==============================
-   PREMIUM MOTION HELPERS
+   FALLBACK
    ============================== */
 
 function revealFallback() {
     document
-        .querySelectorAll(
-            ".hero-atmosphere, .reveal-item, .reveal-title, .hero-info-card, .section-reveal"
-        )
+        .querySelectorAll(".reveal-item, .reveal-title, .hero-info-card, .section-reveal")
         .forEach(el => {
             el.style.opacity = "1";
             el.style.filter = "blur(0px)";
@@ -36,11 +37,15 @@ function revealFallback() {
         });
 }
 
+/* ==============================
+   SPLASH MOTION — GSAP SOLO CONTENIDO
+   ============================== */
+
 function initSplashIdleMotion() {
     if (typeof gsap === "undefined") return;
 
     gsap.to(".splash-content", {
-        y: -8,
+        y: isMobile ? -4 : -8,
         duration: 4.8,
         repeat: -1,
         yoyo: true,
@@ -48,8 +53,8 @@ function initSplashIdleMotion() {
     });
 
     gsap.to(".splash-logo", {
-        scale: 1.04,
-        duration: 3.6,
+        scale: isMobile ? 1.025 : 1.04,
+        duration: 3.8,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut"
@@ -58,21 +63,16 @@ function initSplashIdleMotion() {
     gsap.to(".splash-title", {
         textShadow:
             "0 14px 34px rgba(23,40,70,0.14), 0 0 46px rgba(255,255,255,0.72)",
-        duration: 3.4,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut"
-    });
-
-    gsap.to(".splash-moon", {
-        scale: 1.06,
-        opacity: 0.92,
-        duration: 5.2,
+        duration: 3.6,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut"
     });
 }
+
+/* ==============================
+   HERO REVEAL — GSAP SOLO TEXTO / CONTENIDO
+   ============================== */
 
 function initHeroReveal() {
     if (typeof gsap === "undefined") {
@@ -84,52 +84,26 @@ function initHeroReveal() {
         delay: 0.2,
         defaults: {
             ease: "power3.out",
-            duration: 1.25
+            duration: 1.2
         }
     });
 
     revealTL
-        .to(".hero-atmosphere", {
+        .to(".brand-logo-img", {
             opacity: 1,
-            duration: 1.6,
-            stagger: 0.08
+            y: 0,
+            filter: "blur(0px)",
+            duration: 1.05
         })
-        .fromTo(
-            ".hero-moon-wrap",
-            {
-                opacity: 0,
-                y: 28,
-                scale: 0.88,
-                filter: "blur(18px)"
-            },
-            {
-                opacity: 1,
-                y: 0,
-                scale: 1,
-                filter: "blur(0px)",
-                duration: 1.7
-            },
-            "-=1.25"
-        )
-        .to(
-            ".brand-logo-img",
-            {
-                opacity: 1,
-                y: 0,
-                filter: "blur(0px)",
-                duration: 1.1
-            },
-            "-=1.05"
-        )
         .to(
             ".hero-kicker",
             {
                 opacity: 1,
                 y: 0,
                 filter: "blur(0px)",
-                duration: 1
+                duration: 0.95
             },
-            "-=0.82"
+            "-=0.72"
         )
         .to(
             ".reveal-title",
@@ -138,9 +112,9 @@ function initHeroReveal() {
                 y: 0,
                 scale: 1,
                 filter: "blur(0px)",
-                duration: 1.55
+                duration: 1.35
             },
-            "-=0.72"
+            "-=0.62"
         )
         .to(
             ".hero-phrase",
@@ -148,9 +122,9 @@ function initHeroReveal() {
                 opacity: 1,
                 y: 0,
                 filter: "blur(0px)",
-                duration: 1.1
+                duration: 1
             },
-            "-=0.88"
+            "-=0.78"
         )
         .to(
             ".hero-info-card",
@@ -158,29 +132,24 @@ function initHeroReveal() {
                 opacity: 1,
                 y: 0,
                 filter: "blur(0px)",
-                duration: 1.15
+                duration: 1
             },
-            "-=0.82"
+            "-=0.72"
         );
 
     initHeroIdleMotion();
 }
 
+/* ==============================
+   HERO IDLE — GSAP SOLO CONTENIDO
+   ============================== */
+
 function initHeroIdleMotion() {
     if (typeof gsap === "undefined") return;
 
     gsap.to(".hero-content", {
-        y: -8,
-        duration: 5.5,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut"
-    });
-
-    gsap.to(".hero-moon-wrap", {
-        y: -14,
-        scale: 1.04,
-        duration: 6.2,
+        y: isMobile ? -4 : -8,
+        duration: 5.6,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut"
@@ -207,12 +176,16 @@ function initHeroIdleMotion() {
     gsap.to(".hero-info-card", {
         boxShadow:
             "0 28px 82px rgba(23,40,70,0.22), 0 0 42px rgba(143,199,236,0.22), inset 0 0 0 1px rgba(255,255,255,0.48)",
-        duration: 4,
+        duration: 4.2,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut"
     });
 }
+
+/* ==============================
+   SCROLL REVEAL — GSAP SOLO SECCIONES / CARDS
+   ============================== */
 
 function initScrollReveal() {
     if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
@@ -237,42 +210,28 @@ function initScrollReveal() {
                 opacity: 1,
                 y: 0,
                 filter: "blur(0px)",
-                duration: 1.35,
+                duration: 1.28,
                 ease: "power3.out"
             }
         );
     });
 
-    document
-        .querySelectorAll(
-            ".celestial-card, .detail-card, .theme-card, .gift-card, .wish-card, .rsvp-card, .countdown-card"
-        )
-        .forEach((card, index) => {
-            gsap.to(card, {
-                y: index % 2 === 0 ? -6 : -4,
-                duration: 4.8 + index * 0.15,
-                repeat: -1,
-                yoyo: true,
-                ease: "sine.inOut",
-                delay: index * 0.08
+    if (!isMobile) {
+        document
+            .querySelectorAll(
+                ".celestial-card, .detail-card, .theme-card, .gift-card, .wish-card, .rsvp-card, .countdown-card"
+            )
+            .forEach((card, index) => {
+                gsap.to(card, {
+                    y: index % 2 === 0 ? -5 : -3,
+                    duration: 5 + index * 0.12,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut",
+                    delay: index * 0.08
+                });
             });
-        });
-
-    gsap.to(".section-star-orbit", {
-        rotate: 360,
-        duration: 18,
-        repeat: -1,
-        ease: "none"
-    });
-
-    gsap.to(".gift-stars, .wish-constellation, .rsvp-stars", {
-        opacity: 0.78,
-        scale: 1.03,
-        duration: 3.4,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut"
-    });
+    }
 
     ScrollTrigger.refresh();
 }
@@ -317,40 +276,20 @@ function entrarExperiencia() {
         });
 
         openTL
-            .to(".splash-cloud", {
-                x: index => (index % 2 === 0 ? 80 : -80),
-                opacity: 0.18,
-                duration: 0.9,
-                stagger: 0.05
+            .to(".splash-content", {
+                opacity: 0,
+                y: 28,
+                scale: 0.96,
+                filter: "blur(10px)",
+                duration: 0.78
             })
-            .to(
-                ".splash-moon",
-                {
-                    scale: 1.18,
-                    opacity: 0,
-                    filter: "blur(16px)",
-                    duration: 0.9
-                },
-                "-=0.85"
-            )
-            .to(
-                ".splash-content",
-                {
-                    opacity: 0,
-                    y: 28,
-                    scale: 0.96,
-                    filter: "blur(10px)",
-                    duration: 0.75
-                },
-                "-=0.78"
-            )
             .to(
                 splash,
                 {
                     opacity: 0,
-                    duration: 0.7
+                    duration: 0.72
                 },
-                "-=0.25"
+                "-=0.22"
             );
     } else {
         splash.style.display = "none";
@@ -453,15 +392,6 @@ function showModal() {
                 ease: "back.out(1.7)"
             }
         );
-
-        gsap.to(".modal-stars", {
-            opacity: 0.78,
-            scale: 1.04,
-            duration: 2.8,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut"
-        });
     }
 }
 
