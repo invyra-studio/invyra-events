@@ -1325,4 +1325,55 @@ svg {
     .rsvp-card {
         border-radius: 26px;
     }
+
+    /* ==============================
+    MOBILE SPLASH STABILITY FIX
+   ============================== */
+
+    @media (max-width: 768px) {
+    #splash-screen,
+    .splash-base,
+    .splash-halo,
+    .splash-stars,
+    .splash-cloud,
+    .splash-cradle,
+    .splash-content {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+    }
+
+    .splash-halo,
+    .splash-stars,
+    .splash-cloud,
+    .splash-cradle,
+    .cradle-ring,
+    .cradle-star {
+        animation-play-state: paused;
+    }
+
+    #splash-screen.is-ready .splash-halo,
+    #splash-screen.is-ready .splash-stars,
+    #splash-screen.is-ready .splash-cloud,
+    #splash-screen.is-ready .splash-cradle,
+    #splash-screen.is-ready .cradle-ring,
+    #splash-screen.is-ready .cradle-star {
+        animation-play-state: running;
+    }
+
+    .splash-content {
+        transform: none !important;
+        animation: none !important;
+    }
+
+    .splash-logo,
+    .splash-title,
+    .splash-subtitle,
+    .splash-kicker,
+    .btn-start-experience {
+        transform: none !important;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+    }
+    }
 }

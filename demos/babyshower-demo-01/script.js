@@ -1,6 +1,6 @@
 /**
  * INVYRA - Baby Shower Demo
- * Version 1.0.0
+ * Version 1.0.1
  * Nivel: Legacy emocional
  * Celestial Cradle Experience
  * Clean rebuild: stable splash + controlled GSAP + RSVP JSONP
@@ -50,29 +50,39 @@ function safeSetVisible(selector) {
    ============================== */
 
 function initSplashIdleMotion() {
-    if (typeof gsap === "undefined") return;
+    const splash = document.getElementById("splash-screen");
 
-    if (!isMobile) {
-        gsap.to(".splash-content", {
-            y: -6,
-            duration: 5.8,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut"
-        });
-
-        gsap.to(".splash-logo", {
-            scale: 1.035,
-            duration: 4.8,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut"
-        });
+    if (splash) {
+        setTimeout(() => {
+            splash.classList.add("is-ready");
+        }, 450);
     }
 
+    if (typeof gsap === "undefined") return;
+
+    if (isMobile) {
+        return;
+    }
+
+    gsap.to(".splash-content", {
+        y: -6,
+        duration: 5.8,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+    });
+
+    gsap.to(".splash-logo", {
+        scale: 1.035,
+        duration: 4.8,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+    });
+
     gsap.to(".splash-halo", {
-        scale: isMobile ? 1.025 : 1.055,
-        opacity: isMobile ? 0.88 : 0.96,
+        scale: 1.055,
+        opacity: 0.96,
         duration: 6.2,
         repeat: -1,
         yoyo: true,
@@ -80,7 +90,7 @@ function initSplashIdleMotion() {
     });
 
     gsap.to(".splash-cradle", {
-        y: isMobile ? -4 : -8,
+        y: -8,
         duration: 6.8,
         repeat: -1,
         yoyo: true,
