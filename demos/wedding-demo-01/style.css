@@ -727,6 +727,218 @@ svg {
 .tone-sage { background: #A6A88E; }
 .tone-espresso { background: #2B241E; }
 
+
+/* ==============================
+   WEDDING MENU
+   ============================== */
+
+.menu-section {
+    padding: 58px 0 54px;
+}
+
+.wedding-menu-card {
+    position: relative;
+    overflow: hidden;
+    padding: 48px 24px 42px;
+    background:
+        radial-gradient(circle at 50% 0%, rgba(255,255,255,0.78), transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,0.88), rgba(251,248,242,0.96));
+    border: 1px solid rgba(184, 138, 68, 0.32);
+    box-shadow:
+        0 26px 70px rgba(43,36,30,0.16),
+        inset 0 0 0 1px rgba(255,255,255,0.58);
+}
+
+.menu-border {
+    position: absolute;
+    inset: 14px;
+    border: 1px solid rgba(184, 138, 68, 0.54);
+    pointer-events: none;
+}
+
+.menu-border::before {
+    content: "";
+    position: absolute;
+    inset: 7px;
+    border: 1px solid rgba(201, 169, 106, 0.34);
+}
+
+.menu-corner {
+    position: absolute;
+    width: 118px;
+    height: 118px;
+    opacity: 0.42;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse at 50% 82%, rgba(166,168,142,0.34), transparent 52%),
+        linear-gradient(35deg, transparent 42%, rgba(111,115,92,0.50) 43%, transparent 46%),
+        linear-gradient(70deg, transparent 44%, rgba(184,138,68,0.24) 45%, transparent 48%);
+}
+
+.menu-corner-top-left {
+    top: -28px;
+    left: -26px;
+    transform: rotate(20deg);
+}
+
+.menu-corner-top-right {
+    top: -28px;
+    right: -26px;
+    transform: scaleX(-1) rotate(20deg);
+}
+
+.menu-corner-bottom-left {
+    bottom: -28px;
+    left: -26px;
+    transform: scaleY(-1) rotate(20deg);
+}
+
+.menu-corner-bottom-right {
+    bottom: -28px;
+    right: -26px;
+    transform: scale(-1) rotate(20deg);
+}
+
+.menu-floral-top {
+    position: relative;
+    z-index: 2;
+    width: 130px;
+    height: 56px;
+    margin: 0 auto 18px;
+    opacity: 0.78;
+}
+
+.menu-floral-top::before,
+.menu-floral-top::after {
+    content: "";
+    position: absolute;
+    top: 18px;
+    width: 72px;
+    height: 34px;
+    border-radius: 70% 30% 70% 30%;
+    background:
+        linear-gradient(135deg, rgba(166,168,142,0.46), rgba(255,255,255,0.10));
+    border: 1px solid rgba(111,115,92,0.18);
+}
+
+.menu-floral-top::before {
+    left: 0;
+    transform: rotate(-22deg);
+}
+
+.menu-floral-top::after {
+    right: 0;
+    transform: rotate(22deg) scaleX(-1);
+}
+
+.menu-floral-top span {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 1px;
+    height: 58px;
+    background: rgba(111,115,92,0.34);
+    transform: translateX(-50%);
+}
+
+.menu-couple {
+    position: relative;
+    z-index: 2;
+    margin: 0 0 22px;
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(2.3rem, 11vw, 3.8rem);
+    font-weight: 500;
+    color: var(--soft-brown);
+    line-height: 0.9;
+}
+
+.menu-title {
+    position: relative;
+    z-index: 2;
+    margin: 0;
+    font-family: "Cormorant Garamond", serif;
+    color: var(--olive);
+    font-size: clamp(2.1rem, 9vw, 3.2rem);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.menu-divider {
+    position: relative;
+    z-index: 2;
+    width: 190px;
+    height: 24px;
+    margin: 8px auto 34px;
+}
+
+.menu-divider::before,
+.menu-divider::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 78px;
+    height: 1px;
+    background: rgba(111,115,92,0.48);
+}
+
+.menu-divider::before {
+    left: 0;
+}
+
+.menu-divider::after {
+    right: 0;
+}
+
+.menu-divider span {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 9px;
+    height: 9px;
+    background: var(--gold);
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.menu-content {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    gap: 30px;
+}
+
+.menu-block h3 {
+    margin: 0 0 12px;
+    font-family: "Cormorant Garamond", serif;
+    color: var(--soft-brown);
+    font-size: 1.55rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.menu-block p {
+    margin: 6px auto 0;
+    max-width: 360px;
+    color: var(--muted);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.16rem;
+    font-weight: 600;
+    line-height: 1.25;
+    text-transform: uppercase;
+}
+
+.menu-closing {
+    position: relative;
+    z-index: 2;
+    margin: 42px 0 0;
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    color: var(--soft-brown);
+    font-size: 2rem;
+    line-height: 1;
+}
+
 /* ==============================
    ITINERARY / GALLERY / GIFT
    ============================== */
@@ -1288,5 +1500,38 @@ svg {
     .action-section {
         margin-top: 34px;
         margin-bottom: 100px;
+    }
+
+    .wedding-menu-card {
+    padding: 44px 18px 38px;
+    }
+
+    .menu-border {
+    inset: 11px;
+    }
+
+    .menu-corner {
+    width: 96px;
+    height: 96px;
+    }
+
+    .menu-couple {
+    font-size: clamp(2.1rem, 12vw, 3.1rem);
+    }
+
+    .menu-title {
+    font-size: clamp(2rem, 10vw, 2.8rem);
+    }
+
+    .menu-block h3 {
+    font-size: 1.38rem;
+    }
+
+    .menu-block p {
+    font-size: 1.04rem;
+    }
+
+    .menu-closing {
+    font-size: 1.8rem;
     }
 }

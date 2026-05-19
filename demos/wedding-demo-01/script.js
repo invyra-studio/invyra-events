@@ -1,8 +1,8 @@
 /**
  * INVYRA - Wedding Legacy Demo
- * Version 1.0.9
+ * Version 1.0.10
  * Server-side RSVP validation through Google Sheets / Apps Script
- * Update: Longer duplicate RSVP modal display
+ * Update: Adds premium wedding menu section
  */
 
 document.body.classList.add("js-enabled");
