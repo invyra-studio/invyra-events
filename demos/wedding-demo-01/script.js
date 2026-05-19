@@ -1,8 +1,8 @@
 /**
  * INVYRA - Wedding Legacy Demo
- * Version 1.0.10
+ * Version 1.0.11
  * Server-side RSVP validation through Google Sheets / Apps Script
- * Update: Adds premium wedding menu section
+ * Update: Standardized Legacy RSVP flow with attendance detail and menu preference
  */
 
 document.body.classList.add("js-enabled");
@@ -11,7 +11,7 @@ if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
 }
 
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz_CAg1Kl98OU9jgxR82q4vxQnqCe7o1DjoEC1WjZLkgiXbVQpxTgxQHRh4YtRR0HqR/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzW977LTZkwhYL5oXAaTbixYbCVHOtIGyMFz80uZw7HNpKNVdHtRUmooUm0941D1LZR/exec";
 const TELEFONO_RSVP = "525516986744";
 const FECHA_EVENTO = "Feb 14, 2027 17:30:00";
 const EVENTO_NOMBRE = "Boda Aurora & Matteo";
@@ -154,6 +154,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (startButton) {
         startButton.addEventListener("click", entrarExperiencia);
     }
+
+    initRsvpState();
 });
 
 const targetDate = new Date(FECHA_EVENTO).getTime();
@@ -212,6 +214,59 @@ function hideModal(delay = 2800) {
     }, delay);
 }
 
+function initRsvpState() {
+    const radios = document.querySelectorAll('input[name="asistencia"]');
+
+    radios.forEach(radio => {
+        radio.addEventListener("change", actualizarEstadoAsistencia);
+    });
+
+    actualizarEstadoAsistencia();
+}
+
+function actualizarEstadoAsistencia() {
+    const asistenciaSeleccionada = document.querySelector('input[name="asistencia"]:checked');
+    const detalleAsistencia = document.getElementById("detalleAsistenciaInvitado");
+    const menuInvitado = document.getElementById("menuInvitado");
+    const detalleGroup = document.getElementById("detalleAsistenciaGroup");
+    const menuGroup = document.getElementById("menuInvitadoGroup");
+    const btnConfirmar = document.getElementById("btn-confirmar");
+    const rsvpCard = document.querySelector(".rsvp-card");
+
+    const asistencia = asistenciaSeleccionada ? asistenciaSeleccionada.value : "Asistiré";
+    const noAsiste = asistencia === "No asistiré";
+
+    if (detalleAsistencia) {
+        detalleAsistencia.disabled = noAsiste;
+        if (noAsiste) {
+            detalleAsistencia.value = "Ceremonia y recepción";
+        }
+    }
+
+    if (menuInvitado) {
+        menuInvitado.disabled = noAsiste;
+        if (noAsiste) {
+            menuInvitado.value = "Sin preferencia";
+        }
+    }
+
+    if (detalleGroup) {
+        detalleGroup.classList.toggle("is-disabled", noAsiste);
+    }
+
+    if (menuGroup) {
+        menuGroup.classList.toggle("is-disabled", noAsiste);
+    }
+
+    if (rsvpCard) {
+        rsvpCard.classList.toggle("rsvp-not-attending", noAsiste);
+    }
+
+    if (btnConfirmar && !btnConfirmar.disabled) {
+        btnConfirmar.innerText = noAsiste ? "Enviar respuesta" : "Confirmar asistencia";
+    }
+}
+
 function sendRsvpToAppsScript(data) {
     return new Promise((resolve, reject) => {
         const callbackName = `invyraCallback_${Date.now()}_${Math.floor(Math.random() * 10000)}`;
@@ -241,7 +296,9 @@ function sendRsvpToAppsScript(data) {
             nombre: data.nombre,
             asistencia: data.asistencia,
             mensaje: data.mensaje,
-            evento: data.evento
+            evento: data.evento,
+            detalleAsistencia: data.detalleAsistencia,
+            menu: data.menu
         });
 
         script.src = `${SCRIPT_URL}?${params.toString()}`;
@@ -258,11 +315,15 @@ function sendRsvpToAppsScript(data) {
 function bloquearFormularioComoRegistrado() {
     const inputNombre = document.getElementById("nombreInvitado");
     const inputMensaje = document.getElementById("mensajeInvitado");
+    const detalleAsistencia = document.getElementById("detalleAsistenciaInvitado");
+    const menuInvitado = document.getElementById("menuInvitado");
     const btnConfirmar = document.getElementById("btn-confirmar");
     const radios = document.querySelectorAll('input[name="asistencia"]');
 
     if (inputNombre) inputNombre.disabled = true;
     if (inputMensaje) inputMensaje.disabled = true;
+    if (detalleAsistencia) detalleAsistencia.disabled = true;
+    if (menuInvitado) menuInvitado.disabled = true;
 
     radios.forEach(radio => {
         radio.disabled = true;
@@ -274,9 +335,30 @@ function bloquearFormularioComoRegistrado() {
     }
 }
 
+function marcarCampoInvalido(campo) {
+    if (!campo) return;
+
+    if (typeof gsap !== "undefined") {
+        gsap.to(campo, {
+            x: 10,
+            duration: 0.1,
+            repeat: 5,
+            yoyo: true
+        });
+    }
+
+    campo.style.border = "1px solid #b65b5b";
+
+    setTimeout(() => {
+        campo.style.border = "1px solid #111";
+    }, 2000);
+}
+
 async function confirmarAsistencia() {
     const inputNombre = document.getElementById("nombreInvitado");
     const inputMensaje = document.getElementById("mensajeInvitado");
+    const detalleAsistenciaInput = document.getElementById("detalleAsistenciaInvitado");
+    const menuInput = document.getElementById("menuInvitado");
     const asistenciaSeleccionada = document.querySelector('input[name="asistencia"]:checked');
     const btnConfirmar = document.getElementById("btn-confirmar");
 
@@ -286,22 +368,20 @@ async function confirmarAsistencia() {
     const mensajeInvitado = inputMensaje.value.trim();
     const asistencia = asistenciaSeleccionada ? asistenciaSeleccionada.value : "Asistiré";
 
+    const detalleAsistencia = asistencia === "No asistiré"
+        ? "No aplica"
+        : detalleAsistenciaInput
+            ? detalleAsistenciaInput.value.trim()
+            : "Ceremonia y recepción";
+
+    const menu = asistencia === "No asistiré"
+        ? "No aplica"
+        : menuInput
+            ? menuInput.value.trim()
+            : "Sin preferencia";
+
     if (!nombre) {
-        if (typeof gsap !== "undefined") {
-            gsap.to(inputNombre, {
-                x: 10,
-                duration: 0.1,
-                repeat: 5,
-                yoyo: true
-            });
-        }
-
-        inputNombre.style.border = "1px solid #b65b5b";
-
-        setTimeout(() => {
-            inputNombre.style.border = "1px solid #111";
-        }, 2000);
-
+        marcarCampoInvalido(inputNombre);
         return;
     }
 
@@ -313,7 +393,9 @@ async function confirmarAsistencia() {
             nombre,
             asistencia,
             mensaje: mensajeInvitado,
-            evento: EVENTO_NOMBRE
+            evento: EVENTO_NOMBRE,
+            detalleAsistencia,
+            menu
         });
 
         if (response && response.status === "duplicate") {
@@ -348,6 +430,8 @@ async function confirmarAsistencia() {
                 `¡Hola! Confirmo mi respuesta para la boda de Aurora & Matteo.\n\n` +
                 `*Invitado:* ${nombre}\n` +
                 `*Asistencia:* ${asistencia}\n` +
+                `*Confirmación para:* ${detalleAsistencia}\n` +
+                `*Preferencia de menú:* ${menu}\n` +
                 `*Mensaje:* ${mensajeInvitado || "Sin mensaje"}`
             );
 
@@ -376,7 +460,7 @@ async function confirmarAsistencia() {
         showModal();
 
         btnConfirmar.disabled = false;
-        btnConfirmar.innerText = "Confirmar asistencia";
+        btnConfirmar.innerText = asistencia === "No asistiré" ? "Enviar respuesta" : "Confirmar asistencia";
 
         hideModal(3600);
     }

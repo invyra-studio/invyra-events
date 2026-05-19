@@ -1105,7 +1105,9 @@ svg {
 }
 
 #nombreInvitado,
-#mensajeInvitado {
+#mensajeInvitado,
+#detalleAsistenciaInvitado,
+#menuInvitado {
     width: 100%;
     background: #fff;
     border: 1px solid #111;
@@ -1122,6 +1124,40 @@ svg {
     margin-bottom: 28px;
 }
 
+.rsvp-field-group {
+    width: 100%;
+    margin: 24px 0 0;
+    text-align: center;
+}
+
+.rsvp-field-group label {
+    display: block;
+    margin: 0 0 10px;
+    color: #111;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    line-height: 1.5;
+    text-transform: uppercase;
+}
+
+#detalleAsistenciaInvitado,
+#menuInvitado {
+    margin: 0;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image:
+        linear-gradient(45deg, transparent 50%, #111 50%),
+        linear-gradient(135deg, #111 50%, transparent 50%);
+    background-position:
+        calc(100% - 22px) calc(50% + 1px),
+        calc(100% - 16px) calc(50% + 1px);
+    background-size: 6px 6px, 6px 6px;
+    background-repeat: no-repeat;
+    padding-right: 42px;
+}
+
 #mensajeInvitado {
     min-height: 130px;
     resize: vertical;
@@ -1136,10 +1172,34 @@ svg {
 }
 
 #nombreInvitado:focus,
-#mensajeInvitado:focus {
+#mensajeInvitado:focus,
+#detalleAsistenciaInvitado:focus,
+#menuInvitado:focus {
     outline: none;
     border-color: #111;
     box-shadow: 0 0 0 2px rgba(184, 138, 68, 0.16);
+}
+
+#detalleAsistenciaInvitado:disabled,
+#menuInvitado:disabled {
+    background-color: rgba(243, 240, 233, 0.72);
+    border-color: rgba(17, 17, 17, 0.22);
+    color: rgba(17, 17, 17, 0.46);
+    cursor: not-allowed;
+}
+
+.rsvp-field-group.is-disabled label {
+    color: rgba(17, 17, 17, 0.42);
+}
+
+.rsvp-card.rsvp-not-attending {
+    background:
+        radial-gradient(circle at 50% 0%, rgba(184, 138, 68, 0.10), transparent 36%),
+        rgba(255, 255, 255, 0.90);
+}
+
+.rsvp-card.rsvp-not-attending .rsvp-envelope-icon {
+    opacity: 0.72;
 }
 
 .attendance-group {
@@ -1464,13 +1524,29 @@ svg {
     }
 
     #nombreInvitado,
-    #mensajeInvitado {
+    #mensajeInvitado,
+    #detalleAsistenciaInvitado,
+    #menuInvitado {
         text-align: center;
     }
 
     #nombreInvitado::placeholder,
     #mensajeInvitado::placeholder {
         text-align: center;
+    }
+
+    .rsvp-field-group label {
+        font-size: 0.68rem;
+        letter-spacing: 0.1em;
+    }
+
+    #detalleAsistenciaInvitado,
+    #menuInvitado {
+        font-size: 0.88rem;
+        background-position:
+            calc(100% - 20px) calc(50% + 1px),
+            calc(100% - 14px) calc(50% + 1px);
+        padding-right: 38px;
     }
 
     .attendance-group {
