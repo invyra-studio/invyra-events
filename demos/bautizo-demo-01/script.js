@@ -1,15 +1,11 @@
 /**
  * INVYRA - Bautizo Demo 01
- * Version 1.0.4
+ * Version 1.0.5
  * Signature Baptism Experience
  * Splash envelope + RSVP Google Sheets
  */
 
 document.body.classList.add("js-enabled", "splash-active");
-
-/* ==============================
-   CONFIG
-   ============================== */
 
 const RSVP_SCRIPT_URL =
     "https://script.google.com/macros/s/AKfycbwQfL0MtbBi-dyQO0zH9DwHX-_QSAgepdLJsIhGZEebvaXUoNVIT2fI3YJ0pUsQOBMI/exec";
@@ -17,14 +13,9 @@ const RSVP_SCRIPT_URL =
 const EVENT_NAME = "Bautizo de Mateo";
 const RSVP_STORAGE_KEY = "invyra_bautizo_mateo_rsvp";
 const EVENT_DATE = new Date("2026-05-24T12:30:00").getTime();
-
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 let experienceAlreadyOpened = false;
-
-/* ==============================
-   INIT
-   ============================== */
 
 document.addEventListener("DOMContentLoaded", () => {
     initGsapRegistration();
@@ -35,19 +26,11 @@ document.addEventListener("DOMContentLoaded", () => {
     initModalClose();
 });
 
-/* ==============================
-   GSAP
-   ============================== */
-
 function initGsapRegistration() {
     if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
         gsap.registerPlugin(ScrollTrigger);
     }
 }
-
-/* ==============================
-   SPLASH → HERO
-   ============================== */
 
 function entrarExperiencia() {
     const splash = document.getElementById("splash-screen");
@@ -63,25 +46,18 @@ function entrarExperiencia() {
     if (startButton) startButton.disabled = true;
 
     splash.classList.add("opening");
-
     playMusicSafely(music);
 
-    const splashDuration = prefersReducedMotion ? 450 : 3350;
+    const splashDuration = prefersReducedMotion ? 450 : 3200;
 
     window.setTimeout(() => {
         splash.classList.add("is-hidden");
-
         document.body.classList.remove("splash-active");
         document.body.classList.add("experience-opened");
 
-        window.scrollTo({
-            top: 0,
-            behavior: "auto"
-        });
+        window.scrollTo({ top: 0, behavior: "auto" });
 
-        window.setTimeout(() => {
-            revealHero();
-        }, 180);
+        window.setTimeout(revealHero, 180);
 
         window.setTimeout(() => {
             splash.style.display = "none";
@@ -91,17 +67,11 @@ function entrarExperiencia() {
 
 function playMusicSafely(music) {
     if (!music) return;
-
     music.volume = 0.36;
-
     music.play().catch(() => {
         console.warn("La música no pudo iniciar automáticamente.");
     });
 }
-
-/* ==============================
-   HERO REVEAL
-   ============================== */
 
 function revealHero() {
     const heroAtmosphere = document.querySelectorAll(".hero-atmosphere");
@@ -148,10 +118,6 @@ function revealHero() {
     }
 }
 
-/* ==============================
-   COUNTDOWN
-   ============================== */
-
 function initCountdown() {
     const days = document.getElementById("days");
     const hours = document.getElementById("hours");
@@ -187,10 +153,6 @@ function initCountdown() {
     window.setInterval(updateCountdown, 1000);
 }
 
-/* ==============================
-   SCROLL REVEAL
-   ============================== */
-
 function initScrollReveal() {
     const sectionElements = document.querySelectorAll(
         ".section-reveal, .event-card, .timeline-item, .gallery-item"
@@ -207,7 +169,6 @@ function initScrollReveal() {
         entries => {
             entries.forEach(entry => {
                 if (!entry.isIntersecting) return;
-
                 showElement(entry.target);
                 observer.unobserve(entry.target);
             });
@@ -234,7 +195,6 @@ function showElement(element) {
             duration: 0.95,
             ease: "power3.out"
         });
-
         return;
     }
 
@@ -242,10 +202,6 @@ function showElement(element) {
     element.style.transform = "none";
     element.style.filter = "none";
 }
-
-/* ==============================
-   RSVP ATTENDANCE TOGGLE
-   ============================== */
 
 function initAttendanceToggle() {
     const radios = document.querySelectorAll('input[name="asistencia"]');
@@ -283,10 +239,6 @@ function initAttendanceToggle() {
     updateAttendanceFields();
 }
 
-/* ==============================
-   RSVP SUBMIT
-   ============================== */
-
 function confirmarAsistencia() {
     const button = document.getElementById("btn-confirmar");
     const nombreInput = document.getElementById("nombreInvitado");
@@ -298,36 +250,25 @@ function confirmarAsistencia() {
     const nombre = nombreInput ? cleanText(nombreInput.value) : "";
     const asistenciaRaw = asistenciaInput ? cleanText(asistenciaInput.value) : "";
     const asistencia = normalizeAttendanceForAppsScript(asistenciaRaw);
-
     const detalle = detalleInput ? cleanText(detalleInput.value) : "";
     const acompanantesRaw = acompanantesInput ? cleanText(acompanantesInput.value) : "";
     const acompanantes = normalizeGuestsForAppsScript(acompanantesRaw);
-
     const mensaje = mensajeInput ? cleanText(mensajeInput.value) : "";
 
     if (!nombre) {
-        showModal(
-            "Falta tu nombre",
-            "Escribe el nombre del invitado o familia para registrar la confirmación."
-        );
+        showModal("Falta tu nombre", "Escribe el nombre del invitado o familia para registrar la confirmación.");
         highlightField(nombreInput);
         return;
     }
 
     if (!isValidName(nombre)) {
-        showModal(
-            "Revisa el nombre",
-            "El nombre solo debe incluir letras y espacios."
-        );
+        showModal("Revisa el nombre", "El nombre solo debe incluir letras y espacios.");
         highlightField(nombreInput);
         return;
     }
 
     if (!asistencia) {
-        showModal(
-            "Selecciona tu asistencia",
-            "Indica si podrás acompañarnos en este día especial."
-        );
+        showModal("Selecciona tu asistencia", "Indica si podrás acompañarnos en este día especial.");
         return;
     }
 
@@ -354,39 +295,22 @@ function confirmarAsistencia() {
 
             if (response.status === "success") {
                 localStorage.setItem(RSVP_STORAGE_KEY, "true");
-
-                showModal(
-                    "¡Respuesta registrada!",
-                    "Gracias por confirmar. Tu respuesta quedó guardada correctamente."
-                );
-
+                showModal("¡Respuesta registrada!", "Gracias por confirmar. Tu respuesta quedó guardada correctamente.");
                 resetRsvpFields();
                 return;
             }
 
             if (response.status === "duplicate") {
-                showModal(
-                    "Confirmación ya registrada",
-                    "Ya existe una respuesta con ese nombre para este evento. Si necesitas ajustar algo, puedes avisar directamente a los anfitriones."
-                );
+                showModal("Confirmación ya registrada", "Ya existe una respuesta con ese nombre para este evento. Si necesitas ajustar algo, puedes avisar directamente a los anfitriones.");
                 return;
             }
 
-            showModal(
-                "No se pudo registrar",
-                response.message ||
-                    "Hubo un detalle al guardar tu respuesta. Inténtalo nuevamente."
-            );
+            showModal("No se pudo registrar", response.message || "Hubo un detalle al guardar tu respuesta. Inténtalo nuevamente.");
         })
         .catch(error => {
             console.error("Error RSVP:", error);
-
             setButtonLoading(button, false);
-
-            showModal(
-                "Error de conexión",
-                "No pudimos guardar tu confirmación. Revisa tu conexión e inténtalo nuevamente."
-            );
+            showModal("Error de conexión", "No pudimos guardar tu confirmación. Revisa tu conexión e inténtalo nuevamente.");
         });
 }
 
@@ -425,13 +349,10 @@ function submitRsvpToGoogleSheets(data) {
 
         window[callbackName] = response => {
             cleanup();
-
-            resolve(
-                response || {
-                    status: "error",
-                    message: "Respuesta vacía del servidor."
-                }
-            );
+            resolve(response || {
+                status: "error",
+                message: "Respuesta vacía del servidor."
+            });
         };
 
         script.onerror = () => {
@@ -443,10 +364,6 @@ function submitRsvpToGoogleSheets(data) {
         document.body.appendChild(script);
     });
 }
-
-/* ==============================
-   MODAL
-   ============================== */
 
 function showModal(title, message) {
     const modal = document.getElementById("rsvp-modal");
@@ -460,11 +377,9 @@ function showModal(title, message) {
 
     modalTitle.textContent = title;
     modalMessage.textContent = message;
-
     modal.classList.remove("hidden");
 
     window.clearTimeout(showModal.timeout);
-
     showModal.timeout = window.setTimeout(() => {
         modal.classList.add("hidden");
     }, 4200);
@@ -472,7 +387,6 @@ function showModal(title, message) {
 
 function initModalClose() {
     const modal = document.getElementById("rsvp-modal");
-
     if (!modal) return;
 
     modal.addEventListener("click", event => {
@@ -487,10 +401,6 @@ function initModalClose() {
         }
     });
 }
-
-/* ==============================
-   HELPERS
-   ============================== */
 
 function normalizeAttendanceForAppsScript(value) {
     const normalized = cleanText(value).toLowerCase();
@@ -522,9 +432,7 @@ function normalizeAttendanceForAppsScript(value) {
 
 function normalizeGuestsForAppsScript(value) {
     const digits = String(value || "").replace(/\D/g, "");
-
     if (!digits) return "0";
-
     return String(Math.min(Number(digits), 99));
 }
 
@@ -566,16 +474,13 @@ function resetRsvpFields() {
 
 function setButtonLoading(button, isLoading) {
     if (!button) return;
-
     button.disabled = isLoading;
     button.classList.toggle("is-loading", isLoading);
     button.textContent = isLoading ? "Enviando..." : "Confirmar asistencia";
 }
 
 function cleanText(value) {
-    return String(value || "")
-        .trim()
-        .replace(/\s+/g, " ");
+    return String(value || "").trim().replace(/\s+/g, " ");
 }
 
 function isValidName(value) {
@@ -603,9 +508,7 @@ function initImageFallbacks() {
     });
 }
 
-/* ==============================
-   AUDIO VISIBILITY CONTROL
-   ============================== */
+/* AUDIO VISIBILITY CONTROL */
 
 document.addEventListener("visibilitychange", () => {
     const music = document.getElementById("bg-music");
