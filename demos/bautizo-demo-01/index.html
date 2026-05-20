@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>INVYRA | Bautizo de Mateo - Signature Experience</title>
+
+    <meta
+      name="description"
+      content="Demo premium Signature para bautizo creada por INVYRA, con invitación digital animada, música, galería, padrinos, detalles del evento, itinerario y RSVP."
+    />
+
+    <link rel="icon" type="image/jpeg" href="../../LOGO/FAVICON.jpeg" />
+    <link rel="stylesheet" href="style.css?v=1.0.4" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800;900&family=Great+Vibes&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="preload" as="image" href="./assets/bautizo-hero.jpeg" />
+    <link rel="preload" as="image" href="./assets/bautizo-iglesia.jpeg" />
+    <link rel="preload" as="image" href="./assets/bautizo-recepcion.jpeg" />
+    <link rel="preload" as="image" href="./assets/bautizo-mateo.jpeg" />
+    <link rel="preload" as="image" href="./assets/bautizo-familia.jpeg" />
+    <link rel="preload" as="image" href="./assets/bautizo-detalle.jpeg" />
+    <link rel="preload" as="image" href="./assets/bautizo-padrinos.jpeg" />
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"
+      defer
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"
+      defer
+    ></script>
+  </head>
+
+  <body>
+    <div id="splash-screen">
+      <div class="splash-bg-glow"></div>
+      <div class="splash-clouds"></div>
+      <div class="splash-grain"></div>
+      <div class="splash-platinum-ring"></div>
+      <div class="splash-cross cross-one">✦</div>
+      <div class="splash-cross cross-two">✦</div>
+
+      <div class="envelope-stage">
+        <p class="splash-kicker">INVYRA Signature Experience</p>
+
+        <button
+          type="button"
+          class="envelope-trigger"
+          onclick="entrarExperiencia()"
+          aria-label="Abrir invitación de bautizo"
+        >
+          <span class="envelope-shadow"></span>
+
+          <span class="envelope">
+            <span class="envelope-back"></span>
+
+            <span class="envelope-letter">
+              <span class="letter-logo-wrap">
+                <img
+                  src="../../LOGO/FAVICON.jpeg"
+                  alt="INVYRA"
+                  class="letter-logo"
+                />
+              </span>
+
+              <span class="letter-small">Bautizo de</span>
+              <span class="letter-name">Mateo</span>
+              <span class="letter-date">24 · MAY · 2026</span>
+            </span>
+
+            <span class="envelope-front"></span>
+            <span class="envelope-flap"></span>
+            <span class="envelope-seal">✦</span>
+          </span>
+        </button>
+
+        <div class="splash-copy">
+          <p class="splash-pretitle">Invitación digital</p>
+
+          <h1>Bautizo de Mateo</h1>
+
+          <p>Abre el sobre para descubrir la invitación</p>
+        </div>
+
+        <button
+          type="button"
+          class="btn-start-experience"
+          onclick="entrarExperiencia()"
+          aria-label="Abrir invitación"
+        >
+          Abrir invitación
+        </button>
+      </div>
+    </div>
+
+    <main class="invitation-container" id="invitation-content">
+      <header class="hero-section" id="inicio">
+        <div class="hero-bg hero-atmosphere"></div>
+        <div class="hero-cloud hero-cloud-one hero-atmosphere"></div>
+        <div class="hero-cloud hero-cloud-two hero-atmosphere"></div>
+        <div class="hero-light hero-light-one hero-atmosphere"></div>
+        <div class="hero-light hero-light-two hero-atmosphere"></div>
+        <div class="hero-platinum-dust hero-atmosphere"></div>
+        <div class="hero-veil hero-atmosphere"></div>
+
+        <div class="hero-content">
+          <img
+            src="../../LOGO/FAVICON.jpeg"
+            alt="INVYRA"
+            class="brand-logo-img reveal-item"
+          />
+
+          <p class="hero-kicker reveal-item">Con amor y gratitud a Dios</p>
+
+          <h1 class="main-title reveal-title">Mateo</h1>
+
+          <p class="hero-script reveal-item">Mi Bautizo</p>
+
+          <div class="hero-info-card reveal-item">
+            <p class="event-date">24 · MAY · 2026</p>
+
+            <p class="hero-subtitle">
+              Un día lleno de bendición, amor y momentos que quedarán guardados
+              en el corazón de nuestra familia.
+            </p>
+          </div>
+        </div>
+      </header>
+
+      <section class="blessing-section section-reveal">
+        <p class="quote-symbol">✦</p>
+
+        <p class="blessing-text">
+          “Hoy damos gracias por la vida de Mateo y por la bendición de
+          compartir este momento con quienes más queremos.”
+        </p>
+      </section>
+
+      <section class="parents-message-section section-reveal">
+        <p class="section-label">Con cariño</p>
+
+        <h2 class="section-title">Sus papás te invitan</h2>
+
+        <p class="section-copy">
+          Con mucha alegría queremos compartir contigo el bautizo de nuestro
+          pequeño Mateo. Será un día especial para reunirnos en familia,
+          celebrar su vida y acompañarlo en este hermoso inicio de fe.
+        </p>
+
+        <div class="parents-card">
+          <span>Papás de Mateo</span>
+          <p>Valeria Hernández<br />Andrés Castillo</p>
+        </div>
+      </section>
+
+      <section class="countdown-section section-reveal">
+        <p class="section-label">Falta poco para este día</p>
+
+        <div id="countdown" class="countdown-card">
+          <div class="time-unit">
+            <span id="days">00</span>
+            <small>Días</small>
+          </div>
+
+          <div class="time-unit">
+            <span id="hours">00</span>
+            <small>Hrs</small>
+          </div>
+
+          <div class="time-unit">
+            <span id="mins">00</span>
+            <small>Min</small>
+          </div>
+
+          <div class="time-unit">
+            <span id="secs">00</span>
+            <small>Seg</small>
+          </div>
+        </div>
+      </section>
+
+      <section class="details-section section-reveal">
+        <p class="section-label">Detalles del evento</p>
+
+        <div class="event-cards">
+          <article class="event-card">
+            <div class="event-icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64" width="58" height="58" fill="none">
+                <path d="M32 8v12" stroke="currentColor" stroke-width="2" />
+                <path d="M26 14h12" stroke="currentColor" stroke-width="2" />
+                <path
+                  d="M18 54V30l14-10 14 10v24H18Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <path
+                  d="M28 54V42a4 4 0 0 1 8 0v12"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <path d="M22 54h20" stroke="currentColor" stroke-width="2" />
+              </svg>
+            </div>
+
+            <h2>Ceremonia religiosa</h2>
+
+            <p class="event-place">
+              Parroquia de San Miguel Arcángel<br />
+              Tulancingo, Hidalgo
+            </p>
+
+            <p class="event-time">12:30 PM</p>
+
+            <a
+              href="https://maps.app.goo.gl/AMqSzj7HJny9Rwu6A"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="map-button"
+            >
+              Ver ubicación
+            </a>
+          </article>
+
+          <article class="event-card">
+            <div class="event-icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64" width="58" height="58" fill="none">
+                <path
+                  d="M14 48h36"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M18 48V30c0-8 6-14 14-14s14 6 14 14v18"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <path
+                  d="M24 48V34h16v14"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <path
+                  d="M28 24h8"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
+
+            <h2>Recepción familiar</h2>
+
+            <p class="event-place">
+              Jardín Santa Clara<br />
+              Salón Terraza
+            </p>
+
+            <p class="event-time">02:30 PM</p>
+
+            <a
+              href="https://maps.app.goo.gl/caQePDB2eGGmcqtp9"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="map-button"
+            >
+              Ver ubicación
+            </a>
+          </article>
+        </div>
+      </section>
+
+      <section class="godparents-section section-reveal">
+        <p class="section-label">Con especial cariño</p>
+
+        <h2 class="section-title">Padrinos</h2>
+
+        <div class="godparents-card">
+          <div class="godparent-item">
+            <span>Madrina</span>
+            <p>Mariana López</p>
+          </div>
+
+          <div class="godparent-divider"></div>
+
+          <div class="godparent-item">
+            <span>Padrino</span>
+            <p>Daniel Ramírez</p>
+          </div>
+        </div>
+
+        <p class="section-copy">
+          Gracias por acompañar a Mateo con amor, ejemplo y bendición en este
+          momento tan importante.
+        </p>
+      </section>
+
+      <section class="itinerary-section section-reveal">
+        <p class="section-label">Itinerario</p>
+
+        <div class="timeline-card">
+          <div class="timeline-item">
+            <span>12:30</span>
+            <p>Ceremonia religiosa</p>
+          </div>
+
+          <div class="timeline-item">
+            <span>13:30</span>
+            <p>Fotos familiares</p>
+          </div>
+
+          <div class="timeline-item">
+            <span>14:30</span>
+            <p>Recepción</p>
+          </div>
+
+          <div class="timeline-item">
+            <span>15:00</span>
+            <p>Comida</p>
+          </div>
+
+          <div class="timeline-item">
+            <span>17:00</span>
+            <p>Pastel y agradecimiento</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="dress-code-section section-reveal">
+        <p class="section-label">Sugerencia de vestimenta</p>
+
+        <div class="dress-card">
+          <h2>Tonos claros y azul polvo</h2>
+
+          <p>
+            Te sugerimos vestir en blanco perla, tonos claros, azul polvo,
+            gris platino o azul marino. Formal familiar.
+          </p>
+
+          <div class="palette-row" aria-label="Paleta sugerida">
+            <span class="tone tone-pearl"></span>
+            <span class="tone tone-dusty-blue"></span>
+            <span class="tone tone-platinum"></span>
+            <span class="tone tone-soft-gray"></span>
+            <span class="tone tone-navy"></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="gallery-section section-reveal">
+        <p class="section-label">Galería ampliada</p>
+
+        <h2 class="section-title">Momentos para recordar</h2>
+
+        <div class="gallery-grid">
+          <div
+            class="gallery-item gallery-one"
+            role="img"
+            aria-label="Retrato de Mateo"
+          >
+            <span>Mateo</span>
+          </div>
+
+          <div
+            class="gallery-item gallery-two"
+            role="img"
+            aria-label="Familia en bautizo"
+          >
+            <span>Familia</span>
+          </div>
+
+          <div
+            class="gallery-item gallery-three"
+            role="img"
+            aria-label="Detalles del bautizo"
+          >
+            <span>Detalles</span>
+          </div>
+
+          <div
+            class="gallery-item gallery-four"
+            role="img"
+            aria-label="Padrinos del bautizo"
+          >
+            <span>Padrinos</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="gift-section section-reveal">
+        <p class="section-label">Detalle opcional</p>
+
+        <div class="gift-card">
+          <h2>Lluvia de sobres</h2>
+
+          <p>
+            Tu presencia es el regalo más importante. Si deseas tener un detalle
+            con Mateo, puedes hacerlo de forma libre el día del evento.
+          </p>
+        </div>
+      </section>
+
+      <footer class="action-section section-reveal">
+        <div class="rsvp-card">
+          <p class="rsvp-package-label">Experiencia Signature</p>
+
+          <h2>Confirma tu asistencia</h2>
+
+          <div class="ornament-line">
+            <span></span>
+          </div>
+
+          <p class="rsvp-copy">
+            Tu compañía hará este día aún más especial. Ayúdanos confirmando tu
+            asistencia.
+          </p>
+
+          <div class="rsvp-form">
+            <input
+              type="text"
+              id="nombreInvitado"
+              placeholder="Nombre de invitado o familia"
+              autocomplete="off"
+              aria-label="Nombre de invitado o familia"
+            />
+
+            <div class="attendance-group">
+              <p>Confirmo que</p>
+
+              <div class="attendance-options">
+                <label>
+                  <input
+                    type="radio"
+                    name="asistencia"
+                    value="Asistiré"
+                    checked
+                  />
+                  <span>Asistiré</span>
+                </label>
+
+                <label>
+                  <input type="radio" name="asistencia" value="No asistiré" />
+                  <span>No asistiré</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="rsvp-field-group" id="detalleAsistenciaGroup">
+              <label for="detalleAsistenciaInvitado">
+                Confirmo asistencia a
+              </label>
+
+              <select id="detalleAsistenciaInvitado">
+                <option value="Ceremonia y recepción">
+                  Ceremonia y recepción
+                </option>
+                <option value="Solo ceremonia">Solo ceremonia</option>
+                <option value="Solo recepción">Solo recepción</option>
+              </select>
+            </div>
+
+            <div class="rsvp-field-group" id="acompanantesGroup">
+              <label for="acompanantesInvitado">Acompañantes</label>
+
+              <select id="acompanantesInvitado">
+                <option value="0 acompañantes">0 acompañantes</option>
+                <option value="1 acompañante">1 acompañante</option>
+                <option value="2 acompañantes">2 acompañantes</option>
+                <option value="3 acompañantes">3 acompañantes</option>
+                <option value="4 acompañantes">4 acompañantes</option>
+              </select>
+            </div>
+
+            <textarea
+              id="mensajeInvitado"
+              placeholder="Puedes dejar un mensaje para Mateo y su familia (opcional)"
+              aria-label="Mensaje opcional para Mateo y su familia"
+            ></textarea>
+
+            <button
+              type="button"
+              id="btn-confirmar"
+              class="btn-rsvp"
+              onclick="confirmarAsistencia()"
+              aria-label="Confirmar asistencia"
+            >
+              Confirmar asistencia
+            </button>
+          </div>
+        </div>
+
+        <div class="closing-section">
+          <img
+            src="../../LOGO/FAVICON.jpeg"
+            alt="INVYRA"
+            class="closing-logo"
+          />
+
+          <p>Gracias por acompañarnos en este día tan especial.</p>
+
+          <span>Bautizo de Mateo</span>
+        </div>
+      </footer>
+    </main>
+
+    <div id="rsvp-modal" class="modal hidden">
+      <div class="modal-content">
+        <h3 id="modal-title">¡Respuesta registrada!</h3>
+
+        <p id="modal-message">
+          Gracias por confirmar. Tu respuesta quedó guardada correctamente.
+        </p>
+      </div>
+    </div>
+
+    <audio id="bg-music" loop preload="auto">
+      <source src="../../music/violin-luxury.mp3" type="audio/mpeg" />
+    </audio>
+
+    <script src="script.js?v=1.0.4"></script>
+  </body>
+</html>
+    </div>
+
+    <audio id="bg-music" loop preload="auto">
+      <source src="../../music/violin-luxury.mp3" type="audio/mpeg" />
+    </audio>
+
+    <script src="script.js?v=1.0.4"></script>
+  </body>
+</html>
