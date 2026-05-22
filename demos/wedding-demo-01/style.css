@@ -1,4 +1,4 @@
-/* INVYRA - Wedding Legacy Demo | Version 1.0.14 */
+/* INVYRA - Wedding Legacy Demo | Version 1.0.15 */
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap');
 
 :root {
@@ -1089,6 +1089,73 @@ a {
     background-image: url("./assets/wedding-moments.jpeg");
 }
 
+
+/* ==============================
+   GUEST INFO
+   ============================== */
+
+.guest-info-section {
+    padding: 48px 0 54px;
+}
+
+.guest-info-card {
+    position: relative;
+    display: grid;
+    gap: 0;
+    padding: 8px 22px;
+    background:
+        radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.72), transparent 34%),
+        rgba(255, 255, 255, 0.62);
+    border: 1px solid rgba(184, 138, 68, 0.26);
+    box-shadow: 0 24px 68px rgba(43, 36, 30, 0.14);
+}
+
+.guest-info-item {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 16px;
+    align-items: start;
+    padding: 22px 0;
+    border-bottom: 1px solid rgba(184, 138, 68, 0.16);
+    text-align: left;
+}
+
+.guest-info-item:last-child {
+    border-bottom: none;
+}
+
+.guest-info-icon {
+    width: 46px;
+    height: 46px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    color: var(--gold);
+    background: rgba(255, 255, 255, 0.58);
+    border: 1px solid rgba(184, 138, 68, 0.22);
+    box-shadow: 0 12px 28px rgba(43, 36, 30, 0.10);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.35rem;
+    line-height: 1;
+}
+
+.guest-info-item h3 {
+    margin: 0 0 8px;
+    color: var(--espresso);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.55rem;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.guest-info-item p {
+    margin: 0;
+    color: var(--soft-brown);
+    font-size: 0.92rem;
+    font-weight: 600;
+    line-height: 1.65;
+}
+
 /* ==============================
    RSVP
    ============================== */
@@ -1666,6 +1733,31 @@ a {
     .menu-closing {
     font-size: 1.8rem;
     }
+
+    .guest-info-card {
+        padding: 6px 18px;
+    }
+
+    .guest-info-item {
+        grid-template-columns: 42px 1fr;
+        gap: 14px;
+        padding: 20px 0;
+    }
+
+    .guest-info-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.16rem;
+    }
+
+    .guest-info-item h3 {
+        font-size: 1.38rem;
+    }
+
+    .guest-info-item p {
+        font-size: 0.88rem;
+    }
+
 }
 
 .field-warning { animation: fieldShake 0.34s ease; }
