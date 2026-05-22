@@ -1,6 +1,6 @@
 /**
  * INVYRA - Bautizo Demo 01
- * Version 1.0.5
+ * Version 1.0.6
  * Signature Baptism Experience
  * Splash envelope + RSVP Google Sheets
  */
@@ -12,6 +12,7 @@ const RSVP_SCRIPT_URL =
 
 const EVENT_NAME = "Bautizo de Mateo";
 const RSVP_STORAGE_KEY = "invyra_bautizo_mateo_rsvp";
+const RSVP_DRAFT_STORAGE_KEY = "invyra_bautizo_mateo_rsvp_draft";
 const EVENT_DATE = new Date("2026-05-24T12:30:00").getTime();
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -22,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initCountdown();
     initScrollReveal();
     initAttendanceToggle();
+    initRsvpAutosaveRestore();
     initImageFallbacks();
     initModalClose();
 });
@@ -239,6 +241,114 @@ function initAttendanceToggle() {
     updateAttendanceFields();
 }
 
+/* RSVP AUTOSAVE / RESTORE */
+
+function initRsvpAutosaveRestore() {
+    restoreRsvpDraft();
+
+    const fields = getRsvpDraftFields();
+    const radios = document.querySelectorAll('input[name="asistencia"]');
+
+    fields.forEach(field => {
+        if (!field) return;
+        field.addEventListener("input", saveRsvpDraft);
+        field.addEventListener("change", saveRsvpDraft);
+    });
+
+    radios.forEach(radio => {
+        radio.addEventListener("change", saveRsvpDraft);
+    });
+
+    window.addEventListener("pagehide", saveRsvpDraft);
+    window.addEventListener("beforeunload", saveRsvpDraft);
+}
+
+function getRsvpDraftFields() {
+    return [
+        document.getElementById("nombreInvitado"),
+        document.getElementById("detalleAsistenciaInvitado"),
+        document.getElementById("acompanantesInvitado"),
+        document.getElementById("mensajeInvitado")
+    ];
+}
+
+function getRsvpDraftData() {
+    const nombreInput = document.getElementById("nombreInvitado");
+    const detalleInput = document.getElementById("detalleAsistenciaInvitado");
+    const acompanantesInput = document.getElementById("acompanantesInvitado");
+    const mensajeInput = document.getElementById("mensajeInvitado");
+    const asistenciaInput = document.querySelector('input[name="asistencia"]:checked');
+
+    return {
+        nombre: nombreInput ? nombreInput.value : "",
+        asistencia: asistenciaInput ? asistenciaInput.value : "Asistiré",
+        detalle: detalleInput ? detalleInput.value : "",
+        acompanantes: acompanantesInput ? acompanantesInput.value : "",
+        mensaje: mensajeInput ? mensajeInput.value : "",
+        updatedAt: new Date().toISOString()
+    };
+}
+
+function saveRsvpDraft() {
+    const draft = getRsvpDraftData();
+    const hasContent =
+        cleanText(draft.nombre) ||
+        cleanText(draft.mensaje) ||
+        cleanText(draft.detalle) ||
+        cleanText(draft.acompanantes) ||
+        draft.asistencia !== "Asistiré";
+
+    try {
+        if (!hasContent) {
+            localStorage.removeItem(RSVP_DRAFT_STORAGE_KEY);
+            return;
+        }
+
+        localStorage.setItem(RSVP_DRAFT_STORAGE_KEY, JSON.stringify(draft));
+    } catch (error) {
+        console.warn("No se pudo guardar el borrador RSVP:", error);
+    }
+}
+
+function restoreRsvpDraft() {
+    let draft = null;
+
+    try {
+        draft = JSON.parse(localStorage.getItem(RSVP_DRAFT_STORAGE_KEY) || "null");
+    } catch (error) {
+        localStorage.removeItem(RSVP_DRAFT_STORAGE_KEY);
+        return;
+    }
+
+    if (!draft) return;
+
+    const nombreInput = document.getElementById("nombreInvitado");
+    const detalleInput = document.getElementById("detalleAsistenciaInvitado");
+    const acompanantesInput = document.getElementById("acompanantesInvitado");
+    const mensajeInput = document.getElementById("mensajeInvitado");
+    const asistenciaInput = Array.from(
+        document.querySelectorAll('input[name="asistencia"]')
+    ).find(radio => radio.value === (draft.asistencia || "Asistiré"));
+
+    if (nombreInput && draft.nombre) nombreInput.value = draft.nombre;
+    if (detalleInput && draft.detalle) detalleInput.value = draft.detalle;
+    if (acompanantesInput && draft.acompanantes) acompanantesInput.value = draft.acompanantes;
+    if (mensajeInput && draft.mensaje) mensajeInput.value = draft.mensaje;
+
+    if (asistenciaInput) {
+        asistenciaInput.checked = true;
+        asistenciaInput.dispatchEvent(new Event("change"));
+    }
+}
+
+function clearRsvpDraft() {
+    try {
+        localStorage.removeItem(RSVP_DRAFT_STORAGE_KEY);
+    } catch (error) {
+        console.warn("No se pudo limpiar el borrador RSVP:", error);
+    }
+}
+
 function confirmarAsistencia() {
     const button = document.getElementById("btn-confirmar");
     const nombreInput = document.getElementById("nombreInvitado");
@@ -295,6 +405,7 @@ function confirmarAsistencia() {
 
             if (response.status === "success") {
                 localStorage.setItem(RSVP_STORAGE_KEY, "true");
+                clearRsvpDraft();
                 showModal("¡Respuesta registrada!", "Gracias por confirmar. Tu respuesta quedó guardada correctamente.");
                 resetRsvpFields();
                 return;
