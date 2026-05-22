@@ -1,6 +1,6 @@
 /**
  * INVYRA - Wedding Legacy Demo
- * Version 1.0.13
+ * Version 1.0.14
  * Server-side RSVP validation through Google Sheets / Apps Script
  * Update: safer splash flow, local image fallbacks, RSVP autosave/restore and audio visibility control
  */
