@@ -1,8 +1,8 @@
 /**
  * INVYRA - XV Glam Demo
- * Version 1.0.5
+ * Version 1.3.0
  * Nivel: Signature Glam / Legacy visual
- * Update: aligned splash copy, local image fallbacks, RSVP autosave/restore and audio visibility control
+ * Update: Signature Glam runway reveal, cinematic stage transitions, RSVP autosave/restore and audio visibility control
  */
 
 document.body.classList.add("js-enabled", "splash-active");
@@ -55,29 +55,111 @@ function entrarExperiencia() {
 
     if (startButton) startButton.disabled = true;
 
-    splash.classList.add("opening");
-
     playMusicSafely(music);
 
-    const splashDuration = prefersReducedMotion ? 350 : 1050;
-
-    window.setTimeout(() => {
-        splash.classList.add("is-hidden");
-
-        document.body.classList.remove("splash-active");
-        document.body.classList.add("experience-opened");
-
-        window.scrollTo({
-            top: 0,
-            behavior: "auto"
-        });
+    if (prefersReducedMotion || typeof gsap === "undefined") {
+        splash.classList.add("opening");
 
         window.setTimeout(() => {
-            splash.style.display = "none";
-            revealHero();
-            initScrollReveal();
-        }, 780);
-    }, splashDuration);
+            splash.classList.add("is-hidden");
+
+            document.body.classList.remove("splash-active");
+            document.body.classList.add("experience-opened");
+
+            window.scrollTo({
+                top: 0,
+                behavior: "auto"
+            });
+
+            window.setTimeout(() => {
+                splash.style.display = "none";
+                revealHero();
+                initScrollReveal();
+            }, 420);
+        }, 560);
+
+        return;
+    }
+
+    splash.classList.add("opening");
+
+    const openTL = gsap.timeline({
+        defaults: {
+            ease: "power3.inOut"
+        },
+        onComplete: () => {
+            splash.classList.add("is-hidden");
+
+            document.body.classList.remove("splash-active");
+            document.body.classList.add("experience-opened");
+
+            window.scrollTo({
+                top: 0,
+                behavior: "auto"
+            });
+
+            window.setTimeout(() => {
+                splash.style.display = "none";
+                revealHero();
+                initScrollReveal();
+            }, 180);
+        }
+    });
+
+    openTL
+        .to(".splash-diamond-frame", {
+            scale: 1.08,
+            opacity: 0.72,
+            duration: 0.38
+        })
+        .to(".stage-beam", {
+            opacity: 0.95,
+            filter: "blur(8px)",
+            duration: 0.42,
+            stagger: 0.04
+        }, "<")
+        .to(".splash-content", {
+            y: -18,
+            scale: 1.035,
+            filter: "blur(0px)",
+            duration: 0.34
+        }, "<")
+        .to(".curtain-left", {
+            xPercent: -105,
+            rotate: -4,
+            opacity: 0.75,
+            duration: 0.78
+        }, "-=0.02")
+        .to(".curtain-right", {
+            xPercent: 105,
+            rotate: 4,
+            opacity: 0.75,
+            duration: 0.78
+        }, "<")
+        .to(".runway-floor", {
+            opacity: 0,
+            y: 70,
+            scale: 1.08,
+            duration: 0.58
+        }, "-=0.48")
+        .to(".splash-content", {
+            opacity: 0,
+            y: -58,
+            scale: 0.92,
+            filter: "blur(10px)",
+            duration: 0.58
+        }, "-=0.46")
+        .to(".glam-orb, .glitter-layer, .diamond-rain, .stage-beam, .splash-diamond-frame", {
+            opacity: 0,
+            scale: 1.12,
+            duration: 0.48,
+            stagger: 0.02
+        }, "-=0.34")
+        .to("#splash-screen", {
+            opacity: 0,
+            scale: 1.02,
+            duration: 0.36
+        }, "-=0.24");
 }
 
 window.entrarExperiencia = entrarExperiencia;
@@ -110,7 +192,7 @@ function playMusicSafely(music) {
 
 function revealHero() {
     const fallbackElements = document.querySelectorAll(
-        ".hero-atmosphere, .reveal-item, .reveal-title, .hero-info-card"
+        ".hero-atmosphere, .reveal-item, .reveal-title, .hero-info-card, .hero-runway, .hero-light-bars, .hero-diamond-frame, .hero-lens-flare"
     );
 
     if (prefersReducedMotion || typeof gsap === "undefined") {
@@ -129,35 +211,70 @@ function revealHero() {
     revealTL
         .to(".hero-atmosphere", {
             opacity: 1,
-            duration: 1.2
+            duration: 0.78
         })
+        .fromTo(".hero-diamond-frame", {
+            opacity: 0,
+            scale: 0.72,
+            rotate: -4
+        }, {
+            opacity: 1,
+            scale: 1,
+            rotate: 0,
+            duration: 0.92,
+            ease: "power4.out"
+        }, "-=0.45")
+        .to(".hero-lens-flare", {
+            opacity: 1,
+            x: "28%",
+            duration: 0.58,
+            ease: "power2.out"
+        }, "-=0.62")
         .to(".brand-logo-img", {
-            opacity: 1,
-            y: 0,
-            filter: "blur(0px)"
-        }, "-=0.75")
-        .to(".hero-kicker", {
-            opacity: 1,
-            y: 0,
-            filter: "blur(0px)"
-        }, "-=0.8")
-        .to(".reveal-title", {
             opacity: 1,
             y: 0,
             scale: 1,
             filter: "blur(0px)",
-            duration: 1.25
-        }, "-=0.7")
+            duration: 0.72
+        }, "-=0.36")
+        .to(".hero-kicker", {
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+            duration: 0.68
+        }, "-=0.48")
+        .fromTo(".reveal-title", {
+            opacity: 0,
+            y: 62,
+            scale: 1.18,
+            filter: "blur(16px)",
+            letterSpacing: "0.18em"
+        }, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            filter: "blur(0px)",
+            letterSpacing: "0.02em",
+            duration: 1.05,
+            ease: "expo.out"
+        }, "-=0.28")
         .to(".celebrant-name", {
             opacity: 1,
             y: 0,
-            filter: "blur(0px)"
-        }, "-=0.85")
+            filter: "blur(0px)",
+            duration: 0.82
+        }, "-=0.72")
         .to(".hero-info-card", {
             opacity: 1,
             y: 0,
-            filter: "blur(0px)"
-        }, "-=0.8");
+            filter: "blur(0px)",
+            duration: 0.78
+        }, "-=0.58")
+        .to(".hero-lens-flare", {
+            opacity: 0,
+            x: "70%",
+            duration: 0.8
+        }, "-=0.56");
 
     gsap.to(".hero-content", {
         y: -6,
@@ -165,6 +282,25 @@ function revealHero() {
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut"
+    });
+
+    gsap.to(".hero-diamond-frame", {
+        scale: 1.025,
+        opacity: 0.86,
+        duration: 4.8,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+    });
+
+    gsap.to(".hero-runway span", {
+        opacity: 0.82,
+        y: -8,
+        duration: 2.8,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        stagger: 0.16
     });
 
     if (typeof ScrollTrigger !== "undefined") {
