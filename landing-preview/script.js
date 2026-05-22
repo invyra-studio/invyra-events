@@ -1,6 +1,6 @@
 /**
  * INVYRA - Landing Page
- * Version preview-1.0.11
+ * Version preview-1.0.10
  * Premium Digital Events
  */
 document.body.classList.add("js-enabled");
@@ -263,6 +263,16 @@ function getQuoteDraftData(form) {
 function saveQuoteDraft(form) {
     try {
         const draft = getQuoteDraftData(form);
+        const hasContent = Object.values(draft).some(value => {
+            if (Array.isArray(value)) return value.length > 0;
+            return String(value || "").trim().length > 0;
+        });
+
+        if (!hasContent) {
+            clearQuoteDraft();
+            return;
+        }
+
         localStorage.setItem(QUOTE_FORM_STORAGE_KEY, JSON.stringify(draft));
     } catch (error) {
         console.warn("No se pudo guardar el borrador de cotización:", error);
@@ -324,10 +334,10 @@ function initQuoteForm() {
         }
         setFormLoading(true, submitButton);
         try {
-            showFormFeedback("Registrando tu solicitud...", "warning");
+            showFormFeedback("Preparando tu solicitud de experiencia...", "warning");
             const response = await submitLeadToGoogleSheets(leadData);
             if (response.status === "success") {
-                showFormFeedback("Solicitud registrada. Abriendo WhatsApp...", "success");
+                showFormFeedback("Solicitud registrada. Abriendo WhatsApp para continuar la cotización...", "success");
                 setTimeout(() => {
                     window.open(buildWhatsAppUrl(buildWhatsappMessage(leadData)), "_blank");
                     resetQuoteForm(form);
@@ -388,7 +398,7 @@ function validateLeadData(data) {
     if (!data.tipoEvento) missingFields.push("eventType");
     if (!data.paquete) missingFields.push("packageType");
     if (missingFields.length) {
-        return { isValid: false, fields: missingFields, message: "Completa nombre, WhatsApp, tipo de evento y paquete de interés." };
+        return { isValid: false, fields: missingFields, message: "Completa nombre, WhatsApp, tipo de evento y nivel de experiencia de interés." };
     }
     if (!isValidName(data.nombre)) {
         return { isValid: false, fields: ["clientName"], message: "El nombre solo debe incluir letras y espacios." };
@@ -445,18 +455,20 @@ function submitLeadToGoogleSheets(data) {
 function buildWhatsappMessage(data) {
     const formattedDate = formatDate(data.fechaEvento);
     return (
-        `Hola INVYRA, quiero cotizar una invitación digital.\n\n` +
+        `Hola INVYRA, quiero cotizar una experiencia digital.\n\n` +
+        `*Solicitud:* Briefing inicial de cotización\n` +
         `*Nombre:* ${data.nombre || "No especificado"}\n` +
         `*WhatsApp:* ${data.whatsapp || "No especificado"}\n` +
         `*Correo:* ${data.correo || "No especificado"}\n` +
         `*Tipo de evento:* ${data.tipoEvento || "No especificado"}\n` +
         `*Fecha del evento:* ${formattedDate || "No definida"}\n` +
         `*Ciudad / zona:* ${data.ciudadLugar || "No especificado"}\n` +
-        `*Paquete de interés:* ${data.paquete || "No especificado"}\n` +
-        `*Adicionales:* ${data.adicionales || "No especificado"}\n` +
-        `*Colores / temática:* ${data.coloresTematica || "No definido"}\n` +
-        `*Idea del evento:* ${data.ideaEvento || "Sin detalles adicionales"}\n` +
-        `*Cómo conocí INVYRA:* ${data.comoConocio || "No especificado"}`
+        `*Nivel de experiencia de interés:* ${data.paquete || "No especificado"}\n` +
+        `*Adicionales de interés:* ${data.adicionales || "No especificado"}\n` +
+        `*Estilo visual / temática:* ${data.coloresTematica || "No definido"}\n` +
+        `*Objetivo o idea del evento:* ${data.ideaEvento || "Sin detalles adicionales"}\n` +
+        `*Cómo conocí INVYRA:* ${data.comoConocio || "No especificado"}\n\n` +
+        `Me gustaría que me orienten para elegir la opción que mejor se adapte al evento.`
     );
 }
 
@@ -507,7 +519,7 @@ function setFormLoading(isLoading, submitButton) {
     form.classList.toggle("is-submitting", isLoading);
     submitButton.disabled = isLoading;
     submitButton.classList.toggle("is-loading", isLoading);
-    submitButton.textContent = isLoading ? "Enviando solicitud..." : "Enviar mi idea";
+    submitButton.textContent = isLoading ? "Enviando solicitud..." : "Solicitar orientación";
 }
 
 function resetQuoteForm(form) {

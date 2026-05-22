@@ -2651,283 +2651,145 @@ body.nav-open .nav-toggle span:last-child {
 
 
 /* ==============================
-   RESPONSIVE HOTFIX — PREVIEW 1.0.11
-   Corrige hero móvil/tablet y evita áreas vacías laterales.
+   ACTIVITY 15 — CONVERSION / QUOTE FLOW
+   Version preview-1.0.12
+   WhatsApp como cierre humano + formulario como briefing premium.
    ============================== */
 
-html,
-body {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: clip;
+.quote-card {
+    position: relative;
+    overflow: hidden;
 }
 
-main,
-section,
-.site-header,
-.site-footer {
-    max-width: 100%;
+.quote-card::before {
+    content: "";
+    position: absolute;
+    inset: 18px;
+    border: 1px solid rgba(184,135,60,0.16);
+    border-radius: 28px;
+    pointer-events: none;
 }
 
-.hero-section,
-.hero-content,
-.hero-card,
-.hero-card-inner,
-.quote-card,
-.image-showcase,
-.package-cards,
-.demos-grid,
-.process-grid,
-.problem-solution-grid,
-.include-feature-grid {
-    min-width: 0;
+.quote-content,
+.quote-form {
+    position: relative;
+    z-index: 2;
 }
 
-@media (max-width: 1080px) {
-    .hero-section {
-        min-height: auto;
-        grid-template-columns: minmax(0, 1fr);
-        justify-items: center;
-        gap: 38px;
-        padding: 132px 0 76px;
-        text-align: center;
-    }
+.quote-paths {
+    display: grid;
+    gap: 12px;
+    margin-top: 28px;
+}
 
-    .hero-content {
-        width: 100%;
-        max-width: 760px;
-        margin: 0 auto;
-    }
+.quote-paths article {
+    position: relative;
+    display: grid;
+    grid-template-columns: 42px 1fr;
+    gap: 14px;
+    align-items: start;
+    padding: 16px;
+    border: 1px solid rgba(184,135,60,0.20);
+    border-radius: 20px;
+    background:
+        radial-gradient(circle at 12% 0%, rgba(255,255,255,0.72), transparent 32%),
+        rgba(255,255,255,0.44);
+    box-shadow:
+        0 14px 34px rgba(36,29,24,0.07),
+        inset 0 0 0 1px rgba(255,255,255,0.34);
+}
 
-    .hero-title,
-    .hero-subtitle,
-    .hero-copy {
-        max-width: 720px;
-        margin-left: auto;
-        margin-right: auto;
-    }
+.quote-paths article span {
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    color: var(--gold-deep);
+    border: 1px solid rgba(184,135,60,0.28);
+    background: rgba(255,255,255,0.58);
+    font-size: 0.72rem;
+    font-weight: 900;
+}
 
-    .hero-actions,
-    .hero-proof {
-        justify-content: center;
-    }
+.quote-paths article strong {
+    display: block;
+    color: var(--espresso);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+}
 
-    .hero-card {
-        width: min(100%, 560px);
-        margin: 0 auto;
-    }
+.quote-paths article p {
+    grid-column: 2;
+    margin: -8px 0 0;
+    color: var(--taupe);
+    font-size: 0.84rem;
+    font-weight: 650;
+    line-height: 1.55;
+}
+
+.quote-form {
+    border-color: rgba(184,135,60,0.28);
+}
+
+.form-submit {
+    min-height: 56px;
+    color: var(--cream);
+    background:
+        linear-gradient(135deg, var(--espresso), #3a2c24);
+    border-color: rgba(184,135,60,0.34);
+    box-shadow: 0 18px 42px rgba(36,29,24,0.16);
+}
+
+.form-submit:hover {
+    color: var(--cream);
+    background:
+        linear-gradient(135deg, var(--espresso), var(--gold-deep));
+    box-shadow:
+        0 22px 54px rgba(36,29,24,0.19),
+        0 0 34px rgba(184,135,60,0.16);
+}
+
+.floating-whatsapp {
+    background:
+        linear-gradient(135deg, #1f7a44, #145c32);
 }
 
 @media (max-width: 820px) {
-    body {
-        background:
-            radial-gradient(circle at 50% 0%, rgba(255,255,255,0.78), transparent 30%),
-            linear-gradient(180deg, #fffaf3 0%, #f8f1e6 56%, #ead8bd 100%);
-    }
-
-    section,
-    .site-footer {
-        width: min(calc(100% - 28px), 1180px);
-    }
-
-    .site-header {
-        width: calc(100% - 24px);
-        left: 12px;
-        right: 12px;
-        transform: none;
-    }
-
-    .hero-section {
-        width: min(calc(100% - 28px), 760px);
-        padding-top: 118px;
-        padding-bottom: 64px;
-        gap: 30px;
-    }
-
-    .hero-decoration {
-        width: 150px;
-        height: 280px;
-        opacity: 0.28;
-    }
-
-    .hero-decoration-left {
-        left: -96px;
-        top: 18%;
-    }
-
-    .hero-decoration-right {
-        right: -104px;
-        bottom: 12%;
-    }
-
-    .hero-title {
-        max-width: 620px;
-        font-size: clamp(3rem, 12.6vw, 4.6rem);
-        line-height: 0.98;
-    }
-
-    .hero-subtitle {
-        max-width: 620px;
-        margin-top: 22px;
-        font-size: clamp(1.55rem, 7.2vw, 2.25rem);
-        line-height: 1.08;
-    }
-
-    .hero-copy {
-        max-width: 590px;
-        margin-top: 20px;
-    }
-
-    .hero-card {
-        width: min(100%, 500px);
-        padding: 10px;
-        border-radius: 28px;
-    }
-
-    .hero-card::before {
-        inset: 18px;
+    .quote-card::before {
+        inset: 12px;
         border-radius: 22px;
     }
 
-    .hero-card-inner {
-        min-height: 360px;
-        padding: 34px 22px;
-        border-radius: 22px;
-    }
-
-    .hero-card-logo {
-        width: 76px;
-        margin-bottom: 20px;
-    }
-
-    .hero-card h2 {
-        font-size: clamp(2rem, 8.8vw, 3rem);
-    }
-
-    .hero-card-list {
+    .quote-paths {
         margin-top: 24px;
-        gap: 8px;
     }
 
-    .packages-section,
-    .extras-section,
-    .demos-section,
-    .process-section,
-    .faq-section,
-    .quote-form-section,
-    .final-cta-section,
-    .problem-section,
-    .include-section {
-        padding: 72px 0;
-    }
-
-    .intro-section {
-        padding: 68px 0 54px;
+    .quote-paths article {
+        text-align: left;
     }
 }
 
 @media (max-width: 560px) {
-    section,
-    .site-footer {
-        width: min(calc(100% - 24px), 1180px);
+    .quote-paths article {
+        grid-template-columns: 36px 1fr;
+        padding: 14px;
+        border-radius: 18px;
     }
 
-    .hero-section {
-        width: min(calc(100% - 24px), 560px);
-        padding-top: 108px;
-        padding-bottom: 56px;
-    }
-
-    .eyebrow,
-    .section-kicker {
+    .quote-paths article span {
+        width: 34px;
+        height: 34px;
         font-size: 0.68rem;
-        letter-spacing: 0.13em;
     }
 
-    .hero-title {
-        font-size: clamp(2.75rem, 13.6vw, 4.05rem);
-        line-height: 0.98;
+    .quote-paths article strong {
+        font-size: 1.34rem;
     }
 
-    .hero-subtitle {
-        font-size: clamp(1.42rem, 7.6vw, 2.02rem);
-    }
-
-    .hero-copy,
-    .section-copy {
-        font-size: 0.92rem;
-        line-height: 1.68;
-    }
-
-    .hero-actions {
-        gap: 12px;
-        margin-top: 30px;
-    }
-
-    .hero-proof {
-        display: grid;
-        grid-template-columns: 1fr;
-        width: 100%;
-        margin-top: 24px;
-    }
-
-    .hero-proof span {
-        width: 100%;
-        justify-content: center;
-        text-align: center;
-    }
-
-    .hero-card-inner {
-        min-height: 340px;
-        padding: 30px 18px;
-    }
-
-    .hero-card-list {
+    .quote-paths article p {
         font-size: 0.8rem;
-    }
-
-    .section-heading {
-        margin-bottom: 32px;
-    }
-
-    .include-feature-card,
-    .problem-card,
-    .package-mini-card,
-    .demo-card,
-    .process-card {
-        padding: 24px 18px;
-    }
-
-    .demos-grid,
-    .package-cards,
-    .process-grid,
-    .problem-solution-grid,
-    .include-feature-grid {
-        gap: 18px;
-    }
-
-    .floating-whatsapp {
-        right: 12px;
-        bottom: 12px;
-    }
-}
-
-@media (max-width: 390px) {
-    .brand-text span {
-        font-size: 1.18rem;
-    }
-
-    .hero-title {
-        font-size: clamp(2.45rem, 14vw, 3.45rem);
-    }
-
-    .hero-subtitle {
-        font-size: clamp(1.28rem, 7.8vw, 1.82rem);
-    }
-
-    .btn {
-        min-height: 50px;
-        padding: 0 18px;
-        font-size: 0.7rem;
     }
 }

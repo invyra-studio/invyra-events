@@ -12,7 +12,7 @@
     />
 
     <link rel="icon" type="image/jpeg" href="../LOGO/FAVICON.jpeg" />
-    <link rel="stylesheet" href="./style.css?v=preview-1.0.11" />
+    <link rel="stylesheet" href="./style.css?v=preview-1.0.10" />
 
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800;900&family=Great+Vibes&display=swap"
@@ -27,7 +27,7 @@
       src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"
       defer
     ></script>
-    <script src="./script.js?v=preview-1.0.11" defer></script>
+    <script src="./script.js?v=preview-1.0.10" defer></script>
   </head>
 
   <body>
@@ -92,17 +92,22 @@
           </p>
 
           <div class="hero-actions reveal-item">
-            <a href="#demos" class="btn btn-primary">Vivir la experiencia</a>
+            <a href="#cotizar" class="btn btn-primary">Cotizar mi experiencia</a>
 
-            <a href="#cotizar" class="btn btn-secondary">
-              Crear mi invitación
+            <a
+              href="https://wa.me/525535690278?text=Hola%20INVYRA%2C%20me%20gustar%C3%ADa%20cotizar%20una%20experiencia%20digital%20para%20mi%20evento."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-secondary"
+            >
+              Hablar por WhatsApp
             </a>
           </div>
 
           <div class="hero-proof reveal-item">
-            <span>Emociona</span>
-            <span>Informa</span>
-            <span>Organiza</span>
+            <span>Cotización guiada</span>
+            <span>WhatsApp directo</span>
+            <span>Entrega online</span>
           </div>
         </div>
 
@@ -618,25 +623,40 @@
       <section class="quote-form-section section-reveal" id="cotizar">
         <div class="quote-card">
           <div class="quote-content">
-            <p class="section-kicker">Cotización</p>
+            <p class="section-kicker">Solicitud de experiencia</p>
 
             <h2 class="section-title">
-              Cuéntanos tu idea y creemos algo memorable.
+              Cuéntanos tu evento y te guiamos con la mejor opción.
             </h2>
 
             <p class="section-copy">
-              Comparte los datos principales de tu evento y te orientamos para
-              elegir el paquete, estilo y adicionales que mejor se adapten a lo
-              que quieres lograr.
+              Completa este briefing para recibir una orientación más clara sobre
+              el nivel de experiencia, estilo visual y detalles clave que mejor
+              se adapten a tu celebración. Si prefieres algo más rápido, también
+              puedes continuar directo por WhatsApp.
             </p>
 
+            <div class="quote-paths" aria-label="Formas de cotizar INVYRA">
+              <article>
+                <span>01</span>
+                <strong>Formulario guiado</strong>
+                <p>Ideal si ya tienes datos del evento y quieres una cotización más ordenada.</p>
+              </article>
+
+              <article>
+                <span>02</span>
+                <strong>WhatsApp directo</strong>
+                <p>Perfecto si quieres resolver dudas o aterrizar tu idea conversando.</p>
+              </article>
+            </div>
+
             <a
-              href="https://wa.me/525535690278?text=Hola%20INVYRA%2C%20quiero%20crear%20mi%20experiencia%20digital.%20Me%20gustar%C3%ADa%20cotizar%20una%20invitaci%C3%B3n."
+              href="https://wa.me/525535690278?text=Hola%20INVYRA%2C%20quiero%20cotizar%20una%20experiencia%20digital.%20Me%20gustar%C3%ADa%20que%20me%20orientaran%20para%20elegir%20el%20paquete%20ideal."
               target="_blank"
               rel="noopener noreferrer"
               class="btn btn-primary"
             >
-              Crear mi experiencia
+              Hablar por WhatsApp
             </a>
           </div>
 
@@ -656,7 +676,7 @@
             </div>
 
             <div class="form-row">
-              <label for="clientPhone">WhatsApp</label>
+              <label for="clientPhone">Cotizar</label>
               <input
                 type="tel"
                 id="clientPhone"
@@ -714,7 +734,7 @@
             </div>
 
             <div class="form-row">
-              <label for="packageType">Paquete de interés</label>
+              <label for="packageType">Nivel de experiencia de interés</label>
               <select id="packageType" name="packageType" required>
                 <option value="">Selecciona una opción</option>
                 <option value="Esencial">Essential Experience</option>
@@ -826,20 +846,20 @@
             </div>
 
             <div class="form-row">
-              <label for="themeColors">Colores o temática deseada</label>
+              <label for="themeColors">Estilo visual o temática deseada</label>
               <textarea
                 id="themeColors"
                 name="themeColors"
-                placeholder="Ej. dorado y negro, celestial, floral, elegante, infantil... o escribe: Aún no lo decido."
+                placeholder="Ej. dorado y negro, celestial, floral, editorial, elegante, infantil... o escribe: Aún no lo decido."
               ></textarea>
             </div>
 
             <div class="form-row">
-              <label for="eventIdea">Cuéntanos tu idea</label>
+              <label for="eventIdea">Cuéntanos qué quieres lograr</label>
               <textarea
                 id="eventIdea"
                 name="eventIdea"
-                placeholder="Cuéntanos qué tienes en mente, qué te gustaría transmitir o qué detalles no pueden faltar."
+                placeholder="Cuéntanos qué quieres transmitir, qué detalles no pueden faltar y si tienes referencias de estilo o necesidades especiales."
               ></textarea>
             </div>
 
@@ -849,7 +869,7 @@
                 <option value="">Selecciona una opción</option>
                 <option value="TikTok">TikTok</option>
                 <option value="Instagram">Instagram</option>
-                <option value="WhatsApp">WhatsApp</option>
+                <option value="WhatsApp">Cotizar</option>
                 <option value="Recomendación">Recomendación</option>
                 <option value="Página web">Página web</option>
                 <option value="Otro">Otro</option>
@@ -857,7 +877,7 @@
             </div>
 
             <button type="submit" class="btn btn-secondary form-submit">
-              Enviar mi idea
+              Solicitar orientación
             </button>
           </form>
         </div>
@@ -873,12 +893,12 @@
         </h2>
 
         <a
-          href="https://wa.me/525535690278?text=Hola%20INVYRA%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20invitaciones%20digitales."
+          href="https://wa.me/525535690278?text=Hola%20INVYRA%2C%20quiero%20cotizar%20una%20experiencia%20digital%20para%20mi%20evento."
           target="_blank"
           rel="noopener noreferrer"
           class="btn btn-primary"
         >
-          Empezar mi experiencia
+          Cotizar mi experiencia
         </a>
       </section>
     </main>
@@ -930,7 +950,7 @@
     </footer>
 
     <a
-      href="https://wa.me/525535690278?text=Hola%20INVYRA%2C%20me%20gustar%C3%ADa%20cotizar%20una%20invitaci%C3%B3n%20digital."
+      href="https://wa.me/525535690278?text=Hola%20INVYRA%2C%20me%20gustar%C3%ADa%20cotizar%20una%20experiencia%20digital%20para%20mi%20evento."
       target="_blank"
       rel="noopener noreferrer"
       class="floating-whatsapp"
