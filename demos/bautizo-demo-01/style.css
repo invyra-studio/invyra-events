@@ -112,16 +112,16 @@ a {
     ),
     linear-gradient(160deg, #fffdf8 0%, #eef4f7 45%, #d8e4eb 100%);
   transition:
-    opacity 0.8s ease,
-    visibility 0.8s ease,
-    transform 0.8s ease;
+    opacity 0.55s ease,
+    visibility 0.55s ease,
+    transform 0.55s ease;
 }
 
 #splash-screen.is-hidden {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transform: scale(1.04);
+  transform: scale(1.025);
 }
 
 .splash-bg-glow {
@@ -597,15 +597,15 @@ a {
 }
 
 #splash-screen.opening .envelope {
-  animation: envelopeSoftLift 0.82s ease forwards;
+  animation: envelopeSoftLift 0.72s ease forwards;
 }
 
 #splash-screen.opening .envelope-flap {
-  animation: envelopeFlapOpen 0.96s cubic-bezier(0.22, 1, 0.36, 1) 0.34s forwards;
+  animation: envelopeFlapOpen 0.82s cubic-bezier(0.22, 1, 0.36, 1) 0.24s forwards;
 }
 
 #splash-screen.opening .envelope-letter {
-  animation: letterRevealClean 1.18s cubic-bezier(0.22, 1, 0.36, 1) 0.96s forwards;
+  animation: letterRevealClean 0.96s cubic-bezier(0.22, 1, 0.36, 1) 0.78s forwards;
 }
 
 #splash-screen.opening .envelope-seal {
@@ -617,11 +617,11 @@ a {
 #splash-screen.opening .splash-kicker,
 #splash-screen.opening .splash-copy,
 #splash-screen.opening .btn-start-experience {
-  animation: splashTextExit 0.62s ease forwards;
+  animation: splashTextExit 0.42s ease forwards;
 }
 
 #splash-screen.opening .envelope-shadow {
-  animation: shadowOpen 1.2s ease forwards;
+  animation: shadowOpen 0.9s ease forwards;
 }
 
 /* LAYOUT / HERO / SECTIONS */
@@ -1661,19 +1661,19 @@ a {
     transform: translateY(108px) scale(0.94);
   }
 
-  34% {
+  42% {
     opacity: 0;
-    transform: translateY(82px) scale(0.95);
+    transform: translateY(52px) scale(0.955);
   }
 
-  50% {
+  56% {
     opacity: 1;
-    transform: translateY(16px) scale(0.985);
+    transform: translateY(-18px) scale(0.99);
   }
 
-  76% {
+  80% {
     opacity: 1;
-    transform: translateY(-72px) scale(1.01);
+    transform: translateY(-82px) scale(1.012);
   }
 
   100% {

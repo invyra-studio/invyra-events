@@ -1,6 +1,6 @@
 /**
  * INVYRA - Bautizo Demo 01
- * Version 1.0.6
+ * Version 1.0.7
  * Signature Baptism Experience
  * Splash envelope + RSVP Google Sheets
  */
@@ -50,7 +50,7 @@ function entrarExperiencia() {
     splash.classList.add("opening");
     playMusicSafely(music);
 
-    const splashDuration = prefersReducedMotion ? 450 : 3200;
+    const splashDuration = prefersReducedMotion ? 450 : 2250;
 
     window.setTimeout(() => {
         splash.classList.add("is-hidden");
@@ -59,11 +59,11 @@ function entrarExperiencia() {
 
         window.scrollTo({ top: 0, behavior: "auto" });
 
-        window.setTimeout(revealHero, 180);
+        window.setTimeout(revealHero, 60);
 
         window.setTimeout(() => {
             splash.style.display = "none";
-        }, 850);
+        }, 620);
     }, splashDuration);
 }
 
@@ -97,9 +97,9 @@ function revealHero() {
 
     gsap.to(heroAtmosphere, {
         opacity: 1,
-        duration: 1.15,
+        duration: 0.85,
         ease: "power2.out",
-        stagger: 0.08
+        stagger: 0.05
     });
 
     gsap.to(heroItems, {
@@ -107,16 +107,16 @@ function revealHero() {
         y: 0,
         scale: 1,
         filter: "blur(0px)",
-        duration: 1,
+        duration: 0.78,
         ease: "power3.out",
-        stagger: 0.14,
-        delay: 0.18
+        stagger: 0.1,
+        delay: 0.08
     });
 
     if (typeof ScrollTrigger !== "undefined") {
         window.setTimeout(() => {
             ScrollTrigger.refresh();
-        }, 500);
+        }, 380);
     }
 }
 
