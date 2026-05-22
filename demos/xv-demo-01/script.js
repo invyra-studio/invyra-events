@@ -1,77 +1,162 @@
 /**
  * INVYRA - XV Glam Demo
- * Version 1.0.3
+ * Version 1.0.5
  * Nivel: Signature Glam / Legacy visual
- * Update: Standardized RSVP flow with attendance detail
+ * Update: aligned splash copy, local image fallbacks, RSVP autosave/restore and audio visibility control
  */
 
-document.body.classList.add("js-enabled");
+document.body.classList.add("js-enabled", "splash-active");
+
+/* ==============================
+   CONFIG
+   ============================== */
+
+const SCRIPT_URL =
+    "https://script.google.com/macros/s/AKfycbzJz6sBTdrgkDSQwTD3Gcl3gzDOj4qE3HYBjSfMbWo99uRUM_DAluFzH5uNhcm2UKIxVw/exec";
+
+const TELEFONO_RSVP = "525516986744";
+const FECHA_EVENTO = "Nov 21, 2026 20:00:00";
+const EVENTO_NOMBRE = "XV de Valentina";
+const RSVP_STORAGE_KEY = "invyra_xv_valentina_rsvp_registered";
+const RSVP_DRAFT_KEY = "invyra_xv_valentina_rsvp_draft";
+
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+let experienceAlreadyOpened = false;
+
+/* ==============================
+   INIT
+   ============================== */
 
 if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
 }
 
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzJz6sBTdrgkDSQwTD3Gcl3gzDOj4qE3HYBjSfMbWo99uRUM_DAluFzH5uNhcm2UKIxVw/exec";
-const TELEFONO_RSVP = "525516986744";
-const FECHA_EVENTO = "Nov 21, 2026 20:00:00";
-const EVENTO_NOMBRE = "XV Glam Valentina";
+document.addEventListener("DOMContentLoaded", () => {
+    initCountdown();
+    initRsvpState();
+    initRsvpAutosave();
+    initModalClose();
+  initImageFallbacks();
+});
 
-function initHeroReveal() {
-    if (typeof gsap === "undefined") {
-        document
-            .querySelectorAll(".hero-atmosphere, .reveal-item, .reveal-title, .hero-info-card")
-            .forEach(el => {
-                el.style.opacity = "1";
-                el.style.filter = "blur(0px)";
-                el.style.transform = "none";
-            });
+/* ==============================
+   SPLASH → HERO
+   ============================== */
 
+function entrarExperiencia() {
+    const splash = document.getElementById("splash-screen");
+    const startButton = document.querySelector(".btn-start-experience");
+    const music = document.getElementById("bg-music");
+
+    if (!splash || experienceAlreadyOpened) return;
+
+    experienceAlreadyOpened = true;
+
+    if (startButton) startButton.disabled = true;
+
+    splash.classList.add("opening");
+
+    playMusicSafely(music);
+
+    const splashDuration = prefersReducedMotion ? 350 : 1050;
+
+    window.setTimeout(() => {
+        splash.classList.add("is-hidden");
+
+        document.body.classList.remove("splash-active");
+        document.body.classList.add("experience-opened");
+
+        window.scrollTo({
+            top: 0,
+            behavior: "auto"
+        });
+
+        window.setTimeout(() => {
+            splash.style.display = "none";
+            revealHero();
+            initScrollReveal();
+        }, 780);
+    }, splashDuration);
+}
+
+window.entrarExperiencia = entrarExperiencia;
+
+function playMusicSafely(music) {
+    if (!music) return;
+
+    music.volume = 0;
+
+    music.play()
+        .then(() => {
+            if (typeof gsap !== "undefined" && !prefersReducedMotion) {
+                gsap.to(music, {
+                    volume: 0.34,
+                    duration: 3,
+                    ease: "power1.inOut"
+                });
+            } else {
+                music.volume = 0.34;
+            }
+        })
+        .catch(error => {
+            console.warn("La música requiere interacción del usuario:", error);
+        });
+}
+
+/* ==============================
+   HERO / SCROLL REVEAL
+   ============================== */
+
+function revealHero() {
+    const fallbackElements = document.querySelectorAll(
+        ".hero-atmosphere, .reveal-item, .reveal-title, .hero-info-card"
+    );
+
+    if (prefersReducedMotion || typeof gsap === "undefined") {
+        fallbackElements.forEach(showElementImmediately);
         return;
     }
 
     const revealTL = gsap.timeline({
-        delay: 0.2,
+        delay: 0.12,
         defaults: {
             ease: "power3.out",
-            duration: 1.25
+            duration: 1.1
         }
     });
 
     revealTL
         .to(".hero-atmosphere", {
             opacity: 1,
-            duration: 1.4
+            duration: 1.2
         })
         .to(".brand-logo-img", {
             opacity: 1,
             y: 0,
-            filter: "blur(0px)",
-            duration: 1.1
-        }, "-=0.9")
+            filter: "blur(0px)"
+        }, "-=0.75")
         .to(".hero-kicker", {
             opacity: 1,
             y: 0,
-            filter: "blur(0px)",
-            duration: 1.0
+            filter: "blur(0px)"
         }, "-=0.8")
         .to(".reveal-title", {
             opacity: 1,
             y: 0,
             scale: 1,
             filter: "blur(0px)",
-            duration: 1.4
+            duration: 1.25
         }, "-=0.7")
         .to(".celebrant-name", {
             opacity: 1,
             y: 0,
-            filter: "blur(0px)",
-            duration: 1.1
-        }, "-=0.9")
+            filter: "blur(0px)"
+        }, "-=0.85")
         .to(".hero-info-card", {
             opacity: 1,
             y: 0,
-            filter: "blur(0px)",
-            duration: 1.1
+            filter: "blur(0px)"
         }, "-=0.8");
 
     gsap.to(".hero-content", {
@@ -82,138 +167,102 @@ function initHeroReveal() {
         ease: "sine.inOut"
     });
 
-    gsap.to(".hero-info-card", {
-        boxShadow: "0 18px 58px rgba(255, 138, 203, 0.22), 0 0 28px rgba(216, 180, 106, 0.12)",
-        duration: 3.8,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut"
-    });
+    if (typeof ScrollTrigger !== "undefined") {
+        window.setTimeout(() => {
+            ScrollTrigger.refresh();
+        }, 450);
+    }
 }
 
 function initScrollReveal() {
-    if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
-        document.querySelectorAll(".section-reveal").forEach(section => {
-            section.style.opacity = "1";
-            section.style.transform = "none";
+    const sections = document.querySelectorAll(".section-reveal");
+
+    if (!sections.length) return;
+
+    if (prefersReducedMotion || typeof IntersectionObserver === "undefined") {
+        sections.forEach(showElementImmediately);
+        return;
+    }
+
+    const observer = new IntersectionObserver(
+        entries => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+
+                showSection(entry.target);
+                observer.unobserve(entry.target);
+            });
+        },
+        {
+            threshold: 0.14,
+            rootMargin: "0px 0px -70px 0px"
+        }
+    );
+
+    sections.forEach(section => observer.observe(section));
+}
+
+function showSection(section) {
+    if (!section) return;
+
+    if (typeof gsap !== "undefined" && !prefersReducedMotion) {
+        gsap.to(section, {
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+            duration: 0.95,
+            ease: "power3.out"
         });
 
         return;
     }
 
-    document.querySelectorAll(".section-reveal").forEach(section => {
-        gsap.fromTo(
-            section,
-            {
-                opacity: 0,
-                y: 55
-            },
-            {
-                scrollTrigger: {
-                    trigger: section,
-                    start: "top 88%",
-                    toggleActions: "play none none none"
-                },
-                opacity: 1,
-                y: 0,
-                duration: 1.3,
-                ease: "power3.out"
-            }
-        );
-    });
-
-    ScrollTrigger.refresh();
+    showElementImmediately(section);
 }
 
-function entrarExperiencia() {
-    const splash = document.getElementById("splash-screen");
-    const music = document.getElementById("bg-music");
+function showElementImmediately(element) {
+    if (!element) return;
 
-    if (!splash) return;
-
-    splash.classList.add("opening");
-
-    if (music) {
-        music.volume = 0;
-        music.play().catch(err => console.log("Audio requiere interacción:", err));
-
-        if (typeof gsap !== "undefined") {
-            gsap.to(music, {
-                volume: 0.34,
-                duration: 4,
-                ease: "power1.inOut"
-            });
-        } else {
-            music.volume = 0.34;
-        }
-    }
-
-    if (typeof gsap !== "undefined") {
-        gsap.to(splash, {
-            opacity: 0,
-            duration: 1.1,
-            delay: 0.45,
-            ease: "power2.inOut",
-            onComplete: () => {
-                splash.style.display = "none";
-                initHeroReveal();
-                initScrollReveal();
-            }
-        });
-    } else {
-        splash.style.display = "none";
-        initHeroReveal();
-        initScrollReveal();
-    }
+    element.style.opacity = "1";
+    element.style.transform = "none";
+    element.style.filter = "none";
 }
-
-window.entrarExperiencia = entrarExperiencia;
-
-document.addEventListener("DOMContentLoaded", () => {
-    const startButton = document.querySelector(".btn-start-experience");
-
-    if (startButton) {
-        startButton.addEventListener("click", entrarExperiencia);
-    }
-
-    initRsvpState();
-});
 
 /* ==============================
    COUNTDOWN
    ============================== */
 
-const targetDate = new Date(FECHA_EVENTO).getTime();
+function initCountdown() {
+    const days = document.getElementById("days");
+    const hours = document.getElementById("hours");
+    const mins = document.getElementById("mins");
+    const secs = document.getElementById("secs");
 
-setInterval(() => {
-    const now = new Date().getTime();
-    const diff = targetDate - now;
+    if (!days || !hours || !mins || !secs) return;
 
-    if (diff > 0) {
-        const days = document.getElementById("days");
-        const hours = document.getElementById("hours");
-        const mins = document.getElementById("mins");
-        const secs = document.getElementById("secs");
+    const targetDate = new Date(FECHA_EVENTO).getTime();
 
-        if (!days || !hours || !mins || !secs) return;
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const diff = targetDate - now;
 
-        days.innerText = Math.floor(diff / (1000 * 60 * 60 * 24))
-            .toString()
-            .padStart(2, "0");
+        if (diff <= 0) {
+            days.textContent = "00";
+            hours.textContent = "00";
+            mins.textContent = "00";
+            secs.textContent = "00";
+            return;
+        }
 
-        hours.innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-            .toString()
-            .padStart(2, "0");
-
-        mins.innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
-            .toString()
-            .padStart(2, "0");
-
-        secs.innerText = Math.floor((diff % (1000 * 60)) / 1000)
-            .toString()
-            .padStart(2, "0");
+        days.textContent = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, "0");
+        hours.textContent = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, "0");
+        mins.textContent = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, "0");
+        secs.textContent = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, "0");
     }
-}, 1000);
+
+    updateCountdown();
+    window.setInterval(updateCountdown, 1000);
+}
 
 /* ==============================
    RSVP STATE
@@ -223,10 +272,17 @@ function initRsvpState() {
     const radios = document.querySelectorAll('input[name="asistencia"]');
 
     radios.forEach(radio => {
-        radio.addEventListener("change", actualizarEstadoAsistencia);
+        radio.addEventListener("change", () => {
+            actualizarEstadoAsistencia();
+            saveRsvpDraft();
+        });
     });
 
     actualizarEstadoAsistencia();
+
+    if (localStorage.getItem(RSVP_STORAGE_KEY) === "true") {
+        bloquearFormularioComoRegistrado();
+    }
 }
 
 function actualizarEstadoAsistencia() {
@@ -256,8 +312,97 @@ function actualizarEstadoAsistencia() {
     }
 
     if (btnConfirmar && !btnConfirmar.disabled) {
-        btnConfirmar.innerText = noAsiste ? "ENVIAR RESPUESTA" : "CONFIRMAR ASISTENCIA";
+        btnConfirmar.textContent = noAsiste ? "Enviar respuesta" : "Confirmar asistencia";
     }
+}
+
+/* ==============================
+   RSVP AUTOSAVE / RESTORE
+   ============================== */
+
+function initRsvpAutosave() {
+    restoreRsvpDraft();
+
+    const fields = [
+        document.getElementById("nombreInvitado"),
+        document.getElementById("mensajeInvitado"),
+        document.getElementById("detalleAsistenciaInvitado")
+    ].filter(Boolean);
+
+    const radios = Array.from(document.querySelectorAll('input[name="asistencia"]'));
+
+    fields.forEach(field => {
+        field.addEventListener("input", saveRsvpDraft);
+        field.addEventListener("change", saveRsvpDraft);
+    });
+
+    radios.forEach(radio => {
+        radio.addEventListener("change", saveRsvpDraft);
+    });
+}
+
+function getRsvpDraftData() {
+    const nombreInput = document.getElementById("nombreInvitado");
+    const mensajeInput = document.getElementById("mensajeInvitado");
+    const detalleInput = document.getElementById("detalleAsistenciaInvitado");
+    const asistenciaInput = document.querySelector('input[name="asistencia"]:checked');
+
+    return {
+        nombre: nombreInput ? nombreInput.value : "",
+        mensaje: mensajeInput ? mensajeInput.value : "",
+        detalleAsistencia: detalleInput ? detalleInput.value : "Todo el evento",
+        asistencia: asistenciaInput ? asistenciaInput.value : "Asistiré"
+    };
+}
+
+function saveRsvpDraft() {
+    if (localStorage.getItem(RSVP_STORAGE_KEY) === "true") return;
+
+    try {
+        localStorage.setItem(RSVP_DRAFT_KEY, JSON.stringify(getRsvpDraftData()));
+    } catch (error) {
+        console.warn("No se pudo guardar el borrador RSVP:", error);
+    }
+}
+
+function restoreRsvpDraft() {
+    if (localStorage.getItem(RSVP_STORAGE_KEY) === "true") return;
+
+    try {
+        const savedDraft = localStorage.getItem(RSVP_DRAFT_KEY);
+
+        if (!savedDraft) return;
+
+        const data = JSON.parse(savedDraft);
+
+        const nombreInput = document.getElementById("nombreInvitado");
+        const mensajeInput = document.getElementById("mensajeInvitado");
+        const detalleInput = document.getElementById("detalleAsistenciaInvitado");
+        const asistenciaInput = document.querySelector(
+            `input[name="asistencia"][value="${data.asistencia || "Asistiré"}"]`
+        );
+
+        if (nombreInput && data.nombre) nombreInput.value = data.nombre;
+        if (mensajeInput && data.mensaje) mensajeInput.value = data.mensaje;
+        if (detalleInput && data.detalleAsistencia) detalleInput.value = data.detalleAsistencia;
+
+        if (asistenciaInput) {
+            asistenciaInput.checked = true;
+        }
+
+        actualizarEstadoAsistencia();
+    } catch (error) {
+        console.warn("No se pudo restaurar el borrador RSVP:", error);
+        clearRsvpDraft();
+    }
+}
+
+function clearRsvpDraft() {
+  try {
+    localStorage.removeItem(RSVP_DRAFT_KEY);
+  } catch (error) {
+    console.warn("No se pudo limpiar el borrador RSVP:", error);
+  }
 }
 
 /* ==============================
@@ -272,18 +417,22 @@ function setModalContent(title, message) {
     if (modalMessage) modalMessage.textContent = message;
 }
 
-function showModal() {
+function showModal(title, message) {
     const modal = document.getElementById("rsvp-modal");
 
-    if (!modal) return;
+    if (!modal) {
+        alert(`${title}\n\n${message}`);
+        return;
+    }
 
+    setModalContent(title, message);
     modal.classList.remove("hidden");
 
-    if (typeof gsap !== "undefined") {
+    if (typeof gsap !== "undefined" && !prefersReducedMotion) {
         gsap.from(".modal-content", {
             opacity: 0,
-            scale: 0.8,
-            duration: 0.5,
+            scale: 0.86,
+            duration: 0.45,
             ease: "back.out(1.7)"
         });
     }
@@ -294,9 +443,27 @@ function hideModal(delay = 3600) {
 
     if (!modal) return;
 
-    setTimeout(() => {
+    window.setTimeout(() => {
         modal.classList.add("hidden");
     }, delay);
+}
+
+function initModalClose() {
+    const modal = document.getElementById("rsvp-modal");
+
+    if (!modal) return;
+
+    modal.addEventListener("click", event => {
+        if (event.target === modal) {
+            modal.classList.add("hidden");
+        }
+    });
+
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape") {
+            modal.classList.add("hidden");
+        }
+    });
 }
 
 /* ==============================
@@ -313,14 +480,19 @@ function sendRsvpToAppsScript(data) {
         const callbackName = `invyraXVCallback_${Date.now()}_${Math.floor(Math.random() * 10000)}`;
         const script = document.createElement("script");
 
-        const timeout = setTimeout(() => {
+        const timeout = window.setTimeout(() => {
             cleanup();
             reject(new Error("Tiempo de espera agotado al conectar con Apps Script."));
         }, 12000);
 
         function cleanup() {
-            clearTimeout(timeout);
-            delete window[callbackName];
+            window.clearTimeout(timeout);
+
+            try {
+                delete window[callbackName];
+            } catch (error) {
+                window[callbackName] = undefined;
+            }
 
             if (script && script.parentNode) {
                 script.parentNode.removeChild(script);
@@ -329,7 +501,13 @@ function sendRsvpToAppsScript(data) {
 
         window[callbackName] = response => {
             cleanup();
-            resolve(response);
+
+            resolve(
+                response || {
+                    status: "error",
+                    message: "Respuesta vacía del servidor."
+                }
+            );
         };
 
         const params = new URLSearchParams({
@@ -372,7 +550,7 @@ function bloquearFormularioComoRegistrado() {
     });
 
     if (btnConfirmar) {
-        btnConfirmar.innerText = "ASISTENCIA YA REGISTRADA";
+        btnConfirmar.textContent = "Asistencia ya registrada";
         btnConfirmar.disabled = true;
     }
 }
@@ -380,20 +558,23 @@ function bloquearFormularioComoRegistrado() {
 function marcarCampoInvalido(campo) {
     if (!campo) return;
 
-    if (typeof gsap !== "undefined") {
+    campo.classList.add("field-warning");
+
+    if (typeof gsap !== "undefined" && !prefersReducedMotion) {
         gsap.to(campo, {
-            x: 10,
-            duration: 0.1,
+            x: 8,
+            duration: 0.08,
             repeat: 5,
-            yoyo: true
+            yoyo: true,
+            onComplete: () => {
+                campo.style.transform = "none";
+            }
         });
     }
 
-    campo.style.border = "1px solid #ff6fbd";
-
-    setTimeout(() => {
-        campo.style.border = "1px solid rgba(216, 180, 106, 0.28)";
-    }, 2000);
+    window.setTimeout(() => {
+        campo.classList.remove("field-warning");
+    }, 1800);
 }
 
 async function confirmarAsistencia() {
@@ -405,22 +586,26 @@ async function confirmarAsistencia() {
 
     if (!inputNombre || !inputMensaje || !btnConfirmar) return;
 
-    const nombre = inputNombre.value.trim();
-    const mensajeInvitado = inputMensaje.value.trim();
+    const nombre = cleanText(inputNombre.value);
+    const mensajeInvitado = cleanText(inputMensaje.value);
     const asistencia = asistenciaSeleccionada ? asistenciaSeleccionada.value : "Asistiré";
 
     const detalleAsistencia = asistencia === "No asistiré"
         ? "No aplica"
         : detalleAsistenciaInput
-            ? detalleAsistenciaInput.value.trim()
+            ? cleanText(detalleAsistenciaInput.value)
             : "Todo el evento";
 
     if (!nombre) {
+        showModal(
+            "Falta tu nombre",
+            "Escribe el nombre del invitado o familia para registrar la respuesta."
+        );
         marcarCampoInvalido(inputNombre);
         return;
     }
 
-    btnConfirmar.innerText = "PROCESANDO...";
+    btnConfirmar.textContent = "Guardando respuesta...";
     btnConfirmar.disabled = true;
 
     try {
@@ -433,16 +618,17 @@ async function confirmarAsistencia() {
         });
 
         if (response && response.status === "duplicate") {
-            setModalContent(
-                "ASISTENCIA YA REGISTRADA",
-                "Ya tenemos una respuesta asociada a este nombre. Gracias por formar parte de esta noche especial."
+            showModal(
+                "Asistencia ya registrada",
+                "Ya tenemos una respuesta asociada a este nombre. Gracias por ser parte de esta noche tan especial."
             );
 
-            showModal();
-
-            setTimeout(() => {
+            window.setTimeout(() => {
                 const modal = document.getElementById("rsvp-modal");
                 if (modal) modal.classList.add("hidden");
+
+                localStorage.setItem(RSVP_STORAGE_KEY, "true");
+                clearRsvpDraft();
 
                 bloquearFormularioComoRegistrado();
             }, 5200);
@@ -451,14 +637,15 @@ async function confirmarAsistencia() {
         }
 
         if (response && response.status === "success") {
-            setModalContent(
-                "¡RESPUESTA REGISTRADA!",
-                "Gracias por confirmar. En un momento abriremos WhatsApp para completar tu mensaje."
+            showModal(
+                "¡Respuesta registrada!",
+                "Gracias por confirmar. Tu respuesta quedó guardada correctamente. En un momento abriremos WhatsApp para completar tu mensaje."
             );
 
-            showModal();
+            btnConfirmar.textContent = "¡Todo listo!";
 
-            btnConfirmar.innerText = "¡TODO LISTO!";
+            localStorage.setItem(RSVP_STORAGE_KEY, "true");
+            clearRsvpDraft();
 
             const mensajeWhatsApp = encodeURIComponent(
                 `¡Hola! Confirmo mi respuesta para los XV de Valentina.\n\n` +
@@ -468,7 +655,7 @@ async function confirmarAsistencia() {
                 `*Mensaje:* ${mensajeInvitado || "Sin mensaje"}`
             );
 
-            setTimeout(() => {
+            window.setTimeout(() => {
                 window.open(`https://wa.me/${TELEFONO_RSVP}?text=${mensajeWhatsApp}`, "_blank");
 
                 const modal = document.getElementById("rsvp-modal");
@@ -480,25 +667,113 @@ async function confirmarAsistencia() {
             return;
         }
 
-        throw new Error("Respuesta inesperada de Apps Script.");
+        throw new Error(response?.message || "Respuesta inesperada de Apps Script.");
     } catch (error) {
-        console.error("Error:", error);
+        console.error("Error RSVP:", error);
 
-        setModalContent(
-            "NO SE PUDO REGISTRAR",
+        showModal(
+            "No se pudo registrar",
             "Ocurrió un detalle al guardar tu respuesta. Inténtalo nuevamente en unos segundos."
         );
 
-        showModal();
-
         btnConfirmar.disabled = false;
-        btnConfirmar.innerText = asistencia === "No asistiré" ? "ENVIAR RESPUESTA" : "CONFIRMAR ASISTENCIA";
+        btnConfirmar.textContent = asistencia === "No asistiré" ? "Enviar respuesta" : "Confirmar asistencia";
 
         hideModal(4200);
     }
 }
 
 window.confirmarAsistencia = confirmarAsistencia;
+
+function cleanText(value) {
+    return String(value || "")
+        .trim()
+        .replace(/\s+/g, " ");
+}
+
+
+/* ==============================
+   IMAGE FALLBACKS
+   ============================== */
+
+function initImageFallbacks() {
+  const images = document.querySelectorAll("img");
+
+  images.forEach((image) => {
+    image.addEventListener("error", () => {
+      const fallbackSrc =
+        image.dataset.fallbackSrc ||
+        getAlternativeImagePath(image.getAttribute("src"));
+
+      if (fallbackSrc && image.dataset.fallbackTried !== "true") {
+        image.dataset.fallbackTried = "true";
+        image.src = fallbackSrc;
+        return;
+      }
+
+      image.classList.add("image-error");
+      console.warn("No se pudo cargar la imagen:", image.src);
+    });
+  });
+
+  initGalleryBackgroundFallbacks();
+}
+
+function getAlternativeImagePath(src) {
+  if (!src) return "";
+
+  if (/\.jpeg(\?.*)?$/i.test(src)) return src.replace(/\.jpeg(\?.*)?$/i, ".png");
+  if (/\.jpg(\?.*)?$/i.test(src)) return src.replace(/\.jpg(\?.*)?$/i, ".png");
+  if (/\.png(\?.*)?$/i.test(src)) return src.replace(/\.png(\?.*)?$/i, ".jpeg");
+
+  return "";
+}
+
+function initGalleryBackgroundFallbacks() {
+  const galleryItems = document.querySelectorAll(".gallery-item[data-bg-base]");
+
+  galleryItems.forEach((item) => {
+    const baseName = item.dataset.bgBase;
+
+    if (!baseName) return;
+
+    const candidates = [
+      `./assets/${baseName}.jpeg`,
+      `./assets/${baseName}.jpg`,
+      `./assets/${baseName}.png`,
+    ];
+
+    findFirstLoadableImage(candidates).then((src) => {
+      if (src) {
+        item.style.backgroundImage = `url("${src}")`;
+      }
+    });
+  });
+}
+
+function findFirstLoadableImage(candidates) {
+  return new Promise((resolve) => {
+    let currentIndex = 0;
+
+    function tryNextImage() {
+      if (currentIndex >= candidates.length) {
+        resolve("");
+        return;
+      }
+
+      const src = candidates[currentIndex];
+      const testImage = new Image();
+
+      currentIndex += 1;
+
+      testImage.onload = () => resolve(src);
+      testImage.onerror = tryNextImage;
+      testImage.src = src;
+    }
+
+    tryNextImage();
+  });
+}
 
 /* ==============================
    AUDIO VISIBILITY HANDLER
@@ -512,9 +787,16 @@ document.addEventListener("visibilitychange", () => {
 
     if (document.hidden) {
         music.pause();
-    } else {
-        if (splash && splash.style.display === "none") {
-            music.play().catch(err => console.log("Error al reanudar:", err));
-        }
+        return;
+    }
+
+    const experienceIsOpen =
+        document.body.classList.contains("experience-opened") ||
+        (splash && splash.style.display === "none");
+
+    if (experienceIsOpen) {
+        music.play().catch(error => {
+            console.warn("No se pudo reanudar la música:", error);
+        });
     }
 });

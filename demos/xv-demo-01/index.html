@@ -3,16 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>INVYRA | Valentina XV - Glam Experience</title>
+
+    <title>INVYRA | XV de Valentina - Signature Glam Experience</title>
+    <meta
+      name="description"
+      content="Demo premium Signature Glam para XV años creada por INVYRA, con invitación digital animada, música, cuenta regresiva, galería, detalles del evento y RSVP."
+    />
 
     <link rel="icon" type="image/jpeg" href="../../LOGO/FAVICON.jpeg" />
-    <link rel="stylesheet" href="style.css?v=1.0.3" />
+    <link rel="stylesheet" href="style.css?v=1.0.5" />
 
     <link
-      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800;900&family=Playfair+Display:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
 
+    <link rel="preload" as="image" href="../../LOGO/FAVICON.jpeg" />
     <link rel="preload" as="image" href="./assets/xv-entrada.jpeg" />
     <link rel="preload" as="image" href="./assets/xv-fiesta.jpeg" />
     <link rel="preload" as="image" href="./assets/xv-vals.jpeg" />
@@ -30,13 +36,9 @@
       <div class="diamond-rain"></div>
 
       <div class="splash-content">
-        <img
-          src="../../LOGO/FAVICON.jpeg"
-          class="splash-logo"
-          alt="INVYRA"
-        />
+        <img src="../../LOGO/FAVICON.jpeg" class="splash-logo" alt="INVYRA" />
 
-        <p class="splash-kicker">XV Glam Experience</p>
+        <p class="splash-kicker">XV GLAM EXPERIENCE</p>
 
         <h1 class="splash-title">Valentina</h1>
 
@@ -46,7 +48,7 @@
           type="button"
           onclick="entrarExperiencia()"
           class="btn-start-experience"
-          aria-label="Entrar a la invitación"
+          aria-label="Abrir invitación"
         >
           ENTRAR A LA EXPERIENCIA
         </button>
@@ -54,7 +56,7 @@
     </div>
 
     <main class="invitation-container">
-      <header class="hero-section">
+      <header class="hero-section" id="inicio">
         <div class="hero-bg hero-atmosphere"></div>
         <div class="hero-spotlight spotlight-one hero-atmosphere"></div>
         <div class="hero-spotlight spotlight-two hero-atmosphere"></div>
@@ -66,13 +68,11 @@
         <div class="hero-content">
           <img
             src="../../LOGO/FAVICON.jpeg"
-            alt="Invyra Logo"
+            alt="INVYRA"
             class="brand-logo-img reveal-item"
           />
 
-          <p class="hero-kicker reveal-item">
-            Estás invitado a celebrar mis
-          </p>
+          <p class="hero-kicker reveal-item">Celebremos juntos mis</p>
 
           <h1 class="main-title reveal-title">XV</h1>
 
@@ -82,7 +82,8 @@
             <p class="event-date">21 · NOV · 2026</p>
 
             <p class="hero-subtitle">
-              Una noche llena de luces, música, glamour y momentos inolvidables.
+              Una celebración llena de luces, música y momentos pensados para
+              quedarse en la memoria.
             </p>
           </div>
         </div>
@@ -91,52 +92,58 @@
       <section class="quote-section section-reveal">
         <p class="quote-mark">✦</p>
         <p class="quote-text">
-          Hay noches que no se repiten. Esta será una de ellas.
+          Esta noche no solo celebra una edad: celebra una historia que apenas
+          empieza a brillar.
         </p>
       </section>
 
       <section class="countdown-section section-reveal">
-        <p class="section-label">LA NOCHE GLAM SE ACERCA</p>
+        <p class="section-label">Cuenta regresiva</p>
 
         <div id="countdown" class="glass-card">
           <div class="time-unit">
             <span id="days">00</span>
-            <small>DÍAS</small>
+            <small>Días</small>
           </div>
 
           <div class="time-unit">
             <span id="hours">00</span>
-            <small>HRS</small>
+            <small>Hrs</small>
           </div>
 
           <div class="time-unit">
             <span id="mins">00</span>
-            <small>MIN</small>
+            <small>Min</small>
           </div>
 
           <div class="time-unit">
             <span id="secs">00</span>
-            <small>SEG</small>
+            <small>Seg</small>
           </div>
         </div>
       </section>
 
       <section class="details-section section-reveal">
-        <p class="section-label">DETALLES DEL EVENTO</p>
+        <p class="section-label">Detalles de la noche</p>
+
+        <p class="details-intro">
+          Te esperamos para compartir una celebración elegante, luminosa y llena
+          de momentos especiales.
+        </p>
 
         <div class="detail-card">
-          <span>FECHA</span>
+          <span>Fecha</span>
           <p>21 · NOV · 2026</p>
         </div>
 
         <div class="detail-card">
-          <span>HORA</span>
-          <p>20:00 HRS</p>
+          <span>Hora</span>
+          <p>20:00 hrs</p>
         </div>
 
         <div class="detail-card">
-          <span>LUGAR</span>
-          <p>Salón Crystal Night — Jardín Imperial</p>
+          <span>Lugar</span>
+          <p>Salón Crystal Night · Jardín Imperial</p>
         </div>
 
         <a
@@ -146,22 +153,23 @@
           class="map-button"
           aria-label="Ver ubicación del evento en Google Maps"
         >
-          VER UBICACIÓN
+          Ver ubicación
         </a>
       </section>
 
       <section class="dress-code-section section-reveal">
-        <p class="section-label">DRESS CODE</p>
+        <p class="section-label">Código de vestimenta</p>
 
         <div class="dress-card">
-          <h2>Glam Elegante</h2>
+          <h2>Glam elegante</h2>
 
           <p>
-            Te invitamos a vestir en tonos negro, rosa blush, dorado, plateado
-            o champagne. Brilla sin miedo.
+            Te sugerimos vestir en negro, rosa blush, dorado, plateado o
+            champagne. Un look elegante, con ese toque de brillo que haga match
+            con la noche.
           </p>
 
-          <div class="palette-row">
+          <div class="palette-row" aria-label="Paleta sugerida">
             <span class="tone tone-black"></span>
             <span class="tone tone-blush"></span>
             <span class="tone tone-gold"></span>
@@ -172,7 +180,7 @@
       </section>
 
       <section class="itinerary-section section-reveal">
-        <p class="section-label">ITINERARIO</p>
+        <p class="section-label">Itinerario de la noche</p>
 
         <div class="timeline-card">
           <div class="timeline-item">
@@ -182,7 +190,7 @@
 
           <div class="timeline-item">
             <span>21:00</span>
-            <p>Entrada especial</p>
+            <p>Entrada de Valentina</p>
           </div>
 
           <div class="timeline-item">
@@ -192,17 +200,18 @@
 
           <div class="timeline-item">
             <span>22:30</span>
-            <p>Fiesta & música</p>
+            <p>Fiesta y música</p>
           </div>
         </div>
       </section>
 
       <section class="gallery-section section-reveal">
-        <p class="section-label">GALERÍA</p>
+        <p class="section-label">Momentos glam</p>
 
         <div class="gallery-grid">
           <div
             class="gallery-item gallery-one"
+            data-bg-base="xv-entrada"
             role="img"
             aria-label="Entrada glam de XV años"
           >
@@ -211,14 +220,16 @@
 
           <div
             class="gallery-item gallery-two"
+            data-bg-base="xv-fiesta"
             role="img"
-            aria-label="Fiesta glam de XV años"
+            aria-label="Celebración glam de XV años"
           >
-            <span>Fiesta</span>
+            <span>Celebración</span>
           </div>
 
           <div
             class="gallery-item gallery-three"
+            data-bg-base="xv-vals"
             role="img"
             aria-label="Vals elegante de XV años"
           >
@@ -229,7 +240,7 @@
 
       <footer class="action-section section-reveal">
         <div class="rsvp-card">
-          <p class="rsvp-package-label">Experiencia Signature Glam</p>
+          <p class="rsvp-package-label">INVYRA Signature Glam</p>
 
           <h2>Confirma tu asistencia</h2>
 
@@ -238,21 +249,21 @@
           </div>
 
           <p class="rsvp-copy">
-            Tu presencia hará esta noche aún más especial. Confirma tu respuesta
-            para ayudarnos a preparar cada detalle.
+            Tu presencia forma parte de esta historia. Confirma tu asistencia
+            para que podamos preparar cada detalle de esta noche tan especial.
           </p>
 
           <div class="rsvp-form">
             <input
               type="text"
               id="nombreInvitado"
-              placeholder="Nombre de invitado o familia"
+              placeholder="Nombre del invitado o familia"
               autocomplete="off"
-              aria-label="Nombre de invitado o familia"
+              aria-label="Nombre del invitado o familia"
             />
 
             <div class="attendance-group">
-              <p>Confirmo que</p>
+              <p>Mi respuesta</p>
 
               <div class="attendance-options">
                 <label>
@@ -288,7 +299,7 @@
 
             <textarea
               id="mensajeInvitado"
-              placeholder="Puedes dejar un mensaje para Valentina (opcional)"
+              placeholder="Puedes dejar un mensaje especial para Valentina (opcional)"
               aria-label="Mensaje opcional para Valentina"
             ></textarea>
 
@@ -299,19 +310,15 @@
               onclick="confirmarAsistencia()"
               aria-label="Confirmar asistencia"
             >
-              CONFIRMAR ASISTENCIA
+              Confirmar asistencia
             </button>
           </div>
         </div>
 
         <div class="closing-section">
-          <img
-            src="../../LOGO/FAVICON.jpeg"
-            alt="Invyra"
-            class="closing-logo"
-          />
+          <img src="../../LOGO/FAVICON.jpeg" alt="INVYRA" class="closing-logo" />
 
-          <p>Gracias por ser parte de esta noche tan especial.</p>
+          <p>Gracias por acompañarme en una noche que voy a recordar siempre.</p>
 
           <span>Valentina XV</span>
         </div>
@@ -320,18 +327,17 @@
 
     <div id="rsvp-modal" class="modal hidden">
       <div class="modal-content">
-        <h3 id="modal-title">¡RESPUESTA REGISTRADA!</h3>
+        <h3 id="modal-title">¡Respuesta registrada!</h3>
         <p id="modal-message">
-          Gracias por confirmar. En un momento abriremos WhatsApp para completar
-          tu mensaje.
+          Gracias por confirmar. Tu respuesta quedó guardada correctamente.
         </p>
       </div>
     </div>
 
-    <audio id="bg-music" loop>
+    <audio id="bg-music" loop preload="auto">
       <source src="../../music/violin-luxury.mp3" type="audio/mpeg" />
     </audio>
 
-    <script src="script.js?v=1.0.3"></script>
+    <script src="script.js?v=1.0.5"></script>
   </body>
 </html>
