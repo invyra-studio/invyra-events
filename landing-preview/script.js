@@ -1,6 +1,6 @@
 /**
  * INVYRA - Landing Page
- * Version preview-1.0.10
+ * Version preview-1.0.14
  * Premium Digital Events
  */
 document.body.classList.add("js-enabled");
@@ -118,7 +118,7 @@ function initAnimations() {
         });
     });
     gsap.utils
-        .toArray(".package-mini-card, .demo-card, .process-card, .faq-item, .problem-card, .include-feature-card")
+        .toArray(".package-mini-card, .demo-card, .process-card, .faq-item, .problem-card, .include-feature-card, .qr-card, .qr-floating-note")
         .forEach((card, index) => {
             gsap.fromTo(card, { opacity: 0, y: 28 }, {
                 scrollTrigger: { trigger: card, start: "top 92%", toggleActions: "play none none none" },
