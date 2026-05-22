@@ -19,7 +19,8 @@
 html,
 body {
     width: 100%;
-    max-width: 100%;    overflow-x: hidden;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 body {
@@ -818,7 +819,7 @@ textarea {
 /* ==============================
    ACTIVITY 13 — CINEMATIC ESSENTIAL UPGRADE
    Unique visual signature: Midnight Gala light-ticket reveal
-   Version 1.3.0
+   Version 1.4.0
    ============================== */
 
 #splash-screen {
@@ -1207,6 +1208,168 @@ textarea {
     .splash-logo,
     .splash-sparkles span,
     .gala-stage-ring {
+        animation: none !important;
+    }
+}
+
+
+/* ==============================
+   ACTIVITY 14 — RSVP ESSENTIAL MICROINTERACTIONS
+   Version 1.4.0
+   ============================== */
+.rsvp-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.rsvp-card::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(214,179,106,0.28), transparent 28%, transparent 72%, rgba(214,179,106,0.18));
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.rsvp-card.rsvp-focused::before,
+.rsvp-card.rsvp-pulse::before {
+    opacity: 1;
+}
+
+.rsvp-card.rsvp-attending {
+    border-color: rgba(214, 179, 106, 0.42);
+}
+
+.rsvp-card.rsvp-not-attending {
+    background:
+        linear-gradient(145deg, rgba(255,255,255,0.055), rgba(255,255,255,0.018)),
+        rgba(0, 0, 0, 0.50);
+}
+
+.rsvp-card.rsvp-locked {
+    border-color: rgba(214,179,106,0.24);
+    box-shadow:
+        0 22px 60px rgba(0, 0, 0, 0.32),
+        inset 0 0 0 1px rgba(214,179,106,0.06);
+}
+
+.rsvp-input.has-value {
+    border-color: rgba(214,179,106,0.72) !important;
+    background:
+        linear-gradient(145deg, rgba(214,179,106,0.08), transparent),
+        rgba(0, 0, 0, 0.62) !important;
+}
+
+.rsvp-input.is-invalid {
+    border-color: rgba(255, 99, 99, 0.92) !important;
+    box-shadow:
+        0 0 0 3px rgba(255, 99, 99, 0.10),
+        0 0 28px rgba(255, 99, 99, 0.10) !important;
+}
+
+.attendance-options label {
+    position: relative;
+    padding: 10px 14px;
+    border: 1px solid rgba(214,179,106,0.18);
+    border-radius: 999px;
+    background: rgba(255,255,255,0.025);
+}
+
+.attendance-options label:has(input:checked) {
+    color: var(--gold);
+    border-color: rgba(214,179,106,0.55);
+    background: rgba(214,179,106,0.10);
+    box-shadow: 0 0 24px rgba(214,179,106,0.10);
+}
+
+.rsvp-live-status {
+    min-height: 24px;
+    margin: -8px auto 18px;
+    color: rgba(243,238,228,0.72);
+    font-size: 0.72rem;
+    font-weight: 700;
+    line-height: 1.55;
+    text-align: center;
+}
+
+.rsvp-progress {
+    width: 100%;
+    height: 1px;
+    margin: 0 auto 18px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(214,179,106,0.16);
+    opacity: 0;
+    transition: opacity 0.28s ease;
+}
+
+.rsvp-progress span {
+    display: block;
+    width: 42%;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    transform: translateX(-130%);
+}
+
+.btn-rsvp.is-loading + *,
+.btn-rsvp.is-loading {
+    cursor: wait;
+}
+
+.rsvp-card:has(.btn-rsvp.is-loading) .rsvp-progress {
+    opacity: 1;
+}
+
+.rsvp-card:has(.btn-rsvp.is-loading) .rsvp-progress span {
+    animation: rsvpProgressSweep 1.15s ease-in-out infinite;
+}
+
+.rsvp-card.rsvp-pulse {
+    animation: rsvpCardPulse 0.56s ease;
+}
+
+.modal:not(.hidden) .modal-content::before {
+    content: "✦";
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    margin: 0 auto 18px;
+    border: 1px solid rgba(214,179,106,0.46);
+    border-radius: 50%;
+    color: var(--gold);
+    background: rgba(214,179,106,0.08);
+    box-shadow: 0 0 24px rgba(214,179,106,0.10);
+}
+
+@keyframes rsvpProgressSweep {
+    0% { transform: translateX(-130%); opacity: 0.42; }
+    45% { opacity: 1; }
+    100% { transform: translateX(240%); opacity: 0.42; }
+}
+
+@keyframes rsvpCardPulse {
+    0% { transform: scale(1); }
+    45% { transform: scale(1.012); }
+    100% { transform: scale(1); }
+}
+
+@media (max-width: 768px) {
+    .attendance-options label {
+        padding: 9px 12px;
+    }
+
+    .rsvp-live-status {
+        font-size: 0.68rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .rsvp-progress span,
+    .rsvp-card.rsvp-pulse {
         animation: none !important;
     }
 }

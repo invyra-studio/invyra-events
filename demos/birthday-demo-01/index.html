@@ -11,7 +11,7 @@
     />
 
     <link rel="icon" type="image/jpeg" href="../../LOGO/FAVICON.jpeg" />
-    <link rel="stylesheet" href="style.css?v=1.3.1" />
+    <link rel="stylesheet" href="style.css?v=1.4.0" />
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
@@ -163,6 +163,7 @@
             <input
               type="text"
               id="nombreInvitado"
+              class="rsvp-input"
               placeholder="Nombre de invitado o familia"
               autocomplete="off"
               aria-label="Nombre de invitado o familia"
@@ -191,9 +192,14 @@
 
             <textarea
               id="mensajeInvitado"
+              class="rsvp-input"
               placeholder="Puedes dejar un mensaje para Erza (opcional)"
               aria-label="Mensaje opcional para la festejada"
             ></textarea>
+
+            <p id="rsvp-live-status" class="rsvp-live-status" aria-live="polite">Tu respuesta se guardará de forma segura.</p>
+
+            <div class="rsvp-progress" aria-hidden="true"><span></span></div>
 
             <button
               type="button"
@@ -248,7 +254,7 @@
       </footer>
     </main>
 
-    <div id="rsvp-modal" class="modal hidden">
+    <div id="rsvp-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-message">
       <div class="modal-content">
         <h3 id="modal-title">¡RESPUESTA REGISTRADA!</h3>
         <p id="modal-message">
@@ -260,8 +266,8 @@
 
     <audio id="bg-music" loop preload="auto">
       <source src="../../music/violin-luxury.mp3" type="audio/mpeg" />
-    </audio>
+    </audio>  
 
-    <script src="script.js?v=1.3.1"></script>
+    <script src="script.js?v=1.4.0"></script>
   </body>
 </html>

@@ -1,9 +1,9 @@
 /**
  * INVYRA - Birthday Demo 01
  * Midnight Gala RSVP Premium
- * Version 1.3.1
+ * Version 1.4.0
  * Server-side RSVP validation through Google Sheets / Apps Script
- * Update: Activity 13 cinematic gala splash + unique hero transition
+ * Update: Activity 14 RSVP premium microinteractions
  */
 
 document.body.classList.add("js-enabled", "splash-active");
@@ -257,6 +257,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initRsvpState();
     initRsvpAutosave();
     restoreRsvpDraft();
+    initRsvpMicrointeractions();
     initModalClose();
 });
 
@@ -395,17 +396,77 @@ function actualizarEstadoAsistencia() {
     const asistenciaSeleccionada = document.querySelector('input[name="asistencia"]:checked');
     const btnConfirmar = document.getElementById("btn-confirmar");
     const rsvpCard = document.querySelector(".rsvp-card");
+    const status = document.getElementById("rsvp-live-status");
 
     const asistencia = asistenciaSeleccionada ? asistenciaSeleccionada.value : "Asistiré";
     const noAsiste = asistencia === "No asistiré";
 
     if (rsvpCard) {
         rsvpCard.classList.toggle("rsvp-not-attending", noAsiste);
+        rsvpCard.classList.toggle("rsvp-attending", !noAsiste);
+    }
+
+    if (status && !rsvpCard?.classList.contains("rsvp-locked")) {
+        status.textContent = noAsiste
+            ? "Entendido. Puedes enviar tu respuesta sin dejar mensaje."
+            : "Perfecto. Tu confirmación ayudará a preparar cada detalle.";
     }
 
     if (btnConfirmar && !btnConfirmar.disabled) {
         btnConfirmar.innerText = noAsiste ? "ENVIAR RESPUESTA" : "CONFIRMAR ASISTENCIA";
     }
+}
+
+function initRsvpMicrointeractions() {
+    const rsvpCard = document.querySelector(".rsvp-card");
+    const inputNombre = document.getElementById("nombreInvitado");
+    const inputMensaje = document.getElementById("mensajeInvitado");
+    const status = document.getElementById("rsvp-live-status");
+    const fields = [inputNombre, inputMensaje].filter(Boolean);
+
+    fields.forEach(field => {
+        updateFieldValueState(field);
+
+        field.addEventListener("input", () => {
+            field.classList.remove("is-invalid");
+            updateFieldValueState(field);
+
+            if (status && !rsvpCard?.classList.contains("rsvp-locked")) {
+                status.textContent = field === inputNombre && cleanText(field.value)
+                    ? "Nombre recibido. Ya puedes confirmar cuando gustes."
+                    : "Borrador guardado en este dispositivo.";
+            }
+        });
+
+        field.addEventListener("focus", () => {
+            if (rsvpCard) rsvpCard.classList.add("rsvp-focused");
+        });
+
+        field.addEventListener("blur", () => {
+            if (rsvpCard) rsvpCard.classList.remove("rsvp-focused");
+        });
+    });
+
+    document.querySelectorAll('input[name="asistencia"]').forEach(radio => {
+        radio.addEventListener("change", () => {
+            pulseRsvpCard();
+        });
+    });
+}
+
+function updateFieldValueState(field) {
+    if (!field) return;
+    field.classList.toggle("has-value", Boolean(cleanText(field.value)));
+}
+
+function pulseRsvpCard() {
+    const rsvpCard = document.querySelector(".rsvp-card");
+
+    if (!rsvpCard) return;
+
+    rsvpCard.classList.remove("rsvp-pulse");
+    void rsvpCard.offsetWidth;
+    rsvpCard.classList.add("rsvp-pulse");
 }
 
 function setModalContent(title, message) {
@@ -423,12 +484,19 @@ function showModal() {
 
     modal.classList.remove("hidden");
 
-    if (typeof gsap !== "undefined") {
-        gsap.from(".modal-content", {
+    if (typeof gsap !== "undefined" && !prefersReducedMotion) {
+        gsap.fromTo(".modal-content", {
             opacity: 0,
-            scale: 0.8,
-            duration: 0.5,
-            ease: "back.out(1.7)"
+            y: 26,
+            scale: 0.86,
+            filter: "blur(10px)"
+        }, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            filter: "blur(0px)",
+            duration: 0.55,
+            ease: "back.out(1.45)"
         });
     }
 }
@@ -514,6 +582,8 @@ function bloquearFormularioComoRegistrado() {
     const inputMensaje = document.getElementById("mensajeInvitado");
     const btnConfirmar = document.getElementById("btn-confirmar");
     const radios = document.querySelectorAll('input[name="asistencia"]');
+    const rsvpCard = document.querySelector(".rsvp-card");
+    const status = document.getElementById("rsvp-live-status");
 
     if (inputNombre) inputNombre.disabled = true;
     if (inputMensaje) inputMensaje.disabled = true;
@@ -522,35 +592,47 @@ function bloquearFormularioComoRegistrado() {
         radio.disabled = true;
     });
 
+    if (rsvpCard) {
+        rsvpCard.classList.add("rsvp-locked");
+        rsvpCard.classList.remove("rsvp-focused", "rsvp-pulse");
+    }
+
+    if (status) {
+        status.textContent = "Respuesta registrada. Gracias por confirmar para Midnight Gala.";
+    }
+
     if (btnConfirmar) {
         btnConfirmar.innerText = "RESPUESTA YA REGISTRADA";
         btnConfirmar.disabled = true;
+        btnConfirmar.classList.remove("is-loading");
     }
 }
 
 function marcarCampoInvalido(campo) {
     if (!campo) return;
 
-    if (typeof gsap !== "undefined") {
-        gsap.to(campo, {
-            x: 10,
-            duration: 0.1,
-            repeat: 5,
-            yoyo: true
-        });
-    } else {
-        campo.classList.add("field-warning");
+    const status = document.getElementById("rsvp-live-status");
 
-        setTimeout(() => {
-            campo.classList.remove("field-warning");
-        }, 900);
+    campo.classList.add("is-invalid", "field-warning");
+    campo.focus({ preventScroll: false });
+
+    if (status) {
+        status.textContent = "Antes de confirmar, escribe el nombre del invitado o familia.";
     }
 
-    campo.style.border = "1px solid #ff4444";
+    if (typeof gsap !== "undefined" && !prefersReducedMotion) {
+        gsap.fromTo(campo, { x: -7 }, {
+            x: 7,
+            duration: 0.08,
+            repeat: 5,
+            yoyo: true,
+            clearProps: "x"
+        });
+    }
 
     setTimeout(() => {
-        campo.style.border = "1px solid rgba(214, 179, 106, 0.34)";
-    }, 2000);
+        campo.classList.remove("field-warning");
+    }, 900);
 }
 
 async function confirmarAsistencia() {
@@ -566,12 +648,20 @@ async function confirmarAsistencia() {
     const asistencia = asistenciaSeleccionada ? asistenciaSeleccionada.value : "Asistiré";
 
     if (!nombre) {
+        setModalContent(
+            "FALTA TU NOMBRE",
+            "Escribe el nombre del invitado o familia para registrar la confirmación."
+        );
+        showModal();
         marcarCampoInvalido(inputNombre);
+        hideModal(3000);
         return;
     }
 
-    btnConfirmar.innerText = "PROCESANDO...";
+    setRsvpStatus("Guardando respuesta con estilo INVYRA...");
+    btnConfirmar.innerText = "GUARDANDO RESPUESTA...";
     btnConfirmar.disabled = true;
+    btnConfirmar.classList.add("is-loading");
 
     try {
         const response = await sendRsvpToAppsScript({
@@ -591,6 +681,7 @@ async function confirmarAsistencia() {
             );
 
             showModal();
+            setRsvpStatus("Respuesta localizada. Dejaremos el formulario bloqueado para evitar duplicados.");
 
             setTimeout(() => {
                 const modal = document.getElementById("rsvp-modal");
@@ -612,8 +703,10 @@ async function confirmarAsistencia() {
             );
 
             showModal();
+            setRsvpStatus("Respuesta registrada. Enseguida abriremos WhatsApp.");
 
             btnConfirmar.innerText = "¡TODO LISTO!";
+            btnConfirmar.classList.remove("is-loading");
 
             const mensajeWhatsApp = encodeURIComponent(
                 `¡Hola! Confirmo mi respuesta para la Midnight Gala.\n\n` +
@@ -646,10 +739,17 @@ async function confirmarAsistencia() {
         showModal();
 
         btnConfirmar.disabled = false;
+        btnConfirmar.classList.remove("is-loading");
         btnConfirmar.innerText = asistencia === "No asistiré" ? "ENVIAR RESPUESTA" : "CONFIRMAR ASISTENCIA";
+        setRsvpStatus("No se pudo guardar. Puedes intentarlo nuevamente en unos segundos.");
 
         hideModal(3600);
     }
+}
+
+function setRsvpStatus(message) {
+    const status = document.getElementById("rsvp-live-status");
+    if (status) status.textContent = message;
 }
 
 window.confirmarAsistencia = confirmarAsistencia;
