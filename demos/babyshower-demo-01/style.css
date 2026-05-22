@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800;900&family=Great+Vibes&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800;900&family=Great+Vibes&display=swap");
 
 :root {
     --midnight: #101b33;
@@ -36,6 +36,10 @@ body {
     overflow-x: hidden;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
     min-height: 100vh;
@@ -48,9 +52,29 @@ body {
         linear-gradient(180deg, #eef8ff 0%, #fff8ef 48%, #f1dec9 100%);
 }
 
+body.splash-active,
+body:not(.experience-opened) {
+    overflow: hidden;
+}
+
+body.experience-opened {
+    overflow-y: auto;
+}
+
 img,
 svg {
     max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+a {
+    color: inherit;
 }
 
 /* ==============================
@@ -62,7 +86,8 @@ svg {
     inset: 0;
     z-index: 10000;
     width: 100vw;
-    height: 100vh;
+    height: 100svh;
+    min-height: 100svh;
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -89,8 +114,8 @@ svg {
 .splash-halo {
     position: absolute;
     z-index: 1;
-    width: 430px;
-    height: 430px;
+    width: min(84vw, 430px);
+    height: min(84vw, 430px);
     border-radius: 50%;
     background:
         radial-gradient(circle, rgba(255,255,255,0.84), rgba(191,231,255,0.28) 46%, transparent 72%);
@@ -231,6 +256,7 @@ svg {
 .splash-logo {
     width: 88px;
     margin-bottom: 24px;
+    border-radius: 50%;
     filter:
         drop-shadow(0 16px 28px rgba(23,40,70,0.16))
         drop-shadow(0 0 22px rgba(230,201,143,0.18));
@@ -454,6 +480,7 @@ svg {
     width: 88px;
     max-width: 26vw;
     margin-bottom: 30px;
+    border-radius: 50%;
     opacity: 0.92;
     filter:
         drop-shadow(0 12px 24px rgba(23,40,70,0.12))
@@ -1087,6 +1114,7 @@ svg {
 .closing-logo {
     width: 72px;
     margin-bottom: 20px;
+    border-radius: 50%;
     opacity: 0.9;
     filter: drop-shadow(0 12px 24px rgba(23,40,70,0.12));
 }
@@ -1116,10 +1144,14 @@ svg {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 24px;
     background: rgba(16, 27, 51, 0.64);
     opacity: 0;
     visibility: hidden;
     backdrop-filter: blur(8px);
+    transition:
+        opacity 0.28s ease,
+        visibility 0.28s ease;
 }
 
 .modal:not(.hidden) {
@@ -1159,6 +1191,10 @@ svg {
     color: var(--text-soft);
     line-height: 1.6;
     font-weight: 600;
+}
+
+.field-warning {
+    animation: fieldShake 0.34s ease;
 }
 
 /* ==============================
@@ -1272,6 +1308,25 @@ svg {
     to {
         opacity: 0.82;
         transform: translate(-50%, -50%) scale(1.08);
+    }
+}
+
+@keyframes fieldShake {
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+
+    75% {
+        transform: translateX(-3px);
     }
 }
 
@@ -1468,5 +1523,32 @@ svg {
         transform: none !important;
         backface-visibility: hidden;
         -webkit-backface-visibility: hidden;
+    }
+}
+
+@media (max-width: 420px) {
+    .splash-content {
+        padding: 0 24px;
+    }
+
+    .splash-logo,
+    .brand-logo-img {
+        width: 78px;
+    }
+
+    .btn-start-experience,
+    .map-button,
+    .secondary-button,
+    .btn-rsvp {
+        width: 100%;
+        padding: 0 18px;
+    }
+
+    .time-unit span {
+        font-size: 1.8rem;
+    }
+
+    .time-unit small {
+        font-size: 0.58rem;
     }
 }

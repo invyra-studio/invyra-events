@@ -1,12 +1,12 @@
 /**
  * INVYRA - Baby Shower Demo
- * Version 1.0.2
+ * Version 1.0.3
  * Nivel: Signature
  * Celestial Cradle Experience
- * Update: Standardized Signature RSVP flow with companions
+ * Update: Autosave/restore RSVP draft + standardized Signature copy
  */
 
-document.body.classList.add("js-enabled");
+document.body.classList.add("js-enabled", "splash-active");
 
 if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
@@ -16,6 +16,8 @@ const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxeqwH1PtkO5Uvf17IrP
 const TELEFONO_RSVP = "525516986744";
 const FECHA_EVENTO = "Jul 20, 2026 16:00:00";
 const EVENTO_NOMBRE = "Baby Shower de Yeison";
+const RSVP_DRAFT_STORAGE_KEY = "invyra_baby_yeison_rsvp_draft";
+const RSVP_DONE_STORAGE_KEY = "invyra_baby_yeison_rsvp_done";
 
 const isMobile = window.matchMedia("(max-width: 768px)").matches;
 let experienceOpening = false;
@@ -56,11 +58,7 @@ function initSplashIdleMotion() {
         }, 450);
     }
 
-    if (typeof gsap === "undefined") return;
-
-    if (isMobile) {
-        return;
-    }
+    if (typeof gsap === "undefined" || isMobile) return;
 
     gsap.to(".splash-content", {
         y: -6,
@@ -129,6 +127,14 @@ function finishOpeningExperience() {
         splash.setAttribute("aria-hidden", "true");
     }
 
+    document.body.classList.remove("splash-active");
+    document.body.classList.add("experience-opened");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "auto"
+    });
+
     if (experienceStarted) return;
 
     experienceStarted = true;
@@ -161,15 +167,19 @@ function startMusic() {
 
 function entrarExperiencia() {
     const splash = document.getElementById("splash-screen");
+    const startButton = document.getElementById("btn-start-experience");
 
     if (!splash || experienceOpening) return;
 
     experienceOpening = true;
+
+    if (startButton) startButton.disabled = true;
+
     startMusic();
 
     const emergencyClose = setTimeout(() => {
         finishOpeningExperience();
-    }, 2600);
+    }, 2800);
 
     if (typeof gsap === "undefined") {
         clearTimeout(emergencyClose);
@@ -471,6 +481,101 @@ function updateRsvpState() {
 }
 
 /* ==============================
+   RSVP DRAFT AUTOSAVE
+   ============================== */
+
+function getRsvpDraftData() {
+    const inputNombre = document.getElementById("nombreInvitado");
+    const inputMensaje = document.getElementById("mensajeInvitado");
+    const inputPases = document.getElementById("pasesInvitado");
+    const asistenciaSeleccionada = document.querySelector('input[name="asistencia"]:checked');
+
+    return {
+        nombre: inputNombre ? inputNombre.value : "",
+        mensaje: inputMensaje ? inputMensaje.value : "",
+        pases: inputPases ? inputPases.value : "",
+        asistencia: asistenciaSeleccionada ? asistenciaSeleccionada.value : "Asistiré"
+    };
+}
+
+function saveRsvpDraft() {
+    try {
+        localStorage.setItem(RSVP_DRAFT_STORAGE_KEY, JSON.stringify(getRsvpDraftData()));
+    } catch (error) {
+        console.warn("No se pudo guardar el borrador RSVP:", error);
+    }
+}
+
+function restoreRsvpDraft() {
+    let draft = null;
+
+    try {
+        draft = JSON.parse(localStorage.getItem(RSVP_DRAFT_STORAGE_KEY) || "null");
+    } catch (error) {
+        console.warn("No se pudo restaurar el borrador RSVP:", error);
+    }
+
+    if (!draft) return;
+
+    const inputNombre = document.getElementById("nombreInvitado");
+    const inputMensaje = document.getElementById("mensajeInvitado");
+    const inputPases = document.getElementById("pasesInvitado");
+
+    if (inputNombre && typeof draft.nombre === "string") {
+        inputNombre.value = draft.nombre;
+    }
+
+    if (inputMensaje && typeof draft.mensaje === "string") {
+        inputMensaje.value = draft.mensaje;
+    }
+
+    if (inputPases && typeof draft.pases === "string") {
+        const hasOption = Array.from(inputPases.options).some(option => option.value === draft.pases);
+        if (hasOption) inputPases.value = draft.pases;
+    }
+
+    if (draft.asistencia) {
+        const radio = Array.from(document.querySelectorAll('input[name="asistencia"]'))
+            .find(option => option.value === draft.asistencia);
+
+        if (radio) radio.checked = true;
+    }
+
+    updateRsvpState();
+}
+
+function clearRsvpDraft() {
+    try {
+        localStorage.removeItem(RSVP_DRAFT_STORAGE_KEY);
+    } catch (error) {
+        console.warn("No se pudo limpiar el borrador RSVP:", error);
+    }
+}
+
+function initRsvpDraftPersistence() {
+    const fields = [
+        document.getElementById("nombreInvitado"),
+        document.getElementById("mensajeInvitado"),
+        document.getElementById("pasesInvitado")
+    ].filter(Boolean);
+
+    const radios = Array.from(document.querySelectorAll('input[name="asistencia"]'));
+
+    restoreRsvpDraft();
+
+    fields.forEach(field => {
+        field.addEventListener("input", saveRsvpDraft);
+        field.addEventListener("change", saveRsvpDraft);
+    });
+
+    radios.forEach(radio => {
+        radio.addEventListener("change", saveRsvpDraft);
+    });
+
+    window.addEventListener("pagehide", saveRsvpDraft);
+}
+
+/* ==============================
    MODAL
    ============================== */
 
@@ -539,7 +644,12 @@ function sendRsvpToAppsScript(data) {
 
         function cleanup() {
             clearTimeout(timeout);
-            delete window[callbackName];
+
+            try {
+                delete window[callbackName];
+            } catch (error) {
+                window[callbackName] = undefined;
+            }
 
             if (script && script.parentNode) {
                 script.parentNode.removeChild(script);
@@ -601,6 +711,16 @@ function bloquearFormularioComoRegistrado() {
     }
 }
 
+function restoreRegisteredState() {
+    try {
+        if (localStorage.getItem(RSVP_DONE_STORAGE_KEY) === "true") {
+            bloquearFormularioComoRegistrado();
+        }
+    } catch (error) {
+        console.warn("No se pudo revisar el estado de RSVP:", error);
+    }
+}
+
 function marcarCampoInvalido(campo) {
     if (!campo) return;
 
@@ -613,11 +733,11 @@ function marcarCampoInvalido(campo) {
         });
     }
 
-    campo.style.border = "1px solid #c99b4a";
+    campo.classList.add("field-warning");
 
     setTimeout(() => {
-        campo.style.border = "1px solid rgba(201, 155, 74, 0.32)";
-    }, 2000);
+        campo.classList.remove("field-warning");
+    }, 1800);
 }
 
 /* ==============================
@@ -633,14 +753,22 @@ async function confirmarAsistencia() {
 
     if (!inputNombre || !inputMensaje || !inputPases || !btnConfirmar) return;
 
-    const nombre = inputNombre.value.trim();
-    const mensajeInvitado = inputMensaje.value.trim();
+    const nombre = inputNombre.value.trim().replace(/\s+/g, " ");
+    const mensajeInvitado = inputMensaje.value.trim().replace(/\s+/g, " ");
     const asistencia = asistenciaSeleccionada ? asistenciaSeleccionada.value : "Asistiré";
     const noAsistira = asistencia === "No asistiré";
     const acompanantes = noAsistira ? "No aplica" : inputPases.value.trim();
 
     if (!nombre) {
         marcarCampoInvalido(inputNombre);
+
+        setModalContent(
+            "FALTA TU NOMBRE",
+            "Escribe el nombre del invitado o familia para registrar la confirmación."
+        );
+
+        showModal();
+        hideModal(3600);
         return;
     }
 
@@ -657,6 +785,8 @@ async function confirmarAsistencia() {
         });
 
         if (response && response.status === "duplicate") {
+            clearRsvpDraft();
+
             setModalContent(
                 "RESPUESTA YA REGISTRADA",
                 "Ya tenemos una respuesta asociada a este nombre. Gracias por formar parte de esta celebración."
@@ -668,6 +798,12 @@ async function confirmarAsistencia() {
                 const modal = document.getElementById("rsvp-modal");
                 if (modal) modal.classList.add("hidden");
 
+                try {
+                    localStorage.setItem(RSVP_DONE_STORAGE_KEY, "true");
+                } catch (error) {
+                    console.warn("No se pudo guardar el estado registrado:", error);
+                }
+
                 bloquearFormularioComoRegistrado();
             }, 5200);
 
@@ -675,6 +811,14 @@ async function confirmarAsistencia() {
         }
 
         if (response && response.status === "success") {
+            clearRsvpDraft();
+
+            try {
+                localStorage.setItem(RSVP_DONE_STORAGE_KEY, "true");
+            } catch (error) {
+                console.warn("No se pudo guardar el estado registrado:", error);
+            }
+
             setModalContent(
                 "¡RESPUESTA REGISTRADA!",
                 "Gracias por confirmar. En un momento abriremos WhatsApp para completar tu mensaje."
@@ -736,11 +880,41 @@ document.addEventListener("visibilitychange", () => {
     if (!music) return;
 
     if (document.hidden) {
+        saveRsvpDraft();
         music.pause();
-    } else if (splash && splash.style.display === "none") {
+        return;
+    }
+
+    const experienceIsOpen =
+        document.body.classList.contains("experience-opened") ||
+        (splash && splash.style.display === "none");
+
+    if (experienceIsOpen) {
         music.play().catch(error => console.log("Error al reanudar:", error));
     }
 });
+
+/* ==============================
+   MODAL CLOSE
+   ============================== */
+
+function initModalClose() {
+    const modal = document.getElementById("rsvp-modal");
+
+    if (!modal) return;
+
+    modal.addEventListener("click", event => {
+        if (event.target === modal) {
+            modal.classList.add("hidden");
+        }
+    });
+
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape") {
+            modal.classList.add("hidden");
+        }
+    });
+}
 
 /* ==============================
    DOM READY
@@ -765,6 +939,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     initSplashIdleMotion();
     initRsvpControls();
+    initRsvpDraftPersistence();
+    initModalClose();
+    restoreRegisteredState();
     updateCountdown();
 
     setInterval(updateCountdown, 1000);
