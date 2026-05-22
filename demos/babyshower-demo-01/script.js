@@ -1,9 +1,9 @@
 /**
  * INVYRA - Baby Shower Demo
- * Version 1.0.3
+ * Version 1.1.0
  * Nivel: Signature
  * Celestial Cradle Experience
- * Update: Autosave/restore RSVP draft + standardized Signature copy
+ * Update: Activity 13 cinematic cloud reveal + unique Signature motion
  */
 
 document.body.classList.add("js-enabled", "splash-active");
@@ -102,6 +102,28 @@ function initSplashIdleMotion() {
         ease: "sine.inOut",
         stagger: 0.35
     });
+
+    gsap.to(".splash-light-ribbon", {
+        x: 18,
+        y: -12,
+        opacity: 0.78,
+        duration: 7.2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        stagger: 0.45
+    });
+
+    gsap.to(".baby-charm", {
+        y: -14,
+        rotate: 5,
+        opacity: 0.95,
+        duration: 4.8,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        stagger: 0.42
+    });
 }
 
 function killSplashTweens() {
@@ -112,6 +134,8 @@ function killSplashTweens() {
     gsap.killTweensOf(".splash-halo");
     gsap.killTweensOf(".splash-cradle");
     gsap.killTweensOf(".cradle-star");
+    gsap.killTweensOf(".splash-light-ribbon");
+    gsap.killTweensOf(".baby-charm");
 }
 
 /* ==============================
@@ -199,43 +223,69 @@ function entrarExperiencia() {
         }
     });
 
+    splash.classList.add("opening");
+
     openTL
-        .to(".splash-content", {
+        .to(".btn-start-experience", {
             opacity: 0,
-            y: -18,
-            scale: 0.985,
-            duration: 0.58
+            y: 12,
+            duration: 0.28
         })
+        .to(".splash-logo, .splash-kicker, .splash-title, .splash-subtitle", {
+            opacity: 0,
+            y: -14,
+            filter: "blur(8px)",
+            duration: 0.48,
+            stagger: 0.035
+        }, "-=0.08")
+        .to(".curtain-left", {
+            x: isMobile ? -188 : -260,
+            scale: 1.06,
+            opacity: 0.22,
+            duration: 0.88
+        }, "-=0.30")
+        .to(".curtain-right", {
+            x: isMobile ? 188 : 260,
+            scale: 1.06,
+            opacity: 0.22,
+            duration: 0.88
+        }, "<")
         .to(".splash-cloud-left", {
-            x: isMobile ? -150 : -210,
-            opacity: 0.22,
-            duration: 0.95
-        }, "-=0.18")
+            x: isMobile ? -170 : -230,
+            opacity: 0.18,
+            duration: 0.84
+        }, "<")
         .to(".splash-cloud-right", {
-            x: isMobile ? 150 : 210,
-            opacity: 0.22,
-            duration: 0.95
+            x: isMobile ? 170 : 230,
+            opacity: 0.18,
+            duration: 0.84
         }, "<")
         .to(".splash-cloud-bottom", {
-            y: isMobile ? 130 : 170,
-            opacity: 0.18,
-            duration: 0.95
+            y: isMobile ? 138 : 178,
+            opacity: 0.14,
+            duration: 0.84
         }, "<")
         .to(".splash-cradle", {
-            y: -24,
-            scale: 1.08,
-            opacity: 0,
-            duration: 0.85
-        }, "-=0.72")
-        .to(".splash-halo", {
+            y: -30,
             scale: 1.12,
             opacity: 0,
-            duration: 0.8
+            filter: "blur(6px)",
+            duration: 0.72
+        }, "-=0.56")
+        .to(".splash-halo", {
+            scale: 1.2,
+            opacity: 0,
+            duration: 0.72
         }, "<")
+        .to(".splash-dawn-wash", {
+            opacity: 1,
+            scale: 1.08,
+            duration: 0.42
+        }, "-=0.54")
         .to("#splash-screen", {
             opacity: 0,
-            duration: 0.52
-        }, "-=0.26");
+            duration: 0.42
+        }, "-=0.08");
 }
 
 /* ==============================
@@ -257,6 +307,36 @@ function initHeroReveal() {
     });
 
     heroTL
+        .fromTo(".hero-dawn-rays", {
+            opacity: 0,
+            scale: 1.08
+        }, {
+            opacity: 0.78,
+            scale: 1,
+            duration: 1.05
+        })
+        .fromTo(".hero-cloud-curtain", {
+            opacity: 0,
+            y: 26,
+            filter: "blur(18px)"
+        }, {
+            opacity: 0.78,
+            y: 0,
+            filter: "blur(10px)",
+            stagger: 0.08,
+            duration: 1.0
+        }, "-=0.78")
+        .fromTo(".hero-charm", {
+            opacity: 0,
+            y: 18,
+            scale: 0.82
+        }, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            stagger: 0.1,
+            duration: 0.85
+        }, "-=0.70")
         .to(".brand-logo-img", {
             opacity: 1,
             y: 0,
@@ -340,6 +420,24 @@ function initHeroIdleMotion() {
             ease: "sine.inOut"
         });
     }
+
+    gsap.to(".hero-charm", {
+        y: isMobile ? -6 : -12,
+        rotate: isMobile ? 3 : 7,
+        duration: 4.8,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        stagger: 0.38
+    });
+
+    gsap.to(".hero-dawn-rays", {
+        opacity: isMobile ? 0.42 : 0.72,
+        duration: 5.8,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+    });
 }
 
 /* ==============================
