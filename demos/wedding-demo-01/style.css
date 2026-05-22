@@ -1,3 +1,4 @@
+/* INVYRA - Wedding Legacy Demo | Version 1.0.13 */
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap');
 
 :root {
@@ -26,6 +27,10 @@ body {
     overflow-x: hidden;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background:
         radial-gradient(circle at 50% 0%, rgba(184, 138, 68, 0.10), transparent 34%),
@@ -40,6 +45,41 @@ img,
 svg {
     max-width: 100%;
 }
+body.splash-active,
+body:not(.experience-opened) {
+    overflow: hidden;
+    transition:
+        opacity 0.8s ease,
+        visibility 0.8s ease,
+        transform 0.8s ease;
+}
+
+#splash-screen.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: scale(1.04);
+}
+
+body.experience-opened {
+    overflow-y: auto;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    -webkit-tap-highlight-color: transparent;
+}
+
+a {
+    color: inherit;
+}
+
 
 /* ==============================
    SPLASH
@@ -203,6 +243,14 @@ svg {
 .btn-start-experience:hover {
     background: rgba(184, 138, 68, 0.12);
     box-shadow: 0 0 28px rgba(184, 138, 68, 0.16);
+}
+
+.btn-start-experience:focus-visible,
+.map-button:focus-visible,
+.secondary-button:focus-visible,
+.btn-rsvp:focus-visible {
+    outline: 3px solid rgba(184, 138, 68, 0.26);
+    outline-offset: 4px;
 }
 
 #splash-screen.opening .envelope-card {
@@ -1004,6 +1052,7 @@ svg {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    background-color: rgba(255, 255, 255, 0.42);
 }
 
 .gallery-item::before {
@@ -1277,6 +1326,10 @@ svg {
     box-shadow: 0 4px 0 rgba(17, 17, 17, 0.55);
 }
 
+.btn-rsvp.is-loading {
+    opacity: 0.76;
+}
+
 /* ==============================
    CLOSING / MODAL
    ============================== */
@@ -1315,6 +1368,9 @@ svg {
     z-index: 20000;
     opacity: 0;
     visibility: hidden;
+    transition:
+        opacity 0.28s ease,
+        visibility 0.28s ease;
 }
 
 .modal:not(.hidden) {
@@ -1611,3 +1667,14 @@ svg {
     font-size: 1.8rem;
     }
 }
+
+.field-warning { animation: fieldShake 0.34s ease; }
+
+@keyframes fieldShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-3px); }
+}
+
+.image-error { opacity: 0.45; filter: grayscale(1); }

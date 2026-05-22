@@ -5,22 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>INVYRA | Aurora & Matteo - Wedding Experience</title>
 
+    <meta
+      name="description"
+      content="Demo premium Legacy para boda creada por INVYRA, con invitación digital animada, música, detalles del evento, dress code, menú, galería, mesa de regalos y RSVP avanzado."
+    />
+
     <link rel="icon" type="image/jpeg" href="../../LOGO/FAVICON.jpeg" />
-    <link rel="stylesheet" href="style.css?v=1.0.11" />
+    <link rel="stylesheet" href="style.css?v=1.0.13" />
 
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
 
-    <link rel="preload" as="image" href="./assets/wedding-ceremony.jpeg" />
-    <link rel="preload" as="image" href="./assets/wedding-reception.jpeg" />
-    <link rel="preload" as="image" href="./assets/wedding-moments.jpeg" />
-    <link rel="preload" as="image" href="./assets/dress-men.jpeg" />
-    <link rel="preload" as="image" href="./assets/dress-women.jpeg" />
+    <link rel="preload" as="image" href="../../LOGO/FAVICON.jpeg" />
 
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <link rel="preload" as="image" href="./assets/wedding-ceremony.jpeg" />
+    <link rel="preload" as="image" href="./assets/wedding-ceremony.png" />
+    <link rel="preload" as="image" href="./assets/wedding-reception.jpeg" />
+    <link rel="preload" as="image" href="./assets/wedding-reception.png" />
+    <link rel="preload" as="image" href="./assets/wedding-moments.jpeg" />
+    <link rel="preload" as="image" href="./assets/wedding-moments.png" />
+    <link rel="preload" as="image" href="./assets/dress-men.jpeg" />
+    <link rel="preload" as="image" href="./assets/dress-men.png" />
+    <link rel="preload" as="image" href="./assets/dress-women.jpeg" />
+    <link rel="preload" as="image" href="./assets/dress-women.png" />
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
   </head>
 
   <body>
@@ -47,7 +59,6 @@
 
         <button
           type="button"
-          onclick="entrarExperiencia()"
           class="btn-start-experience"
           aria-label="Abrir invitación"
         >
@@ -56,8 +67,8 @@
       </div>
     </div>
 
-    <main class="invitation-container">
-      <header class="hero-section">
+    <main class="invitation-container" id="invitation-content">
+      <header class="hero-section" id="inicio">
         <div class="cinematic-bg hero-atmosphere"></div>
         <div class="wedding-haze hero-atmosphere"></div>
         <div class="soft-light light-one hero-atmosphere"></div>
@@ -253,6 +264,7 @@
             <div class="dress-image-wrap">
               <img
                 src="./assets/dress-men.jpeg"
+                data-fallback-src="./assets/dress-men.png"
                 alt="Ejemplo de vestimenta formal para hombres"
                 class="dress-image"
               />
@@ -266,6 +278,7 @@
             <div class="dress-image-wrap">
               <img
                 src="./assets/dress-women.jpeg"
+                data-fallback-src="./assets/dress-women.png"
                 alt="Ejemplo de vestimenta formal para mujeres"
                 class="dress-image"
               />
@@ -368,6 +381,7 @@
         <div class="gallery-grid">
           <div
             class="gallery-item gallery-one"
+            data-bg-base="wedding-ceremony"
             role="img"
             aria-label="Ceremonia de boda elegante"
           >
@@ -376,6 +390,7 @@
 
           <div
             class="gallery-item gallery-two"
+            data-bg-base="wedding-reception"
             role="img"
             aria-label="Recepción de boda elegante"
           >
@@ -384,6 +399,7 @@
 
           <div
             class="gallery-item gallery-three"
+            data-bg-base="wedding-moments"
             role="img"
             aria-label="Momentos especiales de boda"
           >
@@ -452,6 +468,7 @@
               id="nombreInvitado"
               placeholder="Nombre de invitado o familia"
               autocomplete="off"
+              aria-label="Nombre de invitado o familia"
             />
 
             <div class="attendance-group">
@@ -480,7 +497,7 @@
                 Confirmo asistencia a
               </label>
 
-              <select id="detalleAsistenciaInvitado">
+              <select id="detalleAsistenciaInvitado" aria-label="Confirmo asistencia a">
                 <option value="Ceremonia y recepción">
                   Ceremonia y recepción
                 </option>
@@ -492,7 +509,7 @@
             <div class="rsvp-field-group" id="menuInvitadoGroup">
               <label for="menuInvitado">Preferencia de menú</label>
 
-              <select id="menuInvitado">
+              <select id="menuInvitado" aria-label="Preferencia de menú">
                 <option value="Sin preferencia">Sin preferencia</option>
                 <option value="Salmón en salsa de cítricos y hierbas finas">
                   Salmón en salsa de cítricos y hierbas finas
@@ -506,6 +523,7 @@
             <textarea
               id="mensajeInvitado"
               placeholder="Puedes dejar un mensaje (opcional)"
+              aria-label="Mensaje opcional"
             ></textarea>
 
             <button
@@ -534,7 +552,7 @@
       </footer>
     </main>
 
-    <div id="rsvp-modal" class="modal hidden">
+    <div id="rsvp-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-message">
       <div class="modal-content">
         <h3 id="modal-title">¡RESPUESTA REGISTRADA!</h3>
         <p id="modal-message">
@@ -544,10 +562,10 @@
       </div>
     </div>
 
-    <audio id="bg-music" loop>
+    <audio id="bg-music" loop preload="auto">
       <source src="../../music/violin-luxury.mp3" type="audio/mpeg" />
     </audio>
 
-    <script src="script.js?v=1.0.11"></script>
+    <script src="script.js?v=1.0.13"></script>
   </body>
 </html>

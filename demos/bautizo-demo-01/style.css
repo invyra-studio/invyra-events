@@ -365,8 +365,8 @@ a {
 }
 
 .envelope-letter {
-  z-index: 2;
-  bottom: 16px;
+  z-index: 3;
+  bottom: 10px;
   width: 78%;
   min-height: 150px;
   padding: 22px 16px 20px;
@@ -383,8 +383,11 @@ a {
     0 18px 46px rgba(20, 40, 58, 0.15),
     inset 0 0 0 1px rgba(255, 255, 255, 0.76);
   opacity: 0;
-  transform: translateY(92px) scale(0.96);
+  transform: translateY(108px) scale(0.94);
+  transform-origin: center bottom;
   pointer-events: none;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
 }
 
 .letter-logo-wrap {
@@ -501,6 +504,8 @@ a {
   box-shadow:
     0 15px 30px rgba(20, 40, 58, 0.13),
     inset 0 1px 0 rgba(255, 255, 255, 0.52);
+  backface-visibility: hidden;
+  will-change: transform, opacity;
 }
 
 .envelope-seal {
@@ -593,15 +598,15 @@ a {
 }
 
 #splash-screen.opening .envelope {
-  animation: envelopeSoftLift 0.9s ease forwards;
+  animation: envelopeSoftLift 0.82s ease forwards;
 }
 
 #splash-screen.opening .envelope-flap {
-  animation: envelopeFlapOpen 1.12s ease 0.5s forwards;
+  animation: envelopeFlapOpen 0.96s cubic-bezier(0.22, 1, 0.36, 1) 0.34s forwards;
 }
 
 #splash-screen.opening .envelope-letter {
-  animation: letterRevealClean 1.48s cubic-bezier(0.22, 1, 0.36, 1) 1.34s forwards;
+  animation: letterRevealClean 1.18s cubic-bezier(0.22, 1, 0.36, 1) 0.96s forwards;
 }
 
 #splash-screen.opening .envelope-seal {
@@ -1654,27 +1659,27 @@ a {
 @keyframes letterRevealClean {
   0% {
     opacity: 0;
-    transform: translateY(92px) scale(0.96);
+    transform: translateY(108px) scale(0.94);
   }
 
-  22% {
+  34% {
     opacity: 0;
-    transform: translateY(74px) scale(0.97);
+    transform: translateY(82px) scale(0.95);
   }
 
-  38% {
+  50% {
     opacity: 1;
-    transform: translateY(36px) scale(0.99);
+    transform: translateY(16px) scale(0.985);
   }
 
-  74% {
+  76% {
     opacity: 1;
-    transform: translateY(-104px) scale(1.018);
+    transform: translateY(-72px) scale(1.01);
   }
 
   100% {
     opacity: 0;
-    transform: translateY(-142px) scale(1.035);
+    transform: translateY(-124px) scale(1.03);
   }
 }
 
@@ -1947,13 +1952,7 @@ a {
     width: 84%;
     min-height: 150px;
     padding: 20px 15px 18px;
-    bottom: 14px;
-  }
-
-  .letter-logo-wrap {
-    width: 46px;
-    height: 46px;
-    margin-bottom: 10px;
+    bottom: 10px;
   }
 
   .letter-logo {
