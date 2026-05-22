@@ -1787,3 +1787,246 @@ a {
     scroll-behavior: auto !important;
   }
 }
+
+/* ==============================
+   ACTIVITY 14 — RSVP GLAM MICROINTERACTIONS
+   Version 1.4.0
+   ============================== */
+
+.rsvp-card,
+.rsvp-form,
+.attendance-group,
+.attendance-options,
+.rsvp-field-group,
+#nombreInvitado,
+#mensajeInvitado,
+#detalleAsistenciaInvitado,
+.btn-rsvp {
+  position: relative;
+  z-index: 3;
+}
+
+.rsvp-card::before,
+.glass-card::before,
+.detail-card::before,
+.dress-card::before,
+.timeline-card::before {
+  pointer-events: none;
+}
+
+.rsvp-card::after {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  z-index: 1;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 138, 203, 0.10);
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.rsvp-card[data-rsvp-state="attending"] {
+  border-color: rgba(242, 223, 184, 0.44);
+  box-shadow:
+    0 28px 76px rgba(0,0,0,0.34),
+    0 0 46px rgba(216,107,168,0.16),
+    inset 0 0 0 1px rgba(255,255,255,0.06);
+}
+
+.rsvp-card[data-rsvp-state="not-attending"] {
+  border-color: rgba(203, 182, 202, 0.30);
+  filter: saturate(0.92);
+}
+
+.rsvp-live-message {
+  position: relative;
+  z-index: 3;
+  width: min(100%, 340px);
+  margin: -8px auto 28px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 138, 203, 0.20);
+  border-radius: 18px;
+  color: rgba(255, 248, 251, 0.78);
+  background:
+    linear-gradient(135deg, rgba(255, 138, 203, 0.10), rgba(216, 180, 106, 0.06));
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1.5;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+  transition:
+    color 0.3s ease,
+    border-color 0.3s ease,
+    background 0.3s ease,
+    transform 0.3s ease;
+}
+
+.rsvp-card[data-rsvp-state="not-attending"] .rsvp-live-message {
+  color: rgba(203, 182, 202, 0.86);
+  border-color: rgba(203, 182, 202, 0.20);
+  background: rgba(255,255,255,0.045);
+}
+
+#nombreInvitado,
+#mensajeInvitado,
+#detalleAsistenciaInvitado {
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.04),
+    0 0 0 rgba(255,138,203,0);
+  caret-color: var(--champagne);
+}
+
+#nombreInvitado:hover,
+#mensajeInvitado:hover,
+#detalleAsistenciaInvitado:hover {
+  border-color: rgba(242, 223, 184, 0.48);
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.13), rgba(216,107,168,0.10));
+}
+
+#nombreInvitado.is-focused,
+#mensajeInvitado.is-focused,
+#detalleAsistenciaInvitado.is-focused,
+#nombreInvitado:focus,
+#mensajeInvitado:focus,
+#detalleAsistenciaInvitado:focus {
+  border-color: rgba(255, 138, 203, 0.86);
+  box-shadow:
+    0 0 0 3px rgba(216, 107, 168, 0.16),
+    0 0 34px rgba(216, 107, 168, 0.16),
+    inset 0 0 0 1px rgba(255,255,255,0.06);
+  transform: translateY(-1px);
+}
+
+#nombreInvitado.has-value,
+#mensajeInvitado.has-value,
+#detalleAsistenciaInvitado.has-value {
+  border-color: rgba(216, 180, 106, 0.52);
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.14), rgba(216,107,168,0.09), rgba(216,180,106,0.06));
+}
+
+.attendance-options label {
+  min-height: 42px;
+  padding: 10px 14px;
+  border: 1px solid rgba(216, 180, 106, 0.18);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.045);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.025);
+}
+
+.attendance-options label:has(input:checked) {
+  color: var(--champagne);
+  border-color: rgba(255, 138, 203, 0.54);
+  background:
+    linear-gradient(135deg, rgba(255, 138, 203, 0.20), rgba(216, 180, 106, 0.12));
+  box-shadow:
+    0 0 24px rgba(216, 107, 168, 0.18),
+    inset 0 0 0 1px rgba(255,255,255,0.05);
+}
+
+.rsvp-field-group {
+  overflow: hidden;
+  transition:
+    opacity 0.35s ease,
+    filter 0.35s ease,
+    transform 0.35s ease,
+    max-height 0.35s ease,
+    margin 0.35s ease;
+  max-height: 110px;
+}
+
+.rsvp-field-group.is-disabled {
+  max-height: 0;
+  margin-top: 0;
+  opacity: 0;
+  filter: blur(8px) grayscale(0.35);
+  transform: translateY(-8px) scale(0.98);
+  pointer-events: none;
+}
+
+.btn-rsvp {
+  isolation: isolate;
+}
+
+.btn-rsvp::after {
+  content: "";
+  position: absolute;
+  inset: auto 18px 10px;
+  z-index: -1;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, rgba(255, 138, 203, 0.85), rgba(242, 223, 184, 0.82), transparent);
+  opacity: 0;
+  transform: scaleX(0.42);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.btn-rsvp.is-loading::after {
+  opacity: 1;
+  animation: glamButtonLoading 1.15s ease-in-out infinite;
+}
+
+.btn-rsvp.is-success {
+  border-color: rgba(242, 223, 184, 0.72);
+  background:
+    linear-gradient(135deg, rgba(216, 180, 106, 0.32), rgba(255, 138, 203, 0.20));
+  color: var(--champagne);
+  box-shadow:
+    0 0 36px rgba(216, 107, 168, 0.22),
+    0 0 42px rgba(216, 180, 106, 0.14);
+}
+
+.modal-content {
+  position: relative;
+  overflow: hidden;
+}
+
+.modal-content::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,138,203,0.18), transparent 36%),
+    linear-gradient(115deg, transparent 0%, rgba(255,255,255,0.08) 48%, transparent 58%);
+  pointer-events: none;
+}
+
+.modal-content::after {
+  content: "✦";
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  color: rgba(242, 223, 184, 0.56);
+  font-size: 1.1rem;
+  text-shadow: 0 0 22px rgba(255,138,203,0.46);
+}
+
+@keyframes glamButtonLoading {
+  0% {
+    transform: scaleX(0.25) translateX(-32%);
+    opacity: 0.42;
+  }
+
+  50% {
+    transform: scaleX(1) translateX(0%);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scaleX(0.25) translateX(32%);
+    opacity: 0.42;
+  }
+}
+
+@media (max-width: 768px) {
+  .rsvp-live-message {
+    font-size: 0.76rem;
+    margin-bottom: 24px;
+  }
+
+  .attendance-options label {
+    padding: 10px 12px;
+  }
+}

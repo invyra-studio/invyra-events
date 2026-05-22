@@ -11,7 +11,7 @@
     />
 
     <link rel="icon" type="image/jpeg" href="../../LOGO/FAVICON.jpeg" />
-    <link rel="stylesheet" href="style.css?v=1.3.1" />
+    <link rel="stylesheet" href="style.css?v=1.4.0" />
 
     <link
       href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800;900&family=Playfair+Display:wght@500;600;700&display=swap"
@@ -277,6 +277,10 @@
             para que podamos preparar cada detalle de esta noche tan especial.
           </p>
 
+          <p class="rsvp-live-message" id="rsvp-live-message" aria-live="polite">
+            Lista para brillar contigo: confirma tu asistencia para continuar.
+          </p>
+
           <div class="rsvp-form">
             <input
               type="text"
@@ -349,7 +353,7 @@
       </footer>
     </main>
 
-    <div id="rsvp-modal" class="modal hidden">
+    <div id="rsvp-modal" class="modal hidden" aria-live="polite">
       <div class="modal-content">
         <h3 id="modal-title">¡Respuesta registrada!</h3>
         <p id="modal-message">
@@ -362,6 +366,6 @@
       <source src="../../music/violin-luxury.mp3" type="audio/mpeg" />
     </audio>
 
-    <script src="script.js?v=1.3.1"></script>
+    <script src="script.js?v=1.4.0"></script>
   </body>
 </html>
