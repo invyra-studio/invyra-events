@@ -1,4 +1,4 @@
-/* INVYRA - Wedding Legacy Demo | Version 1.6.4 */
+/* INVYRA - Wedding Legacy Demo | Version 1.7.0 */
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap');
 
 :root {
@@ -2575,5 +2575,203 @@ a {
     .envelope-logo {
         width: 70px;
         height: 70px;
+    }
+}
+
+
+/* ==============================
+   ACTIVITY 14 — LEGACY RSVP MICROINTERACTIONS
+   Version 1.7.0
+   ============================== */
+
+.rsvp-card,
+.rsvp-form,
+.rsvp-field-group,
+.attendance-group,
+.attendance-options,
+#nombreInvitado,
+#mensajeInvitado,
+#detalleAsistenciaInvitado,
+#menuInvitado,
+.btn-rsvp {
+    position: relative;
+    z-index: 2;
+}
+
+.rsvp-card::before,
+.rsvp-card::after,
+.ornament-line,
+.rsvp-envelope-icon {
+    pointer-events: none;
+}
+
+#nombreInvitado,
+#mensajeInvitado,
+#detalleAsistenciaInvitado,
+#menuInvitado {
+    transition:
+        border-color 0.28s ease,
+        box-shadow 0.28s ease,
+        background 0.28s ease,
+        transform 0.28s ease,
+        opacity 0.28s ease;
+}
+
+#nombreInvitado:hover,
+#mensajeInvitado:hover,
+#detalleAsistenciaInvitado:hover,
+#menuInvitado:hover {
+    border-color: rgba(184, 138, 68, 0.72);
+    box-shadow:
+        0 0 0 2px rgba(184, 138, 68, 0.08),
+        0 14px 28px rgba(43, 36, 30, 0.08);
+}
+
+#nombreInvitado.is-focused,
+#mensajeInvitado.is-focused,
+#detalleAsistenciaInvitado.is-focused,
+#menuInvitado.is-focused,
+#nombreInvitado:focus,
+#mensajeInvitado:focus,
+#detalleAsistenciaInvitado:focus,
+#menuInvitado:focus {
+    background: #fffdf8;
+    border-color: rgba(184, 138, 68, 0.88);
+    box-shadow:
+        0 0 0 3px rgba(184, 138, 68, 0.13),
+        0 18px 34px rgba(43, 36, 30, 0.10);
+    transform: translateY(-1px);
+}
+
+#nombreInvitado.has-value,
+#mensajeInvitado.has-value,
+#detalleAsistenciaInvitado.has-value,
+#menuInvitado.has-value {
+    border-color: rgba(111, 115, 92, 0.54);
+}
+
+.attendance-options label {
+    min-height: 44px;
+    padding: 8px 13px;
+    border: 1px solid rgba(184, 138, 68, 0.18);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.34);
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+}
+
+.attendance-options label:hover {
+    transform: translateY(-2px);
+    border-color: rgba(184, 138, 68, 0.42);
+    box-shadow: 0 14px 30px rgba(43, 36, 30, 0.09);
+}
+
+.attendance-options label:has(input:checked) {
+    background: linear-gradient(135deg, rgba(255,255,255,0.72), rgba(216,195,165,0.28));
+    border-color: rgba(184, 138, 68, 0.58);
+    box-shadow:
+        0 16px 34px rgba(43, 36, 30, 0.10),
+        inset 0 0 0 1px rgba(255,255,255,0.56);
+}
+
+.rsvp-live-message {
+    margin: 18px auto 0;
+    max-width: 330px;
+    color: var(--muted);
+    font-size: 0.82rem;
+    font-weight: 700;
+    line-height: 1.55;
+    opacity: 0.86;
+    transition: opacity 0.28s ease, transform 0.28s ease;
+}
+
+.rsvp-card.rsvp-state-pulse .rsvp-live-message {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+.rsvp-field-group {
+    overflow: hidden;
+    max-height: 120px;
+    opacity: 1;
+    transform: translateY(0);
+    transition:
+        max-height 0.42s ease,
+        opacity 0.32s ease,
+        margin 0.35s ease,
+        transform 0.35s ease,
+        filter 0.35s ease;
+}
+
+.rsvp-field-group.is-collapsed {
+    max-height: 0;
+    margin-top: 0;
+    opacity: 0;
+    transform: translateY(-8px);
+    filter: blur(5px);
+    pointer-events: none;
+}
+
+.btn-rsvp {
+    overflow: hidden;
+}
+
+.btn-rsvp.is-loading::before {
+    content: "";
+    position: absolute;
+    left: 18px;
+    right: 18px;
+    bottom: 8px;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, transparent, rgba(184,138,68,0.90), transparent);
+    animation: legacyRsvpLoading 1.05s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.btn-rsvp.is-loading {
+    opacity: 0.84;
+    box-shadow:
+        0 4px 0 rgba(17, 17, 17, 0.55),
+        0 0 30px rgba(184, 138, 68, 0.15);
+}
+
+.modal-content::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 18px;
+    width: 128px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(184,138,68,0.72), transparent);
+    transform: translateX(-50%);
+    pointer-events: none;
+}
+
+.modal-content {
+    position: relative;
+    overflow: hidden;
+}
+
+.rsvp-card.rsvp-not-attending {
+    border-color: rgba(111, 115, 92, 0.32);
+}
+
+@keyframes legacyRsvpLoading {
+    0% { transform: translateX(-72%); opacity: 0.35; }
+    50% { opacity: 1; }
+    100% { transform: translateX(72%); opacity: 0.35; }
+}
+
+@media (max-width: 768px) {
+    .attendance-options label {
+        padding: 8px 12px;
+    }
+
+    .rsvp-live-message {
+        font-size: 0.78rem;
     }
 }

@@ -1,8 +1,8 @@
 /**
  * INVYRA - Wedding Legacy Demo
- * Version 1.6.4
+ * Version 1.7.0
  * Server-side RSVP validation through Google Sheets / Apps Script
- * Update: Legacy cinematic entrance, luxury reveal system, RSVP autosave/restore and audio visibility control
+ * Update: Activity 14 Legacy RSVP microinteractions, autosave/restore and server-side duplicate validation
  */
 
 document.body.classList.add("js-enabled", "splash-active");
@@ -15,6 +15,7 @@ const FECHA_EVENTO = "Feb 14, 2027 17:30:00";
 const EVENTO_NOMBRE = "Boda Aurora & Matteo";
 const RSVP_STORAGE_KEY = "invyra_wedding_aurora_matteo_rsvp";
 const RSVP_DRAFT_STORAGE_KEY = `${RSVP_STORAGE_KEY}_draft`;
+let rsvpSubmissionCompleted = false;
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -30,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initStartExperience();
     initCountdown();
     initRsvpState();
+    initRsvpMicrointeractions();
     initRsvpDraftAutosave();
     initModalClose();
     initImageFallbacks();
@@ -303,6 +305,7 @@ function actualizarEstadoAsistencia() {
     const menuGroup = document.getElementById("menuInvitadoGroup");
     const btnConfirmar = document.getElementById("btn-confirmar");
     const rsvpCard = document.querySelector(".rsvp-card");
+    const liveMessage = document.getElementById("rsvp-live-message");
 
     const asistencia = asistenciaSeleccionada ? asistenciaSeleccionada.value : "Asistiré";
     const noAsiste = asistencia === "No asistiré";
@@ -317,13 +320,49 @@ function actualizarEstadoAsistencia() {
         if (noAsiste) menuInvitado.value = "Sin preferencia";
     }
 
-    if (detalleGroup) detalleGroup.classList.toggle("is-disabled", noAsiste);
-    if (menuGroup) menuGroup.classList.toggle("is-disabled", noAsiste);
-    if (rsvpCard) rsvpCard.classList.toggle("rsvp-not-attending", noAsiste);
+    [detalleGroup, menuGroup].forEach(group => {
+        if (!group) return;
+        group.classList.toggle("is-disabled", noAsiste);
+        group.classList.toggle("is-collapsed", noAsiste);
+        group.setAttribute("aria-hidden", noAsiste ? "true" : "false");
+    });
+
+    if (rsvpCard) {
+        rsvpCard.classList.toggle("rsvp-not-attending", noAsiste);
+        rsvpCard.classList.add("rsvp-state-pulse");
+        window.setTimeout(() => rsvpCard.classList.remove("rsvp-state-pulse"), 420);
+    }
+
+    if (liveMessage) {
+        liveMessage.textContent = noAsiste
+            ? "Gracias por avisarnos. Puedes enviar tu respuesta sin completar menú ni asistencia al evento."
+            : "Perfecto, prepararemos tu confirmación para ceremonia, recepción y preferencia de menú.";
+    }
 
     if (btnConfirmar && !btnConfirmar.disabled) {
         btnConfirmar.textContent = noAsiste ? "Enviar respuesta" : "Confirmar asistencia";
     }
+}
+
+function initRsvpMicrointeractions() {
+    const fields = [
+        document.getElementById("nombreInvitado"),
+        document.getElementById("mensajeInvitado"),
+        document.getElementById("detalleAsistenciaInvitado"),
+        document.getElementById("menuInvitado")
+    ].filter(Boolean);
+
+    fields.forEach(field => {
+        const updateFieldState = () => {
+            field.classList.toggle("has-value", cleanText(field.value).length > 0);
+        };
+
+        field.addEventListener("input", updateFieldState);
+        field.addEventListener("change", updateFieldState);
+        field.addEventListener("focus", () => field.classList.add("is-focused"));
+        field.addEventListener("blur", () => field.classList.remove("is-focused"));
+        updateFieldState();
+    });
 }
 
 /* ==============================
@@ -384,22 +423,22 @@ async function confirmarAsistencia() {
         if (response && response.status === "duplicate") {
             setModalContent(
                 "ASISTENCIA YA REGISTRADA",
-                "Ya tenemos una respuesta asociada a este nombre. Gracias por formar parte de este momento especial."
+                "Ya tenemos una respuesta asociada a este nombre y evento. Puedes corregir el nombre o confirmar con los anfitriones."
             );
 
             showModal();
+            hideModal(5200);
 
-            window.setTimeout(() => {
-                hideModal(0);
-                clearRsvpDraft();
-                bloquearFormularioComoRegistrado();
-            }, 5200);
+            btnConfirmar.disabled = false;
+            btnConfirmar.classList.remove("is-loading");
+            btnConfirmar.textContent = asistencia === "No asistiré" ? "Enviar respuesta" : "Confirmar asistencia";
 
             return;
         }
 
         if (response && response.status === "success") {
-            localStorage.setItem(RSVP_STORAGE_KEY, "true");
+            rsvpSubmissionCompleted = true;
+            clearRsvpDraft();
 
             setModalContent(
                 "¡RESPUESTA REGISTRADA!",
@@ -422,8 +461,8 @@ async function confirmarAsistencia() {
             window.setTimeout(() => {
                 window.open(`https://wa.me/${TELEFONO_RSVP}?text=${mensajeWhatsApp}`, "_blank");
                 hideModal(0);
-                clearRsvpDraft();
-                bloquearFormularioComoRegistrado();
+                resetRsvpForm();
+                rsvpSubmissionCompleted = false;
             }, 3200);
 
             return;
@@ -617,7 +656,7 @@ function getCurrentRsvpDraftData() {
 }
 
 function saveRsvpDraft() {
-    if (localStorage.getItem(RSVP_STORAGE_KEY) === "true") {
+    if (rsvpSubmissionCompleted) {
         clearRsvpDraft();
         return;
     }
@@ -643,7 +682,11 @@ function saveRsvpDraft() {
 }
 
 function restoreRsvpDraft() {
-    if (localStorage.getItem(RSVP_STORAGE_KEY) === "true") return;
+    try {
+        localStorage.removeItem(RSVP_STORAGE_KEY);
+    } catch (error) {
+        console.warn("No se pudo limpiar estado local heredado de RSVP:", error);
+    }
 
     let draft = null;
 
@@ -696,6 +739,37 @@ function clearRsvpDraft() {
    HELPERS
    ============================== */
 
+function resetRsvpForm() {
+    const fields = getRsvpDraftFields();
+    const asistenciaSi = document.querySelector('input[name="asistencia"][value="Asistiré"]');
+    const btnConfirmar = document.getElementById("btn-confirmar");
+
+    if (fields.nombre) fields.nombre.value = "";
+    if (fields.mensaje) fields.mensaje.value = "";
+    if (fields.detalleAsistencia) fields.detalleAsistencia.value = "Ceremonia y recepción";
+    if (fields.menuInvitado) fields.menuInvitado.value = "Sin preferencia";
+    if (asistenciaSi) asistenciaSi.checked = true;
+
+    document.querySelectorAll('input[name="asistencia"]').forEach(radio => {
+        radio.disabled = false;
+    });
+
+    Object.values(fields).forEach(field => {
+        if (!field) return;
+        field.disabled = false;
+        field.classList.remove("has-value", "is-focused", "field-warning");
+    });
+
+    if (btnConfirmar) {
+        btnConfirmar.disabled = false;
+        btnConfirmar.classList.remove("is-loading");
+        btnConfirmar.textContent = "Confirmar asistencia";
+    }
+
+    clearRsvpDraft();
+    actualizarEstadoAsistencia();
+}
+
 function bloquearFormularioComoRegistrado() {
     const fields = [
         document.getElementById("nombreInvitado"),
@@ -727,7 +801,7 @@ function setButtonLoading(button, isLoading) {
 
     button.disabled = isLoading;
     button.classList.toggle("is-loading", isLoading);
-    button.textContent = isLoading ? "Procesando..." : "Confirmar asistencia";
+    button.textContent = isLoading ? "Guardando respuesta..." : "Confirmar asistencia";
 }
 
 function marcarCampoInvalido(campo) {
