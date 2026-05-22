@@ -1,9 +1,9 @@
 /**
  * INVYRA - Birthday Demo 01
  * Midnight Gala RSVP Premium
- * Version 1.2.0
+ * Version 1.3.1
  * Server-side RSVP validation through Google Sheets / Apps Script
- * Update: Standardized CTA + RSVP autosave/restore + audio visibility control
+ * Update: Activity 13 cinematic gala splash + unique hero transition
  */
 
 document.body.classList.add("js-enabled", "splash-active");
@@ -19,6 +19,7 @@ const RSVP_STORAGE_KEY = "invyra_birthday_demo_01_rsvp_registered";
 const RSVP_DRAFT_KEY = "invyra_birthday_demo_01_rsvp_draft";
 
 let galaAlreadyOpened = false;
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 function initParticles() {
     const commonConfig = direction => ({
@@ -82,7 +83,6 @@ function initParticles() {
     }
 }
 
-initParticles();
 
 function entrarGala() {
     const splash = document.getElementById("splash-screen");
@@ -98,95 +98,156 @@ function entrarGala() {
         startButton.textContent = "ABRIENDO EXPERIENCIA...";
     }
 
-    document.body.classList.remove("splash-active");
-    document.body.classList.add("experience-opened");
+    playMusicWithFade(music);
 
-    if (typeof gsap !== "undefined") {
-        gsap.to(splash, {
-            opacity: 0,
-            duration: 1.2,
-            onComplete: () => {
-                splash.style.display = "none";
-                initScrollReveal();
-            }
-        });
-    } else {
+    if (prefersReducedMotion || typeof gsap === "undefined") {
         splash.style.display = "none";
+        document.body.classList.remove("splash-active");
+        document.body.classList.add("experience-opened");
+        revealHeroFallback();
         initScrollReveal();
-    }
-
-    if (music) {
-        music.volume = 0;
-        music.play().catch(err => console.log("Interacción requerida:", err));
-
-        if (typeof gsap !== "undefined") {
-            gsap.to(music, {
-                volume: 0.35,
-                duration: 4,
-                ease: "power1.inOut"
-            });
-        } else {
-            music.volume = 0.35;
-        }
-    }
-
-    if (typeof gsap === "undefined") {
-        document.querySelectorAll(".hero-atmosphere, .reveal-item, .reveal-title").forEach(element => {
-            element.style.opacity = "1";
-            element.style.filter = "blur(0px)";
-            element.style.transform = "none";
-        });
         return;
     }
 
+    const openTL = gsap.timeline({
+        defaults: {
+            ease: "power3.inOut"
+        },
+        onComplete: () => {
+            splash.style.display = "none";
+            document.body.classList.remove("splash-active");
+            document.body.classList.add("experience-opened");
+            window.scrollTo({ top: 0, behavior: "auto" });
+            revealHeroCinematic();
+            initScrollReveal();
+        }
+    });
+
+    openTL
+        .to(".splash-orbit", {
+            scale: 1.26,
+            opacity: 0.18,
+            duration: 0.75
+        })
+        .to(".splash-logo", {
+            y: -18,
+            scale: 0.92,
+            opacity: 0,
+            filter: "blur(10px)",
+            duration: 0.72
+        }, "-=0.62")
+        .to(".splash-eyebrow, .splash-title, .splash-subtitle, .loader-bar, .btn-start-experience", {
+            y: 24,
+            opacity: 0,
+            filter: "blur(8px)",
+            stagger: 0.045,
+            duration: 0.62
+        }, "-=0.54")
+        .to("#splash-screen", {
+            opacity: 0,
+            scale: 1.035,
+            duration: 0.68,
+            ease: "power2.inOut"
+        }, "-=0.18");
+}
+
+function playMusicWithFade(music) {
+    if (!music) return;
+
+    music.volume = 0;
+    music.play().catch(err => console.log("Interacción requerida:", err));
+
+    if (typeof gsap !== "undefined" && !prefersReducedMotion) {
+        gsap.to(music, {
+            volume: 0.35,
+            duration: 3.2,
+            ease: "power1.inOut"
+        });
+    } else {
+        music.volume = 0.35;
+    }
+}
+
+function revealHeroFallback() {
+    document.querySelectorAll(".hero-atmosphere, .reveal-item, .reveal-title").forEach(element => {
+        element.style.opacity = "1";
+        element.style.filter = "blur(0px)";
+        element.style.transform = "none";
+    });
+}
+
+function revealHeroCinematic() {
     const revealTL = gsap.timeline({
         defaults: {
             ease: "power3.out",
-            duration: 1.25
+            duration: 1.05
         }
     });
 
     revealTL
+        .fromTo(".hero-section", {
+            scale: 1.035,
+            filter: "brightness(0.72)"
+        }, {
+            scale: 1,
+            filter: "brightness(1)",
+            duration: 1.25,
+            ease: "power2.out"
+        })
         .to(".hero-atmosphere", {
             opacity: 1,
-            duration: 1.5
-        })
-        .to(".brand-logo-img", {
+            duration: 1.15,
+            stagger: 0.045
+        }, "-=1.05")
+        .fromTo(".gala-light-beam", {
+            opacity: 0,
+            xPercent: -18,
+            rotate: -8
+        }, {
+            opacity: 0.42,
+            xPercent: 0,
+            rotate: 0,
+            duration: 1.2,
+            stagger: 0.08
+        }, "-=0.9")
+        .to(".hero-logo-wrap", {
             opacity: 1,
             y: 0,
             filter: "blur(0px)",
-            duration: 1.2
-        }, "-=1.0")
+            duration: 0.9
+        }, "-=0.82")
         .to(".pre-title", {
             opacity: 1,
             y: 0,
             filter: "blur(0px)",
-            duration: 1.0
-        }, "-=0.8")
+            duration: 0.85
+        }, "-=0.68")
         .to(".reveal-title", {
             opacity: 1,
             y: 0,
             scale: 1,
             filter: "blur(0px)",
-            duration: 1.6
-        }, "-=0.7")
+            duration: 1.05,
+            ease: "expo.out"
+        }, "-=0.5")
         .to(".celebrant-name", {
             opacity: 1,
             y: 0,
             filter: "blur(0px)",
-            duration: 1.1
-        }, "-=1.0")
+            duration: 0.82
+        }, "-=0.74")
         .to(".hero-subtitle", {
             opacity: 1,
             y: 0,
             filter: "blur(0px)",
-            duration: 1.1
-        }, "-=0.9");
+            duration: 0.82
+        }, "-=0.66");
 }
-
 window.entrarGala = entrarGala;
 
 document.addEventListener("DOMContentLoaded", () => {
+    initParticles();
+
     const startButton = document.querySelector(".btn-start-experience");
 
     if (startButton) {
@@ -282,6 +343,14 @@ function initRsvpAutosave() {
 
     radios.forEach(radio => {
         radio.addEventListener("change", saveDraft);
+    });
+
+    window.addEventListener("pagehide", saveDraft);
+
+    document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+            saveDraft();
+        }
     });
 }
 

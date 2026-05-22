@@ -11,7 +11,7 @@
     />
 
     <link rel="icon" type="image/jpeg" href="../../LOGO/FAVICON.jpeg" />
-    <link rel="stylesheet" href="style.css?v=1.2.0" />
+    <link rel="stylesheet" href="style.css?v=1.3.1" />
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
@@ -27,12 +27,28 @@
 
   <body>
     <div id="splash-screen">
+      <div class="splash-vignette"></div>
+      <div class="splash-spotlight splash-spotlight-one"></div>
+      <div class="splash-spotlight splash-spotlight-two"></div>
+      <div class="splash-orbit"></div>
+      <div class="splash-sparkles" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
       <div class="splash-content">
         <img
           src="../../LOGO/VERSIÓN FONDO OSCURO.jpeg"
           class="splash-logo"
           alt="INVYRA"
         />
+
+        <p class="splash-eyebrow">Essential Gala Experience</p>
+        <h1 class="splash-title">Midnight Gala</h1>
+        <p class="splash-subtitle">Una entrada elegante para una noche inolvidable.</p>
 
         <div class="loader-bar"></div>
 
@@ -52,18 +68,23 @@
 
       <header class="hero-section">
         <div class="cinematic-bg hero-atmosphere"></div>
+        <div class="gala-light-beam beam-one hero-atmosphere"></div>
+        <div class="gala-light-beam beam-two hero-atmosphere"></div>
         <div class="cinematic-glow glow-one hero-atmosphere"></div>
         <div class="cinematic-glow glow-two hero-atmosphere"></div>
+        <div class="gala-stage-ring hero-atmosphere"></div>
         <div class="cinematic-overlay hero-atmosphere"></div>
         <div id="particles-top" class="hero-atmosphere"></div>
         <div id="particles-bottom" class="hero-atmosphere"></div>
 
         <div class="hero-content">
-          <img
-            src="../../LOGO/FAVICON.jpeg"
-            alt="Invyra Logo"
-            class="brand-logo-img reveal-item"
-          />
+          <div class="hero-logo-wrap reveal-item">
+            <img
+              src="../../LOGO/FAVICON.jpeg"
+              alt="Invyra Logo"
+              class="brand-logo-img"
+            />
+          </div>
 
           <h2 class="pre-title reveal-item">ESTÁS INVITADO A LA</h2>
 
@@ -241,6 +262,6 @@
       <source src="../../music/violin-luxury.mp3" type="audio/mpeg" />
     </audio>
 
-    <script src="script.js?v=1.2.0"></script>
+    <script src="script.js?v=1.3.1"></script>
   </body>
 </html>
