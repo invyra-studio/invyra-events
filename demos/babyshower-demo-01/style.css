@@ -1823,3 +1823,243 @@ a {
         animation: none !important;
     }
 }
+
+
+/* ==============================
+   ACTIVITY 14 — RSVP TENDER MICROINTERACTIONS
+   Version 1.2.3
+   ============================== */
+
+.rsvp-card {
+    isolation: isolate;
+}
+
+.rsvp-card::after {
+    content: "";
+    position: absolute;
+    left: 18px;
+    right: 18px;
+    top: 18px;
+    bottom: 18px;
+    z-index: 0;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.36);
+    pointer-events: none;
+    opacity: 0.58;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.rsvp-card.is-interacting::after,
+.rsvp-card.state-just-changed::after {
+    opacity: 0.9;
+    transform: scale(0.992);
+}
+
+.rsvp-card.is-registered {
+    border-color: rgba(143, 199, 236, 0.42);
+    box-shadow:
+        0 22px 58px rgba(23,40,70,0.14),
+        0 0 34px rgba(143,199,236,0.16),
+        inset 0 0 0 1px rgba(255,255,255,0.42);
+}
+
+#nombreInvitado,
+#mensajeInvitado,
+#pasesInvitado {
+    position: relative;
+    background-size: 180% 180%;
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        opacity 0.3s ease,
+        filter 0.3s ease,
+        transform 0.3s ease,
+        background-position 0.45s ease;
+}
+
+#nombreInvitado:hover,
+#mensajeInvitado:hover,
+#pasesInvitado:hover {
+    transform: translateY(-1px);
+    box-shadow:
+        0 12px 26px rgba(23,40,70,0.08),
+        inset 0 0 0 1px rgba(255,255,255,0.52);
+}
+
+#nombreInvitado.has-value,
+#mensajeInvitado.has-value,
+#pasesInvitado.has-value {
+    border-color: rgba(201, 155, 74, 0.52);
+    background-position: 100% 0;
+    box-shadow:
+        0 0 0 2px rgba(230, 201, 143, 0.10),
+        inset 0 0 0 1px rgba(255,255,255,0.52);
+}
+
+.rsvp-live-message {
+    position: relative;
+    z-index: 2;
+    margin: -4px auto 22px;
+    max-width: 330px;
+    padding: 12px 14px;
+    border-radius: 18px;
+    border: 1px solid rgba(143, 199, 236, 0.24);
+    color: var(--text-soft);
+    background:
+        linear-gradient(135deg, rgba(255,255,255,0.62), rgba(205,233,251,0.22));
+    box-shadow:
+        0 12px 28px rgba(23,40,70,0.07),
+        inset 0 0 0 1px rgba(255,255,255,0.35);
+    font-size: 0.82rem;
+    font-weight: 700;
+    line-height: 1.55;
+    transition:
+        color 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.3s ease,
+        background 0.3s ease;
+}
+
+.rsvp-card.rsvp-not-attending .rsvp-live-message {
+    color: #6a7284;
+    border-color: rgba(123, 132, 148, 0.24);
+    background:
+        linear-gradient(135deg, rgba(255,255,255,0.54), rgba(231,235,239,0.24));
+}
+
+.rsvp-card.state-just-changed .rsvp-live-message {
+    transform: translateY(-2px);
+}
+
+.attendance-options label {
+    position: relative;
+    padding: 10px 13px;
+    border: 1px solid rgba(143, 199, 236, 0.16);
+    border-radius: 999px;
+    background: rgba(255,255,255,0.38);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.20);
+}
+
+.attendance-options label:has(input:checked) {
+    color: var(--ink);
+    border-color: rgba(201, 155, 74, 0.44);
+    background:
+        linear-gradient(135deg, rgba(255,255,255,0.86), rgba(205,233,251,0.30), rgba(230,201,143,0.20));
+    box-shadow:
+        0 12px 26px rgba(23,40,70,0.08),
+        inset 0 0 0 1px rgba(255,255,255,0.44);
+}
+
+.companions-field {
+    max-height: 92px;
+    overflow: hidden;
+}
+
+.companions-field.is-disabled {
+    max-height: 0;
+    margin-bottom: 0;
+    opacity: 0;
+    transform: translateY(-8px) scale(0.985);
+    pointer-events: none;
+}
+
+.btn-rsvp {
+    overflow: hidden;
+}
+
+.btn-rsvp.is-loading {
+    color: rgba(36,48,71,0.72);
+    pointer-events: none;
+}
+
+.btn-rsvp.is-loading::before {
+    content: "";
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    bottom: 8px;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, transparent, var(--gold), var(--sky), transparent);
+    animation: rsvpTenderLoading 1.2s ease-in-out infinite;
+}
+
+.field-warning {
+    border-color: rgba(198, 102, 102, 0.72) !important;
+    box-shadow:
+        0 0 0 3px rgba(198, 102, 102, 0.12),
+        0 14px 30px rgba(198, 102, 102, 0.08) !important;
+}
+
+.modal-content::after {
+    content: "☁";
+    position: absolute;
+    right: 26px;
+    top: 20px;
+    z-index: 1;
+    color: rgba(143,199,236,0.46);
+    font-size: 1.35rem;
+    text-shadow: 0 0 20px rgba(255,255,255,0.78);
+    animation: modalCloudFloat 3.8s ease-in-out infinite alternate;
+}
+
+@keyframes rsvpTenderLoading {
+    0% { transform: translateX(-55%); opacity: 0.32; }
+    50% { opacity: 1; }
+    100% { transform: translateX(55%); opacity: 0.32; }
+}
+
+@keyframes modalCloudFloat {
+    from { transform: translateY(0); opacity: 0.38; }
+    to { transform: translateY(-6px); opacity: 0.78; }
+}
+
+@media (max-width: 768px) {
+    .rsvp-live-message {
+        font-size: 0.78rem;
+        padding: 11px 12px;
+    }
+
+    .attendance-options label {
+        padding: 9px 11px;
+    }
+}
+
+
+/* ==============================
+   HOTFIX 1.2.1 — RSVP CLICK SAFETY
+   ============================== */
+.rsvp-card::before,
+.rsvp-card::after,
+.celestial-card::before {
+    pointer-events: none;
+}
+
+.rsvp-card::after,
+.celestial-card::before {
+    z-index: 0;
+}
+
+.rsvp-card > *,
+.rsvp-form,
+.rsvp-form *,
+.attendance-options,
+.attendance-options label,
+.attendance-options input,
+.companions-field,
+#nombreInvitado,
+#mensajeInvitado,
+#pasesInvitado,
+#btn-confirmar {
+    position: relative;
+    z-index: 2;
+}
+
+#nombreInvitado,
+#mensajeInvitado,
+#pasesInvitado,
+.attendance-options label,
+.attendance-options input,
+#btn-confirmar {
+    pointer-events: auto;
+}

@@ -1,9 +1,9 @@
 /**
  * INVYRA - Baby Shower Demo
- * Version 1.1.0
+ * Version 1.2.3
  * Nivel: Signature
  * Celestial Cradle Experience
- * Update: Activity 13 cinematic cloud reveal + unique Signature motion
+ * Update: Activity 14 tender RSVP microinteractions
  */
 
 document.body.classList.add("js-enabled", "splash-active");
@@ -17,11 +17,11 @@ const TELEFONO_RSVP = "525516986744";
 const FECHA_EVENTO = "Jul 20, 2026 16:00:00";
 const EVENTO_NOMBRE = "Baby Shower de Yeison";
 const RSVP_DRAFT_STORAGE_KEY = "invyra_baby_yeison_rsvp_draft";
-const RSVP_DONE_STORAGE_KEY = "invyra_baby_yeison_rsvp_done";
 
 const isMobile = window.matchMedia("(max-width: 768px)").matches;
 let experienceOpening = false;
 let experienceStarted = false;
+let suppressDraftSaveAfterSubmit = false;
 
 /* ==============================
    FALLBACKS
@@ -533,6 +533,75 @@ function updateCountdown() {
         .padStart(2, "0");
 }
 
+
+/* ==============================
+   ACTIVITY 14 RSVP MICROINTERACTIONS
+   ============================== */
+
+function setRsvpLiveMessage(message) {
+    const liveMessage = document.getElementById("rsvp-live-message");
+
+    if (liveMessage) {
+        liveMessage.textContent = message;
+    }
+}
+
+function updateFieldState(field) {
+    if (!field) return;
+
+    field.classList.toggle("has-value", Boolean(String(field.value || "").trim()));
+}
+
+function initRsvpFieldMicrointeractions() {
+    const fields = [
+        document.getElementById("nombreInvitado"),
+        document.getElementById("mensajeInvitado"),
+        document.getElementById("pasesInvitado")
+    ].filter(Boolean);
+
+    fields.forEach(field => {
+        updateFieldState(field);
+
+        field.addEventListener("input", () => updateFieldState(field));
+        field.addEventListener("change", () => updateFieldState(field));
+        field.addEventListener("focus", () => {
+            const rsvpCard = document.querySelector(".rsvp-card");
+            if (rsvpCard) rsvpCard.classList.add("is-interacting");
+        });
+        field.addEventListener("blur", () => {
+            const rsvpCard = document.querySelector(".rsvp-card");
+            if (rsvpCard) rsvpCard.classList.remove("is-interacting");
+        });
+    });
+}
+
+function setButtonLoading(button, isLoading, asistencia = "Asistiré") {
+    if (!button) return;
+
+    button.disabled = isLoading;
+    button.classList.toggle("is-loading", isLoading);
+    button.setAttribute("aria-busy", isLoading ? "true" : "false");
+
+    if (isLoading) {
+        button.innerText = "GUARDANDO RESPUESTA...";
+        return;
+    }
+
+    button.innerText = asistencia === "No asistiré" ? "ENVIAR RESPUESTA" : "CONFIRMAR ASISTENCIA";
+}
+
+function pulseRsvpCard() {
+    const rsvpCard = document.querySelector(".rsvp-card");
+
+    if (!rsvpCard || typeof gsap === "undefined") return;
+
+    gsap.fromTo(
+        rsvpCard,
+        { scale: 0.992 },
+        { scale: 1, duration: 0.42, ease: "power2.out" }
+    );
+}
+
 /* ==============================
    RSVP UI
    ============================== */
@@ -563,19 +632,29 @@ function updateRsvpState() {
         inputPases.disabled = true;
         inputPases.setAttribute("aria-disabled", "true");
         companionsField.classList.add("is-disabled");
+        companionsField.setAttribute("aria-hidden", "true");
+        setRsvpLiveMessage("Gracias por avisarnos. Puedes enviar tu respuesta con un deseo para Yeison si lo deseas.");
     } else {
         inputPases.disabled = false;
         inputPases.setAttribute("aria-disabled", "false");
         companionsField.classList.remove("is-disabled");
+        companionsField.setAttribute("aria-hidden", "false");
+        setRsvpLiveMessage("Qué emoción. Indica si asistirás con acompañantes para preparar cada detalle.");
     }
+
+    updateFieldState(inputPases);
 
     if (rsvpCard) {
         rsvpCard.classList.toggle("rsvp-not-attending", noAsistira);
+        rsvpCard.classList.add("state-just-changed");
+        window.setTimeout(() => rsvpCard.classList.remove("state-just-changed"), 520);
     }
 
     if (btnConfirmar && !btnConfirmar.disabled) {
-        btnConfirmar.innerText = noAsistira ? "ENVIAR RESPUESTA" : "CONFIRMAR ASISTENCIA";
+        setButtonLoading(btnConfirmar, false, asistenciaSeleccionada.value);
     }
+
+    pulseRsvpCard();
 }
 
 /* ==============================
@@ -597,8 +676,15 @@ function getRsvpDraftData() {
 }
 
 function saveRsvpDraft() {
+    const draft = getRsvpDraftData();
+
     try {
-        localStorage.setItem(RSVP_DRAFT_STORAGE_KEY, JSON.stringify(getRsvpDraftData()));
+        if (suppressDraftSaveAfterSubmit || isEmptyBabyDraft(draft)) {
+            localStorage.removeItem(RSVP_DRAFT_STORAGE_KEY);
+            return;
+        }
+
+        localStorage.setItem(RSVP_DRAFT_STORAGE_KEY, JSON.stringify(draft));
     } catch (error) {
         console.warn("No se pudo guardar el borrador RSVP:", error);
     }
@@ -639,6 +725,7 @@ function restoreRsvpDraft() {
         if (radio) radio.checked = true;
     }
 
+    [inputNombre, inputMensaje, inputPases].forEach(updateFieldState);
     updateRsvpState();
 }
 
@@ -650,6 +737,54 @@ function clearRsvpDraft() {
     }
 }
 
+function isEmptyBabyDraft(draft) {
+    return !cleanText(draft.nombre) &&
+        !cleanText(draft.mensaje) &&
+        draft.asistencia === "Asistiré" &&
+        (!draft.pases || draft.pases === "Solo yo");
+}
+
+function resetBabyRsvpFormAfterSuccess() {
+    const inputNombre = document.getElementById("nombreInvitado");
+    const inputMensaje = document.getElementById("mensajeInvitado");
+    const inputPases = document.getElementById("pasesInvitado");
+    const asistirRadio = document.querySelector('input[name="asistencia"][value="Asistiré"]');
+    const btnConfirmar = document.getElementById("btn-confirmar");
+
+    if (inputNombre) {
+        inputNombre.value = "";
+        inputNombre.disabled = false;
+        updateFieldState(inputNombre);
+    }
+
+    if (inputMensaje) {
+        inputMensaje.value = "";
+        inputMensaje.disabled = false;
+        updateFieldState(inputMensaje);
+    }
+
+    if (inputPases) {
+        inputPases.value = "Solo yo";
+        inputPases.disabled = false;
+        updateFieldState(inputPases);
+    }
+
+    if (asistirRadio) asistirRadio.checked = true;
+
+    document.querySelectorAll('input[name="asistencia"]').forEach(radio => {
+        radio.disabled = false;
+    });
+
+    if (btnConfirmar) {
+        btnConfirmar.disabled = false;
+        btnConfirmar.classList.remove("is-loading");
+        btnConfirmar.setAttribute("aria-busy", "false");
+        btnConfirmar.innerText = "CONFIRMAR ASISTENCIA";
+    }
+
+    updateRsvpState();
+    clearRsvpDraft();
+}
 function initRsvpDraftPersistence() {
     const fields = [
         document.getElementById("nombreInvitado"),
@@ -671,6 +806,8 @@ function initRsvpDraftPersistence() {
     });
 
     window.addEventListener("pagehide", saveRsvpDraft);
+
+    fields.forEach(updateFieldState);
 }
 
 /* ==============================
@@ -806,17 +943,19 @@ function bloquearFormularioComoRegistrado() {
     if (btnConfirmar) {
         btnConfirmar.innerText = "RESPUESTA YA REGISTRADA";
         btnConfirmar.disabled = true;
+        btnConfirmar.classList.remove("is-loading");
+        btnConfirmar.setAttribute("aria-busy", "false");
     }
+
+    const rsvpCard = document.querySelector(".rsvp-card");
+    if (rsvpCard) rsvpCard.classList.add("is-registered");
+
+    setRsvpLiveMessage("Tu respuesta ya quedó registrada para esta dulce espera.");
 }
 
 function restoreRegisteredState() {
-    try {
-        if (localStorage.getItem(RSVP_DONE_STORAGE_KEY) === "true") {
-            bloquearFormularioComoRegistrado();
-        }
-    } catch (error) {
-        console.warn("No se pudo revisar el estado de RSVP:", error);
-    }
+    // La validación real de duplicados se realiza en Google Sheets con nombre + evento.
+    // No se bloquea el formulario por localStorage.
 }
 
 function marcarCampoInvalido(campo) {
@@ -832,6 +971,7 @@ function marcarCampoInvalido(campo) {
     }
 
     campo.classList.add("field-warning");
+    setRsvpLiveMessage("Falta escribir el nombre del invitado o familia para continuar.");
 
     setTimeout(() => {
         campo.classList.remove("field-warning");
@@ -870,8 +1010,8 @@ async function confirmarAsistencia() {
         return;
     }
 
-    btnConfirmar.innerText = "PROCESANDO...";
-    btnConfirmar.disabled = true;
+    setButtonLoading(btnConfirmar, true, asistencia);
+    setRsvpLiveMessage("Estamos guardando tu respuesta con mucho cuidado...");
 
     try {
         const response = await sendRsvpToAppsScript({
@@ -887,44 +1027,31 @@ async function confirmarAsistencia() {
 
             setModalContent(
                 "RESPUESTA YA REGISTRADA",
-                "Ya tenemos una respuesta asociada a este nombre. Gracias por formar parte de esta celebración."
+                "Google Sheets ya detectó una respuesta con ese nombre para este evento. Puedes revisar el nombre o avisar directamente a los anfitriones."
             );
 
             showModal();
+            setRsvpLiveMessage("Respuesta duplicada detectada por Google Sheets. El formulario queda disponible por si necesitas corregir el nombre.");
 
-            setTimeout(() => {
-                const modal = document.getElementById("rsvp-modal");
-                if (modal) modal.classList.add("hidden");
-
-                try {
-                    localStorage.setItem(RSVP_DONE_STORAGE_KEY, "true");
-                } catch (error) {
-                    console.warn("No se pudo guardar el estado registrado:", error);
-                }
-
-                bloquearFormularioComoRegistrado();
-            }, 5200);
-
+            setButtonLoading(btnConfirmar, false, asistencia);
+            hideModal(5200);
             return;
         }
 
         if (response && response.status === "success") {
             clearRsvpDraft();
 
-            try {
-                localStorage.setItem(RSVP_DONE_STORAGE_KEY, "true");
-            } catch (error) {
-                console.warn("No se pudo guardar el estado registrado:", error);
-            }
-
             setModalContent(
                 "¡RESPUESTA REGISTRADA!",
-                "Gracias por confirmar. En un momento abriremos WhatsApp para completar tu mensaje."
+                "Gracias por confirmar. Tu respuesta quedó guardada con cariño; en un momento abriremos WhatsApp para completar tu mensaje."
             );
 
             showModal();
 
+            btnConfirmar.classList.remove("is-loading");
+            btnConfirmar.setAttribute("aria-busy", "false");
             btnConfirmar.innerText = "¡TODO LISTO!";
+            setRsvpLiveMessage("Tu confirmación quedó registrada en Google Sheets. Gracias por acompañar a Yeison.");
 
             const mensajeWhatsApp = encodeURIComponent(
                 `¡Hola! Confirmo mi respuesta para el Baby Shower de Yeison.\n\n` +
@@ -934,13 +1061,19 @@ async function confirmarAsistencia() {
                 `*Deseo para el bebé:* ${mensajeInvitado || "Sin mensaje"}`
             );
 
+            suppressDraftSaveAfterSubmit = true;
+            clearRsvpDraft();
+
             setTimeout(() => {
+                resetBabyRsvpFormAfterSuccess();
                 window.open(`https://wa.me/${TELEFONO_RSVP}?text=${mensajeWhatsApp}`, "_blank");
 
                 const modal = document.getElementById("rsvp-modal");
                 if (modal) modal.classList.add("hidden");
 
-                bloquearFormularioComoRegistrado();
+                setTimeout(() => {
+                    suppressDraftSaveAfterSubmit = false;
+                }, 1800);
             }, 3200);
 
             return;
@@ -957,8 +1090,8 @@ async function confirmarAsistencia() {
 
         showModal();
 
-        btnConfirmar.disabled = false;
-        btnConfirmar.innerText = asistencia === "No asistiré" ? "ENVIAR RESPUESTA" : "CONFIRMAR ASISTENCIA";
+        setButtonLoading(btnConfirmar, false, asistencia);
+        setRsvpLiveMessage("No pudimos guardar la respuesta. Puedes intentarlo nuevamente en unos segundos.");
 
         hideModal(5200);
     }
@@ -1038,6 +1171,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initSplashIdleMotion();
     initRsvpControls();
     initRsvpDraftPersistence();
+    initRsvpFieldMicrointeractions();
     initModalClose();
     restoreRegisteredState();
     updateCountdown();
