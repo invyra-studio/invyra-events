@@ -1,8 +1,8 @@
 /**
  * INVYRA - Bautizo Demo 01
- * Version 1.0.7
+ * Version 1.3.0
  * Signature Baptism Experience
- * Splash envelope + RSVP Google Sheets
+ * Activity 13: Signature celestial motion upgrade + RSVP Google Sheets
  */
 
 document.body.classList.add("js-enabled", "splash-active");
@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initRsvpAutosaveRestore();
     initImageFallbacks();
     initModalClose();
+    initSignatureMotionPolish();
 });
 
 function initGsapRegistration() {
@@ -50,73 +51,149 @@ function entrarExperiencia() {
     splash.classList.add("opening");
     playMusicSafely(music);
 
-    const splashDuration = prefersReducedMotion ? 450 : 2250;
+    if (prefersReducedMotion || typeof gsap === "undefined") {
+        window.setTimeout(() => finalizeExperienceTransition(splash), 520);
+        return;
+    }
+
+    const tl = gsap.timeline({
+        defaults: { ease: "power3.inOut" },
+        onComplete: () => finalizeExperienceTransition(splash)
+    });
+
+    gsap.set([".envelope", ".envelope-flap", ".envelope-letter"], {
+        transformPerspective: 1400,
+        transformStyle: "preserve-3d"
+    });
+
+    tl
+        .to([".splash-logo-img", ".splash-kicker", ".splash-copy", ".btn-start-experience"], {
+            opacity: 0,
+            y: 16,
+            duration: 0.32,
+            stagger: 0.035
+        }, 0)
+        .to(".envelope", {
+            y: -8,
+            scale: 1.018,
+            duration: 0.42,
+            ease: "power2.out"
+        }, 0.06)
+        .to(".envelope-seal", {
+            opacity: 0,
+            scale: 0.55,
+            duration: 0.24
+        }, 0.14)
+        .to(".envelope-flap", {
+            rotateX: -172,
+            opacity: 0.82,
+            duration: 0.68,
+            ease: "power2.inOut"
+        }, 0.24)
+        .to(".envelope-letter", {
+            opacity: 1,
+            y: -72,
+            scale: 1,
+            duration: 0.6,
+            ease: "power3.out"
+        }, 0.58)
+        .to([".splash-cathedral-glow", ".splash-arch-frame", ".splash-platinum-ring"], {
+            opacity: 0.76,
+            scale: 1.035,
+            duration: 0.66,
+            stagger: 0.04
+        }, 0.42)
+        .to(".envelope-stage", {
+            y: 22,
+            scale: 0.94,
+            opacity: 0,
+            filter: "blur(10px)",
+            duration: 0.58,
+            ease: "power3.in"
+        }, 1.06)
+        .to([".splash-clouds", ".splash-bg-glow", ".splash-cross", ".splash-water-drops", ".splash-dove-line", ".splash-platinum-ring", ".splash-arch-frame", ".splash-cathedral-glow"], {
+            opacity: 0,
+            scale: 1.08,
+            filter: "blur(10px)",
+            duration: 0.56,
+            stagger: 0.02,
+            ease: "power3.in"
+        }, 1.15)
+        .to(splash, {
+            opacity: 0,
+            duration: 0.34,
+            pointerEvents: "none"
+        }, 1.42);
+}
+
+function finalizeExperienceTransition(splash) {
+    if (!splash) return;
+
+    splash.classList.add("is-hidden");
+    document.body.classList.remove("splash-active");
+    document.body.classList.add("experience-opened");
+
+    window.scrollTo({ top: 0, behavior: "auto" });
+    revealHero();
 
     window.setTimeout(() => {
-        splash.classList.add("is-hidden");
-        document.body.classList.remove("splash-active");
-        document.body.classList.add("experience-opened");
-
-        window.scrollTo({ top: 0, behavior: "auto" });
-
-        window.setTimeout(revealHero, 60);
-
-        window.setTimeout(() => {
-            splash.style.display = "none";
-        }, 620);
-    }, splashDuration);
+        splash.style.display = "none";
+        if (typeof ScrollTrigger !== "undefined") {
+            ScrollTrigger.refresh();
+        }
+    }, prefersReducedMotion ? 90 : 260);
 }
 
 function playMusicSafely(music) {
     if (!music) return;
-    music.volume = 0.36;
-    music.play().catch(() => {
+    music.volume = 0;
+    music.play().then(() => {
+        if (typeof gsap !== "undefined" && !prefersReducedMotion) {
+            gsap.to(music, { volume: 0.34, duration: 2.6, ease: "power1.inOut" });
+        } else {
+            music.volume = 0.34;
+        }
+    }).catch(() => {
         console.warn("La música no pudo iniciar automáticamente.");
     });
 }
 
 function revealHero() {
     const heroAtmosphere = document.querySelectorAll(".hero-atmosphere");
-    const heroItems = document.querySelectorAll(
-        ".hero-section .reveal-item, .hero-section .reveal-title"
-    );
 
     if (prefersReducedMotion || typeof gsap === "undefined") {
-        heroAtmosphere.forEach(element => {
-            element.style.opacity = "1";
-        });
-
-        heroItems.forEach(element => {
+        heroAtmosphere.forEach(element => { element.style.opacity = "1"; });
+        document.querySelectorAll(".hero-section .reveal-item, .hero-section .reveal-title").forEach(element => {
             element.style.opacity = "1";
             element.style.transform = "none";
             element.style.filter = "none";
         });
-
         return;
     }
 
-    gsap.to(heroAtmosphere, {
-        opacity: 1,
-        duration: 0.85,
-        ease: "power2.out",
-        stagger: 0.05
-    });
+    gsap.set(heroAtmosphere, { opacity: 0 });
+    gsap.set(".brand-logo-img", { opacity: 0, y: 24, scale: 0.84, filter: "blur(10px)" });
+    gsap.set(".hero-kicker", { opacity: 0, y: 22, filter: "blur(8px)" });
+    gsap.set(".main-title", { opacity: 0, y: 48, scale: 0.9, filter: "blur(14px)" });
+    gsap.set(".hero-script", { opacity: 0, y: 24, scale: 0.92, filter: "blur(10px)" });
+    gsap.set(".hero-info-card", { opacity: 0, y: 30, scale: 0.96, filter: "blur(10px)" });
 
-    gsap.to(heroItems, {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        filter: "blur(0px)",
-        duration: 0.78,
-        ease: "power3.out",
-        stagger: 0.1,
-        delay: 0.08
-    });
+    const revealTL = gsap.timeline({ delay: 0.06, defaults: { ease: "power3.out", duration: 0.95 } });
+
+    revealTL
+        .to(heroAtmosphere, { opacity: 1, duration: 1.1, stagger: 0.04 })
+        .to(".brand-logo-img", { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }, "-=0.82")
+        .to(".hero-kicker", { opacity: 1, y: 0, filter: "blur(0px)" }, "-=0.72")
+        .to(".main-title", { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 1.08 }, "-=0.62")
+        .to(".hero-script", { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }, "-=0.7")
+        .to(".hero-info-card", { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }, "-=0.68");
+
+    gsap.to(".hero-content", { y: -7, duration: 7.2, repeat: -1, yoyo: true, ease: "sine.inOut" });
+    gsap.to(".hero-arch-frame", { scale: 1.025, opacity: 0.72, duration: 8.8, repeat: -1, yoyo: true, ease: "sine.inOut" });
+    gsap.to(".hero-water-shimmer", { y: -16, opacity: 0.78, duration: 7.6, repeat: -1, yoyo: true, ease: "sine.inOut" });
 
     if (typeof ScrollTrigger !== "undefined") {
-        window.setTimeout(() => {
-            ScrollTrigger.refresh();
-        }, 380);
+        window.setTimeout(() => { ScrollTrigger.refresh(); }, 380);
     }
 }
 
@@ -156,34 +233,61 @@ function initCountdown() {
 }
 
 function initScrollReveal() {
-    const sectionElements = document.querySelectorAll(
-        ".section-reveal, .event-card, .timeline-item, .gallery-item"
-    );
+    const sections = Array.from(document.querySelectorAll(".section-reveal"));
 
-    if (!sectionElements.length) return;
+    if (!sections.length) return;
+
+    if (!prefersReducedMotion && typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
+        sections.forEach(section => {
+            ScrollTrigger.create({
+                trigger: section,
+                start: "top 86%",
+                once: true,
+                onEnter: () => revealBaptismSection(section)
+            });
+        });
+        ScrollTrigger.refresh();
+        return;
+    }
+
+    const sectionElements = document.querySelectorAll(".section-reveal, .event-card, .timeline-item, .gallery-item");
 
     if (prefersReducedMotion || typeof IntersectionObserver === "undefined") {
         sectionElements.forEach(showElement);
         return;
     }
 
-    const observer = new IntersectionObserver(
-        entries => {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) return;
-                showElement(entry.target);
-                observer.unobserve(entry.target);
-            });
-        },
-        {
-            threshold: 0.14,
-            rootMargin: "0px 0px -70px 0px"
-        }
-    );
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            showElement(entry.target);
+            observer.unobserve(entry.target);
+        });
+    }, { threshold: 0.14, rootMargin: "0px 0px -70px 0px" });
 
-    sectionElements.forEach(element => {
-        observer.observe(element);
-    });
+    sectionElements.forEach(element => observer.observe(element));
+}
+
+function revealBaptismSection(section) {
+    if (!section || typeof gsap === "undefined") return;
+
+    const tl = gsap.timeline();
+    const label = section.querySelectorAll(".section-label, .quote-symbol, .rsvp-package-label");
+    const titles = section.querySelectorAll(".section-title, .blessing-text, .dress-card h2, .gift-card h2, .rsvp-card h2");
+    const copy = section.querySelectorAll(".section-copy, .rsvp-copy");
+    const cards = section.querySelectorAll(".parents-card, .countdown-card, .event-card, .godparents-card, .timeline-card, .dress-card, .gift-card, .rsvp-card");
+    const gallery = section.querySelectorAll(".gallery-item");
+    const timelineItems = section.querySelectorAll(".timeline-item");
+    const formItems = section.querySelectorAll(".rsvp-form > *");
+
+    tl.to(section, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.9, ease: "power3.out" })
+      .fromTo(label, { opacity: 0, y: 14, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.55, stagger: 0.05, ease: "power2.out" }, "-=0.55")
+      .fromTo(titles, { opacity: 0, y: 24, scale: 0.96, filter: "blur(10px)" }, { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.78, stagger: 0.06, ease: "power3.out" }, "-=0.42")
+      .fromTo(copy, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.58, stagger: 0.04, ease: "power2.out" }, "-=0.45")
+      .fromTo(cards, { opacity: 0, y: 32, scale: 0.965, filter: "blur(10px)" }, { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.86, stagger: 0.08, ease: "power3.out" }, "-=0.42")
+      .fromTo(timelineItems, { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.45, stagger: 0.06, ease: "power2.out" }, "-=0.5")
+      .fromTo(gallery, { opacity: 0, y: 34, scale: 0.94, filter: "blur(12px)" }, { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.82, stagger: 0.09, ease: "power3.out" }, "-=0.48")
+      .fromTo(formItems, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.48, stagger: 0.04, ease: "power2.out" }, "-=0.5");
 }
 
 function showElement(element) {
@@ -615,6 +719,38 @@ function initImageFallbacks() {
         image.addEventListener("error", () => {
             image.classList.add("image-error");
             console.warn("No se pudo cargar la imagen:", image.src);
+        });
+    });
+}
+
+
+function initSignatureMotionPolish() {
+    if (prefersReducedMotion || typeof gsap === "undefined") return;
+
+    gsap.utils.toArray(".gallery-item").forEach(item => {
+        if (typeof ScrollTrigger === "undefined") return;
+        gsap.to(item, {
+            backgroundPosition: "50% 42%",
+            ease: "none",
+            scrollTrigger: {
+                trigger: item,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 0.8
+            }
+        });
+    });
+
+    gsap.utils.toArray(".event-card, .godparents-card, .dress-card, .gift-card, .rsvp-card").forEach(card => {
+        card.addEventListener("pointermove", event => {
+            const rect = card.getBoundingClientRect();
+            const x = ((event.clientX - rect.left) / rect.width - 0.5) * 7;
+            const y = ((event.clientY - rect.top) / rect.height - 0.5) * -7;
+            gsap.to(card, { rotateX: y, rotateY: x, duration: 0.35, ease: "power2.out" });
+        });
+
+        card.addEventListener("pointerleave", () => {
+            gsap.to(card, { rotateX: 0, rotateY: 0, duration: 0.45, ease: "power2.out" });
         });
     });
 }
