@@ -32,9 +32,24 @@ body {
     overflow-x: hidden;
 }
 
+body.splash-active,
+body:not(.experience-opened) {
+    overflow: hidden;
+}
+
+body.experience-opened {
+    overflow-y: auto;
+}
+
 img,
 svg {
     max-width: 100%;
+}
+
+button,
+input,
+textarea {
+    font: inherit;
 }
 
 /* ==============================
@@ -45,8 +60,12 @@ svg {
     position: fixed;
     inset: 0;
     width: 100vw;
-    height: 100vh;
-    background-color: #000;
+    height: 100svh;
+    min-height: 100svh;
+    background:
+        radial-gradient(circle at 50% 44%, rgba(214, 179, 106, 0.12), transparent 32%),
+        radial-gradient(circle at 20% 16%, rgba(255,255,255,0.08), transparent 34%),
+        #000;
     z-index: 10000;
     display: flex;
     justify-content: center;
@@ -72,6 +91,26 @@ svg {
     width: 100%;
     max-width: 350px;
     margin: 0 auto;
+    filter: drop-shadow(0 20px 50px rgba(214, 179, 106, 0.12));
+}
+
+.loader-bar {
+    width: min(72%, 250px);
+    height: 1px;
+    margin: 28px auto 0;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(214, 179, 106, 0.18);
+}
+
+.loader-bar::before {
+    content: "";
+    display: block;
+    width: 42%;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    animation: loaderGlow 2.4s ease-in-out infinite;
 }
 
 .btn-start-experience {
@@ -80,14 +119,15 @@ svg {
     align-items: center;
     width: 100%;
     max-width: 350px;
+    min-height: 54px;
     margin: 40px auto 0;
     background: transparent;
     color: var(--gold);
     border: 1px solid rgba(214, 179, 106, 0.65);
     padding: 15px 20px;
     font-family: "Montserrat", sans-serif;
-    font-weight: 600;
-    letter-spacing: 0.16em;
+    font-weight: 700;
+    letter-spacing: 0.14em;
     cursor: pointer;
     text-transform: uppercase;
     text-align: center;
@@ -97,6 +137,11 @@ svg {
 .btn-start-experience:hover {
     background: rgba(214, 179, 106, 0.10);
     box-shadow: 0 0 28px rgba(214, 179, 106, 0.14);
+}
+
+.btn-start-experience:disabled {
+    opacity: 0.62;
+    cursor: not-allowed;
 }
 
 /* ==============================
@@ -129,7 +174,17 @@ svg {
     position: absolute;
     inset: 0;
     z-index: -2;
-    background: #050505;
+    background:
+        radial-gradient(circle at 50% 25%, rgba(214, 179, 106, 0.08), transparent 35%),
+        #050505;
+}
+
+.cinematic-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: radial-gradient(circle at center, transparent 34%, rgba(0,0,0,0.58) 100%);
 }
 
 .cinematic-glow {
@@ -248,10 +303,6 @@ svg {
     letter-spacing: 0.06em;
     text-transform: uppercase;
 }
-
-/* ==============================
-   DETAILS
-   ============================== */
 
 .details-section {
     background: rgba(0, 0, 0, 0.5);
@@ -613,12 +664,50 @@ svg {
 }
 
 /* ==============================
-   REVEALS
+   REVEALS / ANIMATIONS
    ============================== */
 
 .js-enabled .section-reveal {
     opacity: 0;
     transform: translateY(80px);
+}
+
+.field-warning {
+    animation: fieldShake 0.34s ease;
+}
+
+@keyframes loaderGlow {
+    0% {
+        transform: translateX(-130%);
+        opacity: 0.35;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(240%);
+        opacity: 0.35;
+    }
+}
+
+@keyframes fieldShake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+
+    75% {
+        transform: translateX(-3px);
+    }
 }
 
 /* ==============================
@@ -638,7 +727,7 @@ svg {
     .btn-start-experience {
         max-width: 100%;
         padding: 15px 18px;
-        letter-spacing: 0.14em;
+        letter-spacing: 0.11em;
         font-size: 0.82rem;
     }
 

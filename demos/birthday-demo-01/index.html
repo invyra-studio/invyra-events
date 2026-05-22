@@ -5,12 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>INVYRA | Midnight Gala - Erza</title>
 
+    <meta
+      name="description"
+      content="Demo Essential premium para cumpleaños creada por INVYRA, con experiencia digital animada, música, ubicación, detalles del evento y RSVP."
+    />
+
     <link rel="icon" type="image/jpeg" href="../../LOGO/FAVICON.jpeg" />
-    <link rel="stylesheet" href="style.css?v=1.1.9" />
+    <link rel="stylesheet" href="style.css?v=1.2.0" />
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+
+    <link rel="preload" as="image" href="../../LOGO/VERSIÓN FONDO OSCURO.jpeg" />
+    <link rel="preload" as="image" href="../../LOGO/FAVICON.jpeg" />
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
@@ -32,9 +40,9 @@
           type="button"
           onclick="entrarGala()"
           class="btn-start-experience"
-          aria-label="Abrir invitación"
+          aria-label="Entrar a la experiencia"
         >
-          DESCUBRIR INVITACIÓN
+          ENTRAR A LA EXPERIENCIA
         </button>
       </div>
     </div>
@@ -229,10 +237,10 @@
       </div>
     </div>
 
-    <audio id="bg-music" loop>
+    <audio id="bg-music" loop preload="auto">
       <source src="../../music/violin-luxury.mp3" type="audio/mpeg" />
     </audio>
 
-    <script src="script.js?v=1.1.9"></script>
+    <script src="script.js?v=1.2.0"></script>
   </body>
 </html>
