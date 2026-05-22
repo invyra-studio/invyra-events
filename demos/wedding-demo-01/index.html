@@ -11,7 +11,7 @@
     />
 
     <link rel="icon" type="image/jpeg" href="../../LOGO/FAVICON.jpeg" />
-    <link rel="stylesheet" href="style.css?v=1.0.14" />
+    <link rel="stylesheet" href="style.css?v=1.6.4" />
 
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap"
@@ -20,16 +20,11 @@
 
     <link rel="preload" as="image" href="../../LOGO/FAVICON.jpeg" />
 
-    <link rel="preload" as="image" href="./assets/wedding-ceremony.jpeg" />
-    <link rel="preload" as="image" href="./assets/wedding-ceremony.png" />
-    <link rel="preload" as="image" href="./assets/wedding-reception.jpeg" />
-    <link rel="preload" as="image" href="./assets/wedding-reception.png" />
-    <link rel="preload" as="image" href="./assets/wedding-moments.jpeg" />
-    <link rel="preload" as="image" href="./assets/wedding-moments.png" />
-    <link rel="preload" as="image" href="./assets/dress-men.jpeg" />
-    <link rel="preload" as="image" href="./assets/dress-men.png" />
-    <link rel="preload" as="image" href="./assets/dress-women.jpeg" />
-    <link rel="preload" as="image" href="./assets/dress-women.png" />
+    <link rel="preload" as="image" href="../wedding-demo-01/assets/wedding-ceremony.jpeg" />
+    <link rel="preload" as="image" href="../wedding-demo-01/assets/wedding-reception.jpeg" />
+    <link rel="preload" as="image" href="../wedding-demo-01/assets/wedding-moments.jpeg" />
+    <link rel="preload" as="image" href="../wedding-demo-01/assets/dress-men.jpeg" />
+    <link rel="preload" as="image" href="../wedding-demo-01/assets/dress-women.jpeg" />
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
@@ -39,9 +34,18 @@
     <div id="splash-screen">
       <div class="splash-floral-glow"></div>
       <div class="splash-soft-grain"></div>
+      <div class="legacy-veil legacy-veil-left"></div>
+      <div class="legacy-veil legacy-veil-right"></div>
+      <div class="legacy-monogram-ring" aria-hidden="true"></div>
+      <div class="legacy-editorial-frame" aria-hidden="true"></div>
+      <div class="legacy-petals" aria-hidden="true"></div>
+      <div class="legacy-light-slit" aria-hidden="true"></div>
+
 
       <div class="envelope-stage">
-        <div class="envelope-card">
+        <div class="envelope-card legacy-invitation-card">
+          <div class="legacy-card-glow"></div>
+          <div class="legacy-wax-seal" aria-hidden="true">A&M</div>
           <div class="envelope-flap"></div>
 
           <div class="envelope-body">
@@ -70,6 +74,10 @@
     <main class="invitation-container" id="invitation-content">
       <header class="hero-section" id="inicio">
         <div class="cinematic-bg hero-atmosphere"></div>
+        <div class="legacy-hero-frame hero-atmosphere" aria-hidden="true"></div>
+        <div class="hero-veil-curtain hero-veil-curtain-left hero-atmosphere" aria-hidden="true"></div>
+        <div class="hero-veil-curtain hero-veil-curtain-right hero-atmosphere" aria-hidden="true"></div>
+        <div class="legacy-gold-particles hero-atmosphere" aria-hidden="true"></div>
         <div class="wedding-haze hero-atmosphere"></div>
         <div class="soft-light light-one hero-atmosphere"></div>
         <div class="soft-light light-two hero-atmosphere"></div>
@@ -93,9 +101,9 @@
           </h2>
 
           <h1 class="main-title reveal-title">
-            Aurora<br />
-            <span>&</span><br />
-            Matteo
+            <span class="name-line name-line-one">Aurora</span><br />
+            <span class="ampersand">&</span><br />
+            <span class="name-line name-line-two">Matteo</span>
           </h1>
 
           <div class="hero-info-card reveal-item">
@@ -263,8 +271,8 @@
           <div class="dress-column">
             <div class="dress-image-wrap">
               <img
-                src="./assets/dress-men.jpeg"
-                data-fallback-src="./assets/dress-men.png"
+                src="../wedding-demo-01/assets/dress-men.jpeg"
+                data-fallback-src="../wedding-demo-01/assets/dress-men.jpg"
                 alt="Ejemplo de vestimenta formal para hombres"
                 class="dress-image"
               />
@@ -277,8 +285,8 @@
           <div class="dress-column">
             <div class="dress-image-wrap">
               <img
-                src="./assets/dress-women.jpeg"
-                data-fallback-src="./assets/dress-women.png"
+                src="../wedding-demo-01/assets/dress-women.jpeg"
+                data-fallback-src="../wedding-demo-01/assets/dress-women.jpg"
                 alt="Ejemplo de vestimenta formal para mujeres"
                 class="dress-image"
               />
@@ -430,6 +438,38 @@
         </div>
       </section>
 
+
+
+      <section class="guest-info-section section-reveal">
+        <p class="section-label">DETALLES PARA INVITADOS</p>
+
+        <div class="guest-info-card">
+          <div class="guest-info-item">
+            <div class="guest-info-icon" aria-hidden="true">⏱</div>
+            <div>
+              <h3>Hora sugerida de llegada</h3>
+              <p>Te sugerimos llegar 20 minutos antes de la ceremonia para vivir el momento con calma.</p>
+            </div>
+          </div>
+
+          <div class="guest-info-item">
+            <div class="guest-info-icon" aria-hidden="true">P</div>
+            <div>
+              <h3>Estacionamiento</h3>
+              <p>El recinto contará con estacionamiento para invitados durante la recepción.</p>
+            </div>
+          </div>
+
+          <div class="guest-info-item">
+            <div class="guest-info-icon" aria-hidden="true">✉</div>
+            <div>
+              <h3>Contacto</h3>
+              <p>Para cualquier duda sobre el evento, puedes comunicarte directamente con los anfitriones.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <footer class="action-section">
         <div class="rsvp-card">
           <h2>¡ESTÁS INVITADO!</h2>
@@ -566,6 +606,6 @@
       <source src="../../music/violin-luxury.mp3" type="audio/mpeg" />
     </audio>
 
-    <script src="script.js?v=1.0.14"></script>
+    <script src="script.js?v=1.6.4"></script>
   </body>
 </html>

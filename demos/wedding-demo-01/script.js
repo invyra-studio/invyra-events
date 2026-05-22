@@ -1,8 +1,8 @@
 /**
  * INVYRA - Wedding Legacy Demo
- * Version 1.0.15
+ * Version 1.6.4
  * Server-side RSVP validation through Google Sheets / Apps Script
- * Update: safer splash flow, local image fallbacks, RSVP autosave/restore and audio visibility control
+ * Update: Legacy cinematic entrance, luxury reveal system, RSVP autosave/restore and audio visibility control
  */
 
 document.body.classList.add("js-enabled", "splash-active");
@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initRsvpDraftAutosave();
     initModalClose();
     initImageFallbacks();
+    initLegacyPremiumMotion();
 });
 
 function initGsapRegistration() {
@@ -70,7 +71,7 @@ function entrarExperiencia() {
 
     playMusicSafely(music);
 
-    const splashDuration = prefersReducedMotion ? 450 : 1350;
+    const splashDuration = prefersReducedMotion ? 450 : 1650;
 
     window.setTimeout(() => {
         splash.classList.add("is-hidden");
@@ -92,7 +93,7 @@ function entrarExperiencia() {
             if (typeof ScrollTrigger !== "undefined") {
                 ScrollTrigger.refresh();
             }
-        }, prefersReducedMotion ? 80 : 850);
+        }, prefersReducedMotion ? 80 : 720);
     }, splashDuration);
 }
 
@@ -175,6 +176,23 @@ function revealHero() {
             y: 0,
             filter: "blur(0px)"
         }, "-=0.95");
+
+    gsap.to(".hero-content", {
+        y: -6,
+        duration: 6.4,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+    });
+
+    gsap.to(".legacy-hero-frame", {
+        scale: 1.025,
+        opacity: 0.86,
+        duration: 7.2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+    });
 }
 
 /* ==============================
@@ -754,9 +772,18 @@ function initImageFallbacks() {
 function getAlternativeImagePath(src) {
     if (!src) return "";
 
-    if (/\.jpeg(\?.*)?$/i.test(src)) return src.replace(/\.jpeg(\?.*)?$/i, ".png");
-    if (/\.jpg(\?.*)?$/i.test(src)) return src.replace(/\.jpg(\?.*)?$/i, ".png");
-    if (/\.png(\?.*)?$/i.test(src)) return src.replace(/\.png(\?.*)?$/i, ".jpeg");
+    const cleanSrc = String(src).trim();
+    const fileName = cleanSrc.split("/").pop().split("?")[0];
+
+    if (cleanSrc.includes("/assets/") && fileName) {
+        const baseName = fileName.replace(/\.(jpeg|jpg)$/i, "");
+        const currentExtension = fileName.match(/\.(jpeg|jpg)$/i);
+        const alternateExtension = currentExtension && currentExtension[1].toLowerCase() === "jpeg" ? "jpg" : "jpeg";
+        return `../wedding-demo-01/assets/${baseName}.${alternateExtension}`;
+    }
+
+    if (/\.jpeg(\?.*)?$/i.test(cleanSrc)) return cleanSrc.replace(/\.jpeg(\?.*)?$/i, ".jpg");
+    if (/\.jpg(\?.*)?$/i.test(cleanSrc)) return cleanSrc.replace(/\.jpg(\?.*)?$/i, ".jpeg");
 
     return "";
 }
@@ -770,9 +797,10 @@ function initGalleryBackgroundFallbacks() {
         if (!baseName) return;
 
         const candidates = [
+            `../wedding-demo-01/assets/${baseName}.jpeg`,
+            `../wedding-demo-01/assets/${baseName}.jpg`,
             `./assets/${baseName}.jpeg`,
-            `./assets/${baseName}.jpg`,
-            `./assets/${baseName}.png`
+            `./assets/${baseName}.jpg`
         ];
 
         findFirstLoadableImage(candidates).then(src => {
@@ -804,6 +832,59 @@ function findFirstLoadableImage(candidates) {
         }
 
         tryNextImage();
+    });
+}
+
+
+
+/* ==============================
+   LEGACY PREMIUM MOTION POLISH
+   ============================== */
+
+function initLegacyPremiumMotion() {
+    if (prefersReducedMotion || typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+
+    gsap.utils.toArray(".gallery-item").forEach(item => {
+        gsap.to(item, {
+            backgroundPosition: "50% 42%",
+            ease: "none",
+            scrollTrigger: {
+                trigger: item,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 0.8
+            }
+        });
+    });
+
+    gsap.utils.toArray(".wedding-menu-card, .rsvp-card, .guest-info-card").forEach(card => {
+        gsap.to(card, {
+            y: -8,
+            ease: "none",
+            scrollTrigger: {
+                trigger: card,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1.05
+            }
+        });
+    });
+
+    gsap.to(".wedding-rings-mark", {
+        rotate: 2,
+        y: -5,
+        duration: 4.8,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+    });
+
+    gsap.to(".splash-brand-badge", {
+        y: -3,
+        duration: 5.2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
     });
 }
 
