@@ -1,6 +1,6 @@
 /**
  * INVYRA - Landing Page
- * Version preview-1.0.15
+ * Version preview-1.0.18
  * Premium Digital Events
  */
 document.body.classList.add("js-enabled");
@@ -118,7 +118,7 @@ function initAnimations() {
         });
     });
     gsap.utils
-        .toArray(".package-mini-card, .demo-card, .process-card, .faq-item, .problem-card, .include-feature-card, .qr-card, .qr-floating-note")
+        .toArray(".package-mini-card, .demo-card, .process-card, .faq-item, .problem-card, .include-feature-card, .mobile-proof-list article, .mobile-feature-phone, .mobile-proof-card")
         .forEach((card, index) => {
             gsap.fromTo(card, { opacity: 0, y: 28 }, {
                 scrollTrigger: { trigger: card, start: "top 92%", toggleActions: "play none none none" },
@@ -136,6 +136,9 @@ function initSubtleMotion() {
     gsap.to(".hero-card", { y: -8, duration: 5.8, repeat: -1, yoyo: true, ease: "sine.inOut" });
     gsap.to(".hero-decoration-left", { y: -18, rotate: 20, duration: 7, repeat: -1, yoyo: true, ease: "sine.inOut" });
     gsap.to(".hero-decoration-right", { y: 18, rotate: 14, duration: 8, repeat: -1, yoyo: true, ease: "sine.inOut" });
+    gsap.to(".mobile-feature-phone", { y: -10, rotate: 0.45, duration: 5.8, repeat: -1, yoyo: true, ease: "sine.inOut" });
+    gsap.to(".mobile-proof-card-one", { y: -7, x: 4, duration: 4.8, repeat: -1, yoyo: true, ease: "sine.inOut" });
+    gsap.to(".mobile-proof-card-two", { y: 7, x: -4, duration: 5.2, repeat: -1, yoyo: true, ease: "sine.inOut" });
 }
 
 function initQuoteFormEnhancements() {

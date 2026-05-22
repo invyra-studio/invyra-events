@@ -2652,7 +2652,7 @@ body.nav-open .nav-toggle span:last-child {
 
 /* ==============================
    ACTIVITY 15 — CONVERSION / QUOTE FLOW
-   Version preview-1.0.15
+   Version preview-1.0.12
    WhatsApp como cierre humano + formulario como briefing premium.
    ============================== */
 
@@ -2795,583 +2795,883 @@ body.nav-open .nav-toggle span:last-child {
 }
 
 
+
+
 /* ==============================
-   ACTIVITY 15 — QR VISUAL SECTION
-   Version preview-1.0.15
+   ACTIVITY 16 — MOBILE EXPERIENCE SIMPLIFIED
+   Version preview-1.0.18
+   One premium phone with animated Wedding/XV demo preview.
    ============================== */
 
-.qr-section {
+.mobile-showcase-section {
     padding: 112px 0;
 }
 
-.qr-shell {
+.mobile-proof-shell {
     position: relative;
     overflow: hidden;
     display: grid;
-    grid-template-columns: 1fr 0.82fr;
+    grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.72fr);
     align-items: center;
-    gap: 44px;
+    gap: 42px;
     padding: 34px;
     border: 1px solid rgba(184,135,60,0.26);
     border-radius: 40px;
     background:
-        radial-gradient(circle at 12% 0%, rgba(255,255,255,0.84), transparent 34%),
-        radial-gradient(circle at 88% 86%, rgba(184,135,60,0.13), transparent 36%),
-        linear-gradient(145deg, rgba(255,255,255,0.72), rgba(255,250,242,0.48));
+        radial-gradient(circle at 12% 0%, rgba(255,255,255,0.88), transparent 34%),
+        radial-gradient(circle at 86% 84%, rgba(184,135,60,0.12), transparent 38%),
+        linear-gradient(145deg, rgba(255,255,255,0.72), rgba(255,250,242,0.50));
     box-shadow:
-        0 34px 96px rgba(36,29,24,0.14),
+        0 34px 96px rgba(36,29,24,0.13),
         inset 0 0 0 1px rgba(255,255,255,0.44);
 }
 
-.qr-shell::before {
+.mobile-proof-shell::before {
     content: "";
     position: absolute;
     inset: 22px;
-    border: 1px solid rgba(184,135,60,0.16);
+    border: 1px solid rgba(184,135,60,0.15);
     border-radius: 30px;
     pointer-events: none;
 }
 
-.qr-shell::after {
+.mobile-proof-shell::after {
     content: "";
     position: absolute;
-    width: 360px;
-    height: 360px;
-    right: -120px;
-    top: -140px;
+    width: 420px;
+    height: 420px;
+    right: -170px;
+    bottom: -180px;
     border-radius: 50%;
-    background: rgba(234,215,173,0.20);
-    filter: blur(34px);
+    background: rgba(234,215,173,0.22);
+    filter: blur(38px);
     pointer-events: none;
 }
 
-.qr-content,
-.qr-visual {
+.mobile-proof-copy,
+.mobile-proof-visual {
     position: relative;
     z-index: 2;
 }
 
-.qr-content .section-title {
-    max-width: 680px;
+.mobile-proof-copy {
+    padding: 22px 10px;
 }
 
-.qr-content .section-copy {
-    margin-left: 0;
+.mobile-proof-copy h3 {
+    max-width: 650px;
+    margin: 0;
+    color: var(--espresso);
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(2.55rem, 4.7vw, 4.65rem);
+    font-weight: 600;
+    line-height: 0.94;
+    letter-spacing: -0.035em;
+    text-wrap: balance;
 }
 
-.qr-content .btn {
-    margin-top: 32px;
+.mobile-proof-copy > p {
+    max-width: 560px;
+    margin: 24px 0 0;
+    color: var(--taupe);
+    font-size: 0.98rem;
+    font-weight: 650;
+    line-height: 1.78;
 }
 
-.qr-pill-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 28px;
+.mobile-proof-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 30px;
 }
 
-.qr-pill-grid span {
-    min-height: 38px;
-    display: inline-flex;
-    align-items: center;
-    padding: 0 15px;
-    border-radius: 999px;
-    border: 1px solid rgba(184,135,60,0.22);
-    color: var(--gold-deep);
-    background: rgba(255,255,255,0.54);
+.mobile-proof-list article {
+    position: relative;
+    overflow: hidden;
+    min-height: 178px;
+    padding: 18px 16px;
+    border: 1px solid rgba(184,135,60,0.20);
+    border-radius: 22px;
+    background:
+        radial-gradient(circle at 12% 0%, rgba(255,255,255,0.74), transparent 32%),
+        rgba(255,255,255,0.48);
     box-shadow:
-        0 12px 28px rgba(31,25,21,0.06),
-        inset 0 0 0 1px rgba(255,255,255,0.38);
+        0 16px 38px rgba(36,29,24,0.07),
+        inset 0 0 0 1px rgba(255,255,255,0.34);
+}
+
+.mobile-proof-list article span {
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 18px;
+    border-radius: 50%;
+    color: var(--gold-deep);
+    border: 1px solid rgba(184,135,60,0.28);
+    background: rgba(255,255,255,0.58);
     font-size: 0.68rem;
     font-weight: 900;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
 }
 
-.qr-visual {
-    min-height: 500px;
+.mobile-proof-list article strong {
+    display: block;
+    color: var(--espresso);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.62rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.mobile-proof-list article p {
+    margin: 12px 0 0;
+    color: var(--taupe);
+    font-size: 0.82rem;
+    font-weight: 700;
+    line-height: 1.55;
+}
+
+.mobile-proof-visual {
+    min-height: 560px;
     display: grid;
     place-items: center;
 }
 
-.qr-card {
+.mobile-feature-phone {
     position: relative;
-    width: min(100%, 380px);
-    min-height: 480px;
+    width: min(100%, 292px);
+    min-height: 540px;
+    padding: 12px;
+    border: 1px solid rgba(184,135,60,0.30);
+    border-radius: 42px;
+    background: linear-gradient(145deg, #0f0f0e, #29231d);
+    box-shadow:
+        0 34px 86px rgba(20,18,16,0.26),
+        0 0 34px rgba(184,135,60,0.10),
+        inset 0 0 0 1px rgba(255,255,255,0.07);
+}
+
+.mobile-feature-speaker {
+    position: absolute;
+    top: 22px;
+    left: 50%;
+    z-index: 4;
+    width: 46px;
+    height: 5px;
+    transform: translateX(-50%);
+    border-radius: 999px;
+    background: rgba(255,250,242,0.18);
+}
+
+.mobile-feature-screen {
+    position: relative;
+    min-height: 516px;
+    padding: 72px 22px 28px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding: 28px;
+    justify-content: center;
     overflow: hidden;
-    border: 1px solid rgba(234,215,173,0.32);
-    border-radius: 34px;
+    border-radius: 32px;
+    text-align: center;
     background:
-        radial-gradient(circle at 50% 0%, rgba(234,215,173,0.14), transparent 34%),
-        linear-gradient(145deg, #0f0f0e 0%, #1b1815 100%);
-    box-shadow:
-        0 34px 86px rgba(20,18,16,0.22),
-        0 0 34px rgba(184,135,60,0.10);
+        radial-gradient(circle at 50% 7%, rgba(255,255,255,0.94), transparent 30%),
+        radial-gradient(circle at 50% 64%, rgba(234,215,173,0.32), transparent 38%),
+        linear-gradient(180deg, #fffaf2 0%, #ead8bd 100%);
 }
 
-.qr-card::before {
+.mobile-feature-screen::before {
     content: "";
     position: absolute;
-    inset: 18px;
-    border: 1px solid rgba(234,215,173,0.18);
-    border-radius: 26px;
+    inset: -28%;
+    background:
+        linear-gradient(135deg, transparent 42%, rgba(184,135,60,0.18) 43%, transparent 48%),
+        radial-gradient(circle at 50% 44%, rgba(255,255,255,0.62), transparent 30%);
+    opacity: 0.84;
     pointer-events: none;
 }
 
-.qr-card::after {
-    content: "";
-    position: absolute;
-    inset: -50%;
-    background:
-        linear-gradient(
-            115deg,
-            transparent 35%,
-            rgba(255,255,255,0.09) 48%,
-            transparent 60%
-        );
-    transform: translateX(-55%) rotate(8deg);
-    animation: qrCardShine 6.5s ease-in-out infinite;
-    pointer-events: none;
-}
-
-@keyframes qrCardShine {
-    0%, 42% {
-        transform: translateX(-55%) rotate(8deg);
-    }
-
-    70%, 100% {
-        transform: translateX(55%) rotate(8deg);
-    }
-}
-
-.qr-card-kicker,
-.qr-frame,
-.qr-card-footer {
+.mobile-feature-logo,
+.mobile-feature-screen span,
+.mobile-feature-screen strong,
+.mobile-feature-screen p,
+.mobile-feature-menu {
     position: relative;
     z-index: 2;
 }
 
-.qr-card-kicker {
-    color: var(--champagne);
-    font-size: 0.68rem;
+.mobile-feature-logo {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    margin: 0 auto 22px;
+    border-radius: 50%;
+    box-shadow: 0 16px 34px rgba(36,29,24,0.12);
+}
+
+.mobile-feature-screen span {
+    color: var(--gold-deep);
+    font-size: 0.62rem;
     font-weight: 900;
     letter-spacing: 0.18em;
     text-transform: uppercase;
 }
 
-.qr-frame {
-    width: min(100%, 250px);
-    aspect-ratio: 1;
+.mobile-feature-screen strong {
+    display: block;
+    max-width: 220px;
+    margin: 18px auto 0;
+    color: var(--espresso);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 2.85rem;
+    font-weight: 600;
+    line-height: 0.92;
+    letter-spacing: -0.035em;
+}
+
+.mobile-feature-screen p {
+    max-width: 220px;
+    margin: 22px auto 0;
+    color: var(--taupe);
+    font-size: 0.8rem;
+    font-weight: 800;
+    line-height: 1.55;
+}
+
+.mobile-feature-menu {
+    display: grid;
+    gap: 8px;
+    margin-top: 30px;
+}
+
+.mobile-feature-menu small {
+    min-height: 34px;
     display: grid;
     place-items: center;
-    padding: 16px;
-    border-radius: 28px;
-    background:
-        radial-gradient(circle at 50% 0%, rgba(255,255,255,0.92), transparent 36%),
-        linear-gradient(145deg, rgba(255,255,255,0.96), rgba(255,250,242,0.84));
-    box-shadow:
-        0 24px 54px rgba(0,0,0,0.22),
-        inset 0 0 0 1px rgba(255,255,255,0.58);
-}
-
-.qr-image {
-    display: block;
-    width: 100%;
-    border-radius: 18px;
-    background: var(--cream);
-}
-
-.qr-card-footer {
-    display: grid;
-    gap: 5px;
-    text-align: center;
-}
-
-.qr-card-footer strong {
-    color: var(--champagne);
-    font-family: "Cormorant Garamond", serif;
-    font-size: 2.2rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-}
-
-.qr-card-footer small {
-    color: rgba(255,250,242,0.72);
-    font-size: 0.68rem;
+    border: 1px solid rgba(184,135,60,0.20);
+    border-radius: 999px;
+    color: var(--gold-deep);
+    background: rgba(255,255,255,0.46);
+    font-size: 0.58rem;
     font-weight: 900;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
 }
 
-.qr-floating-note {
+.mobile-proof-card {
     position: absolute;
-    left: 4%;
-    bottom: 10%;
-    width: min(260px, 78%);
+    width: min(220px, 68%);
     display: flex;
     align-items: flex-start;
-    gap: 12px;
-    padding: 16px;
+    gap: 10px;
+    padding: 14px;
     border: 1px solid rgba(184,135,60,0.22);
-    border-radius: 22px;
+    border-radius: 20px;
     background:
         radial-gradient(circle at 12% 0%, rgba(255,255,255,0.88), transparent 34%),
-        rgba(255,255,255,0.66);
+        rgba(255,255,255,0.68);
     box-shadow:
         0 20px 48px rgba(36,29,24,0.12),
         inset 0 0 0 1px rgba(255,255,255,0.40);
     backdrop-filter: blur(12px);
 }
 
-.qr-floating-note span {
+.mobile-proof-card span {
     color: var(--gold-deep);
-    font-size: 1rem;
+    font-size: 0.95rem;
     line-height: 1;
 }
 
-.qr-floating-note p {
+.mobile-proof-card p {
     margin: 0;
     color: var(--taupe);
-    font-size: 0.82rem;
-    font-weight: 800;
-    line-height: 1.5;
+    font-size: 0.76rem;
+    font-weight: 850;
+    line-height: 1.45;
+}
+
+.mobile-proof-card-one {
+    top: 20%;
+    left: -4%;
+}
+
+.mobile-proof-card-two {
+    right: -5%;
+    bottom: 18%;
 }
 
 @media (max-width: 1080px) {
-    .qr-shell {
+    .mobile-proof-shell {
         grid-template-columns: 1fr;
         text-align: center;
     }
 
-    .qr-content .section-copy {
+    .mobile-proof-copy > p {
+        margin-right: auto;
         margin-left: auto;
     }
 
-    .qr-pill-grid {
-        justify-content: center;
+    .mobile-proof-list {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        text-align: left;
     }
 
-    .qr-visual {
-        min-height: 460px;
+    .mobile-proof-visual {
+        min-height: 500px;
     }
 }
 
 @media (max-width: 820px) {
-    .qr-section {
+    .mobile-showcase-section {
+        width: min(calc(100% - 28px), 1180px);
         padding: 84px 0;
     }
 
-    .qr-shell {
-        padding: 20px;
+    .mobile-proof-shell {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 28px;
+        padding: 22px 16px;
         border-radius: 30px;
+        overflow: hidden;
     }
 
-    .qr-shell::before {
+    .mobile-proof-shell::before {
         inset: 12px;
         border-radius: 24px;
     }
 
-    .qr-visual {
+    .mobile-proof-copy {
+        width: 100%;
+        padding: 10px 0 0;
+    }
+
+    .mobile-proof-copy h3 {
+        max-width: 100%;
+        font-size: clamp(2.35rem, 12vw, 4rem);
+        line-height: 0.94;
+    }
+
+    .mobile-proof-list {
+        grid-template-columns: 1fr;
+    }
+
+    .mobile-proof-list article {
         min-height: auto;
-        padding: 20px 0 0;
+        text-align: left;
     }
 
-    .qr-card {
-        min-height: 430px;
-        border-radius: 28px;
+    .mobile-proof-visual {
+        min-height: auto;
+        padding: 10px 0 4px;
     }
 
-    .qr-floating-note {
+    .mobile-feature-phone {
+        width: min(100%, 276px);
+        min-height: 500px;
+    }
+
+    .mobile-feature-screen {
+        min-height: 476px;
+    }
+
+    .mobile-proof-card {
         position: relative;
         left: auto;
+        right: auto;
+        top: auto;
         bottom: auto;
-        width: min(100%, 340px);
-        margin: -12px auto 0;
+        width: min(100%, 300px);
+        margin: 12px auto 0;
         text-align: left;
     }
 }
 
 @media (max-width: 560px) {
-    .qr-shell {
-        padding: 16px;
-        border-radius: 28px;
-    }
-
-    .qr-pill-grid span {
-        width: 100%;
-        justify-content: center;
-        min-height: 40px;
-        font-size: 0.70rem;
-        letter-spacing: 0.07em;
-        text-align: center;
-    }
-
-    .qr-content .btn {
-        width: 100%;
-    }
-
-    .qr-card {
-        width: 100%;
-        min-height: 400px;
-        padding: 24px 20px;
-    }
-
-    .qr-frame {
-        width: min(100%, 220px);
-        padding: 14px;
-    }
-
-    .qr-card-footer strong {
-        font-size: 1.9rem;
-    }
-}
-
-
-/* ==============================
-   ACTIVITY 15 QR — CONCEPTUAL FIX
-   Version preview-1.0.15
-   QR section is now presented as a personalized visual example,
-   not as a loop back to the current landing.
-   ============================== */
-
-.qr-card-footer strong {
-    max-width: 260px;
-    margin: 0 auto;
-    font-size: clamp(1.55rem, 4.2vw, 2rem);
-    line-height: 0.95;
-    letter-spacing: 0.04em;
-}
-
-.qr-card-footer small {
-    max-width: 230px;
-    margin: 0 auto;
-    line-height: 1.35;
-}
-
-.qr-frame {
-    position: relative;
-}
-
-.qr-frame::after {
-    content: "DEMO";
-    position: absolute;
-    right: 18px;
-    bottom: 18px;
-    min-height: 28px;
-    padding: 0 10px;
-    display: inline-flex;
-    align-items: center;
-    border-radius: 999px;
-    color: var(--cream);
-    background: linear-gradient(135deg, var(--espresso), var(--gold-deep));
-    font-size: 0.58rem;
-    font-weight: 900;
-    letter-spacing: 0.12em;
-    box-shadow: 0 10px 22px rgba(36,29,24,0.18);
-}
-
-@media (max-width: 560px) {
-    .qr-frame::after {
-        right: 14px;
-        bottom: 14px;
-        min-height: 24px;
-        font-size: 0.52rem;
-    }
-}
-
-
-/* ==============================
-   ACTIVITY 15 QR — MOBILE RESPONSIVE HOTFIX
-   Version preview-1.0.15
-   Prevents horizontal overflow and keeps the QR visual centered on phones.
-   ============================== */
-
-html,
-body {
-    overflow-x: hidden;
-}
-
-.qr-section,
-.qr-shell,
-.qr-content,
-.qr-visual,
-.qr-card,
-.qr-frame,
-.qr-floating-note {
-    max-width: 100%;
-    min-width: 0;
-}
-
-.qr-shell {
-    width: 100%;
-}
-
-.qr-content .section-title,
-.qr-content .section-copy {
-    overflow-wrap: anywhere;
-}
-
-@media (max-width: 820px) {
-    .qr-section {
-        width: min(calc(100% - 28px), 1180px);
-        padding: 78px 0;
-    }
-
-    .qr-shell {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 26px;
-        padding: 20px 16px;
-        overflow: hidden;
-    }
-
-    .qr-content {
-        width: 100%;
-        text-align: center;
-    }
-
-    .qr-content .section-title {
-        max-width: 100%;
-        font-size: clamp(2.55rem, 13vw, 4.1rem);
-        line-height: 0.92;
-    }
-
-    .qr-content .section-copy {
-        max-width: 100%;
-        margin-right: auto;
-        margin-left: auto;
-        font-size: 0.94rem;
-        line-height: 1.75;
-    }
-
-    .qr-pill-grid {
-        width: 100%;
-        justify-content: center;
-    }
-
-    .qr-visual {
-        width: 100%;
-        padding-top: 10px;
-        place-items: center;
-    }
-
-    .qr-card {
-        width: min(100%, 330px);
-        min-height: 410px;
-        margin: 0 auto;
-    }
-
-    .qr-frame {
-        width: min(100%, 220px);
-    }
-
-    .qr-floating-note {
-        width: min(100%, 330px);
-        margin: -6px auto 0;
-        transform: none;
-    }
-}
-
-@media (max-width: 560px) {
-    .qr-section {
+    .mobile-showcase-section {
         width: min(calc(100% - 24px), 1180px);
         padding: 70px 0;
     }
 
-    .qr-shell {
+    .mobile-proof-shell {
         padding: 18px 12px;
         border-radius: 26px;
     }
 
-    .qr-shell::before {
-        inset: 10px;
-        border-radius: 20px;
-    }
-
-    .qr-content .section-title {
-        font-size: clamp(2.35rem, 15vw, 3.55rem);
-        line-height: 0.92;
+    .mobile-proof-copy h3 {
+        font-size: clamp(2.22rem, 13vw, 3.45rem);
         letter-spacing: -0.035em;
     }
 
-    .qr-pill-grid {
-        gap: 8px;
+    .mobile-proof-copy > p {
+        font-size: 0.92rem;
+        line-height: 1.72;
     }
 
-    .qr-pill-grid span {
-        width: 100%;
-        max-width: 310px;
-        justify-content: center;
+    .mobile-feature-phone {
+        width: min(100%, 250px);
+        min-height: 466px;
+        border-radius: 36px;
     }
 
-    .qr-content .btn {
-        width: 100%;
-        max-width: 310px;
-        margin-right: auto;
-        margin-left: auto;
-        white-space: normal;
-        text-align: center;
-        line-height: 1.25;
+    .mobile-feature-screen {
+        min-height: 442px;
+        padding: 62px 18px 24px;
+        border-radius: 28px;
     }
 
-    .qr-card {
-        width: min(100%, 300px);
-        min-height: 386px;
-        padding: 22px 18px;
-        border-radius: 26px;
+    .mobile-feature-logo {
+        width: 56px;
+        height: 56px;
     }
 
-    .qr-card::before {
-        inset: 14px;
-        border-radius: 20px;
+    .mobile-feature-screen strong {
+        font-size: 2.42rem;
     }
 
-    .qr-card-kicker {
-        font-size: 0.62rem;
-        letter-spacing: 0.14em;
-    }
-
-    .qr-frame {
-        width: min(100%, 196px);
-        padding: 12px;
-        border-radius: 24px;
-    }
-
-    .qr-image {
-        border-radius: 15px;
-    }
-
-    .qr-card-footer strong {
-        font-size: clamp(1.45rem, 8vw, 1.75rem);
-    }
-
-    .qr-card-footer small {
-        font-size: 0.62rem;
-        letter-spacing: 0.12em;
-    }
-
-    .qr-floating-note {
-        width: min(100%, 300px);
-        padding: 14px;
-        border-radius: 18px;
-    }
-
-    .qr-floating-note p {
-        font-size: 0.78rem;
-        line-height: 1.45;
+    .mobile-feature-menu small {
+        min-height: 32px;
+        font-size: 0.54rem;
     }
 }
 
-@media (max-width: 380px) {
-    .qr-card {
-        width: min(100%, 280px);
+
+/* ==============================
+   ACTIVITY 16 — REAL DEMO PHONE PREVIEW
+   Version preview-1.0.18
+   Adds subtle motion and a Wedding/XV inspired screen inside the phone.
+   ============================== */
+
+.mobile-feature-phone {
+    transform-origin: center;
+    animation: phoneBreath 6.8s ease-in-out infinite;
+}
+
+@keyframes phoneBreath {
+    0%, 100% {
+        box-shadow:
+            0 34px 86px rgba(20,18,16,0.26),
+            0 0 34px rgba(184,135,60,0.10),
+            inset 0 0 0 1px rgba(255,255,255,0.07);
     }
 
-    .qr-frame {
-        width: min(100%, 180px);
+    50% {
+        box-shadow:
+            0 42px 96px rgba(20,18,16,0.30),
+            0 0 44px rgba(184,135,60,0.16),
+            inset 0 0 0 1px rgba(255,255,255,0.08);
+    }
+}
+
+.mobile-demo-screen {
+    justify-content: stretch;
+    padding: 0;
+    background: #fffaf2;
+}
+
+.mobile-demo-screen::before {
+    z-index: 3;
+    inset: -45%;
+    opacity: 0.72;
+    background:
+        linear-gradient(
+            115deg,
+            transparent 38%,
+            rgba(255,255,255,0.34) 48%,
+            transparent 58%
+        );
+    animation: phoneScreenShine 7.5s ease-in-out infinite;
+}
+
+@keyframes phoneScreenShine {
+    0%, 38% {
+        transform: translateX(-46%) rotate(8deg);
+    }
+
+    68%, 100% {
+        transform: translateX(46%) rotate(8deg);
+    }
+}
+
+.mobile-demo-slide {
+    position: absolute;
+    inset: 0;
+    min-height: 100%;
+    padding: 66px 22px 26px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    opacity: 0;
+    transform: scale(1.02) translateY(8px);
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+    animation: demoSlideCycle 12s ease-in-out infinite;
+}
+
+.mobile-demo-slide > * {
+    position: relative;
+    z-index: 4;
+}
+
+.mobile-demo-wedding {
+    background:
+        radial-gradient(circle at 50% 6%, rgba(255,255,255,0.95), transparent 28%),
+        linear-gradient(135deg, rgba(255,255,255,0.72) 0%, rgba(255,250,242,0.92) 42%, rgba(232,216,189,0.88) 100%);
+}
+
+.mobile-demo-wedding::before {
+    content: "";
+    position: absolute;
+    inset: 12px;
+    border: 1px solid rgba(184,135,60,0.18);
+    border-radius: 24px;
+    pointer-events: none;
+}
+
+.mobile-demo-wedding::after {
+    content: "";
+    position: absolute;
+    inset: 16% 0 auto;
+    height: 54%;
+    opacity: 0.45;
+    background:
+        linear-gradient(145deg, transparent 45%, rgba(184,135,60,0.24) 46%, transparent 48%),
+        radial-gradient(circle at 50% 44%, rgba(255,255,255,0.52), transparent 36%);
+    pointer-events: none;
+}
+
+.mobile-demo-xv {
+    animation-delay: 6s;
+    background:
+        radial-gradient(circle at 50% 4%, rgba(255,255,255,0.92), transparent 28%),
+        radial-gradient(circle at 50% 48%, rgba(190,143,255,0.24), transparent 38%),
+        linear-gradient(180deg, #fff7ef 0%, #d9b5f4 60%, #0f0f0e 145%);
+}
+
+.mobile-demo-xv::before {
+    content: "";
+    position: absolute;
+    inset: 14px;
+    border: 1px solid rgba(184,135,60,0.20);
+    border-radius: 24px;
+    pointer-events: none;
+}
+
+.mobile-demo-xv::after {
+    content: "✦";
+    position: absolute;
+    left: 50%;
+    top: 22%;
+    width: 70px;
+    height: 70px;
+    display: grid;
+    place-items: center;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    color: var(--gold-deep);
+    background: rgba(255,255,255,0.54);
+    border: 1px solid rgba(184,135,60,0.20);
+    box-shadow: 0 18px 42px rgba(36,29,24,0.12);
+    pointer-events: none;
+}
+
+@keyframes demoSlideCycle {
+    0%, 44% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+
+    50%, 94% {
+        opacity: 0;
+        transform: scale(1.02) translateY(8px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.mobile-demo-slide .mobile-feature-logo {
+    width: 58px;
+    height: 58px;
+    margin-bottom: 20px;
+    border: 6px solid rgba(255,255,255,0.78);
+}
+
+.mobile-demo-slide span:not(.mobile-demo-badge),
+.mobile-demo-badge {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    min-height: 28px;
+    margin: 0 auto;
+    padding: 0 12px;
+    border-radius: 999px;
+    color: var(--gold-deep);
+    background: rgba(255,255,255,0.52);
+    border: 1px solid rgba(184,135,60,0.18);
+    font-size: 0.58rem;
+    font-weight: 900;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.mobile-demo-slide strong {
+    display: block;
+    max-width: 220px;
+    margin: 18px auto 0;
+    color: var(--espresso);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 2.58rem;
+    font-weight: 600;
+    line-height: 0.92;
+    letter-spacing: -0.035em;
+}
+
+.mobile-demo-xv strong {
+    font-size: 2.46rem;
+}
+
+.mobile-demo-slide p {
+    max-width: 214px;
+    margin: 18px auto 0;
+    color: var(--taupe);
+    font-size: 0.75rem;
+    font-weight: 850;
+    line-height: 1.5;
+}
+
+.mobile-demo-slide .mobile-feature-menu {
+    width: 100%;
+    margin-top: 26px;
+}
+
+.mobile-demo-slide .mobile-feature-menu small {
+    background: rgba(255,255,255,0.52);
+}
+
+.mobile-proof-card-one {
+    top: 22%;
+    left: -2%;
+}
+
+.mobile-proof-card-two {
+    right: -4%;
+    bottom: 17%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mobile-feature-phone,
+    .mobile-demo-screen::before,
+    .mobile-demo-slide {
+        animation: none !important;
+    }
+
+    .mobile-demo-wedding {
+        opacity: 1;
+        transform: none;
+    }
+
+    .mobile-demo-xv {
+        display: none;
+    }
+}
+
+@media (max-width: 820px) {
+    .mobile-demo-slide {
+        padding: 62px 18px 24px;
+    }
+
+    .mobile-demo-slide strong {
+        font-size: 2.34rem;
+    }
+
+    .mobile-demo-xv strong {
+        font-size: 2.22rem;
+    }
+}
+
+@media (max-width: 560px) {
+    .mobile-demo-slide {
+        padding: 56px 16px 22px;
+    }
+
+    .mobile-demo-slide .mobile-feature-logo {
+        width: 52px;
+        height: 52px;
+        margin-bottom: 16px;
+    }
+
+    .mobile-demo-slide strong {
+        font-size: 2.08rem;
+    }
+
+    .mobile-demo-xv strong {
+        font-size: 1.98rem;
+    }
+
+    .mobile-demo-slide p {
+        font-size: 0.7rem;
+    }
+
+    .mobile-demo-slide .mobile-feature-menu {
+        margin-top: 20px;
+    }
+}
+
+
+/* ==============================
+   ACTIVITY 16 — REAL DEMO SCREENSHOTS
+   Version preview-1.0.19
+   Replaces abstract mockup content with real Wedding + XV captures.
+   ============================== */
+
+.mobile-demo-screen {
+    justify-content: stretch;
+    align-items: stretch;
+    padding: 0;
+    background: #f8f1e6;
+}
+
+.mobile-demo-screen::before {
+    z-index: 5;
+    inset: -45%;
+    opacity: 0.58;
+    background:
+        linear-gradient(115deg, transparent 38%, rgba(255,255,255,0.30) 48%, transparent 58%);
+    animation: phoneScreenShine 7.5s ease-in-out infinite;
+}
+
+.mobile-demo-shot {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    opacity: 0;
+    transform: scale(1.015) translateY(8px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+    animation: realShotCycle 20s ease-in-out infinite;
+}
+
+.mobile-demo-shot-1 { animation-delay: 0s; }
+.mobile-demo-shot-2 { animation-delay: 5s; }
+.mobile-demo-shot-3 { animation-delay: 10s; }
+.mobile-demo-shot-4 { animation-delay: 15s; }
+
+.mobile-demo-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center top;
+}
+
+.mobile-demo-shot::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: 34%;
+    background: linear-gradient(180deg, rgba(10,10,10,0) 0%, rgba(10,10,10,0.26) 55%, rgba(10,10,10,0.48) 100%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.mobile-demo-caption {
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 12px 14px;
+    border: 1px solid rgba(255,255,255,0.24);
+    border-radius: 18px;
+    background: rgba(22, 18, 14, 0.32);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 14px 30px rgba(10,10,10,0.16);
+    text-align: left;
+}
+
+.mobile-demo-caption span,
+.mobile-demo-caption strong {
+    position: relative;
+    z-index: 1;
+}
+
+.mobile-demo-caption span {
+    display: block;
+    margin: 0;
+    color: rgba(255, 243, 223, 0.96);
+    font-size: 0.64rem;
+    font-weight: 900;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.mobile-demo-caption strong {
+    display: block;
+    margin: 0;
+    color: #fffdf8;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.88rem;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+}
+
+.mobile-demo-caption-dark {
+    background: rgba(20, 8, 28, 0.36);
+}
+
+@keyframes realShotCycle {
+    0%, 20% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+    24%, 100% {
+        opacity: 0;
+        transform: scale(1.015) translateY(8px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mobile-demo-shot {
+        animation: none !important;
+        opacity: 0;
+        transform: none;
+    }
+
+    .mobile-demo-shot-1 {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 820px) {
+    .mobile-demo-caption {
+        left: 14px;
+        right: 14px;
+        bottom: 14px;
+        padding: 11px 12px;
+    }
+}
+
+@media (max-width: 560px) {
+    .mobile-demo-caption {
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        border-radius: 16px;
+    }
+
+    .mobile-demo-caption span {
+        font-size: 0.58rem;
+    }
+
+    .mobile-demo-caption strong {
+        font-size: 0.8rem;
     }
 }
