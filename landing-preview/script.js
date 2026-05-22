@@ -1,6 +1,6 @@
 /**
  * INVYRA - Landing Page
- * Version preview-1.0.4
+ * Version preview-1.0.10
  * Premium Digital Events
  */
 document.body.classList.add("js-enabled");
@@ -13,6 +13,7 @@ const INVYRA_WHATSAPP_NUMBER = "525535690278";
 const SCRIPT_URL =
     "https://script.google.com/macros/s/AKfycbwvkuj1XGIoV6nxZhq2YPdpytfAaftlEXJElHnRy-hcGHZKM5jF2ERaF7JFSNwiCOBD/exec";
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const QUOTE_FORM_STORAGE_KEY = "invyra_landing_preview_quote_draft";
 
 function initMobileNav() {
     const navToggle = document.getElementById("nav-toggle");
@@ -216,6 +217,98 @@ function updateExtrasByPackage() {
     hint.textContent = "Selecciona los adicionales que te interesen o marca “Aún no lo sé”.";
 }
 
+
+/* ==============================
+   QUOTE FORM AUTOSAVE / RESTORE
+   ============================== */
+
+function initQuoteFormAutosave() {
+    const form = document.getElementById("quote-form");
+    if (!form) return;
+
+    restoreQuoteDraft(form);
+
+    form.addEventListener("input", () => {
+        saveQuoteDraft(form);
+    });
+
+    form.addEventListener("change", () => {
+        saveQuoteDraft(form);
+    });
+}
+
+function getQuoteDraftData(form) {
+    const draft = {};
+
+    Array.from(form.elements).forEach(field => {
+        if (!field.name || field.type === "submit" || field.type === "button") return;
+
+        if (field.type === "checkbox") {
+            if (!draft[field.name]) draft[field.name] = [];
+            if (field.checked) draft[field.name].push(field.value);
+            return;
+        }
+
+        if (field.type === "radio") {
+            if (field.checked) draft[field.name] = field.value;
+            return;
+        }
+
+        draft[field.name] = field.value;
+    });
+
+    return draft;
+}
+
+function saveQuoteDraft(form) {
+    try {
+        const draft = getQuoteDraftData(form);
+        localStorage.setItem(QUOTE_FORM_STORAGE_KEY, JSON.stringify(draft));
+    } catch (error) {
+        console.warn("No se pudo guardar el borrador de cotización:", error);
+    }
+}
+
+function restoreQuoteDraft(form) {
+    try {
+        const savedDraft = localStorage.getItem(QUOTE_FORM_STORAGE_KEY);
+        if (!savedDraft) return;
+
+        const draft = JSON.parse(savedDraft);
+
+        Object.entries(draft).forEach(([name, value]) => {
+            const fields = form.querySelectorAll(`[name="${CSS.escape(name)}"]`);
+            if (!fields.length) return;
+
+            fields.forEach(field => {
+                if (field.type === "checkbox") {
+                    field.checked = Array.isArray(value) && value.includes(field.value);
+                    return;
+                }
+
+                if (field.type === "radio") {
+                    field.checked = field.value === value;
+                    return;
+                }
+
+                field.value = value;
+            });
+        });
+
+        updateExtrasByPackage();
+    } catch (error) {
+        console.warn("No se pudo restaurar el borrador de cotización:", error);
+    }
+}
+
+function clearQuoteDraft() {
+    try {
+        localStorage.removeItem(QUOTE_FORM_STORAGE_KEY);
+    } catch (error) {
+        console.warn("No se pudo limpiar el borrador de cotización:", error);
+    }
+}
+
 function initQuoteForm() {
     const form = document.getElementById("quote-form");
     if (!form) return;
@@ -238,6 +331,7 @@ function initQuoteForm() {
                 setTimeout(() => {
                     window.open(buildWhatsAppUrl(buildWhatsappMessage(leadData)), "_blank");
                     resetQuoteForm(form);
+                    clearQuoteDraft();
                     updateExtrasByPackage();
                     initEventDateRules();
                     setFormLoading(false, submitButton);
@@ -483,6 +577,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initHeaderScrollState();
     initActiveNavLinks();
     initQuoteFormEnhancements();
+    initQuoteFormAutosave();
     initQuoteForm();
     initWhatsappLinks();
     initImageFallbacks();
