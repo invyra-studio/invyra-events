@@ -819,7 +819,7 @@ textarea {
 /* ==============================
    ACTIVITY 13 — CINEMATIC ESSENTIAL UPGRADE
    Unique visual signature: Midnight Gala light-ticket reveal
-   Version 1.4.0
+   Version 1.4.3
    ============================== */
 
 #splash-screen {
@@ -1215,7 +1215,7 @@ textarea {
 
 /* ==============================
    ACTIVITY 14 — RSVP ESSENTIAL MICROINTERACTIONS
-   Version 1.4.0
+   Version 1.4.3
    ============================== */
 .rsvp-card {
     position: relative;
@@ -1372,4 +1372,33 @@ textarea {
     .rsvp-card.rsvp-pulse {
         animation: none !important;
     }
+}
+
+
+/* ==============================
+   HOTFIX 1.4.1 — RSVP CLICK SAFETY
+   ============================== */
+.rsvp-card::before {
+    z-index: 0;
+}
+
+.rsvp-card > *,
+.rsvp-form,
+.rsvp-form *,
+.attendance-options,
+.attendance-options label,
+.attendance-options input,
+#nombreInvitado,
+#mensajeInvitado,
+#btn-confirmar {
+    position: relative;
+    z-index: 2;
+}
+
+#nombreInvitado,
+#mensajeInvitado,
+.attendance-options label,
+.attendance-options input,
+#btn-confirmar {
+    pointer-events: auto;
 }

@@ -1,7 +1,7 @@
 /**
  * INVYRA - Birthday Demo 01
  * Midnight Gala RSVP Premium
- * Version 1.4.0
+ * Version 1.4.3
  * Server-side RSVP validation through Google Sheets / Apps Script
  * Update: Activity 14 RSVP premium microinteractions
  */
@@ -15,10 +15,10 @@ if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwpV7Xn9bgxBkV2B6x6YJ1wfxPfXPB3g8IWI-IhlpXBEk6IFFT8Ay0sfhHLLr58yVoc/exec";
 const TELEFONO_RSVP = "525516986744";
 const EVENTO_NOMBRE = "Birthday Demo 01 - Midnight Gala Erza";
-const RSVP_STORAGE_KEY = "invyra_birthday_demo_01_rsvp_registered";
 const RSVP_DRAFT_KEY = "invyra_birthday_demo_01_rsvp_draft";
 
 let galaAlreadyOpened = false;
+let suppressDraftSaveAfterSubmit = false;
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 function initParticles() {
@@ -321,8 +321,6 @@ function initRsvpAutosave() {
     const radios = document.querySelectorAll('input[name="asistencia"]');
 
     const saveDraft = () => {
-        if (localStorage.getItem(RSVP_STORAGE_KEY) === "true") return;
-
         const asistenciaSeleccionada = document.querySelector('input[name="asistencia"]:checked');
 
         const draft = {
@@ -333,6 +331,11 @@ function initRsvpAutosave() {
         };
 
         try {
+            if (suppressDraftSaveAfterSubmit || isEmptyBirthdayDraft(draft)) {
+                localStorage.removeItem(RSVP_DRAFT_KEY);
+                return;
+            }
+
             localStorage.setItem(RSVP_DRAFT_KEY, JSON.stringify(draft));
         } catch (error) {
             console.warn("No se pudo guardar el borrador RSVP:", error);
@@ -358,11 +361,6 @@ function initRsvpAutosave() {
 function restoreRsvpDraft() {
     const inputNombre = document.getElementById("nombreInvitado");
     const inputMensaje = document.getElementById("mensajeInvitado");
-
-    if (localStorage.getItem(RSVP_STORAGE_KEY) === "true") {
-        bloquearFormularioComoRegistrado();
-        return;
-    }
 
     try {
         const draft = JSON.parse(localStorage.getItem(RSVP_DRAFT_KEY) || "null");
@@ -390,6 +388,46 @@ function clearRsvpDraft() {
     } catch (error) {
         console.warn("No se pudo limpiar el borrador RSVP:", error);
     }
+}
+
+function isEmptyBirthdayDraft(draft) {
+    return !cleanText(draft.nombre) &&
+        !cleanText(draft.mensaje) &&
+        draft.asistencia === "Asistiré";
+}
+
+function resetBirthdayRsvpFormAfterSuccess() {
+    const inputNombre = document.getElementById("nombreInvitado");
+    const inputMensaje = document.getElementById("mensajeInvitado");
+    const asistirRadio = document.querySelector('input[name="asistencia"][value="Asistiré"]');
+    const btnConfirmar = document.getElementById("btn-confirmar");
+
+    if (inputNombre) {
+        inputNombre.value = "";
+        inputNombre.disabled = false;
+        updateFieldValueState(inputNombre);
+    }
+
+    if (inputMensaje) {
+        inputMensaje.value = "";
+        inputMensaje.disabled = false;
+        updateFieldValueState(inputMensaje);
+    }
+
+    if (asistirRadio) asistirRadio.checked = true;
+
+    document.querySelectorAll('input[name="asistencia"]').forEach(radio => {
+        radio.disabled = false;
+    });
+
+    if (btnConfirmar) {
+        btnConfirmar.disabled = false;
+        btnConfirmar.classList.remove("is-loading");
+        btnConfirmar.innerText = "CONFIRMAR ASISTENCIA";
+    }
+
+    actualizarEstadoAsistencia();
+    clearRsvpDraft();
 }
 
 function actualizarEstadoAsistencia() {
@@ -672,29 +710,25 @@ async function confirmarAsistencia() {
         });
 
         if (response && response.status === "duplicate") {
-            localStorage.setItem(RSVP_STORAGE_KEY, "true");
             clearRsvpDraft();
 
             setModalContent(
                 "RESPUESTA YA REGISTRADA",
-                "Ya tenemos una respuesta asociada a este nombre. Gracias por formar parte de esta noche especial."
+                "Google Sheets ya detectó una respuesta con ese nombre para este evento. Puedes revisar el nombre o avisar directamente a los anfitriones."
             );
 
             showModal();
-            setRsvpStatus("Respuesta localizada. Dejaremos el formulario bloqueado para evitar duplicados.");
+            setRsvpStatus("Respuesta duplicada detectada por Google Sheets. El formulario queda disponible por si necesitas corregir el nombre.");
 
-            setTimeout(() => {
-                const modal = document.getElementById("rsvp-modal");
-                if (modal) modal.classList.add("hidden");
+            btnConfirmar.disabled = false;
+            btnConfirmar.classList.remove("is-loading");
+            btnConfirmar.innerText = asistencia === "No asistiré" ? "ENVIAR RESPUESTA" : "CONFIRMAR ASISTENCIA";
 
-                bloquearFormularioComoRegistrado();
-            }, 5200);
-
+            hideModal(5200);
             return;
         }
 
         if (response && response.status === "success") {
-            localStorage.setItem(RSVP_STORAGE_KEY, "true");
             clearRsvpDraft();
 
             setModalContent(
@@ -703,7 +737,7 @@ async function confirmarAsistencia() {
             );
 
             showModal();
-            setRsvpStatus("Respuesta registrada. Enseguida abriremos WhatsApp.");
+            setRsvpStatus("Respuesta registrada en Google Sheets. Enseguida abriremos WhatsApp.");
 
             btnConfirmar.innerText = "¡TODO LISTO!";
             btnConfirmar.classList.remove("is-loading");
@@ -715,13 +749,19 @@ async function confirmarAsistencia() {
                 `*Mensaje:* ${mensajeInvitado || "Sin mensaje"}`
             );
 
+            suppressDraftSaveAfterSubmit = true;
+            clearRsvpDraft();
+
             setTimeout(() => {
+                resetBirthdayRsvpFormAfterSuccess();
                 window.open(`https://wa.me/${TELEFONO_RSVP}?text=${mensajeWhatsApp}`, "_blank");
 
                 const modal = document.getElementById("rsvp-modal");
                 if (modal) modal.classList.add("hidden");
 
-                bloquearFormularioComoRegistrado();
+                setTimeout(() => {
+                    suppressDraftSaveAfterSubmit = false;
+                }, 1800);
             }, 3200);
 
             return;
