@@ -1,8 +1,8 @@
 /**
  * INVYRA - Bautizo Demo 01
- * Version 1.3.0
+ * Version 1.4.0
  * Signature Baptism Experience
- * Activity 13: Signature celestial motion upgrade + RSVP Google Sheets
+ * Activity 14: Premium RSVP microinteractions + autosave cleanup
  */
 
 document.body.classList.add("js-enabled", "splash-active");
@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initScrollReveal();
     initAttendanceToggle();
     initRsvpAutosaveRestore();
+    initRsvpFieldStates();
     initImageFallbacks();
     initModalClose();
     initSignatureMotionPolish();
@@ -311,38 +312,59 @@ function showElement(element) {
 
 function initAttendanceToggle() {
     const radios = document.querySelectorAll('input[name="asistencia"]');
-    const rsvpCard = document.querySelector(".rsvp-card");
-    const detalleGroup = document.getElementById("detalleAsistenciaGroup");
-    const acompanantesGroup = document.getElementById("acompanantesGroup");
 
     if (!radios.length) return;
-
-    function updateAttendanceFields() {
-        const selected = document.querySelector('input[name="asistencia"]:checked');
-        const selectedValue = selected ? selected.value : "";
-        const willAttend =
-            selectedValue === "Asistiré" || selectedValue === "Sí asistiré";
-
-        if (detalleGroup) {
-            detalleGroup.style.display = willAttend ? "grid" : "none";
-            detalleGroup.classList.toggle("is-disabled", !willAttend);
-        }
-
-        if (acompanantesGroup) {
-            acompanantesGroup.style.display = willAttend ? "grid" : "none";
-            acompanantesGroup.classList.toggle("is-disabled", !willAttend);
-        }
-
-        if (rsvpCard) {
-            rsvpCard.classList.toggle("rsvp-not-attending", !willAttend);
-        }
-    }
 
     radios.forEach(radio => {
         radio.addEventListener("change", updateAttendanceFields);
     });
 
     updateAttendanceFields();
+}
+
+function updateAttendanceFields() {
+    const selected = document.querySelector('input[name="asistencia"]:checked');
+    const rsvpCard = document.querySelector(".rsvp-card");
+    const detalleGroup = document.getElementById("detalleAsistenciaGroup");
+    const acompanantesGroup = document.getElementById("acompanantesGroup");
+    const detalleInput = document.getElementById("detalleAsistenciaInvitado");
+    const acompanantesInput = document.getElementById("acompanantesInvitado");
+    const button = document.getElementById("btn-confirmar");
+    const liveMessage = document.getElementById("rsvp-live-message");
+
+    const selectedValue = selected ? selected.value : "Asistiré";
+    const willAttend = selectedValue === "Asistiré" || selectedValue === "Sí asistiré";
+
+    [detalleGroup, acompanantesGroup].forEach(group => {
+        if (!group) return;
+        group.classList.toggle("is-disabled", !willAttend);
+        group.classList.toggle("is-collapsed", !willAttend);
+        group.setAttribute("aria-hidden", willAttend ? "false" : "true");
+    });
+
+    if (detalleInput) {
+        detalleInput.disabled = !willAttend;
+        if (!willAttend) detalleInput.selectedIndex = 0;
+    }
+
+    if (acompanantesInput) {
+        acompanantesInput.disabled = !willAttend;
+        if (!willAttend) acompanantesInput.selectedIndex = 0;
+    }
+
+    if (rsvpCard) {
+        rsvpCard.classList.toggle("rsvp-not-attending", !willAttend);
+    }
+
+    if (button && !button.disabled) {
+        button.textContent = willAttend ? "Confirmar asistencia" : "Enviar respuesta";
+    }
+
+    if (liveMessage) {
+        liveMessage.textContent = willAttend
+            ? "Gracias por acompañarnos. Puedes elegir los detalles de asistencia antes de confirmar."
+            : "Gracias por avisarnos. Puedes enviar tu respuesta sin llenar acompañantes.";
+    }
 }
 
 /* RSVP AUTOSAVE / RESTORE */
@@ -395,15 +417,15 @@ function getRsvpDraftData() {
 
 function saveRsvpDraft() {
     const draft = getRsvpDraftData();
-    const hasContent =
-        cleanText(draft.nombre) ||
-        cleanText(draft.mensaje) ||
-        cleanText(draft.detalle) ||
-        cleanText(draft.acompanantes) ||
-        draft.asistencia !== "Asistiré";
+    const isDefaultDraft =
+        !cleanText(draft.nombre) &&
+        !cleanText(draft.mensaje) &&
+        draft.asistencia === "Asistiré" &&
+        (!draft.detalle || draft.detalle === "Ceremonia y recepción") &&
+        (!draft.acompanantes || draft.acompanantes === "0 acompañantes");
 
     try {
-        if (!hasContent) {
+        if (isDefaultDraft) {
             localStorage.removeItem(RSVP_DRAFT_STORAGE_KEY);
             return;
         }
@@ -508,9 +530,8 @@ function confirmarAsistencia() {
             setButtonLoading(button, false);
 
             if (response.status === "success") {
-                localStorage.setItem(RSVP_STORAGE_KEY, "true");
                 clearRsvpDraft();
-                showModal("¡Respuesta registrada!", "Gracias por confirmar. Tu respuesta quedó guardada correctamente.");
+                showModal("¡Respuesta registrada!", "Gracias por confirmar. Tu respuesta quedó guardada correctamente. El formulario quedó limpio para una nueva captura.");
                 resetRsvpFields();
                 return;
             }
@@ -681,17 +702,35 @@ function resetRsvpFields() {
 
     if (asistirRadio) {
         asistirRadio.checked = true;
-        asistirRadio.dispatchEvent(new Event("change"));
     }
 
-    initAttendanceToggle();
+    updateAttendanceFields();
+    updateRsvpFieldStates();
 }
 
 function setButtonLoading(button, isLoading) {
     if (!button) return;
     button.disabled = isLoading;
     button.classList.toggle("is-loading", isLoading);
-    button.textContent = isLoading ? "Enviando..." : "Confirmar asistencia";
+    button.textContent = isLoading ? "Guardando respuesta..." : "Confirmar asistencia";
+}
+
+function initRsvpFieldStates() {
+    const fields = getRsvpDraftFields().filter(Boolean);
+
+    fields.forEach(field => {
+        field.addEventListener("input", updateRsvpFieldStates);
+        field.addEventListener("change", updateRsvpFieldStates);
+    });
+
+    updateRsvpFieldStates();
+}
+
+function updateRsvpFieldStates() {
+    getRsvpDraftFields().forEach(field => {
+        if (!field) return;
+        field.classList.toggle("has-value", cleanText(field.value).length > 0);
+    });
 }
 
 function cleanText(value) {
