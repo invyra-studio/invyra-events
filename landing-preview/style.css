@@ -2798,6 +2798,587 @@ body.nav-open .nav-toggle span:last-child {
 
 
 /* ==============================
+   ACTIVITY 15 — QR VISUAL SECTION
+   Version preview-1.0.15
+   ============================== */
+
+.qr-section {
+    padding: 112px 0;
+}
+
+.qr-shell {
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 0.82fr;
+    align-items: center;
+    gap: 44px;
+    padding: 34px;
+    border: 1px solid rgba(184,135,60,0.26);
+    border-radius: 40px;
+    background:
+        radial-gradient(circle at 12% 0%, rgba(255,255,255,0.84), transparent 34%),
+        radial-gradient(circle at 88% 86%, rgba(184,135,60,0.13), transparent 36%),
+        linear-gradient(145deg, rgba(255,255,255,0.72), rgba(255,250,242,0.48));
+    box-shadow:
+        0 34px 96px rgba(36,29,24,0.14),
+        inset 0 0 0 1px rgba(255,255,255,0.44);
+}
+
+.qr-shell::before {
+    content: "";
+    position: absolute;
+    inset: 22px;
+    border: 1px solid rgba(184,135,60,0.16);
+    border-radius: 30px;
+    pointer-events: none;
+}
+
+.qr-shell::after {
+    content: "";
+    position: absolute;
+    width: 360px;
+    height: 360px;
+    right: -120px;
+    top: -140px;
+    border-radius: 50%;
+    background: rgba(234,215,173,0.20);
+    filter: blur(34px);
+    pointer-events: none;
+}
+
+.qr-content,
+.qr-visual {
+    position: relative;
+    z-index: 2;
+}
+
+.qr-content .section-title {
+    max-width: 680px;
+}
+
+.qr-content .section-copy {
+    margin-left: 0;
+}
+
+.qr-content .btn {
+    margin-top: 32px;
+}
+
+.qr-pill-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 28px;
+}
+
+.qr-pill-grid span {
+    min-height: 38px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 15px;
+    border-radius: 999px;
+    border: 1px solid rgba(184,135,60,0.22);
+    color: var(--gold-deep);
+    background: rgba(255,255,255,0.54);
+    box-shadow:
+        0 12px 28px rgba(31,25,21,0.06),
+        inset 0 0 0 1px rgba(255,255,255,0.38);
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.qr-visual {
+    min-height: 500px;
+    display: grid;
+    place-items: center;
+}
+
+.qr-card {
+    position: relative;
+    width: min(100%, 380px);
+    min-height: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px;
+    overflow: hidden;
+    border: 1px solid rgba(234,215,173,0.32);
+    border-radius: 34px;
+    background:
+        radial-gradient(circle at 50% 0%, rgba(234,215,173,0.14), transparent 34%),
+        linear-gradient(145deg, #0f0f0e 0%, #1b1815 100%);
+    box-shadow:
+        0 34px 86px rgba(20,18,16,0.22),
+        0 0 34px rgba(184,135,60,0.10);
+}
+
+.qr-card::before {
+    content: "";
+    position: absolute;
+    inset: 18px;
+    border: 1px solid rgba(234,215,173,0.18);
+    border-radius: 26px;
+    pointer-events: none;
+}
+
+.qr-card::after {
+    content: "";
+    position: absolute;
+    inset: -50%;
+    background:
+        linear-gradient(
+            115deg,
+            transparent 35%,
+            rgba(255,255,255,0.09) 48%,
+            transparent 60%
+        );
+    transform: translateX(-55%) rotate(8deg);
+    animation: qrCardShine 6.5s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes qrCardShine {
+    0%, 42% {
+        transform: translateX(-55%) rotate(8deg);
+    }
+
+    70%, 100% {
+        transform: translateX(55%) rotate(8deg);
+    }
+}
+
+.qr-card-kicker,
+.qr-frame,
+.qr-card-footer {
+    position: relative;
+    z-index: 2;
+}
+
+.qr-card-kicker {
+    color: var(--champagne);
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.qr-frame {
+    width: min(100%, 250px);
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    padding: 16px;
+    border-radius: 28px;
+    background:
+        radial-gradient(circle at 50% 0%, rgba(255,255,255,0.92), transparent 36%),
+        linear-gradient(145deg, rgba(255,255,255,0.96), rgba(255,250,242,0.84));
+    box-shadow:
+        0 24px 54px rgba(0,0,0,0.22),
+        inset 0 0 0 1px rgba(255,255,255,0.58);
+}
+
+.qr-image {
+    display: block;
+    width: 100%;
+    border-radius: 18px;
+    background: var(--cream);
+}
+
+.qr-card-footer {
+    display: grid;
+    gap: 5px;
+    text-align: center;
+}
+
+.qr-card-footer strong {
+    color: var(--champagne);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+.qr-card-footer small {
+    color: rgba(255,250,242,0.72);
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.qr-floating-note {
+    position: absolute;
+    left: 4%;
+    bottom: 10%;
+    width: min(260px, 78%);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+    border: 1px solid rgba(184,135,60,0.22);
+    border-radius: 22px;
+    background:
+        radial-gradient(circle at 12% 0%, rgba(255,255,255,0.88), transparent 34%),
+        rgba(255,255,255,0.66);
+    box-shadow:
+        0 20px 48px rgba(36,29,24,0.12),
+        inset 0 0 0 1px rgba(255,255,255,0.40);
+    backdrop-filter: blur(12px);
+}
+
+.qr-floating-note span {
+    color: var(--gold-deep);
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.qr-floating-note p {
+    margin: 0;
+    color: var(--taupe);
+    font-size: 0.82rem;
+    font-weight: 800;
+    line-height: 1.5;
+}
+
+@media (max-width: 1080px) {
+    .qr-shell {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .qr-content .section-copy {
+        margin-left: auto;
+    }
+
+    .qr-pill-grid {
+        justify-content: center;
+    }
+
+    .qr-visual {
+        min-height: 460px;
+    }
+}
+
+@media (max-width: 820px) {
+    .qr-section {
+        padding: 84px 0;
+    }
+
+    .qr-shell {
+        padding: 20px;
+        border-radius: 30px;
+    }
+
+    .qr-shell::before {
+        inset: 12px;
+        border-radius: 24px;
+    }
+
+    .qr-visual {
+        min-height: auto;
+        padding: 20px 0 0;
+    }
+
+    .qr-card {
+        min-height: 430px;
+        border-radius: 28px;
+    }
+
+    .qr-floating-note {
+        position: relative;
+        left: auto;
+        bottom: auto;
+        width: min(100%, 340px);
+        margin: -12px auto 0;
+        text-align: left;
+    }
+}
+
+@media (max-width: 560px) {
+    .qr-shell {
+        padding: 16px;
+        border-radius: 28px;
+    }
+
+    .qr-pill-grid span {
+        width: 100%;
+        justify-content: center;
+        min-height: 40px;
+        font-size: 0.70rem;
+        letter-spacing: 0.07em;
+        text-align: center;
+    }
+
+    .qr-content .btn {
+        width: 100%;
+    }
+
+    .qr-card {
+        width: 100%;
+        min-height: 400px;
+        padding: 24px 20px;
+    }
+
+    .qr-frame {
+        width: min(100%, 220px);
+        padding: 14px;
+    }
+
+    .qr-card-footer strong {
+        font-size: 1.9rem;
+    }
+}
+
+
+/* ==============================
+   ACTIVITY 15 QR — CONCEPTUAL FIX
+   Version preview-1.0.15
+   QR section is now presented as a personalized visual example,
+   not as a loop back to the current landing.
+   ============================== */
+
+.qr-card-footer strong {
+    max-width: 260px;
+    margin: 0 auto;
+    font-size: clamp(1.55rem, 4.2vw, 2rem);
+    line-height: 0.95;
+    letter-spacing: 0.04em;
+}
+
+.qr-card-footer small {
+    max-width: 230px;
+    margin: 0 auto;
+    line-height: 1.35;
+}
+
+.qr-frame {
+    position: relative;
+}
+
+.qr-frame::after {
+    content: "DEMO";
+    position: absolute;
+    right: 18px;
+    bottom: 18px;
+    min-height: 28px;
+    padding: 0 10px;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    color: var(--cream);
+    background: linear-gradient(135deg, var(--espresso), var(--gold-deep));
+    font-size: 0.58rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    box-shadow: 0 10px 22px rgba(36,29,24,0.18);
+}
+
+@media (max-width: 560px) {
+    .qr-frame::after {
+        right: 14px;
+        bottom: 14px;
+        min-height: 24px;
+        font-size: 0.52rem;
+    }
+}
+
+
+/* ==============================
+   ACTIVITY 15 QR — MOBILE RESPONSIVE HOTFIX
+   Version preview-1.0.15
+   Prevents horizontal overflow and keeps the QR visual centered on phones.
+   ============================== */
+
+html,
+body {
+    overflow-x: hidden;
+}
+
+.qr-section,
+.qr-shell,
+.qr-content,
+.qr-visual,
+.qr-card,
+.qr-frame,
+.qr-floating-note {
+    max-width: 100%;
+    min-width: 0;
+}
+
+.qr-shell {
+    width: 100%;
+}
+
+.qr-content .section-title,
+.qr-content .section-copy {
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 820px) {
+    .qr-section {
+        width: min(calc(100% - 28px), 1180px);
+        padding: 78px 0;
+    }
+
+    .qr-shell {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 26px;
+        padding: 20px 16px;
+        overflow: hidden;
+    }
+
+    .qr-content {
+        width: 100%;
+        text-align: center;
+    }
+
+    .qr-content .section-title {
+        max-width: 100%;
+        font-size: clamp(2.55rem, 13vw, 4.1rem);
+        line-height: 0.92;
+    }
+
+    .qr-content .section-copy {
+        max-width: 100%;
+        margin-right: auto;
+        margin-left: auto;
+        font-size: 0.94rem;
+        line-height: 1.75;
+    }
+
+    .qr-pill-grid {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .qr-visual {
+        width: 100%;
+        padding-top: 10px;
+        place-items: center;
+    }
+
+    .qr-card {
+        width: min(100%, 330px);
+        min-height: 410px;
+        margin: 0 auto;
+    }
+
+    .qr-frame {
+        width: min(100%, 220px);
+    }
+
+    .qr-floating-note {
+        width: min(100%, 330px);
+        margin: -6px auto 0;
+        transform: none;
+    }
+}
+
+@media (max-width: 560px) {
+    .qr-section {
+        width: min(calc(100% - 24px), 1180px);
+        padding: 70px 0;
+    }
+
+    .qr-shell {
+        padding: 18px 12px;
+        border-radius: 26px;
+    }
+
+    .qr-shell::before {
+        inset: 10px;
+        border-radius: 20px;
+    }
+
+    .qr-content .section-title {
+        font-size: clamp(2.35rem, 15vw, 3.55rem);
+        line-height: 0.92;
+        letter-spacing: -0.035em;
+    }
+
+    .qr-pill-grid {
+        gap: 8px;
+    }
+
+    .qr-pill-grid span {
+        width: 100%;
+        max-width: 310px;
+        justify-content: center;
+    }
+
+    .qr-content .btn {
+        width: 100%;
+        max-width: 310px;
+        margin-right: auto;
+        margin-left: auto;
+        white-space: normal;
+        text-align: center;
+        line-height: 1.25;
+    }
+
+    .qr-card {
+        width: min(100%, 300px);
+        min-height: 386px;
+        padding: 22px 18px;
+        border-radius: 26px;
+    }
+
+    .qr-card::before {
+        inset: 14px;
+        border-radius: 20px;
+    }
+
+    .qr-card-kicker {
+        font-size: 0.62rem;
+        letter-spacing: 0.14em;
+    }
+
+    .qr-frame {
+        width: min(100%, 196px);
+        padding: 12px;
+        border-radius: 24px;
+    }
+
+    .qr-image {
+        border-radius: 15px;
+    }
+
+    .qr-card-footer strong {
+        font-size: clamp(1.45rem, 8vw, 1.75rem);
+    }
+
+    .qr-card-footer small {
+        font-size: 0.62rem;
+        letter-spacing: 0.12em;
+    }
+
+    .qr-floating-note {
+        width: min(100%, 300px);
+        padding: 14px;
+        border-radius: 18px;
+    }
+
+    .qr-floating-note p {
+        font-size: 0.78rem;
+        line-height: 1.45;
+    }
+}
+
+@media (max-width: 380px) {
+    .qr-card {
+        width: min(100%, 280px);
+    }
+
+    .qr-frame {
+        width: min(100%, 180px);
+    }
+}
+
+/* ==============================
    ACTIVITY 16 — MOBILE EXPERIENCE SIMPLIFIED
    Version preview-1.0.20
    One premium phone with animated Wedding/XV demo preview.
@@ -4234,5 +4815,147 @@ body.nav-open .nav-toggle span:last-child {
 @media (max-width: 820px) {
     .lived-experience-journey {
         padding-top: 10px;
+    }
+}
+
+/* ==============================
+   ACTIVITY 18 — GLOBAL MOBILE RESPONSIVE HOTFIX
+   Version preview-1.0.24
+   Restores QR section and prevents horizontal overflow on Galaxy S25 Ultra / mobile.
+   ============================== */
+
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    position: relative;
+}
+
+main,
+.site-bg,
+section,
+.site-footer,
+.hero-section,
+.problem-solution-grid,
+.include-feature-grid,
+.package-cards,
+.demos-grid,
+.process-grid,
+.quote-card,
+.qr-shell,
+.mobile-proof-shell,
+.lived-experience-shell {
+    max-width: 100%;
+}
+
+.hero-decoration,
+.bg-orb,
+.qr-shell::after,
+.mobile-proof-shell::after,
+.lived-experience-shell::after {
+    max-width: 100vw;
+}
+
+img,
+svg,
+video,
+canvas {
+    max-width: 100%;
+    height: auto;
+}
+
+@media (max-width: 820px) {
+    .hero-decoration-left,
+    .hero-decoration-right {
+        display: none;
+    }
+
+    .site-bg {
+        overflow: hidden;
+    }
+
+    section,
+    .site-footer,
+    .qr-section,
+    .mobile-showcase-section,
+    .lived-experience-section {
+        width: min(calc(100% - 24px), 1180px);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-section {
+        grid-template-columns: minmax(0, 1fr);
+        width: min(calc(100% - 24px), 1180px);
+        overflow: hidden;
+    }
+
+    .hero-content,
+    .hero-card,
+    .hero-card-inner,
+    .qr-content,
+    .qr-visual,
+    .mobile-proof-copy,
+    .mobile-proof-visual,
+    .quote-card,
+    .quote-form,
+    .lived-experience-shell {
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    .qr-shell,
+    .mobile-proof-shell,
+    .lived-experience-shell,
+    .quote-card {
+        overflow: hidden;
+    }
+
+    .qr-pill-grid,
+    .hero-proof,
+    .include-pill-grid {
+        max-width: 100%;
+    }
+
+    .qr-card,
+    .mobile-feature-phone {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .floating-whatsapp {
+        right: 12px;
+        bottom: 12px;
+    }
+}
+
+@media (max-width: 560px) {
+    section,
+    .site-footer,
+    .qr-section,
+    .mobile-showcase-section,
+    .lived-experience-section,
+    .hero-section {
+        width: min(calc(100% - 22px), 1180px);
+    }
+
+    .qr-shell,
+    .mobile-proof-shell,
+    .lived-experience-shell,
+    .quote-card {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .qr-card {
+        width: min(100%, 318px);
+    }
+
+    .qr-floating-note {
+        width: min(100%, 318px);
     }
 }
