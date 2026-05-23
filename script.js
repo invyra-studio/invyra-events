@@ -1,6 +1,6 @@
 /**
  * INVYRA - Landing Page
- * Version 1.0.24
+ * Version 1.0.28
  * Premium Digital Events
  */
 document.body.classList.add("js-enabled");
@@ -136,11 +136,6 @@ function initSubtleMotion() {
     gsap.to(".hero-card", { y: -8, duration: 5.8, repeat: -1, yoyo: true, ease: "sine.inOut" });
     gsap.to(".hero-decoration-left", { y: -18, rotate: 20, duration: 7, repeat: -1, yoyo: true, ease: "sine.inOut" });
     gsap.to(".hero-decoration-right", { y: 18, rotate: 14, duration: 8, repeat: -1, yoyo: true, ease: "sine.inOut" });
-    gsap.to(".mobile-feature-phone", { y: -10, rotate: 0.45, duration: 5.8, repeat: -1, yoyo: true, ease: "sine.inOut" });
-    gsap.to(".mobile-proof-card-one", { y: -7, x: 4, duration: 4.8, repeat: -1, yoyo: true, ease: "sine.inOut" });
-    gsap.to(".mobile-proof-card-two", { y: 7, x: -4, duration: 5.2, repeat: -1, yoyo: true, ease: "sine.inOut" });
-    gsap.to(".lived-track-glow", { opacity: 0.55, scaleX: 1.08, duration: 3.8, repeat: -1, yoyo: true, ease: "sine.inOut" });
-    gsap.to(".lived-experience-closing", { y: -4, duration: 5.6, repeat: -1, yoyo: true, ease: "sine.inOut" });
 }
 
 function initQuoteFormEnhancements() {
