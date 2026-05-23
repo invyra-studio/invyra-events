@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>INVYRA | Cotizar experiencia</title>
+    <meta name="description" content="Cotiza una experiencia digital premium para tu evento con INVYRA." />
+    <link rel="icon" type="image/jpeg" href="../LOGO/FAVICON.jpeg" />
+    <link rel="stylesheet" href="./style.css?v=1.0.32" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800;900&family=Great+Vibes&display=swap" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+    <script src="./script.js?v=1.0.32" defer></script>
+  </head>
+  <body>
+    <div class="site-bg"><div class="bg-orb bg-orb-one"></div><div class="bg-orb bg-orb-two"></div><div class="bg-grain"></div><div class="bg-lines"></div></div>
+    <header class="site-header">
+      <a href="../landing-preview/" class="brand" aria-label="Volver a INVYRA">
+        <img src="../LOGO/FAVICON.jpeg" alt="INVYRA" class="brand-logo" />
+        <div class="brand-text"><span>INVYRA</span><small>Premium Digital Events</small></div>
+      </a>
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Abrir menú"><span></span><span></span></button>
+      <nav class="site-nav" id="site-nav">
+        <a href="../landing-preview/">Inicio</a>
+        <a href="../experiencias/">Experiencias</a>
+        <a href="../portafolio/">Portafolio</a>
+        <a href="../landing-preview/#qr">QR</a>
+        <a href="../landing-preview/#faq">FAQ</a>
+        <a href="../cotizar/" class="nav-cta active">Cotizar</a>
+      </nav>
+    </header>
+    <main>
+      <section class="quote-page-hero section-reveal">
+        <p class="section-kicker">Cotización INVYRA</p>
+        <h1 class="section-title">Cuéntanos tu evento sin perderte entre mensajes.</h1>
+        <p class="section-copy">Esta página reúne el briefing completo para orientar mejor tu cotización. La landing se mantiene ligera; aquí nos das el contexto necesario para proponerte una experiencia a la altura de tu celebración.</p>
+      </section>
+      <section class="quote-form-section section-reveal" id="cotizar">
+        <div class="quote-card">
+          <div class="quote-content">
+            <p class="section-kicker">Solicitud de experiencia</p>
+
+            <h2 class="section-title">
+              Cuéntanos tu evento y te guiamos con la mejor opción.
+            </h2>
+
+            <p class="section-copy">
+              Completa este briefing para que podamos entender tu evento, el estilo que buscas y el nivel de experiencia que mejor podría funcionar. Si prefieres algo más rápido, también puedes continuar directo por WhatsApp.
+            </p>
+
+            <div class="quote-paths" aria-label="Formas de cotizar INVYRA">
+              <article>
+                <span>01</span>
+                <strong>Formulario guiado</strong>
+                <p>Ideal si ya tienes datos del evento y quieres una cotización más ordenada.</p>
+              </article>
+
+              <article>
+                <span>02</span>
+                <strong>WhatsApp directo</strong>
+                <p>Perfecto si quieres resolver dudas o aterrizar tu idea conversando.</p>
+              </article>
+            </div>
+
+            <a
+              href="https://wa.me/525535690278?text=Hola%20INVYRA%2C%20quiero%20cotizar%20una%20experiencia%20digital.%20Me%20gustar%C3%ADa%20que%20me%20orientaran%20para%20elegir%20el%20paquete%20ideal."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-primary"
+            >
+              Hablar por WhatsApp
+            </a>
+          </div>
+
+          <form class="quote-form" id="quote-form" novalidate>
+            <div class="form-row">
+              <label for="clientName">Nombre completo</label>
+              <input
+                type="text"
+                id="clientName"
+                name="clientName"
+                placeholder="Tu nombre"
+                autocomplete="name"
+                pattern="[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]+"
+                title="Escribe solo letras y espacios"
+                required
+              />
+            </div>
+
+            <div class="form-row">
+              <label for="clientPhone">WhatsApp</label>
+              <input
+                type="tel"
+                id="clientPhone"
+                name="clientPhone"
+                placeholder="Ej. 5535690278"
+                autocomplete="tel"
+                inputmode="numeric"
+                minlength="10"
+                maxlength="10"
+                pattern="[0-9]{10}"
+                title="Escribe un número de WhatsApp de 10 dígitos"
+                required
+              />
+            </div>
+
+            <div class="form-row">
+              <label for="clientEmail">Correo electrónico opcional</label>
+              <input
+                type="email"
+                id="clientEmail"
+                name="clientEmail"
+                placeholder="correo@ejemplo.com"
+                autocomplete="email"
+              />
+            </div>
+
+            <div class="form-row">
+              <label for="eventType">Tipo de evento</label>
+              <select id="eventType" name="eventType" required>
+                <option value="">Selecciona una opción</option>
+                <option value="Boda">Boda</option>
+                <option value="XV años">XV años</option>
+                <option value="Baby Shower">Baby Shower</option>
+                <option value="Cumpleaños">Cumpleaños</option>
+                <option value="Fiesta infantil">Fiesta infantil</option>
+                <option value="Bautizo">Bautizo</option>
+                <option value="Primera comunión">Primera comunión</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <label for="eventDate">Fecha del evento</label>
+              <input type="date" id="eventDate" name="eventDate" />
+            </div>
+
+            <div class="form-row">
+              <label for="eventLocation">Ciudad o zona del evento</label>
+              <input
+                type="text"
+                id="eventLocation"
+                name="eventLocation"
+                placeholder="Ej. Tulancingo, Pachuca, CDMX / Aún por definir"
+              />
+            </div>
+
+            <div class="form-row">
+              <label for="packageType">Nivel de experiencia de interés</label>
+              <select id="packageType" name="packageType" required>
+                <option value="">Selecciona una opción</option>
+                <option value="Esencial">Essential Experience</option>
+                <option value="Signature">Signature Experience</option>
+                <option value="Legacy">Legacy Experience</option>
+                <option value="Aún no sé cuál elegir">
+                  Aún no sé cuál elegir
+                </option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <label>Adicionales de interés</label>
+
+              <p class="form-hint" id="extrasHint">
+                Selecciona primero un paquete para ver qué adicionales aplican.
+              </p>
+
+              <div class="extras-checklist" id="extrasChecklist">
+                <label
+                  class="check-option"
+                  data-packages="Esencial,Signature,Legacy"
+                >
+                  <input
+                    type="checkbox"
+                    name="extras"
+                    value="Dominio personalizado"
+                  />
+                  <span>Dominio personalizado</span>
+                </label>
+
+                <label class="check-option" data-packages="Esencial,Signature">
+                  <input
+                    type="checkbox"
+                    name="extras"
+                    value="Video de portada"
+                  />
+                  <span>Video de portada</span>
+                </label>
+
+                <label class="check-option" data-packages="Esencial,Signature">
+                  <input
+                    type="checkbox"
+                    name="extras"
+                    value="Nombre del invitado"
+                  />
+                  <span>Nombre del invitado</span>
+                </label>
+
+                <label class="check-option" data-packages="Esencial">
+                  <input
+                    type="checkbox"
+                    name="extras"
+                    value="Confirmación automática"
+                  />
+                  <span>Confirmación automática</span>
+                </label>
+
+                <label class="check-option" data-packages="Esencial">
+                  <input
+                    type="checkbox"
+                    name="extras"
+                    value="Galería ampliada"
+                  />
+                  <span>Galería ampliada</span>
+                </label>
+
+                <label class="check-option" data-packages="Esencial,Signature">
+                  <input
+                    type="checkbox"
+                    name="extras"
+                    value="Secciones extra / mesa de regalos"
+                  />
+                  <span>Secciones extra / mesa de regalos</span>
+                </label>
+
+                <label class="check-option" data-packages="Esencial">
+                  <input
+                    type="checkbox"
+                    name="extras"
+                    value="Cuenta regresiva"
+                  />
+                  <span>Cuenta regresiva</span>
+                </label>
+
+                <label class="check-option" data-packages="Esencial">
+                  <input
+                    type="checkbox"
+                    name="extras"
+                    value="Publicación en línea"
+                  />
+                  <span>Publicación en línea</span>
+                </label>
+
+                <label class="check-option" data-packages="Esencial,Signature">
+                  <input
+                    type="checkbox"
+                    name="extras"
+                    value="Música personalizada"
+                  />
+                  <span>Música personalizada</span>
+                </label>
+
+                <label class="check-option" data-packages="Signature">
+                  <input type="checkbox" name="extras" value="Itinerario" />
+                  <span>Itinerario</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <label for="themeColors">Estilo visual o temática deseada</label>
+              <textarea
+                id="themeColors"
+                name="themeColors"
+                placeholder="Ej. dorado y negro, celestial, floral, editorial, elegante, infantil... o escribe: Aún no lo decido."
+              ></textarea>
+            </div>
+
+            <div class="form-row">
+              <label for="eventIdea">Cuéntanos qué quieres lograr</label>
+              <textarea
+                id="eventIdea"
+                name="eventIdea"
+                placeholder="Cuéntanos qué quieres transmitir, qué detalles no pueden faltar y si tienes referencias de estilo o necesidades especiales."
+              ></textarea>
+            </div>
+
+            <div class="form-row">
+              <label for="referralSource">¿Cómo conociste INVYRA?</label>
+              <select id="referralSource" name="referralSource">
+                <option value="">Selecciona una opción</option>
+                <option value="TikTok">TikTok</option>
+                <option value="Instagram">Instagram</option>
+                <option value="WhatsApp">WhatsApp</option>
+                <option value="Recomendación">Recomendación</option>
+                <option value="Página web">Página web</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn btn-secondary form-submit">
+              Cotizar mi experiencia
+            </button>
+          </form>
+        </div>
+      </section>
+
+    </main>
+    <footer class="site-footer">
+      <p>INVYRA · Premium Digital Events</p>
+      <span>Formulario de cotización premium</span>
+    </footer>
+    <a href="https://wa.me/525535690278?text=Hola%20INVYRA%2C%20quiero%20cotizar%20una%20experiencia%20digital%20premium%20para%20mi%20evento." target="_blank" rel="noopener noreferrer" class="floating-whatsapp" aria-label="Contactar por WhatsApp">WhatsApp</a>
+  </body>
+</html>
