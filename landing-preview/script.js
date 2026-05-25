@@ -1,6 +1,6 @@
 /**
  * INVYRA - Landing Page
- * Version preview-1.0.31
+ * Version preview-1.0.40
  * Premium Digital Events
  */
 document.body.classList.add("js-enabled");

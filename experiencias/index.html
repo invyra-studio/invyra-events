@@ -3,21 +3,46 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>INVYRA | Niveles de experiencia</title>
-    <meta name="description" content="Niveles de experiencia, paquetes y adicionales de INVYRA." />
+
+    <title>INVYRA | Experiencias</title>
+
+    <meta
+      name="description"
+      content="Compara Essential, Signature y Legacy Experience de INVYRA. Elige el nivel ideal para tu invitación digital premium y conoce los adicionales disponibles."
+    />
+
     <link rel="icon" type="image/jpeg" href="../LOGO/FAVICON.jpeg" />
-    <link rel="stylesheet" href="./style.css?v=1.0.32" />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-    <script src="./script.js?v=1.0.32" defer></script>
+    <link rel="stylesheet" href="./style.css?v=1.0.40" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="./script.js?v=1.0.40" defer></script>
   </head>
+
   <body>
-    <div class="site-bg"><div class="bg-orb bg-orb-one"></div><div class="bg-orb bg-orb-two"></div><div class="bg-grain"></div></div>
+    <div class="site-bg" aria-hidden="true">
+      <div class="bg-orb bg-orb-one"></div>
+      <div class="bg-orb bg-orb-two"></div>
+      <div class="bg-grain"></div>
+    </div>
+
     <header class="site-header">
-      <a href="../" class="brand" aria-label="Volver a INVYRA">
+      <a href="../landing-preview/" class="brand" aria-label="Volver a INVYRA">
         <img src="../LOGO/FAVICON.jpeg" alt="INVYRA" class="brand-logo" />
-        <div class="brand-text"><span>INVYRA</span><small>Premium Digital Events</small></div>
+        <div class="brand-text">
+          <span>INVYRA</span>
+          <small>Premium Digital Events</small>
+        </div>
       </a>
-      <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Abrir menú"><span></span><span></span></button>
+
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+      </button>
+
       <nav class="site-nav" id="site-nav">
         <a href="../landing-preview/">Inicio</a>
         <a href="../experiencias/" class="active">Experiencias</a>
@@ -27,61 +52,201 @@
         <a href="../cotizar/" class="nav-cta">Cotizar</a>
       </nav>
     </header>
+
     <main>
-      <section class="page-section page-hero">
-        <div>
+      <section class="experience-hero" id="inicio">
+        <div class="hero-copy-block">
           <p class="eyebrow">Niveles de experiencia</p>
-          <h1 class="page-title">No son paquetes. Son formas distintas de presentar tu evento.</h1>
-          <p class="page-copy">Essential, Signature y Legacy existen para adaptar el nivel de detalle, presencia visual y personalización a lo que realmente necesita tu celebración.</p>
-          <div class="actions">
-            <a href="../cotizar/" class="btn btn-primary">Quiero orientación</a>
-            <a href="../portafolio/" class="btn btn-secondary">Ver demos</a>
+
+          <h1>
+            Elige cuánto quieres que tu invitación se sienta como parte del evento.
+          </h1>
+
+          <p class="hero-lead">
+            No todos los eventos necesitan lo mismo. Por eso INVYRA se divide en tres niveles:
+            desde una invitación elegante y clara, hasta una experiencia digital más completa,
+            emocional y lista para quedarse en la memoria.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#comparar" class="btn btn-primary">Comparar niveles</a>
+            <a href="../cotizar/" class="btn btn-secondary">Ayúdenme a elegir</a>
           </div>
         </div>
-        <aside class="hero-panel">
-          <span>INVYRA Experiences</span>
-          <strong>La opción correcta depende de lo que quieres que tus invitados sientan.</strong>
-          <p>Desde compartir información esencial hasta construir una experiencia digital más narrativa y memorable.</p>
+
+        <aside class="signature-panel" aria-label="Recomendación INVYRA">
+          <div class="panel-glow"></div>
+          <span class="panel-kicker">Recomendación INVYRA</span>
+          <strong>Signature suele ser el punto ideal.</strong>
+          <p>
+            Suficiente presencia visual para sentirse premium, sin llegar a una experiencia
+            demasiado extensa para eventos que solo necesitan claridad, estilo y emoción.
+          </p>
+          <div class="panel-marks">
+            <span>Diseño cuidado</span>
+            <span>Más ambiente</span>
+            <span>Mejor primera impresión</span>
+          </div>
         </aside>
       </section>
 
-      <section class="page-section" id="niveles">
+      <section class="experience-levels" id="comparar">
         <div class="section-heading">
-          <p class="section-kicker">Comparativa visual</p>
-          <h2 class="section-title">Tres niveles para distintos momentos, estilos y necesidades.</h2>
-          <p class="section-copy">La landing mantiene una versión resumida. Esta página ayuda a explicar mejor cada experiencia sin saturar la home.</p>
+          <p class="section-kicker">Comparativa</p>
+          <h2>Una forma simple de elegir sin perder elegancia.</h2>
+          <p>
+            Cada nivel está pensado para una intención distinta. No se trata de llenar la invitación,
+            sino de elegir qué tanto quieres que la experiencia acompañe a tus invitados.
+          </p>
         </div>
-        <div class="image-showcase">
-          <img src="../assets/img/paquetes-sin-precios.png" alt="Niveles de experiencia INVYRA sin costos" class="showcase-image" />
-        </div>
-        <div class="grid cards-3" style="margin-top:34px">
-          <article class="card"><span class="tag">01 · Essential</span><h3>Claro y funcional</h3><p>Ideal para eventos íntimos o celebraciones que necesitan verse bien, compartir datos importantes y mantener todo ordenado.</p></article>
-          <article class="card"><span class="tag">02 · Signature</span><h3>Más presencia visual</h3><p>La experiencia recomendada para celebraciones especiales que buscan más detalle, más personalización y mejor primera impresión.</p></article>
-          <article class="card card-dark"><span class="tag">03 · Legacy</span><h3>Más historia y emoción</h3><p>Una experiencia más completa y narrativa, pensada para eventos donde cada sección debe sentirse parte de algo memorable.</p></article>
+
+        <div class="level-grid" aria-label="Niveles de experiencia INVYRA">
+          <article class="level-card" data-level-card="essential">
+            <div class="level-top">
+              <span>01</span>
+              <small>Essential</small>
+            </div>
+            <h3>Clara, elegante y funcional.</h3>
+            <p>
+              Para eventos donde lo más importante es compartir la información con buen gusto,
+              de forma ordenada y fácil de abrir desde el celular.
+            </p>
+            <ul>
+              <li>Invitación digital animada</li>
+              <li>Música de fondo</li>
+              <li>Datos del evento</li>
+              <li>Botón de ubicación</li>
+              <li>Diseño personalizado</li>
+            </ul>
+            <a href="../cotizar/?nivel=Essential" class="level-link">Cotizar Essential</a>
+          </article>
+
+          <article class="level-card level-card-featured" data-level-card="signature">
+            <div class="recommended-ribbon">Opción recomendada</div>
+            <div class="level-top">
+              <span>02</span>
+              <small>Signature</small>
+            </div>
+            <h3>Más presencia, más emoción, mejor recuerdo.</h3>
+            <p>
+              El balance ideal para bodas, XV años, baby showers o celebraciones que necesitan
+              sentirse más cuidadas desde el primer mensaje.
+            </p>
+            <ul>
+              <li>Todo lo de Essential</li>
+              <li>Cuenta regresiva</li>
+              <li>Ubicación en Google Maps</li>
+              <li>Galería de fotos</li>
+              <li>Animaciones especiales</li>
+              <li>Pantalla de bienvenida</li>
+            </ul>
+            <a href="../cotizar/?nivel=Signature" class="level-link">Cotizar Signature</a>
+          </article>
+
+          <article class="level-card level-card-dark" data-level-card="legacy">
+            <div class="level-top">
+              <span>03</span>
+              <small>Legacy</small>
+            </div>
+            <h3>Una historia digital más completa.</h3>
+            <p>
+              Para eventos donde la invitación debe sentirse como un mini sitio: más secciones,
+              más narrativa y una presentación mucho más memorable.
+            </p>
+            <ul>
+              <li>Mini sitio web del evento</li>
+              <li>Historia de la pareja o familia</li>
+              <li>Video de portada o fondo animado</li>
+              <li>Confirmación avanzada</li>
+              <li>Nombre del invitado</li>
+              <li>Música personalizada</li>
+            </ul>
+            <a href="../cotizar/?nivel=Legacy" class="level-link">Cotizar Legacy</a>
+          </article>
         </div>
       </section>
 
-      <section class="page-section" style="padding:112px 0" id="adicionales">
-        <div class="section-heading">
+      <section class="visual-reference visual-reference-image-first" aria-label="Referencia visual de paquetes INVYRA">
+        <div class="visual-copy">
+          <p class="section-kicker">Mapa visual</p>
+          <h2>La comparativa también debe sentirse INVYRA.</h2>
+          <p>
+            Usamos la imagen como apoyo visual para entender los alcances de cada nivel sin convertirlo en una tabla fría.
+            Esta zona queda lista para sustituirse por la versión final rediseñada de paquetes cuando la tengamos cerrada.
+          </p>
+        </div>
+
+        <div class="image-showcase visual-image-ready" id="packagesImagePanel">
+          <img
+            src="../assets/img/paquetes-sin-precios.png"
+            alt="Niveles de experiencia INVYRA sin costos"
+            class="showcase-image"
+          />
+        </div>
+      </section>
+      <section class="extras-section extras-image-only" id="adicionales">
+        <div class="extras-image-intro">
           <p class="section-kicker">Adicionales</p>
-          <h2 class="section-title">Detalles extra para elevar la experiencia.</h2>
-          <p class="section-copy">Los adicionales se proponen según el tipo de evento y el nivel elegido, para sumar valor sin llenar la invitación de elementos innecesarios.</p>
+          <h2>Detalles extra, solo cuando aportan a la experiencia.</h2>
+          <p>
+            Estos complementos se integran según el tipo de evento y el nivel elegido. La idea no es sumar por sumar,
+            sino elegir lo que realmente ayuda a que la invitación se sienta más personal, clara y memorable.
+          </p>
         </div>
-        <div class="image-showcase">
-          <img src="../assets/img/extras-sin-precios.png" alt="Adicionales INVYRA sin costos" class="showcase-image" />
+
+        <div class="image-showcase visual-image-ready" id="extrasImagePanel">
+          <img
+            src="../assets/img/extras-sin-precios.png"
+            alt="Adicionales INVYRA sin costos"
+            class="showcase-image"
+          />
         </div>
-        <div class="pills"><span>Dominio personalizado</span><span>Música</span><span>Nombre del invitado</span><span>Galería ampliada</span><span>Video de portada</span><span>Código QR</span><span>Secciones extra</span></div>
       </section>
 
+      <section class="conversion-route">
+        <div>
+          <p class="section-kicker">Ruta recomendada</p>
+          <h2>El siguiente paso es elegir con calma o pedir guía directa.</h2>
+          <p>
+            Puedes revisar demos primero, comparar niveles o ir directo a cotización.
+            Si tienes dudas, lo resolvemos contigo sin hacerte perder tiempo.
+          </p>
+        </div>
+
+        <div class="route-actions">
+          <a href="../portafolio/" class="btn btn-secondary">Ver portafolio</a>
+          <a href="../cotizar/" class="btn btn-primary">Cotizar mi experiencia</a>
+          <a
+            href="https://wa.me/525535690278?text=Hola%20INVYRA%2C%20vi%20los%20niveles%20de%20experiencia%20y%20quiero%20ayuda%20para%20elegir%20el%20mejor%20para%20mi%20evento."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-secondary"
+          >
+            Preguntar por WhatsApp
+          </a>
+        </div>
+      </section>
     </main>
+
     <footer class="site-footer">
       <p>INVYRA · Premium Digital Events</p>
       <span>Experiencias digitales para eventos</span>
+
       <div class="footer-actions">
-        <a href="../landing-preview/">Volver a la landing preview</a>
+        <a href="../landing-preview/">Volver a inicio</a>
+        <a href="../portafolio/">Portafolio</a>
         <a href="https://www.instagram.com/invyra.studio/" target="_blank" rel="noopener noreferrer">Instagram</a>
       </div>
     </footer>
-    <a href="https://wa.me/525535690278?text=Hola%20INVYRA%2C%20quiero%20cotizar%20una%20experiencia%20digital%20premium%20para%20mi%20evento." target="_blank" rel="noopener noreferrer" class="floating-whatsapp" aria-label="Contactar por WhatsApp">WhatsApp</a>
+
+    <a
+      href="https://wa.me/525535690278?text=Hola%20INVYRA%2C%20quiero%20cotizar%20una%20experiencia%20digital%20premium%20para%20mi%20evento."
+      target="_blank"
+      rel="noopener noreferrer"
+      class="floating-whatsapp"
+      aria-label="Contactar por WhatsApp"
+    >
+      WhatsApp
+    </a>
   </body>
 </html>
