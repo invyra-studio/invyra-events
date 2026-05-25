@@ -2797,7 +2797,7 @@ body.nav-open .nav-toggle span:last-child {
 
 /* ==============================
    PHASE 2 — BLOCK 1 PREMIUM NARRATIVE
-   Version 1.0.28
+   Version preview-1.0.39
    Hero wow, premium copy, Before vs INVYRA upgrade and final CTA.
    ============================== */
 
@@ -3260,12 +3260,12 @@ body.nav-open .nav-toggle span:last-child {
 
 /* ==============================
    RESTORED ACTIVITY 18 SECTIONS — QR / MOBILE / LIVED EXPERIENCE
-   Version 1.0.28
+   Version preview-1.0.39
    ============================== */
 
 /* ==============================
    ACTIVITY 15 — QR VISUAL SECTION
-   Version 1.0.15
+   Version preview-1.0.15
    ============================== */
 
 .qr-section {
@@ -3602,7 +3602,7 @@ body.nav-open .nav-toggle span:last-child {
 
 /* ==============================
    ACTIVITY 15 QR — CONCEPTUAL FIX
-   Version 1.0.15
+   Version preview-1.0.15
    QR section is now presented as a personalized visual example,
    not as a loop back to the current landing.
    ============================== */
@@ -3655,7 +3655,7 @@ body.nav-open .nav-toggle span:last-child {
 
 /* ==============================
    ACTIVITY 15 QR — MOBILE RESPONSIVE HOTFIX
-   Version 1.0.15
+   Version preview-1.0.15
    Prevents horizontal overflow and keeps the QR visual centered on phones.
    ============================== */
 
@@ -3846,7 +3846,7 @@ body {
 
 /* ==============================
    ACTIVITY 16 — MOBILE EXPERIENCE SIMPLIFIED
-   Version 1.0.20
+   Version preview-1.0.20
    One premium phone with animated Wedding/XV demo preview.
    ============================== */
 
@@ -4284,7 +4284,7 @@ body {
 
 /* ==============================
    ACTIVITY 16 — REAL DEMO PHONE PREVIEW
-   Version 1.0.18
+   Version preview-1.0.18
    Adds subtle motion and a Wedding/XV inspired screen inside the phone.
    ============================== */
 
@@ -4572,7 +4572,7 @@ body {
 
 /* ==============================
    ACTIVITY 16 — REAL DEMO SCREENSHOTS
-   Version 1.0.19
+   Version preview-1.0.19
    Replaces abstract mockup content with real Wedding + XV captures.
    ============================== */
 
@@ -4726,7 +4726,7 @@ body {
 
 /* ==============================
    ACTIVITY 17 — LIVED INVYRA EXPERIENCE
-   Version 1.0.20
+   Version preview-1.0.20
    Final emotional/premium section for phase 1.
    ============================== */
 
@@ -5423,5 +5423,1265 @@ canvas {
 
     .qr-floating-note {
         width: min(100%, 318px);
+    }
+}
+
+
+/* ==============================
+   PHASE 2 — BLOCK 2 ARCHITECTURE BRIDGES
+   Version preview-1.0.39
+   Keeps the home lighter by connecting to secondary pages.
+   ============================== */
+
+.section-bridge-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin: 38px auto 0;
+}
+
+.section-bridge-actions .btn {
+    min-width: 230px;
+}
+
+@media (max-width: 560px) {
+    .section-bridge-actions {
+        width: 100%;
+        gap: 10px;
+    }
+
+    .section-bridge-actions .btn {
+        width: 100%;
+        min-width: 0;
+    }
+}
+
+
+/* ==============================
+   PHASE 2 — BLOCK 2 ARCHITECTURE CLEANUP
+   Version preview-1.0.39
+   Compact portfolio teaser + independent quotation page.
+   ============================== */
+
+.demos-section-compact {
+    padding: 96px 0;
+}
+
+.experience-teaser-shell,
+.quote-compact-shell {
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: minmax(0, 0.88fr) minmax(320px, 0.92fr);
+    align-items: center;
+    gap: 34px;
+    padding: 34px;
+    border: 1px solid rgba(184,135,60,0.24);
+    border-radius: 40px;
+    background:
+        radial-gradient(circle at 14% 4%, rgba(255,255,255,0.90), transparent 30%),
+        radial-gradient(circle at 86% 82%, rgba(74,16,33,0.12), transparent 36%),
+        linear-gradient(145deg, rgba(255,255,255,0.76), rgba(255,250,242,0.50));
+    box-shadow:
+        0 32px 90px rgba(36,29,24,0.13),
+        inset 0 0 0 1px rgba(255,255,255,0.42);
+}
+
+.experience-teaser-shell::before,
+.quote-compact-shell::before {
+    content: "";
+    position: absolute;
+    inset: 18px;
+    border: 1px solid rgba(184,135,60,0.14);
+    border-radius: 30px;
+    pointer-events: none;
+}
+
+.experience-teaser-copy,
+.experience-teaser-cards,
+.quote-compact-copy,
+.quote-compact-actions {
+    position: relative;
+    z-index: 2;
+}
+
+.experience-teaser-copy .section-title,
+.quote-compact-copy .section-title {
+    font-size: clamp(2.7rem, 5vw, 5rem);
+}
+
+.experience-teaser-copy .section-copy,
+.quote-compact-copy .section-copy {
+    margin-left: 0;
+}
+
+.experience-teaser-actions,
+.quote-compact-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 30px;
+}
+
+.experience-teaser-cards {
+    display: grid;
+    gap: 14px;
+}
+
+.experience-teaser-card {
+    position: relative;
+    min-height: 132px;
+    padding: 22px;
+    overflow: hidden;
+    border: 1px solid rgba(184,135,60,0.22);
+    border-radius: 26px;
+    background:
+        radial-gradient(circle at 12% 0%, rgba(255,255,255,0.84), transparent 32%),
+        rgba(255,255,255,0.56);
+    box-shadow:
+        0 20px 54px rgba(36,29,24,0.09),
+        inset 0 0 0 1px rgba(255,255,255,0.40);
+}
+
+.experience-teaser-card span {
+    display: inline-flex;
+    width: fit-content;
+    min-height: 30px;
+    align-items: center;
+    padding: 0 12px;
+    border-radius: 999px;
+    color: var(--gold-deep);
+    background: rgba(184,135,60,0.10);
+    border: 1px solid rgba(184,135,60,0.18);
+    font-size: 0.60rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.experience-teaser-card h3 {
+    margin: 18px 0 0;
+    color: var(--espresso);
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(2rem, 3vw, 3rem);
+    font-weight: 600;
+    line-height: 0.96;
+    letter-spacing: -0.026em;
+}
+
+.experience-teaser-card p {
+    margin: 10px 0 0;
+    color: var(--taupe);
+    font-size: 0.88rem;
+    font-weight: 700;
+    line-height: 1.55;
+}
+
+.experience-teaser-card-featured {
+    border-color: rgba(184,135,60,0.34);
+    box-shadow:
+        0 24px 64px rgba(36,29,24,0.12),
+        0 0 34px rgba(184,135,60,0.10),
+        inset 0 0 0 1px rgba(255,255,255,0.42);
+}
+
+.experience-teaser-card-dark {
+    background:
+        radial-gradient(circle at 18% 0%, rgba(234,215,173,0.14), transparent 34%),
+        linear-gradient(145deg, #0f0f0e 0%, #1b1815 62%, #270813 100%);
+    border-color: rgba(234,215,173,0.30);
+}
+
+.experience-teaser-card-dark span {
+    color: var(--champagne);
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(234,215,173,0.24);
+}
+
+.experience-teaser-card-dark h3,
+.experience-teaser-card-dark p {
+    color: var(--cream);
+}
+
+.quote-compact-section {
+    padding: 96px 0;
+}
+
+.quote-compact-shell {
+    grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.quote-compact-actions {
+    width: min(100%, 320px);
+    justify-content: flex-end;
+    align-content: center;
+}
+
+.quote-compact-actions .btn {
+    width: 100%;
+}
+
+@media (max-width: 1080px) {
+    .experience-teaser-shell,
+    .quote-compact-shell {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .experience-teaser-copy .section-copy,
+    .quote-compact-copy .section-copy {
+        margin-left: auto;
+    }
+
+    .experience-teaser-actions,
+    .quote-compact-actions {
+        justify-content: center;
+        width: 100%;
+    }
+}
+
+@media (max-width: 820px) {
+    .demos-section-compact,
+    .quote-compact-section {
+        width: min(calc(100% - 28px), 1180px);
+        padding: 78px 0;
+    }
+
+    .experience-teaser-shell,
+    .quote-compact-shell {
+        padding: 22px 16px;
+        border-radius: 30px;
+    }
+
+    .experience-teaser-shell::before,
+    .quote-compact-shell::before {
+        inset: 12px;
+        border-radius: 24px;
+    }
+}
+
+@media (max-width: 560px) {
+    .demos-section-compact,
+    .quote-compact-section {
+        width: min(calc(100% - 24px), 1180px);
+        padding: 68px 0;
+    }
+
+    .experience-teaser-shell,
+    .quote-compact-shell {
+        padding: 18px 12px;
+        border-radius: 26px;
+    }
+
+    .experience-teaser-actions .btn,
+    .quote-compact-actions .btn {
+        width: 100%;
+    }
+}
+
+/* ==============================
+   PHASE 2 — BLOCK 2 CLEAN HOME REFINEMENT
+   Version preview-1.0.39
+   Reduces home length, turns packages/extras into gateways,
+   moves FAQ to the bottom and keeps quote CTA compact.
+   ============================== */
+
+.experience-gateway-section,
+.extras-gateway-section {
+    padding: 86px 0;
+}
+
+.experience-gateway-shell,
+.extras-gateway-shell,
+.quote-lite-shell {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(184,135,60,0.24);
+    border-radius: 36px;
+    background:
+        radial-gradient(circle at 14% 0%, rgba(255,255,255,0.88), transparent 32%),
+        radial-gradient(circle at 92% 90%, rgba(184,135,60,0.12), transparent 36%),
+        linear-gradient(145deg, rgba(255,255,255,0.72), rgba(255,250,242,0.46));
+    box-shadow:
+        0 28px 82px rgba(36,29,24,0.12),
+        inset 0 0 0 1px rgba(255,255,255,0.44);
+}
+
+.experience-gateway-shell::before,
+.extras-gateway-shell::before,
+.quote-lite-shell::before {
+    content: "";
+    position: absolute;
+    inset: 18px;
+    border: 1px solid rgba(184,135,60,0.14);
+    border-radius: 28px;
+    pointer-events: none;
+}
+
+.experience-gateway-shell {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 0.82fr);
+    align-items: center;
+    gap: 30px;
+    padding: 38px;
+}
+
+.experience-gateway-copy,
+.experience-gateway-panel,
+.extras-gateway-copy,
+.extras-gateway-list,
+.section-bridge-actions,
+.quote-lite-copy,
+.quote-lite-actions {
+    position: relative;
+    z-index: 2;
+}
+
+.experience-gateway-copy .section-title,
+.extras-gateway-copy .section-title {
+    max-width: 720px;
+    font-size: clamp(2.65rem, 5.2vw, 4.85rem);
+}
+
+.experience-gateway-copy .section-copy,
+.extras-gateway-copy .section-copy {
+    margin-left: 0;
+}
+
+.experience-gateway-panel {
+    display: grid;
+    gap: 12px;
+}
+
+.experience-gateway-panel article {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 12px 16px;
+    align-items: center;
+    padding: 18px;
+    border: 1px solid rgba(184,135,60,0.20);
+    border-radius: 22px;
+    background: rgba(255,255,255,0.54);
+    box-shadow: 0 16px 36px rgba(36,29,24,0.07), inset 0 0 0 1px rgba(255,255,255,0.36);
+}
+
+.experience-gateway-panel article.is-featured {
+    background:
+        radial-gradient(circle at 12% 0%, rgba(234,215,173,0.20), transparent 34%),
+        linear-gradient(145deg, rgba(255,255,255,0.76), rgba(255,250,242,0.58));
+    border-color: rgba(184,135,60,0.34);
+}
+
+.experience-gateway-panel span {
+    grid-row: span 2;
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    color: var(--gold-deep);
+    border: 1px solid rgba(184,135,60,0.34);
+    background: rgba(255,255,255,0.62);
+    font-size: 0.72rem;
+    font-weight: 900;
+}
+
+.experience-gateway-panel strong {
+    color: var(--espresso);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 0.95;
+}
+
+.experience-gateway-panel p {
+    margin: -4px 0 0;
+    color: var(--taupe);
+    font-size: 0.85rem;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+.extras-gateway-shell {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.72fr);
+    align-items: center;
+    gap: 30px;
+    padding: 34px 38px;
+}
+
+.extras-gateway-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.extras-gateway-list span {
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 15px;
+    border-radius: 999px;
+    color: var(--gold-deep);
+    background: rgba(255,255,255,0.58);
+    border: 1px solid rgba(184,135,60,0.22);
+    box-shadow: 0 12px 28px rgba(31,25,21,0.06), inset 0 0 0 1px rgba(255,255,255,0.38);
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.experience-gateway-section .section-bridge-actions,
+.extras-gateway-section .section-bridge-actions {
+    grid-column: 1 / -1;
+    margin-top: 2px;
+}
+
+.quote-compact-section-lite {
+    padding: 72px 0 34px;
+}
+
+.quote-lite-shell {
+    width: min(100%, 980px);
+    margin: 0 auto;
+    min-height: auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 22px;
+    padding: 26px 30px;
+}
+
+.quote-lite-copy h2 {
+    margin: 0;
+    color: var(--espresso);
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(2.1rem, 4.4vw, 3.55rem);
+    font-weight: 600;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+}
+
+.quote-lite-copy p:not(.section-kicker) {
+    max-width: 620px;
+    margin: 14px 0 0;
+    color: var(--taupe);
+    font-size: 0.92rem;
+    font-weight: 700;
+    line-height: 1.65;
+}
+
+.quote-lite-actions {
+    display: grid;
+    gap: 10px;
+    min-width: 260px;
+}
+
+.quote-lite-actions .btn {
+    width: 100%;
+    min-height: 48px;
+}
+
+.faq-section-compact {
+    width: min(calc(100% - 36px), 960px);
+    padding: 52px 0 104px;
+}
+
+.faq-section-compact .section-heading {
+    margin-bottom: 24px;
+}
+
+.faq-section-compact .section-title {
+    max-width: 720px;
+    margin: 0 auto;
+    font-size: clamp(2.25rem, 5.2vw, 3.8rem);
+}
+
+.faq-list-compact {
+    gap: 10px;
+}
+
+.faq-list-compact .faq-question {
+    min-height: 58px;
+    padding: 16px 20px;
+}
+
+.faq-list-compact .faq-question span {
+    font-size: 0.9rem;
+}
+
+.faq-list-compact .faq-answer p {
+    padding: 0 20px 18px;
+    font-size: 0.86rem;
+}
+
+@media (max-width: 1080px) {
+    .experience-gateway-shell,
+    .extras-gateway-shell,
+    .quote-lite-shell {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .experience-gateway-copy .section-copy,
+    .extras-gateway-copy .section-copy {
+        margin-left: auto;
+    }
+
+    .extras-gateway-list {
+        justify-content: center;
+    }
+
+    .quote-lite-actions {
+        width: min(100%, 420px);
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 820px) {
+    .experience-gateway-section,
+    .extras-gateway-section {
+        padding: 72px 0;
+    }
+
+    .experience-gateway-shell,
+    .extras-gateway-shell {
+        padding: 24px 18px;
+        border-radius: 30px;
+    }
+
+    .experience-gateway-shell::before,
+    .extras-gateway-shell::before,
+    .quote-lite-shell::before {
+        inset: 12px;
+        border-radius: 22px;
+    }
+
+    .experience-gateway-panel article {
+        text-align: left;
+    }
+
+    .quote-compact-section-lite {
+        padding: 64px 0 24px;
+    }
+
+    .quote-lite-shell {
+        padding: 24px 18px;
+        border-radius: 30px;
+    }
+}
+
+@media (max-width: 560px) {
+    .experience-gateway-shell,
+    .extras-gateway-shell,
+    .quote-lite-shell {
+        padding: 20px 14px;
+        border-radius: 26px;
+    }
+
+    .experience-gateway-panel article {
+        grid-template-columns: 40px 1fr;
+        padding: 15px;
+        border-radius: 18px;
+    }
+
+    .experience-gateway-panel span {
+        width: 38px;
+        height: 38px;
+    }
+
+    .experience-gateway-panel strong {
+        font-size: 1.66rem;
+    }
+
+    .extras-gateway-list span {
+        width: 100%;
+        max-width: 310px;
+    }
+
+    .quote-lite-actions {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .faq-section-compact {
+        width: min(calc(100% - 28px), 960px);
+        padding: 44px 0 86px;
+    }
+}
+
+
+/* ==============================
+   PHASE 2 — BLOCK 2 HOME POLISH
+   Version preview-1.0.39
+   Ajustes de alineación, movimiento sutil y mayor intención premium.
+   ============================== */
+
+@media (min-width: 821px) {
+    .hero-section-phase2 .hero-subtitle,
+    .hero-section-phase2 .hero-copy,
+    .experience-teaser-copy .section-copy {
+        text-align: justify;
+        text-wrap: pretty;
+    }
+}
+
+.hero-proof-phase2 span {
+    position: relative;
+    overflow: hidden;
+    animation: proofFloat 5.8s ease-in-out infinite;
+    transform-origin: center;
+}
+
+.hero-proof-phase2 span:nth-child(2) {
+    animation-delay: 0.45s;
+}
+
+.hero-proof-phase2 span:nth-child(3) {
+    animation-delay: 0.9s;
+}
+
+.hero-proof-phase2 span::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    left: -130%;
+    width: 70%;
+    background: linear-gradient(110deg, transparent, rgba(255,255,255,0.44), transparent);
+    transform: skewX(-18deg);
+    animation: proofShine 6.6s ease-in-out infinite;
+}
+
+.hero-proof-phase2 span:nth-child(2)::after {
+    animation-delay: 0.8s;
+}
+
+.hero-proof-phase2 span:nth-child(3)::after {
+    animation-delay: 1.6s;
+}
+
+@keyframes proofFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+}
+
+@keyframes proofShine {
+    0%, 42% { left: -130%; }
+    72%, 100% { left: 140%; }
+}
+
+.intro-section {
+    position: relative;
+    width: min(calc(100% - 36px), 1100px);
+    margin-top: 26px;
+    margin-bottom: 26px;
+    padding: 88px 34px;
+    overflow: hidden;
+    border: 1px solid rgba(184,135,60,0.18);
+    border-radius: 38px;
+    background:
+        radial-gradient(circle at 15% 12%, rgba(255,255,255,0.86), transparent 32%),
+        radial-gradient(circle at 84% 86%, rgba(74,16,33,0.11), transparent 36%),
+        linear-gradient(145deg, rgba(255,255,255,0.66), rgba(255,250,242,0.42));
+    box-shadow:
+        0 30px 90px rgba(36,29,24,0.10),
+        inset 0 0 0 1px rgba(255,255,255,0.42);
+}
+
+.intro-section::before {
+    content: "";
+    position: absolute;
+    inset: 18px;
+    border: 1px solid rgba(184,135,60,0.12);
+    border-radius: 28px;
+    pointer-events: none;
+}
+
+.intro-section::after {
+    content: "INVYRA";
+    position: absolute;
+    right: 6%;
+    bottom: -0.2em;
+    color: rgba(184,135,60,0.045);
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(7rem, 18vw, 15rem);
+    font-weight: 700;
+    letter-spacing: -0.08em;
+    line-height: 1;
+    pointer-events: none;
+}
+
+.intro-section > * {
+    position: relative;
+    z-index: 2;
+}
+
+.intro-section .section-title {
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+.intro-signature-row {
+    width: min(100%, 700px);
+    margin: 34px auto 0;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.intro-signature-row span {
+    min-height: 42px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(184,135,60,0.24);
+    border-radius: 999px;
+    color: var(--gold-deep);
+    background: rgba(255,255,255,0.58);
+    box-shadow: 0 14px 30px rgba(36,29,24,0.06);
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.problem-card-phase2 {
+    display: flex;
+    flex-direction: column;
+}
+
+.problem-card-phase2 h3 {
+    min-height: 168px;
+    font-size: clamp(2.35rem, 3.28vw, 3.55rem);
+    line-height: 1.02;
+}
+
+.problem-card-phase2 ul {
+    margin-top: auto;
+    padding-top: 28px;
+}
+
+.problem-card-invyra {
+    animation: invyraCardGlow 6.8s ease-in-out infinite;
+}
+
+.problem-transition-mark span {
+    animation: transitionPulse 4.8s ease-in-out infinite;
+}
+
+@keyframes invyraCardGlow {
+    0%, 100% { box-shadow: 0 30px 86px rgba(20,18,16,0.22), 0 0 30px rgba(184,135,60,0.08); }
+    50% { box-shadow: 0 34px 96px rgba(20,18,16,0.26), 0 0 44px rgba(184,135,60,0.16); }
+}
+
+@keyframes transitionPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.045); }
+}
+
+.experience-gateway-shell {
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 12% 0%, rgba(255,255,255,0.9), transparent 34%),
+        radial-gradient(circle at 84% 84%, rgba(74,16,33,0.13), transparent 38%),
+        linear-gradient(145deg, rgba(255,255,255,0.74), rgba(255,250,242,0.46));
+}
+
+.experience-gateway-shell::after {
+    content: "";
+    position: absolute;
+    right: -90px;
+    top: -120px;
+    width: 330px;
+    height: 330px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(74,16,33,0.16), transparent 68%);
+    filter: blur(22px);
+    pointer-events: none;
+}
+
+.experience-gateway-copy,
+.experience-gateway-panel,
+.section-bridge-actions {
+    position: relative;
+    z-index: 2;
+}
+
+.experience-gateway-panel article {
+    position: relative;
+    overflow: hidden;
+}
+
+.experience-gateway-panel article::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    left: -130%;
+    width: 70%;
+    background: linear-gradient(110deg, transparent, rgba(255,255,255,0.32), transparent);
+    transform: skewX(-18deg);
+    transition: left 0.7s ease;
+}
+
+.experience-gateway-panel article:hover::after {
+    left: 140%;
+}
+
+.experience-gateway-panel .is-featured {
+    border-color: rgba(74,16,33,0.24);
+    background:
+        radial-gradient(circle at 12% 0%, rgba(255,255,255,0.82), transparent 32%),
+        linear-gradient(145deg, rgba(255,255,255,0.82), rgba(255,250,242,0.56));
+    box-shadow: 0 22px 60px rgba(36,29,24,0.10), 0 0 28px rgba(74,16,33,0.08);
+}
+
+.experience-teaser-shell {
+    background:
+        radial-gradient(circle at 12% 0%, rgba(255,255,255,0.92), transparent 34%),
+        radial-gradient(circle at 88% 76%, rgba(74,16,33,0.12), transparent 36%),
+        linear-gradient(145deg, rgba(255,255,255,0.74), rgba(255,250,242,0.48));
+}
+
+.experience-teaser-copy .section-copy {
+    max-width: 520px;
+    margin-left: 0;
+}
+
+.experience-teaser-card {
+    transition: transform 0.34s ease, box-shadow 0.34s ease, border-color 0.34s ease;
+}
+
+.experience-teaser-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(184,135,60,0.38);
+    box-shadow: 0 24px 62px rgba(36,29,24,0.12);
+}
+
+.quote-lite-shell {
+    grid-template-columns: minmax(0, 1fr) auto;
+    min-height: 0;
+    padding: 30px 34px;
+}
+
+.quote-lite-copy h2 {
+    font-size: clamp(2.35rem, 4.6vw, 4.1rem);
+    line-height: 0.94;
+}
+
+.quote-lite-copy p {
+    max-width: 580px;
+}
+
+.faq-section-compact {
+    padding-top: 70px;
+}
+
+.faq-section-compact .section-heading {
+    margin-bottom: 28px;
+}
+
+.faq-section-compact .section-title {
+    max-width: 680px;
+    margin: 0 auto;
+    font-size: clamp(2.25rem, 5.6vw, 4rem);
+}
+
+.faq-list-compact {
+    max-width: 780px;
+    gap: 10px;
+}
+
+.faq-list-compact .faq-question {
+    min-height: 58px;
+    padding: 16px 18px;
+}
+
+.faq-list-compact .faq-answer p {
+    font-size: 0.86rem;
+}
+
+@media (max-width: 1080px) {
+    .problem-card-phase2 h3 {
+        min-height: auto;
+    }
+
+    .quote-lite-shell {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .quote-lite-copy p {
+        margin-right: auto;
+        margin-left: auto;
+    }
+}
+
+@media (max-width: 820px) {
+    .intro-section {
+        width: min(calc(100% - 28px), 1100px);
+        padding: 70px 22px;
+        border-radius: 30px;
+    }
+
+    .intro-signature-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .experience-teaser-copy .section-copy {
+        margin-right: auto;
+        margin-left: auto;
+        text-align: center;
+    }
+
+    .quote-lite-shell {
+        padding: 26px 20px;
+    }
+}
+
+@media (max-width: 560px) {
+    .intro-section {
+        width: min(calc(100% - 24px), 1100px);
+        padding: 58px 16px;
+        border-radius: 26px;
+    }
+
+    .intro-signature-row {
+        grid-template-columns: 1fr;
+        max-width: 310px;
+    }
+
+    .problem-card-phase2 h3 {
+        font-size: clamp(2.05rem, 10vw, 3rem);
+    }
+
+    .hero-section-phase2 .hero-subtitle,
+    .hero-section-phase2 .hero-copy {
+        text-align: left;
+    }
+
+    .quote-lite-actions .btn,
+    .experience-teaser-actions .btn,
+    .section-bridge-actions .btn {
+        width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-proof-phase2 span,
+    .hero-proof-phase2 span::after,
+    .problem-card-invyra,
+    .problem-transition-mark span {
+        animation: none !important;
+    }
+}
+
+
+/* ==============================
+   PHASE 2 — BLOCK 3.1 HOME DETAIL POLISH
+   Version preview-1.0.39
+   Ajusta etiquetas, reduce aire vertical y mantiene coherencia premium.
+   ============================== */
+
+/* Menos espacio muerto ahora que la home ya es editorial */
+.intro-section,
+.problem-section,
+.include-section,
+.experience-gateway-section,
+.demos-section-compact,
+.qr-section,
+.mobile-showcase-section,
+.lived-experience-section,
+.extras-gateway-section,
+.process-section,
+.quote-compact-section-lite,
+.final-cta-section-phase2,
+.faq-section-compact {
+    padding-top: clamp(54px, 6.4vw, 82px) !important;
+    padding-bottom: clamp(54px, 6.4vw, 82px) !important;
+}
+
+.intro-section {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.experience-gateway-section,
+.demos-section-compact,
+.extras-gateway-section {
+    padding-top: clamp(44px, 5.4vw, 68px) !important;
+    padding-bottom: clamp(44px, 5.4vw, 68px) !important;
+}
+
+.qr-section,
+.mobile-showcase-section,
+.lived-experience-section {
+    padding-top: clamp(58px, 6vw, 76px) !important;
+    padding-bottom: clamp(58px, 6vw, 76px) !important;
+}
+
+/* Etiquetas de niveles con lenguaje visual similar al portafolio */
+.experience-gateway-panel article {
+    grid-template-columns: 48px 1fr;
+    padding: 16px 18px;
+    background:
+        radial-gradient(circle at 14% 0%, rgba(255,255,255,0.86), transparent 34%),
+        linear-gradient(145deg, rgba(255,255,255,0.74), rgba(255,250,242,0.54));
+}
+
+.experience-gateway-panel span {
+    width: 40px;
+    height: 40px;
+    font-size: 0.68rem;
+}
+
+.experience-gateway-panel strong,
+.experience-teaser-card span,
+.include-feature-label,
+.problem-label,
+.demo-tag {
+    width: fit-content;
+    min-height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 14px;
+    border-radius: 999px;
+    color: var(--gold-deep);
+    background:
+        linear-gradient(135deg, rgba(255,255,255,0.78), rgba(255,250,242,0.58));
+    border: 1px solid rgba(184,135,60,0.24);
+    box-shadow:
+        0 12px 28px rgba(31,25,21,0.06),
+        inset 0 0 0 1px rgba(255,255,255,0.34);
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.66rem;
+    font-weight: 900;
+    letter-spacing: 0.11em;
+    line-height: 1.1;
+    text-transform: uppercase;
+}
+
+.experience-gateway-panel strong {
+    margin-bottom: 2px;
+}
+
+.experience-gateway-panel article.is-featured strong,
+.experience-teaser-card-featured span {
+    color: var(--wine);
+    border-color: rgba(74,16,33,0.20);
+    background:
+        radial-gradient(circle at 16% 0%, rgba(255,255,255,0.82), transparent 34%),
+        linear-gradient(135deg, rgba(255,250,242,0.82), rgba(232,210,166,0.32));
+}
+
+.experience-teaser-card-dark span,
+.demo-card-dark .demo-tag,
+.problem-card-after .problem-label,
+.include-feature-card-dark .include-feature-label {
+    color: var(--champagne) !important;
+    background: rgba(255,255,255,0.08) !important;
+    border-color: rgba(234,215,173,0.24) !important;
+}
+
+.experience-gateway-panel p {
+    margin: 0;
+}
+
+.experience-teaser-card h3 {
+    margin-top: 16px;
+}
+
+/* Reduce el peso visual de los puentes sin quitarles lujo */
+.experience-gateway-shell,
+.experience-teaser-shell,
+.extras-gateway-shell,
+.quote-lite-shell {
+    box-shadow:
+        0 22px 68px rgba(36,29,24,0.10),
+        inset 0 0 0 1px rgba(255,255,255,0.44);
+}
+
+.experience-gateway-shell,
+.extras-gateway-shell {
+    padding: clamp(24px, 3.4vw, 34px);
+}
+
+.experience-teaser-shell {
+    padding: clamp(24px, 3.4vw, 34px) !important;
+}
+
+@media (max-width: 820px) {
+    .intro-section,
+    .problem-section,
+    .include-section,
+    .experience-gateway-section,
+    .demos-section-compact,
+    .qr-section,
+    .mobile-showcase-section,
+    .lived-experience-section,
+    .extras-gateway-section,
+    .process-section,
+    .quote-compact-section-lite,
+    .final-cta-section-phase2,
+    .faq-section-compact {
+        padding-top: 54px !important;
+        padding-bottom: 54px !important;
+    }
+
+    .experience-gateway-panel strong,
+    .experience-teaser-card span {
+        min-height: 32px;
+        font-size: 0.62rem;
+        letter-spacing: 0.09em;
+    }
+}
+
+@media (max-width: 560px) {
+    .experience-gateway-panel article {
+        grid-template-columns: 38px 1fr;
+        gap: 10px 12px;
+    }
+
+    .experience-gateway-panel strong {
+        max-width: 100%;
+        white-space: normal;
+        text-align: center;
+    }
+}
+
+
+/* ==============================
+   PHASE 2 — BLOCK 3.2 HOME CLEANUP
+   Version preview-1.0.39
+   Ajusta Experiencias INVYRA, elimina cotización repetida y compacta flujo.
+   ============================== */
+
+.experience-gateway-panel article {
+    min-height: 112px;
+    grid-template-columns: 56px 1fr;
+    gap: 10px 18px;
+    padding: 20px 22px;
+    border-radius: 28px;
+    background:
+        radial-gradient(circle at 12% 0%, rgba(255,255,255,0.92), transparent 32%),
+        linear-gradient(145deg, rgba(255,255,255,0.78), rgba(255,250,242,0.52));
+    border-color: rgba(184,135,60,0.24);
+    box-shadow:
+        0 18px 48px rgba(36,29,24,0.09),
+        inset 0 0 0 1px rgba(255,255,255,0.44);
+}
+
+.experience-gateway-panel article strong {
+    width: fit-content;
+    min-height: 36px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(184,135,60,0.24);
+    background: rgba(255,255,255,0.54);
+    color: var(--gold-deep);
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.82rem;
+    font-weight: 900;
+    letter-spacing: 0.13em;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.experience-gateway-panel article p {
+    margin: 0;
+    color: var(--taupe);
+    font-size: 0.9rem;
+    font-weight: 850;
+}
+
+.experience-gateway-panel article:nth-child(2) {
+    border-color: rgba(74,16,33,0.22);
+    background:
+        radial-gradient(circle at 12% 0%, rgba(255,255,255,0.92), transparent 32%),
+        radial-gradient(circle at 92% 82%, rgba(74,16,33,0.10), transparent 34%),
+        linear-gradient(145deg, rgba(255,255,255,0.80), rgba(255,250,242,0.54));
+}
+
+.experience-gateway-panel article:nth-child(2) strong {
+    color: var(--wine);
+    border-color: rgba(74,16,33,0.22);
+    background: rgba(255,255,255,0.56);
+}
+
+.experience-gateway-panel article:nth-child(3) {
+    border-color: rgba(234,215,173,0.30);
+    background:
+        radial-gradient(circle at 18% 0%, rgba(234,215,173,0.14), transparent 34%),
+        radial-gradient(circle at 86% 92%, rgba(74,16,33,0.24), transparent 34%),
+        linear-gradient(145deg, #0f0f0e 0%, #1b1815 55%, #270813 100%);
+    box-shadow:
+        0 24px 66px rgba(20,18,16,0.20),
+        0 0 30px rgba(184,135,60,0.08);
+}
+
+.experience-gateway-panel article:nth-child(3) span {
+    color: var(--champagne);
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(234,215,173,0.28);
+}
+
+.experience-gateway-panel article:nth-child(3) strong {
+    color: var(--champagne);
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(234,215,173,0.24);
+}
+
+.experience-gateway-panel article:nth-child(3) p {
+    color: rgba(255,250,242,0.86);
+}
+
+.experience-gateway-section,
+.demos-section-compact,
+.qr-section,
+.mobile-showcase-section,
+.lived-experience-section,
+.extras-gateway-section,
+.process-section,
+.final-cta-section-phase2,
+.faq-section-compact {
+    padding-top: clamp(64px, 7vw, 92px);
+    padding-bottom: clamp(64px, 7vw, 92px);
+}
+
+.final-cta-section-phase2 {
+    padding-bottom: clamp(72px, 8vw, 110px);
+}
+
+@media (max-width: 820px) {
+    .experience-gateway-panel article {
+        min-height: auto;
+        grid-template-columns: 46px 1fr;
+        padding: 18px 16px;
+        border-radius: 24px;
+    }
+
+    .experience-gateway-panel article strong {
+        min-height: 34px;
+        padding: 0 14px;
+        font-size: 0.72rem;
+        letter-spacing: 0.10em;
+    }
+}
+
+@media (max-width: 560px) {
+    .experience-gateway-panel article {
+        grid-template-columns: 1fr;
+        text-align: center;
+        justify-items: center;
+    }
+
+    .experience-gateway-panel article span {
+        grid-row: auto;
     }
 }
