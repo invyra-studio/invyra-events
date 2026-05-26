@@ -6685,3 +6685,368 @@ canvas {
         grid-row: auto;
     }
 }
+
+/* ==========================================================
+   INVYRA — BLOQUE 3.3A
+   Sistema tipografico y compactacion visual
+   Version landing-1.0.43-homologacion
+   ========================================================== */
+:root {
+    --invyra-hero-title: clamp(3.55rem, 6.15vw, 6.6rem);
+    --invyra-section-title: clamp(2.85rem, 4.85vw, 5.35rem);
+    --invyra-card-title: clamp(1.95rem, 2.85vw, 3.15rem);
+    --invyra-body: clamp(0.98rem, 1.12vw, 1.12rem);
+    --invyra-micro: 0.72rem;
+    --invyra-section-space: clamp(4.35rem, 6.5vw, 6.8rem);
+    --invyra-card-radius: clamp(24px, 2.8vw, 42px);
+}
+
+main {
+    text-rendering: geometricPrecision;
+}
+
+.hero-section,
+.hero-section-phase2 {
+    min-height: auto !important;
+    padding-top: clamp(7.6rem, 10vw, 10.4rem) !important;
+    padding-bottom: clamp(3.8rem, 6vw, 5.8rem) !important;
+}
+
+.section-block,
+.qr-section,
+.mobile-proof-section,
+.lived-experience-section,
+.experience-teaser-section,
+.quote-compact-section,
+.experience-gateway-section,
+.extras-gateway-section {
+    padding-top: var(--invyra-section-space) !important;
+    padding-bottom: var(--invyra-section-space) !important;
+}
+
+.hero-title,
+.hero-section-phase2 .hero-title {
+    font-size: var(--invyra-hero-title) !important;
+    line-height: 0.88 !important;
+    letter-spacing: -0.052em !important;
+    max-width: 12ch;
+    text-wrap: balance;
+}
+
+.section-title,
+.qr-content .section-title,
+.mobile-proof-copy .section-title,
+.lived-experience-title,
+.experience-teaser-copy .section-title,
+.quote-compact-copy .section-title,
+.experience-gateway-copy .section-title,
+.extras-gateway-copy .section-title {
+    font-size: var(--invyra-section-title) !important;
+    line-height: 0.92 !important;
+    letter-spacing: -0.044em !important;
+    text-wrap: balance;
+}
+
+.phone-card h2,
+.package-card h3,
+.step-card h3,
+.path-card h3,
+.feature-card h3,
+.proof-card h3,
+.experience-card h3,
+.quote-card h3 {
+    font-size: var(--invyra-card-title) !important;
+    line-height: 0.98 !important;
+    letter-spacing: -0.032em !important;
+    text-wrap: balance;
+}
+
+.section-copy,
+.hero-copy,
+.hero-subtitle,
+.qr-content .section-copy,
+.mobile-proof-copy .section-copy,
+.lived-experience-copy,
+.experience-teaser-copy .section-copy,
+.quote-compact-copy .section-copy,
+.experience-gateway-copy .section-copy,
+.extras-gateway-copy .section-copy,
+.quote-card p,
+.feature-card p,
+.path-card p,
+.step-card p,
+.proof-card p,
+.experience-card p {
+    font-size: var(--invyra-body) !important;
+    line-height: 1.62 !important;
+    letter-spacing: -0.008em;
+    text-align: left !important;
+    text-wrap: pretty;
+}
+
+.section-header,
+.section-heading,
+.quote-page-hero,
+.mobile-intro,
+.lived-experience-header {
+    text-align: center;
+}
+
+.section-header .section-copy,
+.section-heading .section-copy,
+.quote-page-hero .section-copy,
+.mobile-intro .section-copy,
+.lived-experience-header .section-copy {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+    max-width: 720px !important;
+}
+
+.eyebrow,
+.section-kicker,
+.pill,
+.btn,
+.site-nav a,
+.badge,
+.package-label,
+.card-kicker {
+    font-size: var(--invyra-micro) !important;
+    letter-spacing: 0.14em !important;
+}
+
+.qr-shell,
+.mobile-proof-shell,
+.lived-experience-shell,
+.quote-card,
+.experience-teaser-shell,
+.quote-compact-shell,
+.experience-gateway-shell,
+.extras-gateway-shell {
+    border-radius: var(--invyra-card-radius) !important;
+    padding-top: clamp(2.35rem, 4.4vw, 4.6rem) !important;
+    padding-bottom: clamp(2.35rem, 4.4vw, 4.6rem) !important;
+}
+
+.btn {
+    min-height: 50px !important;
+    padding-inline: clamp(1.15rem, 2vw, 1.75rem) !important;
+}
+
+@media (max-width: 820px) {
+    :root {
+        --invyra-hero-title: clamp(3.05rem, 14vw, 4.85rem);
+        --invyra-section-title: clamp(2.55rem, 11vw, 4.05rem);
+        --invyra-card-title: clamp(1.82rem, 8.5vw, 2.75rem);
+        --invyra-body: 0.98rem;
+        --invyra-section-space: clamp(3.4rem, 9vw, 4.9rem);
+    }
+
+    .hero-section,
+    .hero-section-phase2 {
+        padding-top: 7rem !important;
+        padding-bottom: 3.6rem !important;
+    }
+
+    .hero-title,
+    .hero-section-phase2 .hero-title,
+    .section-title,
+    .qr-content .section-title,
+    .mobile-proof-copy .section-title,
+    .lived-experience-title {
+        max-width: 10.5ch;
+    }
+
+    .section-header .section-copy,
+    .section-heading .section-copy,
+    .quote-page-hero .section-copy,
+    .mobile-intro .section-copy,
+    .lived-experience-header .section-copy {
+        text-align: left !important;
+    }
+}
+
+/* ==========================================================
+   INVYRA — HOTFIX MOBILE ALIGNMENT
+   Version landing-1.0.43-homologacion
+   Corrige centrado visual en móvil para landing principal homologada.
+   ========================================================== */
+
+@media (max-width: 820px) {
+    html,
+    body {
+        overflow-x: hidden;
+    }
+
+    section,
+    .intro-section,
+    .problem-section,
+    .include-section,
+    .experience-gateway-section,
+    .demos-section-compact,
+    .qr-section,
+    .mobile-showcase-section,
+    .lived-experience-section,
+    .process-section,
+    .final-cta-section-phase2,
+    .faq-section-compact {
+        scroll-margin-top: 120px;
+    }
+
+    .section-heading,
+    .intro-section,
+    .experience-gateway-copy,
+    .experience-teaser-copy,
+    .qr-content,
+    .mobile-proof-copy,
+    .lived-experience-intro,
+    .process-section .section-heading,
+    .final-cta-shell,
+    .faq-section-compact .section-heading {
+        text-align: center !important;
+    }
+
+    .section-kicker,
+    .eyebrow,
+    .qr-content .section-kicker,
+    .experience-gateway-copy .section-kicker,
+    .experience-teaser-copy .section-kicker,
+    .mobile-proof-copy .section-kicker,
+    .lived-experience-intro .section-kicker,
+    .final-cta-shell .section-kicker {
+        width: fit-content;
+        max-width: 100%;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        text-align: center !important;
+    }
+
+    .hero-content,
+    .hero-title,
+    .hero-subtitle,
+    .hero-copy,
+    .section-title,
+    .section-copy,
+    .section-heading .section-title,
+    .section-heading .section-copy,
+    .intro-section .section-title,
+    .intro-section .section-copy,
+    .experience-gateway-copy .section-title,
+    .experience-gateway-copy .section-copy,
+    .experience-teaser-copy .section-title,
+    .experience-teaser-copy .section-copy,
+    .qr-content .section-title,
+    .qr-content .section-copy,
+    .mobile-showcase-section .section-title,
+    .mobile-showcase-section .section-copy,
+    .mobile-proof-copy h3,
+    .mobile-proof-copy > p,
+    .lived-experience-intro .section-title,
+    .lived-experience-intro .section-copy,
+    .lived-experience-overline,
+    .final-cta-shell h2,
+    .final-cta-copy,
+    .faq-section-compact .section-title {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        text-align: center !important;
+    }
+
+    .hero-title,
+    .hero-section-phase2 .hero-title,
+    .section-title,
+    .qr-content .section-title,
+    .mobile-proof-copy h3,
+    .lived-experience-intro .section-title,
+    .experience-teaser-copy .section-title,
+    .experience-gateway-copy .section-title,
+    .final-cta-shell h2,
+    .faq-section-compact .section-title {
+        max-width: min(11.4ch, 100%) !important;
+    }
+
+    .hero-subtitle,
+    .hero-copy,
+    .section-copy,
+    .section-heading .section-copy,
+    .intro-section .section-copy,
+    .experience-gateway-copy .section-copy,
+    .experience-teaser-copy .section-copy,
+    .qr-content .section-copy,
+    .mobile-showcase-section .section-copy,
+    .mobile-proof-copy > p,
+    .lived-experience-intro .section-copy,
+    .final-cta-copy {
+        max-width: 34rem !important;
+    }
+
+    .hero-actions,
+    .section-bridge-actions,
+    .experience-teaser-actions,
+    .final-cta-actions {
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
+    .include-feature-card,
+    .experience-teaser-card,
+    .process-card,
+    .mobile-proof-list article,
+    .lived-experience-card,
+    .faq-question span {
+        text-align: center;
+    }
+
+    .include-feature-card p,
+    .experience-teaser-card p,
+    .process-card p,
+    .mobile-proof-list article p,
+    .lived-experience-card p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 560px) {
+    .hero-content,
+    .section-heading,
+    .intro-section,
+    .experience-gateway-copy,
+    .experience-teaser-copy,
+    .qr-content,
+    .mobile-proof-copy,
+    .lived-experience-intro,
+    .final-cta-shell {
+        width: 100%;
+    }
+
+    .section-title,
+    .hero-title,
+    .hero-section-phase2 .hero-title,
+    .qr-content .section-title,
+    .mobile-proof-copy h3,
+    .lived-experience-intro .section-title,
+    .experience-teaser-copy .section-title,
+    .experience-gateway-copy .section-title,
+    .final-cta-shell h2,
+    .faq-section-compact .section-title {
+        max-width: min(10.8ch, 100%) !important;
+    }
+
+    .section-copy,
+    .hero-subtitle,
+    .hero-copy,
+    .qr-content .section-copy,
+    .experience-gateway-copy .section-copy,
+    .experience-teaser-copy .section-copy,
+    .mobile-proof-copy > p,
+    .lived-experience-intro .section-copy,
+    .final-cta-copy {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .btn {
+        text-align: center;
+    }
+}
