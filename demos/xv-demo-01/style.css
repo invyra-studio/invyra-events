@@ -1,3 +1,4 @@
+/* INVYRA - XV Signature Glam Demo | VERSION 1.5.0 */
 @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800;900&family=Playfair+Display:wght@500;600;700&display=swap");
 
 :root {
@@ -2143,5 +2144,323 @@ body.perf-mobile .btn-rsvp::before {
   body.perf-mobile .hero-diamonds,
   body.perf-mobile .diamond-rain {
     opacity: 0.2;
+  }
+}
+
+
+/* ==============================
+   XV 1.5.0 — RESPONSIVE EDITORIAL / SIGNATURE GLAM
+   Regla base INVYRA demos:
+   móvil = invitación vertical premium;
+   desktop = experiencia editorial centrada, más amplia y con mejor presencia.
+   ============================== */
+
+.glam-editorial-section,
+.glam-memory-section {
+  position: relative;
+  isolation: isolate;
+}
+
+.glam-editorial-section {
+  margin: 34px auto 62px;
+  padding: 26px;
+  border: 1px solid rgba(216, 180, 106, 0.24);
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 18% 22%, rgba(255, 138, 203, 0.18), transparent 36%),
+    linear-gradient(135deg, rgba(255,255,255,0.08), rgba(91,42,134,0.12));
+  box-shadow:
+    0 26px 72px rgba(0,0,0,0.30),
+    0 0 44px rgba(216,107,168,0.13);
+  overflow: hidden;
+}
+
+.glam-editorial-section::before,
+.glam-memory-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(115deg, transparent 0%, rgba(255,255,255,0.08) 46%, transparent 58%),
+    radial-gradient(circle at 80% 14%, rgba(216,180,106,0.14), transparent 28%);
+  pointer-events: none;
+  opacity: 0.72;
+}
+
+.glam-editorial-copy,
+.glam-editorial-visual,
+.glam-memory-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.glam-editorial-copy h2,
+.glam-memory-card h2 {
+  margin: 0 auto 18px;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2.05rem, 9vw, 3.45rem);
+  line-height: 0.96;
+  color: var(--white);
+  text-wrap: balance;
+}
+
+.glam-editorial-copy p:not(.section-label),
+.glam-memory-card p:not(.section-label) {
+  max-width: 390px;
+  margin: 0 auto;
+  color: var(--muted);
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.78;
+}
+
+.glam-editorial-visual {
+  margin-top: 28px;
+  border-radius: 26px;
+  overflow: hidden;
+  min-height: 330px;
+  border: 1px solid rgba(216, 180, 106, 0.26);
+  box-shadow:
+    0 24px 62px rgba(0,0,0,0.34),
+    0 0 42px rgba(255,138,203,0.14);
+}
+
+.glam-editorial-visual img {
+  width: 100%;
+  height: 100%;
+  min-height: 330px;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.02);
+}
+
+.glam-editorial-visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top, rgba(7,5,10,0.72), transparent 52%),
+    radial-gradient(circle at 50% 18%, rgba(255,255,255,0.20), transparent 32%);
+  pointer-events: none;
+}
+
+.glam-editorial-visual span {
+  position: absolute;
+  left: 22px;
+  bottom: 22px;
+  z-index: 2;
+  color: var(--champagne);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.glam-memory-section {
+  margin: 30px auto 10px;
+}
+
+.glam-memory-card {
+  position: relative;
+  padding: 36px 24px;
+  border: 1px solid rgba(216, 180, 106, 0.26);
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 138, 203, 0.16), transparent 42%),
+    linear-gradient(135deg, rgba(255,255,255,0.09), rgba(255,138,203,0.06));
+  box-shadow:
+    0 24px 68px rgba(0,0,0,0.28),
+    0 0 38px rgba(216,107,168,0.12);
+  overflow: hidden;
+}
+
+@media (min-width: 900px) {
+  .invitation-container {
+    width: min(100%, 1120px);
+    max-width: 1120px;
+    padding: 0 52px 88px;
+  }
+
+  .hero-section {
+    min-height: 760px;
+    border-radius: 0 0 44px 44px;
+  }
+
+  .hero-content,
+  .quote-section,
+  .countdown-section,
+  .details-section,
+  .dress-code-section,
+  .itinerary-section,
+  .gallery-section,
+  .action-section {
+    max-width: 940px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .quote-section {
+    padding: 88px 0 56px;
+  }
+
+  .quote-text {
+    max-width: 760px;
+    font-size: clamp(2.4rem, 4.2vw, 4.15rem);
+  }
+
+  .glass-card {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 30px 28px;
+  }
+
+  .time-unit span {
+    font-size: 2.65rem;
+  }
+
+  .details-section {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    align-items: stretch;
+  }
+
+  .details-section .section-label,
+  .details-section .details-intro,
+  .details-section .map-button {
+    grid-column: 1 / -1;
+  }
+
+  .details-intro {
+    max-width: 680px;
+    margin-bottom: 10px;
+  }
+
+  .detail-card {
+    display: flex;
+    min-height: 144px;
+    margin-bottom: 0;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .dress-card,
+  .timeline-card,
+  .rsvp-card,
+  .glam-memory-card {
+    max-width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .dress-card,
+  .timeline-card {
+    padding: 44px 48px;
+  }
+
+  .dress-card p,
+  .rsvp-copy {
+    max-width: 620px;
+  }
+
+  .timeline-item {
+    padding: 18px 0;
+  }
+
+  .timeline-item span {
+    font-size: 2.28rem;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .gallery-item {
+    height: 420px;
+  }
+
+  .glam-editorial-section {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: 34px;
+    align-items: center;
+    max-width: 960px;
+    padding: 34px;
+    text-align: left;
+  }
+
+  .glam-editorial-copy .section-label {
+    margin-left: 0;
+  }
+
+  .glam-editorial-copy h2,
+  .glam-editorial-copy p:not(.section-label) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .glam-editorial-copy h2 {
+    font-size: clamp(3rem, 4.2vw, 4.9rem);
+  }
+
+  .glam-editorial-copy p:not(.section-label) {
+    max-width: 430px;
+    font-size: 1rem;
+  }
+
+  .glam-editorial-visual {
+    min-height: 450px;
+    margin-top: 0;
+  }
+
+  .glam-editorial-visual img {
+    min-height: 450px;
+  }
+
+  .glam-memory-card {
+    padding: 48px 70px;
+  }
+
+  .glam-memory-card h2 {
+    max-width: 760px;
+    font-size: clamp(2.8rem, 4.4vw, 4.7rem);
+  }
+
+  .glam-memory-card p:not(.section-label) {
+    max-width: 660px;
+    font-size: 1rem;
+  }
+
+  .rsvp-card {
+    padding: 48px 58px 52px;
+  }
+
+  .rsvp-form {
+    max-width: 520px;
+  }
+}
+
+@media (max-width: 899px) {
+  .invitation-container {
+    width: min(100%, 500px);
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 520px) {
+  .glam-editorial-section {
+    padding: 22px 18px;
+    border-radius: 26px;
+  }
+
+  .glam-editorial-visual,
+  .glam-editorial-visual img {
+    min-height: 290px;
+  }
+
+  .glam-memory-card {
+    padding: 32px 20px;
+    border-radius: 26px;
   }
 }
