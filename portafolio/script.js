@@ -4,25 +4,128 @@ function initMobileNav() {
   const navToggle = document.getElementById("nav-toggle");
   const siteNav = document.getElementById("site-nav");
   const navLinks = document.querySelectorAll(".site-nav a");
+
   if (!navToggle || !siteNav) return;
-  function closeNav() {
-    document.body.classList.remove("nav-open");
-    navToggle.setAttribute("aria-label", "Abrir menú");
+
+  function setNavState(isOpen) {
+    document.body.classList.toggle("nav-open", isOpen);
+    navToggle.setAttribute("aria-label", isOpen ? "Cerrar menú" : "Abrir menú");
+    navToggle.setAttribute("aria-expanded", String(isOpen));
   }
+
+  function closeNav() {
+    setNavState(false);
+  }
+
   navToggle.addEventListener("click", event => {
     event.stopPropagation();
-    document.body.classList.toggle("nav-open");
-    navToggle.setAttribute("aria-label", document.body.classList.contains("nav-open") ? "Cerrar menú" : "Abrir menú");
+    setNavState(!document.body.classList.contains("nav-open"));
   });
+
   navLinks.forEach(link => link.addEventListener("click", closeNav));
+
   document.addEventListener("click", event => {
     if (!siteNav.contains(event.target) && !navToggle.contains(event.target)) closeNav();
   });
+
   document.addEventListener("keydown", event => {
     if (event.key === "Escape") closeNav();
   });
 }
 
+function initPortfolioFilters() {
+  const chips = document.querySelectorAll(".filter-chip");
+  const cards = document.querySelectorAll(".demo-card[data-category]");
+  const status = document.getElementById("filter-status");
+
+  if (!chips.length || !cards.length) return;
+
+  const filterLabels = {
+    all: "todas las experiencias disponibles",
+    essential: "las experiencias Essential",
+    signature: "las experiencias Signature",
+    legacy: "las experiencias Legacy"
+  };
+
+  chips.forEach(chip => {
+    chip.addEventListener("click", () => {
+      const filter = chip.dataset.filter || "all";
+      let visibleCount = 0;
+
+      chips.forEach(item => {
+        const isActive = item === chip;
+        item.classList.toggle("active", isActive);
+        item.setAttribute("aria-pressed", String(isActive));
+      });
+
+      cards.forEach(card => {
+        const shouldShow = filter === "all" || card.dataset.category === filter;
+        card.classList.toggle("is-hidden", !shouldShow);
+        if (shouldShow) visibleCount += 1;
+      });
+
+      if (status) {
+        status.textContent = `Mostrando ${filterLabels[filter] || "experiencias filtradas"}: ${visibleCount} ${visibleCount === 1 ? "demo" : "demos"}.`;
+      }
+    });
+  });
+}
+
+function initHeaderScrollState() {
+  const header = document.querySelector(".site-header");
+  if (!header) return;
+
+  function updateHeader() {
+    header.classList.toggle("is-scrolled", window.scrollY > 20);
+  }
+
+  updateHeader();
+  window.addEventListener("scroll", updateHeader, { passive: true });
+}
+
+function initImageFallbacks() {
+  document.querySelectorAll("img").forEach(image => {
+    image.addEventListener("error", () => {
+      image.closest(".demo-visual, .feature-preview-image")?.classList.add("image-missing");
+      image.remove();
+    });
+  });
+}
+
+function initRevealAnimations() {
+  const items = document.querySelectorAll(
+    ".section-reveal, .demo-card, .feature-preview, .reading-grid article, .mood-strip article, .decision-steps article"
+  );
+
+  if (!items.length) return;
+
+  if (!("IntersectionObserver" in window)) {
+    items.forEach(item => item.classList.add("is-visible"));
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: "0px 0px -70px 0px" }
+  );
+
+  items.forEach((item, index) => {
+    item.style.transitionDelay = `${Math.min(index * 35, 280)}ms`;
+    observer.observe(item);
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   initMobileNav();
+  initPortfolioFilters();
+  initHeaderScrollState();
+  initImageFallbacks();
+  initRevealAnimations();
 });

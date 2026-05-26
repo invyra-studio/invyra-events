@@ -4,72 +4,421 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>INVYRA | Portafolio de experiencias</title>
-    <meta name="description" content="Portafolio de demos y experiencias digitales premium de INVYRA." />
+    <meta
+      name="description"
+      content="Explora el portafolio de experiencias digitales premium de INVYRA para bodas, XV años, baby shower, cumpleaños, bautizos y eventos especiales."
+    />
+
     <link rel="icon" type="image/jpeg" href="../LOGO/FAVICON.jpeg" />
-    <link rel="stylesheet" href="./style.css?v=1.0.37" />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-    <script src="./script.js?v=1.0.37" defer></script>
+    <link rel="stylesheet" href="./style.css?v=1.0.41" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <meta name="theme-color" content="#0f0f0e" />
+    <script src="./script.js?v=portfolio-1.0.42" defer></script>
   </head>
+
   <body>
-    <div class="site-bg"><div class="bg-orb bg-orb-one"></div><div class="bg-orb bg-orb-two"></div><div class="bg-grain"></div></div>
+    <div class="site-bg" aria-hidden="true">
+      <div class="bg-orb bg-orb-one"></div>
+      <div class="bg-orb bg-orb-two"></div>
+      <div class="bg-grain"></div>
+      <div class="bg-lines"></div>
+    </div>
+
     <header class="site-header">
-      <a href="../" class="brand" aria-label="Volver a INVYRA">
+      <a href="../" class="brand" aria-label="Volver al inicio de INVYRA">
         <img src="../LOGO/FAVICON.jpeg" alt="INVYRA" class="brand-logo" />
-        <div class="brand-text"><span>INVYRA</span><small>Premium Digital Events</small></div>
+        <div class="brand-text">
+          <span>INVYRA</span>
+          <small>Premium Digital Events</small>
+        </div>
       </a>
-      <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Abrir menú"><span></span><span></span></button>
+
+      <button
+        type="button"
+        class="nav-toggle"
+        id="nav-toggle"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+        aria-controls="site-nav"
+      >
+        <span></span>
+        <span></span>
+      </button>
+
       <nav class="site-nav" id="site-nav">
-        <a href="../landing-preview/">Inicio</a>
+        <a href="../">Inicio</a>
         <a href="../experiencias/">Experiencias</a>
         <a href="../portafolio/" class="active">Portafolio</a>
-        <a href="../landing-preview/#qr">QR</a>
-        <a href="../landing-preview/#faq">FAQ</a>
+        <a href="../#qr">QR</a>
+        <a href="../#faq">FAQ</a>
         <a href="../cotizar/" class="nav-cta">Cotizar</a>
       </nav>
     </header>
+
     <main>
-      <section class="page-section page-hero">
-        <div>
+      <section class="portfolio-hero" id="inicio">
+        <div class="hero-copy-block">
           <p class="eyebrow">Portafolio INVYRA</p>
-          <h1 class="page-title">Explora el estilo que puede abrir tu evento.</h1>
-          <p class="page-copy">Este portafolio reúne demos funcionales de INVYRA para distintos tipos de celebración. La intención no es copiar una plantilla: es ayudarte a imaginar cómo podría sentirse tu propia experiencia digital.</p>
-          <div class="actions">
-            <a href="../cotizar/" class="btn btn-primary">Cotizar mi experiencia</a>
-            <a href="../experiencias/" class="btn btn-secondary">Ver niveles</a>
+          <h1>Experiencias digitales con intención, no demos sueltas.</h1>
+          <p>
+            Cada demo funciona como referencia de estilo, ritmo y nivel de presencia. La idea no es que copies una plantilla, sino que puedas imaginar cómo se sentiría tu propia celebración desde el primer mensaje.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#demos" class="btn btn-primary">Explorar portafolio</a>
+            <a href="../cotizar/" class="btn btn-secondary">Cotizar algo similar</a>
+          </div>
+
+          <div class="portfolio-proof" aria-label="Resumen del portafolio INVYRA">
+            <span><strong>05+</strong> estilos base</span>
+            <span><strong>03</strong> niveles de experiencia</span>
+            <span><strong>100%</strong> pensado para móvil</span>
           </div>
         </div>
-        <aside class="hero-panel">
-          <span>Experiencias digitales</span>
-          <strong>Demos reales, listas para recorrerse desde el celular.</strong>
-          <p>Birthday, Baby Shower, XV, Wedding y Bautizo como base visual para mostrar niveles, estilos y posibilidades.</p>
+
+        <aside class="hero-editorial-card" aria-label="Resumen editorial del portafolio INVYRA">
+          <span class="hero-card-kicker">Curaduría digital</span>
+          <strong>Una muestra de cómo INVYRA adapta el mood de cada evento.</strong>
+          <p>
+            Desde una invitación esencial y clara hasta una experiencia Legacy más narrativa, emocional y memorable.
+          </p>
+          <div class="hero-card-meter" aria-label="Enfoque del portafolio">
+            <div>
+              <span>Estilo</span>
+              <strong>Visual</strong>
+            </div>
+            <div>
+              <span>Lectura</span>
+              <strong>Clara</strong>
+            </div>
+            <div>
+              <span>Mood</span>
+              <strong>Premium</strong>
+            </div>
+          </div>
+
+          <div class="hero-card-pills">
+            <span>Mobile first</span>
+            <span>Diseño premium</span>
+            <span>Recorrido claro</span>
+          </div>
         </aside>
       </section>
 
-      <section class="page-section" id="demos">
-        <div class="section-heading">
-          <p class="section-kicker">Demos disponibles</p>
-          <h2 class="section-title">Cada demo muestra una forma distinta de vivir INVYRA.</h2>
-          <p class="section-copy">Puedes abrirlas, recorrerlas y comparar qué nivel de experiencia se acerca más a lo que quieres transmitir.</p>
+      <section class="portfolio-intro section-block section-reveal">
+        <div class="section-heading section-heading-wide">
+          <p class="section-kicker">Cómo leer este portafolio</p>
+          <h2>Elige por sensación, tipo de evento y nivel de experiencia.</h2>
+          <p>
+            Las demos están organizadas para que puedas comparar intención: una opción más directa, una experiencia más visual o una propuesta completa con narrativa y secciones especiales.
+          </p>
         </div>
-        <div class="grid cards-3">
-          <article class="card"><span class="tag">Essential</span><h3>Birthday Demo</h3><p>Una experiencia clara y elegante para cumpleaños, reuniones y celebraciones íntimas.</p><a class="card-link" href="../demos/birthday-demo-01/" target="_blank" rel="noopener noreferrer">Explorar demo</a></article>
-          <article class="card"><span class="tag">Signature</span><h3>Baby Shower Demo</h3><p>Suave, cálida y premium. Pensada para una celebración familiar con detalles tiernos y visuales delicados.</p><a class="card-link" href="../demos/babyshower-demo-01/" target="_blank" rel="noopener noreferrer">Explorar demo</a></article>
-          <article class="card"><span class="tag">Signature Glam</span><h3>XV Demo</h3><p>Una experiencia más dinámica y glam para presentar horarios, dress code, galería y confirmación con estilo.</p><a class="card-link" href="../demos/xv-demo-01/" target="_blank" rel="noopener noreferrer">Explorar demo</a></article>
-          <article class="card card-dark"><span class="tag">Legacy</span><h3>Wedding Demo</h3><p>Una experiencia tipo mini sitio web para una boda con historia, momentos clave, galería y detalles completos.</p><a class="card-link" href="../demos/wedding-demo-01/" target="_blank" rel="noopener noreferrer">Explorar demo</a></article>
-          <article class="card"><span class="tag">Signature</span><h3>Bautizo Demo</h3><p>Una propuesta elegante y familiar para celebraciones religiosas o íntimas con información clara para invitados.</p><a class="card-link" href="../demos/bautizo-demo-01/" target="_blank" rel="noopener noreferrer">Explorar demo</a></article>
-          <article class="card"><span class="tag">Próximamente</span><h3>Nuevas experiencias</h3><p>Este espacio crecerá con más estilos, eventos y propuestas visuales conforme INVYRA evolucione.</p><a class="card-link" href="../cotizar/">Solicitar estilo</a></article>
+
+        <div class="reading-grid">
+          <article>
+            <span>01</span>
+            <strong>Tipo de celebración</strong>
+            <p>Identifica la demo que se parece más al evento que estás preparando.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <strong>Nivel de presencia</strong>
+            <p>Compara Essential, Signature y Legacy según el impacto que buscas.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <strong>Ruta de decisión</strong>
+            <p>Abre la demo, revisa el nivel y cotiza algo similar cuando te haga sentido.</p>
+          </article>
         </div>
       </section>
 
+      <section class="portfolio-mood-section section-block section-reveal" aria-label="Criterios de lectura del portafolio">
+        <div class="mood-strip">
+          <article>
+            <span>01</span>
+            <strong>El mood primero</strong>
+            <p>La demo debe sentirse como el evento: elegante, cálida, glam o memorable.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <strong>La claridad no se negocia</strong>
+            <p>El invitado debe entender fecha, ubicación, horarios y detalles sin perderse.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <strong>El celular manda</strong>
+            <p>Cada experiencia se piensa para abrirse rápido, verse bien y compartirse fácil.</p>
+          </article>
+          <article>
+            <span>04</span>
+            <strong>La demo no limita</strong>
+            <p>Sirve como referencia: colores, música, secciones y narrativa pueden adaptarse.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="featured-section section-block section-reveal" aria-label="Demos destacadas INVYRA">
+        <div class="featured-layout">
+          <div class="featured-copy">
+            <p class="section-kicker">Demos destacadas</p>
+            <h2>Las experiencias que mejor muestran el salto premium.</h2>
+            <p>
+              Wedding y XV son referencias fuertes porque muestran cómo una invitación puede dejar de ser solo información y convertirse en un recorrido visual completo para el invitado.
+            </p>
+            <div class="featured-actions">
+              <a href="../demos/wedding-demo-01/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Ver Wedding</a>
+              <a href="../demos/xv-demo-01/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Ver XV</a>
+            </div>
+          </div>
+
+          <div class="featured-showcase">
+            <article class="feature-preview feature-preview-dark">
+              <div class="feature-preview-image feature-wedding feature-preview-video">
+                <video autoplay muted loop playsinline preload="metadata" poster="./assets/portfolio-covers/cover-wedding.png" aria-label="Video preview de Wedding Demo INVYRA">
+                  <source src="../videos/wedding-video.mp4" type="video/mp4" />
+                </video>
+              </div>
+              <div class="feature-preview-copy">
+                <span>Legacy Experience</span>
+                <h3>Wedding Demo</h3>
+                <p>Una historia digital para boda con mayor profundidad, claridad y atmósfera.</p>
+              </div>
+            </article>
+
+            <article class="feature-preview">
+              <div class="feature-preview-image feature-xv feature-preview-video">
+                <video autoplay muted loop playsinline preload="metadata" poster="./assets/portfolio-covers/cover-xv-anos.png" aria-label="Video preview de XV Demo INVYRA">
+                  <source src="../videos/XV-video.mp4" type="video/mp4" />
+                </video>
+              </div>
+              <div class="feature-preview-copy">
+                <span>Signature Glam</span>
+                <h3>XV Demo</h3>
+                <p>Presencia visual, movimiento y detalles para una celebración con más personalidad.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="demos-section section-block section-reveal" id="demos">
+        <div class="section-heading">
+          <p class="section-kicker">Portafolio completo</p>
+          <h2>Cada demo abre una posibilidad distinta.</h2>
+          <p>
+            Filtra por intención o recorre todas las opciones. El objetivo es que encuentres una referencia cercana a lo que quieres transmitir.
+          </p>
+        </div>
+
+        <div class="filter-toolbar">
+          <div class="filter-bar" aria-label="Filtros de portafolio">
+            <button type="button" class="filter-chip active" data-filter="all" aria-pressed="true">Todas</button>
+            <button type="button" class="filter-chip" data-filter="essential" aria-pressed="false">Essential</button>
+            <button type="button" class="filter-chip" data-filter="signature" aria-pressed="false">Signature</button>
+            <button type="button" class="filter-chip" data-filter="legacy" aria-pressed="false">Legacy</button>
+          </div>
+          <p class="filter-status" id="filter-status">Mostrando todas las experiencias disponibles.</p>
+        </div>
+
+        <div class="demo-grid" aria-live="polite">
+          <article class="demo-card" data-category="essential">
+            <div class="demo-card-top">
+              <span class="demo-level level-essential">Essential</span>
+              <small>01</small>
+            </div>
+            <div class="demo-visual demo-visual-birthday">
+              <img src="./assets/portfolio-covers/cover-birthday.png" alt="Cover premium de Birthday Demo INVYRA" loading="lazy" />
+            </div>
+            <h3>Birthday Demo</h3>
+            <p>
+              Para cumpleaños, reuniones íntimas o celebraciones que necesitan verse cuidadas sin complicarse de más.
+            </p>
+            <ul>
+              <li>Información directa</li>
+              <li>Estética limpia</li>
+              <li>Ideal para compartir rápido</li>
+            </ul>
+            <div class="demo-actions">
+              <a href="../demos/birthday-demo-01/" target="_blank" rel="noopener noreferrer">Explorar demo</a>
+              <a href="../cotizar/?tipo=birthday">Cotizar similar</a>
+            </div>
+          </article>
+
+          <article class="demo-card demo-card-featured" data-category="signature">
+            <div class="demo-card-top">
+              <span class="demo-level level-signature">Signature</span>
+              <small>02</small>
+            </div>
+            <div class="demo-visual demo-visual-baby">
+              <img src="./assets/portfolio-covers/cover-baby-shower.png" alt="Cover premium de Baby Shower Demo INVYRA" loading="lazy" />
+            </div>
+            <h3>Baby Shower Demo</h3>
+            <p>
+              Una experiencia dulce, familiar y delicada para celebrar una nueva vida con intención visual y detalles cálidos.
+            </p>
+            <ul>
+              <li>Ambiente suave</li>
+              <li>Secciones familiares</li>
+              <li>Personalización cálida</li>
+            </ul>
+            <div class="demo-actions">
+              <a href="../demos/babyshower-demo-01/" target="_blank" rel="noopener noreferrer">Explorar demo</a>
+              <a href="../experiencias/">Ver nivel</a>
+            </div>
+          </article>
+
+          <article class="demo-card demo-card-glam" data-category="signature">
+            <div class="demo-card-top">
+              <span class="demo-level level-glam">Signature Glam</span>
+              <small>03</small>
+            </div>
+            <div class="demo-visual demo-visual-xv">
+              <img src="./assets/portfolio-covers/cover-xv-anos.png" alt="Cover premium de XV Años Demo INVYRA" loading="lazy" />
+            </div>
+            <h3>XV Demo</h3>
+            <p>
+              Para una celebración con más presencia: glam, movimiento, dress code, galería, itinerario y un tono visual más fuerte.
+            </p>
+            <ul>
+              <li>Impacto visual</li>
+              <li>Cuenta regresiva</li>
+              <li>Detalles para invitados</li>
+            </ul>
+            <div class="demo-actions">
+              <a href="../demos/xv-demo-01/" target="_blank" rel="noopener noreferrer">Explorar demo</a>
+              <a href="../cotizar/?tipo=xv">Cotizar similar</a>
+            </div>
+          </article>
+
+          <article class="demo-card demo-card-dark" data-category="legacy">
+            <div class="demo-card-top">
+              <span class="demo-level level-legacy">Legacy</span>
+              <small>04</small>
+            </div>
+            <div class="demo-visual demo-visual-wedding">
+              <img src="./assets/portfolio-covers/cover-wedding.png" alt="Cover premium de Wedding Demo INVYRA" loading="lazy" />
+            </div>
+            <h3>Wedding Demo</h3>
+            <p>
+              Una invitación tipo mini sitio web para boda: más narrativa, más secciones y una experiencia completa para invitados.
+            </p>
+            <ul>
+              <li>Historia y recorrido</li>
+              <li>Detalles completos</li>
+              <li>Percepción más memorable</li>
+            </ul>
+            <div class="demo-actions">
+              <a href="../demos/wedding-demo-01/" target="_blank" rel="noopener noreferrer">Explorar demo</a>
+              <a href="../experiencias/#legacy">Ver Legacy</a>
+            </div>
+          </article>
+
+          <article class="demo-card" data-category="signature">
+            <div class="demo-card-top">
+              <span class="demo-level level-signature">Signature</span>
+              <small>05</small>
+            </div>
+            <div class="demo-visual demo-visual-bautizo">
+              <img src="./assets/portfolio-covers/cover-bautizo.png" alt="Cover premium de Bautizo Demo INVYRA" loading="lazy" />
+            </div>
+            <h3>Bautizo Demo</h3>
+            <p>
+              Una propuesta sobria, elegante y familiar para celebraciones religiosas o íntimas con información clara y estética cuidada.
+            </p>
+            <ul>
+              <li>Tono ceremonial</li>
+              <li>Información ordenada</li>
+              <li>Look familiar premium</li>
+            </ul>
+            <div class="demo-actions">
+              <a href="../demos/bautizo-demo-01/" target="_blank" rel="noopener noreferrer">Explorar demo</a>
+              <a href="../cotizar/?tipo=bautizo">Cotizar similar</a>
+            </div>
+          </article>
+
+          <article class="demo-card demo-card-soon" data-category="essential">
+            <div class="demo-card-top">
+              <span class="demo-level level-soon">Próximamente</span>
+              <small>+</small>
+            </div>
+            <div class="demo-visual demo-visual-soon">
+              <img src="./assets/portfolio-covers/cover-proximamente.png" alt="Cover premium de próximas experiencias INVYRA" loading="lazy" />
+            </div>
+            <h3>Nuevas experiencias</h3>
+            <p>
+              El portafolio seguirá creciendo con estilos para más eventos, temporadas y propuestas visuales especiales.
+            </p>
+            <ul>
+              <li>Eventos personalizados</li>
+              <li>Referencias por temporada</li>
+              <li>Nuevas propuestas premium</li>
+            </ul>
+            <div class="demo-actions">
+              <a href="../cotizar/">Solicitar estilo</a>
+              <a href="../experiencias/">Comparar niveles</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="decision-section section-block section-reveal">
+        <div class="decision-shell">
+          <div>
+            <p class="section-kicker">Ruta sugerida</p>
+            <h2>No tienes que elegir perfecto desde aquí.</h2>
+            <p>
+              El portafolio sirve para ubicar el mood. Después aterrizamos contigo el paquete, el estilo visual y los detalles que realmente necesita tu evento.
+            </p>
+          </div>
+
+          <div class="decision-steps">
+            <article><span>01</span><strong>Abre una demo</strong><p>Recorre la experiencia como si fueras invitado.</p></article>
+            <article><span>02</span><strong>Compara niveles</strong><p>Revisa Essential, Signature y Legacy antes de decidir.</p></article>
+            <article><span>03</span><strong>Cotiza con guía</strong><p>Cuéntanos tu evento y te ayudamos a elegir.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="final-cta-section section-block section-reveal">
+        <div class="final-cta-shell">
+          <img src="../LOGO/FAVICON.jpeg" alt="INVYRA" class="final-logo" />
+          <p class="section-kicker">INVYRA</p>
+          <h2>La demo que te guste puede ser solo el punto de partida.</h2>
+          <p>
+            Tu invitación se puede adaptar a tu evento, tus colores, tu música, tus invitados y el nivel de experiencia que quieras proyectar.
+          </p>
+          <div class="final-actions">
+            <a href="../cotizar/" class="btn btn-primary">Cotizar mi experiencia</a>
+            <a href="https://wa.me/525535690278?text=Hola%20INVYRA%2C%20vi%20el%20portafolio%20y%20quiero%20cotizar%20una%20experiencia%20digital%20premium%20para%20mi%20evento." target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Hablar por WhatsApp</a>
+          </div>
+        </div>
+      </section>
     </main>
+
     <footer class="site-footer">
       <p>INVYRA · Premium Digital Events</p>
       <span>Experiencias digitales para eventos</span>
       <div class="footer-actions">
-        <a href="../landing-preview/">Volver a la landing preview</a>
+        <a href="../">Inicio</a>
+        <a href="../experiencias/">Experiencias</a>
         <a href="https://www.instagram.com/invyra.studio/" target="_blank" rel="noopener noreferrer">Instagram</a>
       </div>
     </footer>
-    <a href="https://wa.me/525535690278?text=Hola%20INVYRA%2C%20quiero%20cotizar%20una%20experiencia%20digital%20premium%20para%20mi%20evento." target="_blank" rel="noopener noreferrer" class="floating-whatsapp" aria-label="Contactar por WhatsApp">WhatsApp</a>
+
+    <a
+      href="https://wa.me/525535690278?text=Hola%20INVYRA%2C%20quiero%20cotizar%20una%20experiencia%20digital%20premium%20para%20mi%20evento."
+      target="_blank"
+      rel="noopener noreferrer"
+      class="floating-whatsapp"
+      aria-label="Contactar por WhatsApp"
+    >
+      WhatsApp
+    </a>
   </body>
 </html>
