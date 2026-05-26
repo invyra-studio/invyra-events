@@ -6866,3 +6866,187 @@ main {
     }
 }
 
+/* ==========================================================
+   INVYRA — HOTFIX MOBILE ALIGNMENT
+   Version preview-1.0.42-mobile-align
+   Corrige centrado visual en landing-preview móvil antes de homologar.
+   ========================================================== */
+
+@media (max-width: 820px) {
+    html,
+    body {
+        overflow-x: hidden;
+    }
+
+    section,
+    .intro-section,
+    .problem-section,
+    .include-section,
+    .experience-gateway-section,
+    .demos-section-compact,
+    .qr-section,
+    .mobile-showcase-section,
+    .lived-experience-section,
+    .process-section,
+    .final-cta-section-phase2,
+    .faq-section-compact {
+        scroll-margin-top: 120px;
+    }
+
+    .section-heading,
+    .intro-section,
+    .experience-gateway-copy,
+    .experience-teaser-copy,
+    .qr-content,
+    .mobile-proof-copy,
+    .lived-experience-intro,
+    .process-section .section-heading,
+    .final-cta-shell,
+    .faq-section-compact .section-heading {
+        text-align: center !important;
+    }
+
+    .section-kicker,
+    .eyebrow,
+    .qr-content .section-kicker,
+    .experience-gateway-copy .section-kicker,
+    .experience-teaser-copy .section-kicker,
+    .mobile-proof-copy .section-kicker,
+    .lived-experience-intro .section-kicker,
+    .final-cta-shell .section-kicker {
+        width: fit-content;
+        max-width: 100%;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        text-align: center !important;
+    }
+
+    .hero-content,
+    .hero-title,
+    .hero-subtitle,
+    .hero-copy,
+    .section-title,
+    .section-copy,
+    .section-heading .section-title,
+    .section-heading .section-copy,
+    .intro-section .section-title,
+    .intro-section .section-copy,
+    .experience-gateway-copy .section-title,
+    .experience-gateway-copy .section-copy,
+    .experience-teaser-copy .section-title,
+    .experience-teaser-copy .section-copy,
+    .qr-content .section-title,
+    .qr-content .section-copy,
+    .mobile-showcase-section .section-title,
+    .mobile-showcase-section .section-copy,
+    .mobile-proof-copy h3,
+    .mobile-proof-copy > p,
+    .lived-experience-intro .section-title,
+    .lived-experience-intro .section-copy,
+    .lived-experience-overline,
+    .final-cta-shell h2,
+    .final-cta-copy,
+    .faq-section-compact .section-title {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        text-align: center !important;
+    }
+
+    .hero-title,
+    .hero-section-phase2 .hero-title,
+    .section-title,
+    .qr-content .section-title,
+    .mobile-proof-copy h3,
+    .lived-experience-intro .section-title,
+    .experience-teaser-copy .section-title,
+    .experience-gateway-copy .section-title,
+    .final-cta-shell h2,
+    .faq-section-compact .section-title {
+        max-width: min(11.4ch, 100%) !important;
+    }
+
+    .hero-subtitle,
+    .hero-copy,
+    .section-copy,
+    .section-heading .section-copy,
+    .intro-section .section-copy,
+    .experience-gateway-copy .section-copy,
+    .experience-teaser-copy .section-copy,
+    .qr-content .section-copy,
+    .mobile-showcase-section .section-copy,
+    .mobile-proof-copy > p,
+    .lived-experience-intro .section-copy,
+    .final-cta-copy {
+        max-width: 34rem !important;
+    }
+
+    .hero-actions,
+    .section-bridge-actions,
+    .experience-teaser-actions,
+    .final-cta-actions {
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
+    .include-feature-card,
+    .experience-teaser-card,
+    .process-card,
+    .mobile-proof-list article,
+    .lived-experience-card,
+    .faq-question span {
+        text-align: center;
+    }
+
+    .include-feature-card p,
+    .experience-teaser-card p,
+    .process-card p,
+    .mobile-proof-list article p,
+    .lived-experience-card p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 560px) {
+    .hero-content,
+    .section-heading,
+    .intro-section,
+    .experience-gateway-copy,
+    .experience-teaser-copy,
+    .qr-content,
+    .mobile-proof-copy,
+    .lived-experience-intro,
+    .final-cta-shell {
+        width: 100%;
+    }
+
+    .section-title,
+    .hero-title,
+    .hero-section-phase2 .hero-title,
+    .qr-content .section-title,
+    .mobile-proof-copy h3,
+    .lived-experience-intro .section-title,
+    .experience-teaser-copy .section-title,
+    .experience-gateway-copy .section-title,
+    .final-cta-shell h2,
+    .faq-section-compact .section-title {
+        max-width: min(10.8ch, 100%) !important;
+    }
+
+    .section-copy,
+    .hero-subtitle,
+    .hero-copy,
+    .qr-content .section-copy,
+    .experience-gateway-copy .section-copy,
+    .experience-teaser-copy .section-copy,
+    .mobile-proof-copy > p,
+    .lived-experience-intro .section-copy,
+    .final-cta-copy {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .btn {
+        text-align: center;
+    }
+}
