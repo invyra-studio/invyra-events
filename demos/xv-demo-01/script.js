@@ -20,6 +20,12 @@ const EVENTO_NOMBRE = "XV de Valentina";
 const RSVP_DRAFT_KEY = "invyra_xv_valentina_rsvp_draft";
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const isPerformanceMobile = window.matchMedia("(max-width: 768px), (pointer: coarse)").matches;
+const reduceVisualMotion = prefersReducedMotion || isPerformanceMobile;
+
+if (isPerformanceMobile) {
+    document.body.classList.add("perf-mobile");
+}
 
 let experienceAlreadyOpened = false;
 
@@ -56,7 +62,7 @@ function entrarExperiencia() {
 
     playMusicSafely(music);
 
-    if (prefersReducedMotion || typeof gsap === "undefined") {
+    if (reduceVisualMotion || typeof gsap === "undefined") {
         splash.classList.add("opening");
 
         window.setTimeout(() => {
@@ -170,7 +176,7 @@ function playMusicSafely(music) {
 
     music.play()
         .then(() => {
-            if (typeof gsap !== "undefined" && !prefersReducedMotion) {
+            if (typeof gsap !== "undefined" && !reduceVisualMotion) {
                 gsap.to(music, {
                     volume: 0.34,
                     duration: 3,
@@ -194,7 +200,7 @@ function revealHero() {
         ".hero-atmosphere, .reveal-item, .reveal-title, .hero-info-card, .hero-runway, .hero-light-bars, .hero-diamond-frame, .hero-lens-flare"
     );
 
-    if (prefersReducedMotion || typeof gsap === "undefined") {
+    if (reduceVisualMotion || typeof gsap === "undefined") {
         fallbackElements.forEach(showElementImmediately);
         return;
     }
@@ -314,7 +320,7 @@ function initScrollReveal() {
 
     if (!sections.length) return;
 
-    if (prefersReducedMotion || typeof IntersectionObserver === "undefined") {
+    if (reduceVisualMotion || typeof IntersectionObserver === "undefined") {
         sections.forEach(showElementImmediately);
         return;
     }
@@ -340,7 +346,7 @@ function initScrollReveal() {
 function showSection(section) {
     if (!section) return;
 
-    if (typeof gsap !== "undefined" && !prefersReducedMotion) {
+    if (typeof gsap !== "undefined" && !reduceVisualMotion) {
         gsap.to(section, {
             opacity: 1,
             y: 0,
@@ -481,7 +487,7 @@ function actualizarEstadoAsistencia() {
 function playRsvpGlamPulse() {
     const rsvpCard = document.querySelector(".rsvp-card");
 
-    if (!rsvpCard || typeof gsap === "undefined" || prefersReducedMotion) return;
+    if (!rsvpCard || typeof gsap === "undefined" || reduceVisualMotion) return;
 
     gsap.fromTo(rsvpCard, {
         boxShadow: "0 0 0 rgba(255, 138, 203, 0)"
@@ -646,7 +652,7 @@ function showModal(title, message) {
     setModalContent(title, message);
     modal.classList.remove("hidden");
 
-    if (typeof gsap !== "undefined" && !prefersReducedMotion) {
+    if (typeof gsap !== "undefined" && !reduceVisualMotion) {
         gsap.from(".modal-content", {
             opacity: 0,
             scale: 0.86,
@@ -780,7 +786,7 @@ function marcarCampoInvalido(campo) {
 
     campo.classList.add("field-warning");
 
-    if (typeof gsap !== "undefined" && !prefersReducedMotion) {
+    if (typeof gsap !== "undefined" && !reduceVisualMotion) {
         gsap.to(campo, {
             x: 8,
             duration: 0.08,

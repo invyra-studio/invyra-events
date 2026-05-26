@@ -2030,3 +2030,92 @@ a {
     padding: 10px 12px;
   }
 }
+
+
+/* ==============================
+   HOTFIX 1.4.1 — MOBILE FLASH / COMPOSITOR STABILITY
+   Objetivo: evitar destellos/parpadeos en móviles Samsung/Chrome
+   al abrir la demo XV reduciendo capas animadas con blur, shimmer y GSAP.
+   ============================== */
+
+body.perf-mobile #splash-screen,
+body.perf-mobile .hero-section {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  contain: paint;
+}
+
+body.perf-mobile .glam-orb,
+body.perf-mobile .glitter-layer,
+body.perf-mobile .diamond-rain,
+body.perf-mobile .stage-beam,
+body.perf-mobile .splash-diamond-frame,
+body.perf-mobile .hero-bg::before,
+body.perf-mobile .hero-bg::after,
+body.perf-mobile .hero-spotlight,
+body.perf-mobile .hero-glitter,
+body.perf-mobile .hero-shine,
+body.perf-mobile .hero-diamonds,
+body.perf-mobile .hero-runway,
+body.perf-mobile .hero-light-bars,
+body.perf-mobile .hero-diamond-frame,
+body.perf-mobile .hero-lens-flare {
+  animation: none !important;
+}
+
+body.perf-mobile .hero-shine,
+body.perf-mobile .hero-light-bars,
+body.perf-mobile .hero-lens-flare {
+  display: none !important;
+}
+
+body.perf-mobile .glam-orb,
+body.perf-mobile .hero-bg::before,
+body.perf-mobile .hero-spotlight,
+body.perf-mobile .stage-beam {
+  filter: blur(14px) !important;
+}
+
+body.perf-mobile .glam-orb {
+  opacity: 0.42;
+}
+
+body.perf-mobile .glitter-layer,
+body.perf-mobile .diamond-rain,
+body.perf-mobile .hero-glitter,
+body.perf-mobile .hero-diamonds {
+  opacity: 0.28;
+}
+
+body.perf-mobile .splash-diamond-frame,
+body.perf-mobile .hero-diamond-frame {
+  opacity: 0.32;
+  box-shadow: inset 0 0 22px rgba(255,255,255,0.04);
+}
+
+body.perf-mobile .splash-title,
+body.perf-mobile .main-title,
+body.perf-mobile .celebrant-name {
+  filter: none !important;
+  text-shadow: 0 0 18px rgba(216, 107, 168, 0.16);
+}
+
+body.perf-mobile .splash-content,
+body.perf-mobile .hero-content,
+body.perf-mobile .reveal-item,
+body.perf-mobile .reveal-title,
+body.perf-mobile .section-reveal {
+  will-change: auto !important;
+}
+
+body.perf-mobile #splash-screen.is-hidden {
+  transform: none;
+}
+
+@media (max-width: 768px) {
+  .btn-start-experience::before,
+  .map-button::before,
+  .btn-rsvp::before {
+    display: none;
+  }
+}
