@@ -2128,3 +2128,122 @@ main { text-rendering: geometricPrecision; }
     margin-top: 1.25rem !important;
   }
 }
+
+/* ==========================================================
+   INVYRA — EXPERIENCIAS HOTFIX MOBILE ALIGN 1.0.43
+   Centrado visual móvil para páginas internas antes de homologación.
+   ========================================================== */
+@media (max-width: 820px) {
+  .experience-hero,
+  .hero-copy-block,
+  .section-heading,
+  .visual-copy,
+  .extras-image-intro,
+  .conversion-route,
+  .conversion-route > div:first-child {
+    text-align: center !important;
+  }
+
+  .experience-hero,
+  .conversion-route {
+    justify-items: center !important;
+  }
+
+  .hero-copy-block,
+  .section-heading,
+  .visual-copy,
+  .extras-image-intro,
+  .conversion-route > div:first-child {
+    width: 100% !important;
+    max-width: 720px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .hero-copy-block .eyebrow,
+  .section-kicker,
+  .panel-kicker {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  .experience-hero h1,
+  .section-heading h2,
+  .visual-copy h2,
+  .extras-image-intro h2,
+  .conversion-route h2 {
+    max-width: min(100%, 11.8ch) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+  }
+
+  .experience-hero h1::after {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .hero-lead,
+  .section-heading p:not(.section-kicker),
+  .visual-copy p:not(.section-kicker),
+  .extras-image-intro p:not(.section-kicker),
+  .conversion-route p:not(.section-kicker) {
+    max-width: 640px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+  }
+
+  .hero-actions,
+  .route-actions {
+    width: min(100%, 520px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    justify-content: center !important;
+  }
+
+  .signature-panel {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+    justify-self: center !important;
+  }
+
+  .signature-panel strong,
+  .signature-panel p {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+  }
+
+  .level-card,
+  .extra-card,
+  .choice-card {
+    text-align: center !important;
+  }
+
+  .level-card p,
+  .extra-card p,
+  .choice-card p {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .experience-hero h1,
+  .section-heading h2,
+  .visual-copy h2,
+  .extras-image-intro h2,
+  .conversion-route h2 {
+    max-width: min(100%, 10.8ch) !important;
+  }
+
+  .hero-actions .btn,
+  .route-actions .btn {
+    width: 100% !important;
+  }
+}
