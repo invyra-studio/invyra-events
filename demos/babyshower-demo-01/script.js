@@ -1,9 +1,9 @@
 /**
  * INVYRA - Baby Shower Demo
- * Version 1.2.3
+ * Version 1.5.0
  * Nivel: Signature
  * Celestial Cradle Experience
- * Update: Activity 14 tender RSVP microinteractions
+ * Update: Signature Premium responsive editorial upgrade
  */
 
 document.body.classList.add("js-enabled", "splash-active");

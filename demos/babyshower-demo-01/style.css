@@ -1827,7 +1827,7 @@ a {
 
 /* ==============================
    ACTIVITY 14 — RSVP TENDER MICROINTERACTIONS
-   Version 1.2.3
+   Version 1.5.0
    ============================== */
 
 .rsvp-card {
@@ -2062,4 +2062,444 @@ a {
 .attendance-options input,
 #btn-confirmar {
     pointer-events: auto;
+}
+
+
+/* ==============================
+   INVYRA UPGRADE 1.5.0 — SIGNATURE PREMIUM + RESPONSIVE EDITORIAL
+   ============================== */
+
+.signature-dream-section,
+.baby-guide-section,
+.memory-section {
+    position: relative;
+    padding: 56px 0;
+}
+
+.signature-dream-card,
+.baby-guide-card,
+.memory-card {
+    position: relative;
+    z-index: 1;
+}
+
+.signature-dream-card {
+    display: grid;
+    gap: 30px;
+    padding: 40px 24px;
+    text-align: center;
+}
+
+.dream-copy,
+.dream-copy p,
+.dream-copy .section-label,
+.dream-copy .section-title,
+.dream-visual,
+.baby-guide-card > *,
+.memory-card > * {
+    position: relative;
+    z-index: 2;
+}
+
+.dream-copy p {
+    max-width: 390px;
+    margin: 0 auto;
+    color: var(--text-soft);
+    font-weight: 650;
+    line-height: 1.85;
+}
+
+.dream-visual {
+    width: min(100%, 270px);
+    aspect-ratio: 1;
+    margin: 0 auto;
+    border-radius: 44px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 46% 38%, rgba(255,255,255,0.96), rgba(191,231,255,0.38) 38%, transparent 68%),
+        linear-gradient(145deg, rgba(255,255,255,0.72), rgba(205,233,251,0.22), rgba(230,201,143,0.20));
+    border: 1px solid rgba(201, 155, 74, 0.28);
+    box-shadow:
+        0 26px 64px rgba(23,40,70,0.13),
+        inset 0 0 0 1px rgba(255,255,255,0.54);
+}
+
+.dream-moon {
+    width: 148px;
+    height: 148px;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 38% 34%, rgba(255,255,255,1), rgba(255,250,242,0.86) 45%, rgba(230,201,143,0.30) 64%, transparent 78%);
+    box-shadow:
+        0 0 52px rgba(255,255,255,0.76),
+        0 0 92px rgba(143,199,236,0.28);
+    animation: cradleBreath 7.5s ease-in-out infinite alternate;
+}
+
+.dream-star {
+    position: absolute;
+    color: var(--gold-deep);
+    text-shadow: 0 0 20px rgba(255,255,255,0.9);
+    animation: smallStarPulse 3.8s ease-in-out infinite alternate;
+}
+
+.dream-star-one {
+    top: 42px;
+    right: 56px;
+    font-size: 1.25rem;
+}
+
+.dream-star-two {
+    left: 54px;
+    bottom: 72px;
+    color: var(--sky);
+    font-size: 1.05rem;
+    animation-delay: 0.85s;
+}
+
+.dream-cloud {
+    position: absolute;
+    height: 58px;
+    border-radius: 999px;
+    background:
+        radial-gradient(circle at 24% 54%, rgba(255,255,255,0.88), transparent 36%),
+        radial-gradient(circle at 54% 42%, rgba(255,255,255,0.76), transparent 38%),
+        radial-gradient(circle at 78% 58%, rgba(191,231,255,0.34), transparent 36%);
+    filter: blur(6px);
+    opacity: 0.72;
+}
+
+.dream-cloud-one {
+    width: 180px;
+    left: -42px;
+    bottom: 36px;
+}
+
+.dream-cloud-two {
+    width: 160px;
+    right: -38px;
+    top: 48px;
+}
+
+.baby-guide-card {
+    padding: 28px 22px;
+    text-align: left;
+}
+
+.guide-list {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    gap: 18px;
+}
+
+.guide-item {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 16px;
+    row-gap: 4px;
+    align-items: start;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(143,199,236,0.20);
+}
+
+.guide-item:last-child {
+    border-bottom: 0;
+}
+
+.guide-item span {
+    grid-row: span 2;
+    min-width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: var(--gold-deep);
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    background:
+        radial-gradient(circle, rgba(255,255,255,0.92), rgba(205,233,251,0.30));
+    border: 1px solid rgba(201,155,74,0.24);
+    box-shadow: 0 12px 26px rgba(23,40,70,0.08);
+}
+
+.guide-item h3 {
+    margin: 0;
+    color: var(--ink);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.55rem;
+    line-height: 1;
+}
+
+.guide-item p {
+    margin: 0;
+    color: var(--text-soft);
+    font-size: 0.92rem;
+    font-weight: 650;
+    line-height: 1.65;
+}
+
+.memory-card {
+    padding: 42px 24px;
+    text-align: center;
+}
+
+.memory-card h2 {
+    position: relative;
+    z-index: 2;
+    max-width: 720px;
+    margin: 0 auto 18px;
+    color: var(--ink);
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(2.35rem, 8vw, 3.55rem);
+    font-weight: 600;
+    line-height: 0.98;
+}
+
+.memory-card p:not(.section-label) {
+    position: relative;
+    z-index: 2;
+    max-width: 520px;
+    margin: 0 auto;
+    color: var(--text-soft);
+    font-weight: 650;
+    line-height: 1.85;
+}
+
+@media (min-width: 900px) {
+    .invitation-container {
+        width: min(100%, 1120px);
+        max-width: 1120px;
+        padding: 0 46px 96px;
+    }
+
+    .hero-section {
+        min-height: 92svh;
+        border-radius: 0 0 54px 54px;
+    }
+
+    .hero-content,
+    .blessing-section,
+    .countdown-section,
+    .details-section,
+    .theme-section,
+    .gift-section,
+    .wishes-section,
+    .signature-dream-section,
+    .baby-guide-section,
+    .memory-section,
+    .action-section {
+        max-width: 980px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .main-title {
+        font-size: clamp(6.6rem, 10vw, 9.2rem);
+    }
+
+    .hero-phrase {
+        font-size: clamp(3rem, 4.8vw, 4.3rem);
+    }
+
+    .hero-info-card {
+        width: min(100%, 560px);
+        padding: 24px 34px 28px;
+    }
+
+    .hero-subtitle,
+    .section-copy,
+    .theme-card p,
+    .gift-card p,
+    .wish-card p,
+    .rsvp-copy {
+        max-width: 560px;
+    }
+
+    .blessing-section {
+        padding-top: 78px;
+    }
+
+    .signature-dream-card {
+        grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.78fr);
+        align-items: center;
+        gap: 48px;
+        padding: 54px 56px;
+        text-align: left;
+    }
+
+    .signature-dream-card .section-title,
+    .signature-dream-card .section-label,
+    .dream-copy p {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .dream-visual {
+        width: min(100%, 320px);
+        border-radius: 52px;
+    }
+
+    .details-section {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+        align-items: stretch;
+    }
+
+    .details-section > .section-label,
+    .details-section > .map-button {
+        grid-column: 1 / -1;
+        justify-self: center;
+    }
+
+    .detail-card {
+        display: grid;
+        align-content: center;
+        min-height: 150px;
+        margin-bottom: 0;
+        padding: 30px 22px;
+    }
+
+    .countdown-card {
+        max-width: 720px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 30px 24px;
+    }
+
+    .time-unit span {
+        font-size: 3.1rem;
+    }
+
+    .theme-card,
+    .gift-card,
+    .wish-card {
+        max-width: 760px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 48px 54px;
+    }
+
+    .baby-guide-card {
+        padding: 34px 30px;
+    }
+
+    .guide-list {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0;
+        align-items: stretch;
+    }
+
+    .guide-item {
+        grid-template-columns: 1fr;
+        padding: 18px 24px;
+        text-align: center;
+        border-bottom: 0;
+        border-right: 1px solid rgba(143,199,236,0.20);
+    }
+
+    .guide-item:last-child {
+        border-right: 0;
+    }
+
+    .guide-item span {
+        grid-row: auto;
+        margin: 0 auto 8px;
+    }
+
+    .memory-card {
+        padding: 54px 58px;
+    }
+
+    .rsvp-card {
+        max-width: 780px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 54px 58px 58px;
+    }
+
+    .rsvp-form {
+        max-width: 560px;
+    }
+
+    .attendance-options {
+        gap: 24px;
+    }
+}
+
+@media (max-width: 899px) {
+    .invitation-container {
+        width: min(100%, 500px);
+        max-width: 500px;
+    }
+}
+
+@media (max-width: 520px) {
+    .signature-dream-card,
+    .memory-card {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .dream-visual {
+        width: min(100%, 238px);
+        border-radius: 36px;
+    }
+
+    .guide-item {
+        column-gap: 14px;
+    }
+}
+
+
+/* Hotfix 1.5.1 — guía desktop balanceada */
+.guide-list {
+    position: relative;
+    z-index: 2;
+}
+
+@media (min-width: 900px) {
+    .baby-guide-card {
+        display: block;
+        padding: 38px 34px;
+    }
+
+    .baby-guide-card .card-stars {
+        position: absolute;
+        inset: 0;
+    }
+
+    .guide-list {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0;
+        width: 100%;
+        align-items: stretch;
+    }
+
+    .guide-list .guide-item {
+        min-height: 240px;
+        display: grid;
+        justify-items: center;
+        align-content: center;
+        padding: 26px 34px;
+        border-bottom: 0;
+        border-right: 1px solid rgba(143,199,236,0.20);
+    }
+
+    .guide-list .guide-item:last-child {
+        border-right: 0;
+    }
+
+    .guide-list .guide-item p {
+        max-width: 260px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
