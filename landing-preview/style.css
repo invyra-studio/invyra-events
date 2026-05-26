@@ -271,18 +271,24 @@ textarea {
     left: 12px;
     right: 12px;
     height: 2px;
+    border-radius: 999px;
     background: var(--espresso);
     transition:
         transform 0.28s ease,
-        top 0.28s ease;
+        top 0.28s ease,
+        opacity 0.22s ease;
 }
 
-.nav-toggle span:first-child {
-    top: 17px;
+.nav-toggle span:nth-child(1) {
+    top: 15px;
 }
 
-.nav-toggle span:last-child {
-    top: 25px;
+.nav-toggle span:nth-child(2) {
+    top: 21px;
+}
+
+.nav-toggle span:nth-child(3) {
+    top: 27px;
 }
 
 .nav-toggle::before {
@@ -2179,12 +2185,17 @@ section[id] {
    JS STATES
    ============================== */
 
-body.nav-open .nav-toggle span:first-child {
+body.nav-open .nav-toggle span:nth-child(1) {
     top: 21px;
     transform: rotate(45deg);
 }
 
-body.nav-open .nav-toggle span:last-child {
+body.nav-open .nav-toggle span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0.35);
+}
+
+body.nav-open .nav-toggle span:nth-child(3) {
     top: 21px;
     transform: rotate(-45deg);
 }
