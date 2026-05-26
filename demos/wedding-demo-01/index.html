@@ -11,7 +11,7 @@
     />
 
     <link rel="icon" type="image/jpeg" href="../../LOGO/FAVICON.jpeg" />
-    <link rel="stylesheet" href="style.css?v=1.7.0" />
+    <link rel="stylesheet" href="style.css?v=1.8.0" />
 
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap"
@@ -133,6 +133,30 @@
           una mirada, creció entre risas, promesas y sueños compartidos, y hoy
           nos trae hasta este día: el inicio de una nueva historia juntos.
         </p>
+      </section>
+
+      <section class="legacy-film-section section-reveal" aria-labelledby="legacyFilmTitle">
+        <div class="legacy-film-copy">
+          <p class="section-label">LEGACY MOMENT</p>
+          <h2 class="section-title" id="legacyFilmTitle">Una invitación que se siente como el inicio de una película</h2>
+          <p class="legacy-film-text">
+            Antes de llegar al día de la boda, cada invitado recibe una primera
+            impresión: una entrada elegante, una historia breve y una atmósfera
+            pensada para hacer que el evento se sienta especial desde el enlace.
+          </p>
+        </div>
+
+        <div class="legacy-film-frame" role="img" aria-label="Vista cinematográfica de la boda de Aurora y Matteo">
+          <div class="legacy-film-poster legacy-film-poster-primary"></div>
+          <div class="legacy-film-overlay"></div>
+          <div class="legacy-film-play" aria-hidden="true">
+            <span></span>
+          </div>
+          <div class="legacy-film-caption">
+            <small>Wedding Film</small>
+            <strong>Aurora & Matteo</strong>
+          </div>
+        </div>
       </section>
 
       <section class="countdown-section section-reveal">
@@ -441,14 +465,23 @@
 
 
       <section class="guest-info-section section-reveal">
-        <p class="section-label">DETALLES PARA INVITADOS</p>
+        <p class="section-label">GUÍA PARA INVITADOS</p>
+        <h2 class="section-title">Todo listo para vivirlo con calma</h2>
 
-        <div class="guest-info-card">
+        <div class="guest-info-card legacy-guest-guide">
           <div class="guest-info-item">
             <div class="guest-info-icon" aria-hidden="true">⏱</div>
             <div>
-              <h3>Hora sugerida de llegada</h3>
-              <p>Te sugerimos llegar 20 minutos antes de la ceremonia para vivir el momento con calma.</p>
+              <h3>Llegada sugerida</h3>
+              <p>Te recomendamos llegar 20 minutos antes de la ceremonia para encontrar tu lugar y disfrutar el inicio sin prisa.</p>
+            </div>
+          </div>
+
+          <div class="guest-info-item">
+            <div class="guest-info-icon" aria-hidden="true">✦</div>
+            <div>
+              <h3>Experiencia del día</h3>
+              <p>Ceremonia, recepción, cena y momentos especiales estarán pensados para acompañarte durante toda la celebración.</p>
             </div>
           </div>
 
@@ -464,15 +497,42 @@
             <div class="guest-info-icon" aria-hidden="true">✉</div>
             <div>
               <h3>Contacto</h3>
-              <p>Para cualquier duda sobre el evento, puedes comunicarte directamente con los anfitriones.</p>
+              <p>Si necesitas resolver algún detalle antes del evento, puedes comunicarte directamente con los anfitriones.</p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="legacy-final-film-section section-reveal" aria-labelledby="legacyFinalFilmTitle">
+        <div class="legacy-final-film-card">
+          <div class="legacy-final-film-visual" role="img" aria-label="Momento emocional de cierre para la boda">
+            <div class="legacy-film-poster legacy-film-poster-secondary"></div>
+            <div class="legacy-final-film-glow"></div>
+            <div class="legacy-film-play legacy-film-play-soft" aria-hidden="true">
+              <span></span>
+            </div>
+          </div>
+
+          <div class="legacy-final-film-copy">
+            <p class="section-label">ANTES DE CONFIRMAR</p>
+            <h2 class="section-title" id="legacyFinalFilmTitle">Guarda este momento en tu calendario emocional</h2>
+            <p>
+              Tu respuesta nos ayuda a preparar cada detalle con más cuidado.
+              Gracias por acompañarnos en una celebración que queremos recordar
+              con las personas más importantes.
+            </p>
           </div>
         </div>
       </section>
 
       <footer class="action-section">
         <div class="rsvp-card">
-          <h2>¡ESTÁS INVITADO!</h2>
+          <p class="rsvp-kicker">CONFIRMACIÓN LEGACY</p>
+          <h2>Confirma tu asistencia</h2>
+          <p class="rsvp-intro">
+            Nos encantará saber si podremos contar contigo para preparar tu lugar
+            y cuidar cada detalle de la celebración.
+          </p>
 
           <div class="ornament-line">
             <span></span>
@@ -506,7 +566,7 @@
             <input
               type="text"
               id="nombreInvitado"
-              placeholder="Nombre de invitado o familia"
+              placeholder="Nombre completo o familia"
               autocomplete="off"
               aria-label="Nombre de invitado o familia"
             />
@@ -566,7 +626,7 @@
 
             <textarea
               id="mensajeInvitado"
-              placeholder="Puedes dejar un mensaje (opcional)"
+              placeholder="Déjales un mensaje especial (opcional)"
               aria-label="Mensaje opcional"
             ></textarea>
 
@@ -589,7 +649,7 @@
             class="closing-logo"
           />
 
-          <p>Gracias por ser parte de este momento tan especial.</p>
+          <p>Gracias por acompañarnos desde el primer mensaje hasta el último baile.</p>
 
           <span>Aurora & Matteo</span>
         </div>
@@ -610,6 +670,6 @@
       <source src="../../music/violin-luxury.mp3" type="audio/mpeg" />
     </audio>
 
-    <script src="script.js?v=1.7.0"></script>
+    <script src="script.js?v=1.8.0"></script>
   </body>
 </html>

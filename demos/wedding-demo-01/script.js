@@ -1,6 +1,6 @@
 /**
  * INVYRA - Wedding Legacy Demo
- * Version 1.7.0
+ * Version 1.8.0
  * Server-side RSVP validation through Google Sheets / Apps Script
  * Update: Activity 14 Legacy RSVP microinteractions, autosave/restore and server-side duplicate validation
  */
