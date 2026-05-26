@@ -214,12 +214,14 @@ textarea {
 }
 
 .site-nav {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 6px;
 }
 
 .site-nav a {
+    z-index: 1;
     padding: 12px 16px;
     border-radius: 999px;
     color: var(--espresso);
@@ -281,6 +283,93 @@ textarea {
 
 .nav-toggle span:last-child {
     top: 25px;
+}
+
+.nav-toggle::before {
+    content: "";
+    position: absolute;
+    inset: -7px;
+    border-radius: inherit;
+    border: 1px solid rgba(184, 135, 60, 0.24);
+    opacity: 0;
+    transform: scale(0.86);
+    pointer-events: none;
+}
+
+.nav-toggle::after {
+    content: "Menú";
+    position: absolute;
+    right: 48px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--espresso);
+    font-size: 0.58rem;
+    font-weight: 900;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    opacity: 0;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.js-enabled .nav-toggle::before {
+    animation: invyraMenuPulse 2.9s ease-in-out infinite;
+}
+
+.js-enabled .nav-toggle::after {
+    animation: invyraMenuHint 6s ease-in-out infinite;
+}
+
+.nav-toggle:hover,
+.nav-toggle:focus-visible {
+    border-color: rgba(184, 135, 60, 0.56);
+    background: rgba(255, 250, 242, 0.92);
+    box-shadow: 0 12px 30px rgba(36, 29, 24, 0.13), 0 0 0 7px rgba(184, 135, 60, 0.08);
+    outline: none;
+}
+
+.site-nav::before {
+    content: "";
+    position: absolute;
+    inset: 8px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, transparent, rgba(184, 135, 60, 0.10), transparent);
+    opacity: 0;
+    transform: translateX(-18px);
+    pointer-events: none;
+    transition: opacity 0.38s ease, transform 0.38s ease;
+}
+
+.site-nav:hover::before,
+.site-nav:focus-within::before {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+@keyframes invyraMenuPulse {
+    0%, 72%, 100% {
+        opacity: 0;
+        transform: scale(0.86);
+    }
+    16% {
+        opacity: 0.72;
+        transform: scale(1.06);
+    }
+    38% {
+        opacity: 0;
+        transform: scale(1.28);
+    }
+}
+
+@keyframes invyraMenuHint {
+    0%, 60%, 100% {
+        opacity: 0;
+        transform: translateY(-50%) translateX(8px);
+    }
+    10%, 38% {
+        opacity: 0.72;
+        transform: translateY(-50%) translateX(0);
+    }
 }
 
 /* ==============================
@@ -2100,6 +2189,18 @@ body.nav-open .nav-toggle span:last-child {
     transform: rotate(-45deg);
 }
 
+body.nav-open .nav-toggle {
+    border-color: rgba(184, 135, 60, 0.52);
+    background: rgba(255, 250, 242, 0.96);
+    box-shadow: 0 14px 36px rgba(36, 29, 24, 0.14), 0 0 0 8px rgba(184, 135, 60, 0.08);
+}
+
+body.nav-open .nav-toggle::before,
+body.nav-open .nav-toggle::after {
+    animation: none;
+    opacity: 0;
+}
+
 /* ==============================
    RESPONSIVE
    ============================== */
@@ -2210,6 +2311,44 @@ body.nav-open .nav-toggle span:last-child {
         opacity: 1;
         visibility: visible;
         transform: translateY(0);
+    }
+
+
+    body.nav-open .site-nav a {
+        animation: invyraMobileNavItem 0.42s ease both;
+    }
+
+    body.nav-open .site-nav a:nth-child(2) { animation-delay: 0.035s; }
+    body.nav-open .site-nav a:nth-child(3) { animation-delay: 0.07s; }
+    body.nav-open .site-nav a:nth-child(4) { animation-delay: 0.105s; }
+
+    .nav-toggle {
+        width: 50px;
+        height: 50px;
+        box-shadow: 0 10px 26px rgba(36, 29, 24, 0.10);
+    }
+
+    .nav-toggle span {
+        left: 14px;
+        right: 14px;
+    }
+
+    .nav-toggle::after {
+        display: block;
+        top: calc(100% + 7px);
+        right: 50%;
+        transform: translateX(50%);
+        padding: 4px 7px;
+        border: 1px solid rgba(184, 135, 60, 0.20);
+        border-radius: 999px;
+        background: rgba(255, 250, 242, 0.88);
+        box-shadow: 0 8px 22px rgba(36, 29, 24, 0.09);
+        font-size: 0.5rem;
+        letter-spacing: 0.13em;
+    }
+
+    .js-enabled .nav-toggle::after {
+        animation: invyraMobileMenuHint 5.8s ease-in-out infinite;
     }
 
     .site-nav a {
@@ -7048,5 +7187,37 @@ main {
 
     .btn {
         text-align: center;
+    }
+}
+
+
+@keyframes invyraMobileNavItem {
+    from {
+        opacity: 0;
+        transform: translateY(-6px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .js-enabled .nav-toggle::before,
+    .js-enabled .nav-toggle::after,
+    body.nav-open .site-nav a {
+        animation: none !important;
+    }
+}
+
+
+@keyframes invyraMobileMenuHint {
+    0%, 58%, 100% {
+        opacity: 0;
+        transform: translateX(50%) translateY(-4px);
+    }
+    10%, 36% {
+        opacity: 0.74;
+        transform: translateX(50%) translateY(0);
     }
 }

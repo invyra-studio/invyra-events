@@ -1,6 +1,6 @@
 /**
  * INVYRA - Landing Page
- * Version preview-1.0.40
+ * Version preview-1.0.44-nav-partners
  * Premium Digital Events
  */
 document.body.classList.add("js-enabled");
@@ -20,14 +20,17 @@ function initMobileNav() {
     const siteNav = document.getElementById("site-nav");
     const navLinks = document.querySelectorAll(".site-nav a");
     if (!navToggle || !siteNav) return;
+    navToggle.setAttribute("aria-expanded", "false");
     function closeNav() {
         document.body.classList.remove("nav-open");
         navToggle.setAttribute("aria-label", "Abrir menú");
+        navToggle.setAttribute("aria-expanded", "false");
     }
     function toggleNav() {
         document.body.classList.toggle("nav-open");
         const isOpen = document.body.classList.contains("nav-open");
         navToggle.setAttribute("aria-label", isOpen ? "Cerrar menú" : "Abrir menú");
+        navToggle.setAttribute("aria-expanded", String(isOpen));
     }
     navToggle.addEventListener("click", event => {
         event.stopPropagation();
