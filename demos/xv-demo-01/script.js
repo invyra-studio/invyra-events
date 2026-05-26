@@ -1,6 +1,7 @@
 /**
  * INVYRA - XV Glam Demo
- * Version 1.4.0
+ * Version 1.4.2
+ * Hotfix: restaura experiencia premium en móvil con animaciones seguras
  * Nivel: Signature Glam / Legacy visual
  * Update: Activity 14 RSVP glam microinteractions, autosave/restore cleanup and server-side duplicate validation
  */
@@ -21,7 +22,6 @@ const RSVP_DRAFT_KEY = "invyra_xv_valentina_rsvp_draft";
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const isPerformanceMobile = window.matchMedia("(max-width: 768px), (pointer: coarse)").matches;
-const reduceVisualMotion = prefersReducedMotion || isPerformanceMobile;
 
 if (isPerformanceMobile) {
     document.body.classList.add("perf-mobile");
@@ -62,7 +62,12 @@ function entrarExperiencia() {
 
     playMusicSafely(music);
 
-    if (reduceVisualMotion || typeof gsap === "undefined") {
+    if (isPerformanceMobile && !prefersReducedMotion && typeof gsap !== "undefined") {
+        openMobileExperience(splash);
+        return;
+    }
+
+    if (prefersReducedMotion || typeof gsap === "undefined") {
         splash.classList.add("opening");
 
         window.setTimeout(() => {
@@ -167,6 +172,80 @@ function entrarExperiencia() {
         }, "-=0.24");
 }
 
+function openMobileExperience(splash) {
+    splash.classList.add("opening");
+
+    const openTL = gsap.timeline({
+        defaults: {
+            ease: "power3.inOut"
+        },
+        onComplete: () => {
+            splash.classList.add("is-hidden");
+
+            document.body.classList.remove("splash-active");
+            document.body.classList.add("experience-opened");
+
+            window.scrollTo({
+                top: 0,
+                behavior: "auto"
+            });
+
+            window.setTimeout(() => {
+                splash.style.display = "none";
+                revealHero();
+                initScrollReveal();
+            }, 120);
+        }
+    });
+
+    openTL
+        .to(".splash-diamond-frame", {
+            scale: 1.025,
+            opacity: 0.62,
+            duration: 0.32
+        })
+        .to(".stage-beam", {
+            opacity: 0.58,
+            duration: 0.32,
+            stagger: 0.035
+        }, "<")
+        .to(".splash-content", {
+            y: -14,
+            scale: 1.018,
+            duration: 0.36
+        }, "<")
+        .to(".curtain-left", {
+            xPercent: -96,
+            opacity: 0.68,
+            duration: 0.62
+        }, "-=0.04")
+        .to(".curtain-right", {
+            xPercent: 96,
+            opacity: 0.68,
+            duration: 0.62
+        }, "<")
+        .to(".runway-floor", {
+            opacity: 0.12,
+            y: 34,
+            duration: 0.45
+        }, "-=0.42")
+        .to(".splash-content", {
+            opacity: 0,
+            y: -38,
+            scale: 0.96,
+            duration: 0.46
+        }, "-=0.32")
+        .to(".glam-orb, .glitter-layer, .diamond-rain, .stage-beam, .splash-diamond-frame", {
+            opacity: 0,
+            duration: 0.42,
+            stagger: 0.015
+        }, "-=0.28")
+        .to("#splash-screen", {
+            opacity: 0,
+            duration: 0.28
+        }, "-=0.22");
+}
+
 window.entrarExperiencia = entrarExperiencia;
 
 function playMusicSafely(music) {
@@ -176,7 +255,7 @@ function playMusicSafely(music) {
 
     music.play()
         .then(() => {
-            if (typeof gsap !== "undefined" && !reduceVisualMotion) {
+            if (typeof gsap !== "undefined" && !prefersReducedMotion) {
                 gsap.to(music, {
                     volume: 0.34,
                     duration: 3,
@@ -200,8 +279,94 @@ function revealHero() {
         ".hero-atmosphere, .reveal-item, .reveal-title, .hero-info-card, .hero-runway, .hero-light-bars, .hero-diamond-frame, .hero-lens-flare"
     );
 
-    if (reduceVisualMotion || typeof gsap === "undefined") {
+    if (prefersReducedMotion || typeof gsap === "undefined") {
         fallbackElements.forEach(showElementImmediately);
+        return;
+    }
+
+    if (isPerformanceMobile) {
+        const revealTL = gsap.timeline({
+            delay: 0.08,
+            defaults: {
+                ease: "power3.out",
+                duration: 0.82
+            }
+        });
+
+        revealTL
+            .to(".hero-atmosphere", {
+                opacity: 1,
+                duration: 0.58
+            })
+            .fromTo(".hero-diamond-frame", {
+                opacity: 0,
+                scale: 0.86
+            }, {
+                opacity: 0.72,
+                scale: 1,
+                duration: 0.72
+            }, "-=0.28")
+            .to(".brand-logo-img, .hero-kicker", {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                filter: "blur(0px)",
+                duration: 0.62,
+                stagger: 0.07
+            }, "-=0.32")
+            .fromTo(".reveal-title", {
+                opacity: 0,
+                y: 42,
+                scale: 1.08,
+                letterSpacing: "0.12em"
+            }, {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                letterSpacing: "0.02em",
+                duration: 0.86,
+                ease: "expo.out"
+            }, "-=0.24")
+            .to(".celebrant-name", {
+                opacity: 1,
+                y: 0,
+                filter: "blur(0px)",
+                duration: 0.66
+            }, "-=0.54")
+            .to(".hero-info-card", {
+                opacity: 1,
+                y: 0,
+                filter: "blur(0px)",
+                duration: 0.62
+            }, "-=0.42")
+            .to(".hero-runway, .hero-light-bars", {
+                opacity: 0.48,
+                duration: 0.58
+            }, "-=0.52");
+
+        gsap.to(".hero-content", {
+            y: -4,
+            duration: 5.6,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        });
+
+        gsap.to(".hero-diamond-frame", {
+            scale: 1.018,
+            opacity: 0.82,
+            duration: 5.2,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        });
+
+        if (typeof ScrollTrigger !== "undefined") {
+            window.setTimeout(() => {
+                ScrollTrigger.refresh();
+            }, 450);
+        }
+
         return;
     }
 
@@ -320,7 +485,7 @@ function initScrollReveal() {
 
     if (!sections.length) return;
 
-    if (reduceVisualMotion || typeof IntersectionObserver === "undefined") {
+    if (prefersReducedMotion || typeof IntersectionObserver === "undefined") {
         sections.forEach(showElementImmediately);
         return;
     }
@@ -346,7 +511,7 @@ function initScrollReveal() {
 function showSection(section) {
     if (!section) return;
 
-    if (typeof gsap !== "undefined" && !reduceVisualMotion) {
+    if (typeof gsap !== "undefined" && !prefersReducedMotion) {
         gsap.to(section, {
             opacity: 1,
             y: 0,
@@ -487,7 +652,7 @@ function actualizarEstadoAsistencia() {
 function playRsvpGlamPulse() {
     const rsvpCard = document.querySelector(".rsvp-card");
 
-    if (!rsvpCard || typeof gsap === "undefined" || reduceVisualMotion) return;
+    if (!rsvpCard || typeof gsap === "undefined" || prefersReducedMotion) return;
 
     gsap.fromTo(rsvpCard, {
         boxShadow: "0 0 0 rgba(255, 138, 203, 0)"
@@ -652,7 +817,7 @@ function showModal(title, message) {
     setModalContent(title, message);
     modal.classList.remove("hidden");
 
-    if (typeof gsap !== "undefined" && !reduceVisualMotion) {
+    if (typeof gsap !== "undefined" && !prefersReducedMotion) {
         gsap.from(".modal-content", {
             opacity: 0,
             scale: 0.86,
@@ -786,7 +951,7 @@ function marcarCampoInvalido(campo) {
 
     campo.classList.add("field-warning");
 
-    if (typeof gsap !== "undefined" && !reduceVisualMotion) {
+    if (typeof gsap !== "undefined" && !prefersReducedMotion) {
         gsap.to(campo, {
             x: 8,
             duration: 0.08,

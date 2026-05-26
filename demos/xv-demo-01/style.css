@@ -2031,91 +2031,117 @@ a {
   }
 }
 
-
 /* ==============================
-   HOTFIX 1.4.1 — MOBILE FLASH / COMPOSITOR STABILITY
-   Objetivo: evitar destellos/parpadeos en móviles Samsung/Chrome
-   al abrir la demo XV reduciendo capas animadas con blur, shimmer y GSAP.
+   HOTFIX 1.4.2 — MOBILE PREMIUM STABILITY
+   Objetivo: conservar la experiencia glam en móvil sin provocar destellos.
+   En lugar de apagar todas las animaciones, se reducen las capas más costosas
+   y se sustituyen transiciones pesadas por movimiento suave y estable.
    ============================== */
 
 body.perf-mobile #splash-screen,
-body.perf-mobile .hero-section {
+body.perf-mobile .hero-section,
+body.perf-mobile .hero-bg,
+body.perf-mobile .hero-atmosphere {
   transform: translateZ(0);
   backface-visibility: hidden;
-  contain: paint;
-}
-
-body.perf-mobile .glam-orb,
-body.perf-mobile .glitter-layer,
-body.perf-mobile .diamond-rain,
-body.perf-mobile .stage-beam,
-body.perf-mobile .splash-diamond-frame,
-body.perf-mobile .hero-bg::before,
-body.perf-mobile .hero-bg::after,
-body.perf-mobile .hero-spotlight,
-body.perf-mobile .hero-glitter,
-body.perf-mobile .hero-shine,
-body.perf-mobile .hero-diamonds,
-body.perf-mobile .hero-runway,
-body.perf-mobile .hero-light-bars,
-body.perf-mobile .hero-diamond-frame,
-body.perf-mobile .hero-lens-flare {
-  animation: none !important;
-}
-
-body.perf-mobile .hero-shine,
-body.perf-mobile .hero-light-bars,
-body.perf-mobile .hero-lens-flare {
-  display: none !important;
-}
-
-body.perf-mobile .glam-orb,
-body.perf-mobile .hero-bg::before,
-body.perf-mobile .hero-spotlight,
-body.perf-mobile .stage-beam {
-  filter: blur(14px) !important;
+  isolation: isolate;
 }
 
 body.perf-mobile .glam-orb {
-  opacity: 0.42;
+  filter: blur(24px);
+  opacity: 0.58;
+  animation-duration: 10s;
 }
 
-body.perf-mobile .glitter-layer,
-body.perf-mobile .diamond-rain,
-body.perf-mobile .hero-glitter,
-body.perf-mobile .hero-diamonds {
-  opacity: 0.28;
+body.perf-mobile .glitter-layer {
+  opacity: 0.54;
+  animation-duration: 6.8s;
+}
+
+body.perf-mobile .diamond-rain {
+  opacity: 0.34;
+  animation-duration: 18s;
+}
+
+body.perf-mobile .stage-beam,
+body.perf-mobile .hero-spotlight {
+  filter: blur(16px);
+  opacity: 0.34;
 }
 
 body.perf-mobile .splash-diamond-frame,
 body.perf-mobile .hero-diamond-frame {
-  opacity: 0.32;
-  box-shadow: inset 0 0 22px rgba(255,255,255,0.04);
+  box-shadow:
+    0 0 26px rgba(216,107,168,0.12),
+    inset 0 0 22px rgba(255,255,255,0.045);
 }
 
-body.perf-mobile .splash-title,
+body.perf-mobile .hero-bg::before {
+  filter: blur(24px);
+  opacity: 0.66;
+  animation-duration: 11s;
+}
+
+body.perf-mobile .hero-bg::after {
+  opacity: 0.36;
+  animation-duration: 13s;
+}
+
+body.perf-mobile .hero-glitter {
+  opacity: 0.48;
+  animation-duration: 13s;
+}
+
+body.perf-mobile .hero-diamonds {
+  opacity: 0.24;
+  animation-duration: 22s;
+}
+
+body.perf-mobile .hero-shine,
+body.perf-mobile .hero-lens-flare {
+  display: none !important;
+}
+
+body.perf-mobile .hero-light-bars {
+  opacity: 0;
+  animation-duration: 18s;
+}
+
 body.perf-mobile .main-title,
-body.perf-mobile .celebrant-name {
-  filter: none !important;
-  text-shadow: 0 0 18px rgba(216, 107, 168, 0.16);
+body.perf-mobile .celebrant-name,
+body.perf-mobile .splash-title {
+  filter: drop-shadow(0 0 16px rgba(216,107,168,0.16));
 }
 
-body.perf-mobile .splash-content,
-body.perf-mobile .hero-content,
 body.perf-mobile .reveal-item,
-body.perf-mobile .reveal-title,
+body.perf-mobile .reveal-title {
+  filter: blur(6px);
+  will-change: opacity, transform;
+}
+
 body.perf-mobile .section-reveal {
-  will-change: auto !important;
+  transform: translateY(56px);
 }
 
-body.perf-mobile #splash-screen.is-hidden {
-  transform: none;
+body.perf-mobile .btn-start-experience::before,
+body.perf-mobile .map-button::before,
+body.perf-mobile .btn-rsvp::before {
+  opacity: 0.55;
 }
 
-@media (max-width: 768px) {
-  .btn-start-experience::before,
-  .map-button::before,
-  .btn-rsvp::before {
-    display: none;
+@media (max-width: 420px) {
+  body.perf-mobile .hero-spotlight,
+  body.perf-mobile .stage-beam {
+    opacity: 0.26;
+    filter: blur(14px);
+  }
+
+  body.perf-mobile .hero-glitter {
+    opacity: 0.42;
+  }
+
+  body.perf-mobile .hero-diamonds,
+  body.perf-mobile .diamond-rain {
+    opacity: 0.2;
   }
 }
