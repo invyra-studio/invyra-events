@@ -130,13 +130,11 @@ button { font: inherit; }
 .site-nav .nav-cta { color: var(--cream); background: linear-gradient(135deg, var(--espresso), #3a2c24); box-shadow: 0 10px 24px rgba(36,29,24,0.16); }
 
 .nav-toggle { display: none; width: 44px; height: 44px; border: 1px solid rgba(184,135,60,0.30); border-radius: 50%; background: rgba(255,255,255,0.62); cursor: pointer; position: relative; }
-.nav-toggle span { position: absolute; left: 12px; right: 12px; height: 2px; background: var(--espresso); transition: transform 0.28s ease, top 0.28s ease, opacity 0.22s ease; }
-.nav-toggle span:nth-child(1) { top: 15px; }
-.nav-toggle span:nth-child(2) { top: 21px; }
-.nav-toggle span:nth-child(3) { top: 27px; }
-body.nav-open .nav-toggle span:nth-child(1) { top: 21px; transform: rotate(45deg); }
-body.nav-open .nav-toggle span:nth-child(2) { opacity: 0; transform: scaleX(0.45); }
-body.nav-open .nav-toggle span:nth-child(3) { top: 21px; transform: rotate(-45deg); }
+.nav-toggle span { position: absolute; left: 12px; right: 12px; height: 2px; background: var(--espresso); transition: transform 0.28s ease, top 0.28s ease; }
+.nav-toggle span:first-child { top: 17px; }
+.nav-toggle span:last-child { top: 25px; }
+body.nav-open .nav-toggle span:first-child { top: 21px; transform: rotate(45deg); }
+body.nav-open .nav-toggle span:last-child { top: 21px; transform: rotate(-45deg); }
 
 main { position: relative; z-index: 1; }
 .section-block, .portfolio-hero { width: min(calc(100% - 36px), 1180px); margin: 0 auto; }
@@ -1414,41 +1412,167 @@ main { text-rendering: geometricPrecision; }
 }
 
 
-/* ==============================
-   PORTFOLIO 1.0.46 — Demo sync after upgrades
-   ============================== */
-.hero-card-pills span:nth-child(1)::after {
-  content: " + desktop editorial";
-  opacity: 0.72;
+/* ==========================================================
+   INVYRA — Homologación Visual Previa v1.0.48
+   Espaciado, menú limpio y jerarquía tipográfica consistente.
+   ========================================================== */
+:root {
+  --iv-pre-section-space: clamp(4.25rem, 6.2vw, 6.2rem);
+  --iv-pre-section-space-tight: clamp(3.2rem, 5vw, 4.8rem);
+  --iv-pre-hero-title: clamp(3.25rem, 5.9vw, 5.9rem);
+  --iv-pre-section-title: clamp(2.45rem, 4.35vw, 4.35rem);
+  --iv-pre-card-title: clamp(1.75rem, 2.6vw, 2.85rem);
+  --iv-pre-body: clamp(0.95rem, 1vw, 1.06rem);
+  --iv-pre-micro: 0.7rem;
 }
 
-.featured-actions {
-  gap: 12px;
+.site-nav a[href*="#qr"],
+.site-nav a[href*="#faq"] { display: none !important; }
+
+.nav-toggle {
+  position: relative;
+  gap: 4px !important;
+  min-width: 44px;
+  min-height: 44px;
 }
 
-.demo-card p {
-  min-height: 92px;
+.nav-toggle span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  border-radius: 999px;
+  transform-origin: center;
 }
 
-.demo-card .demo-visual {
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,0.32),
-    0 18px 46px rgba(36,29,24,0.10);
+body.nav-open .nav-toggle span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg) !important;
+}
+body.nav-open .nav-toggle span:nth-child(2) {
+  opacity: 0 !important;
+  transform: scaleX(0.35) !important;
+}
+body.nav-open .nav-toggle span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg) !important;
 }
 
-.demo-card-glam .demo-visual,
-.demo-card-featured .demo-visual {
-  border-color: rgba(184,135,60,0.28);
+section,
+.section-block,
+.packages-section,
+.extras-section,
+.demos-section,
+.process-section,
+.faq-section,
+.final-cta-section,
+.quote-form-section,
+.intro-section,
+.problem-section,
+.include-section,
+.extras-gateway-section,
+.experience-gateway-section,
+.experience-teaser-section,
+.quote-compact-section,
+.mobile-proof-section,
+.lived-experience-section,
+.qr-section {
+  padding-top: var(--iv-pre-section-space) !important;
+  padding-bottom: var(--iv-pre-section-space) !important;
 }
 
-.demo-card-dark .demo-visual {
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,0.08),
-    0 22px 58px rgba(0,0,0,0.22);
+section + section,
+.section-block + .section-block {
+  margin-top: 0 !important;
 }
 
-@media (max-width: 760px) {
-  .demo-card p {
-    min-height: auto;
+.hero-section,
+.experience-hero,
+.portfolio-hero,
+.quote-page-hero {
+  padding-top: clamp(7.2rem, 9.4vw, 9.8rem) !important;
+  padding-bottom: clamp(3.5rem, 5.4vw, 5.4rem) !important;
+}
+
+.hero-title,
+.experience-hero h1,
+.hero-copy-block h1,
+.quote-page-hero .section-title {
+  font-size: var(--iv-pre-hero-title) !important;
+  line-height: 0.9 !important;
+  letter-spacing: -0.045em !important;
+  text-wrap: balance;
+}
+
+.section-title,
+.section-heading h2,
+.section-heading h2,
+.featured-copy h2,
+.decision-shell h2,
+.final-cta-shell h2,
+.quote-content .section-title {
+  font-size: var(--iv-pre-section-title) !important;
+  line-height: 0.94 !important;
+  letter-spacing: -0.035em !important;
+  text-wrap: balance;
+}
+
+.package-card h3,
+.experience-card h3,
+.demo-card h3,
+.path-card h3,
+.step-card h3,
+.feature-card h3,
+.quote-paths article strong,
+.form-intro h3 {
+  font-size: var(--iv-pre-card-title) !important;
+  line-height: 1 !important;
+  text-wrap: balance;
+}
+
+.section-copy,
+.hero-copy,
+.hero-subtitle,
+.hero-lead,
+.section-heading p:not(.section-kicker),
+.hero-copy-block p:not(.eyebrow),
+.demo-card p,
+.package-card p,
+.quote-card p,
+.quote-card label,
+.quote-card input,
+.quote-card select,
+.quote-card textarea,
+.featured-copy p,
+.decision-shell p,
+.final-cta-shell p {
+  font-size: var(--iv-pre-body) !important;
+  line-height: 1.62 !important;
+}
+
+.section-kicker,
+.eyebrow,
+.site-nav a,
+.btn,
+.package-label,
+.badge,
+.pill {
+  font-size: var(--iv-pre-micro) !important;
+  letter-spacing: 0.13em !important;
+}
+
+@media (max-width: 820px) {
+  :root {
+    --iv-pre-section-space: clamp(3.25rem, 8.8vw, 4.65rem);
+    --iv-pre-hero-title: clamp(2.95rem, 13vw, 4.55rem);
+    --iv-pre-section-title: clamp(2.28rem, 10.6vw, 3.85rem);
+    --iv-pre-card-title: clamp(1.62rem, 8vw, 2.55rem);
+    --iv-pre-body: 0.95rem;
+    --iv-pre-micro: 0.64rem;
+  }
+
+  .hero-section,
+  .experience-hero,
+  .portfolio-hero,
+  .quote-page-hero {
+    padding-top: 7rem !important;
+    padding-bottom: 3.25rem !important;
   }
 }
