@@ -1,0 +1,12 @@
+<svg width="720" height="920" viewBox="0 0 720 920" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="720" height="920" fill="#120D0B"/>
+<circle cx="390" cy="290" r="220" fill="#5D242E" opacity="0.54"/>
+<circle cx="475" cy="620" r="250" fill="#D9B86F" opacity="0.16"/>
+<rect x="74" y="94" width="572" height="732" rx="44" fill="#FFF8EF" opacity="0.09" stroke="#FFF8EF" stroke-opacity="0.18"/>
+<path d="M151 596C190 504 276 459 360 459C444 459 530 504 569 596" stroke="#D9B86F" stroke-width="8" stroke-linecap="round" opacity="0.65"/>
+<path d="M185 590C218 526 286 494 360 494C434 494 502 526 535 590" stroke="#D79A86" stroke-width="6" stroke-linecap="round" opacity="0.82"/>
+<ellipse cx="360" cy="629" rx="178" ry="54" fill="#FFF8EF" opacity="0.13"/>
+<path d="M244 368C270 315 334 306 360 358C392 302 462 318 477 379C508 365 550 386 554 428H178C181 383 215 356 244 368Z" fill="#D79A86" opacity="0.86"/>
+<path d="M262 357C281 322 326 319 350 352C374 313 424 323 436 366C459 357 491 372 495 402H217C219 371 242 352 262 357Z" fill="#FFF8EF" opacity="0.68"/>
+<text x="360" y="744" text-anchor="middle" fill="#D9B86F" font-family="Georgia, serif" font-size="42">Detalle 03</text>
+</svg>

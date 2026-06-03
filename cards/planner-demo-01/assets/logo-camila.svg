@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="220" viewBox="0 0 640 220" fill="none">
+<rect width="640" height="220" rx="32" fill="#0F0F11"/>
+<g opacity="0.08"><circle cx="538" cy="40" r="130" fill="#E5C691"/></g>
+<path d="M143.669 150V69.7091H183.505C208.888 69.7091 222.625 82.4576 222.625 101.654C222.625 118.748 209.515 132.246 184.269 132.246H160.763V150H143.669ZM160.763 117.508H181.707C193.442 117.508 201.185 111.482 201.185 101.905C201.185 91.4508 194.07 85.3041 181.707 85.3041H160.763V117.508Z" fill="#E7C893"/>
+<path d="M270.676 150V69.7091H322.446V85.3041H287.77V102.784H318.623V117.886H287.77V134.405H323.202V150H270.676Z" fill="#E7C893"/>
+<path d="M367.553 150V69.7091H384.647L423.116 120.196V69.7091H440.085V150H424.741L384.521 97.4943V150H367.553Z" fill="#E7C893"/>
+<text x="470" y="95" fill="#F5ECD8" font-family="Georgia,Times New Roman,serif" font-size="44" letter-spacing="3">CAMILA RÍOS</text>
+<text x="470" y="134" fill="#C6B08A" font-family="Arial,Helvetica,sans-serif" font-size="18" letter-spacing="6">EVENT PLANNER</text>
+<line x1="470" y1="150" x2="608" y2="150" stroke="#E7C893" stroke-width="2" opacity="0.55"/>
+</svg>
