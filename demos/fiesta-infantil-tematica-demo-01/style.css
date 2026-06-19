@@ -1,0 +1,1455 @@
+
+:root {
+  --cream: #f8f1de;
+  --ivory: #fff7e5;
+  --ink: #0b1209;
+  --coal: #050905;
+  --green: #64b946;
+  --green-dark: #17391d;
+  --lime: #99db69;
+  --gold: #d7ad4d;
+  --gold-soft: #f2db88;
+  --brown: #6d4527;
+  --muted: rgba(255, 247, 226, 0.78);
+  --dark-muted: rgba(24, 31, 20, 0.72);
+  --line: rgba(215, 173, 77, 0.26);
+  --shadow: 0 28px 80px rgba(8, 14, 8, 0.22);
+  --max: 1040px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 12% 4%, rgba(255, 255, 255, 0.7), transparent 24%),
+    radial-gradient(circle at 88% 12%, rgba(100, 185, 70, 0.22), transparent 28%),
+    linear-gradient(180deg, #faf4e4 0%, #e9e5c9 50%, #cbd5a9 100%);
+  font-family: "Montserrat", system-ui, sans-serif;
+  overflow-x: hidden;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(39, 83, 31, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(39, 83, 31, 0.06) 1px, transparent 1px);
+  background-size: 34px 34px;
+}
+body.locked { overflow: hidden; }
+img { display: block; max-width: 100%; }
+button,input,select,textarea { font: inherit; }
+
+.splash-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  padding: 22px;
+  background: linear-gradient(145deg, #f7f1de, #193a20 70%, #071008);
+  transition: opacity .85s ease, visibility .85s ease;
+}
+.splash-screen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+.splash-image-bg {
+  position: absolute;
+  inset: -6%;
+  background-image:
+    linear-gradient(180deg, rgba(6,11,6,.36), rgba(6,11,6,.72)),
+    url('./assets/hero-jose.jpg');
+  background-size: cover;
+  background-position: center;
+  filter: blur(22px) saturate(1.08);
+  transform: scale(1.12);
+  opacity: .96;
+}
+.splash-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+.splash-vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at center, transparent 18%, rgba(0,0,0,.18) 55%, rgba(0,0,0,.42) 100%),
+    radial-gradient(circle at 50% 18%, rgba(255,255,255,.14), transparent 26%);
+}
+.splash-content {
+  position: relative;
+  z-index: 2;
+  width: min(560px, 100%);
+  min-height: 620px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  padding: 40px 28px;
+  text-align: center;
+  color: var(--ivory);
+  border-radius: 46px;
+  border: 1px solid rgba(215,173,77,.24);
+  background: linear-gradient(180deg, rgba(6,13,7,.54), rgba(6,13,7,.72));
+  box-shadow: 0 36px 90px rgba(0,0,0,.34), inset 0 0 0 1px rgba(255,255,255,.08);
+  backdrop-filter: blur(18px);
+}
+.event-badge {
+  width: 82px; height: 82px; display: grid; place-items: center; border-radius: 22px;
+  color: var(--gold-soft); background: #080d08; border: 1px solid rgba(215,173,77,.36);
+  box-shadow: 0 20px 44px rgba(0,0,0,.28); font-family: "Cormorant Garamond", serif; font-size: 3rem; line-height: 1;
+}
+.splash-kicker,.section-kicker,.hero-kicker,.rsvp-kicker,.modal-kicker {
+  margin: 0; color: var(--gold-soft); font-size: .72rem; font-weight: 900; letter-spacing: .22em; text-transform: uppercase;
+}
+.splash-kicker { margin-top: 26px; }
+.splash-content h1 {
+  margin: 14px 0 0; font-family: "Cormorant Garamond", serif; font-size: clamp(5rem, 18vw, 9rem); line-height: .78; font-weight: 600;
+}
+.splash-subtitle {
+  margin: 6px 0 0; color: var(--gold-soft); font-size: .92rem; font-weight: 900; letter-spacing: .24em; text-transform: uppercase;
+}
+.splash-copy {
+  max-width: 420px; margin: 20px 0 0; color: var(--muted); font-weight: 650; line-height: 1.7;
+}
+.open-invite-btn {
+  margin-top: 34px; min-height: 56px; padding: 0 34px; border: 1px solid rgba(255,255,255,.16);
+  border-radius: 999px; color: #0e150d; background: linear-gradient(135deg, var(--gold-soft), var(--green));
+  box-shadow: 0 18px 44px rgba(0,0,0,.28); cursor: pointer; font-size: .75rem; font-weight: 900; letter-spacing: .14em; text-transform: uppercase;
+}
+.splash-note { margin: 16px 0 0; color: var(--muted); font-weight: 650; }
+
+.invitation { opacity: 0; transform: translateY(16px); transition: opacity .85s ease, transform .85s ease; }
+.invitation.visible { opacity: 1; transform: translateY(0); }
+
+.hero-section {
+  position: relative; min-height: 100svh; display: grid; place-items: center; overflow: hidden; padding: 34px 18px; color: var(--ivory); text-align: center;
+}
+.hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 24%, rgba(255,255,255,.06), transparent 22%), linear-gradient(180deg, rgba(3,7,4,.28), rgba(3,7,4,.74));
+}
+.hero-dots { position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.38) 1px, transparent 1px); background-size: 19px 19px; opacity: .55; }
+.hero-content { position: relative; z-index: 2; width: min(780px, 100%); display: grid; justify-items: center; }
+.hero-badge { margin-bottom: 24px; }
+.hero-script {
+  margin: 18px 0 0; color: var(--gold-soft); font-family: "Cormorant Garamond", serif; font-size: clamp(2.8rem, 9vw, 5.6rem); font-style: italic; line-height: .84;
+}
+.hero-content h1 { margin: 8px 0 0; font-family: "Cormorant Garamond", serif; font-size: clamp(5.6rem, 18vw, 11rem); line-height: .76; font-weight: 600; }
+.hero-theme { margin: 10px 0 0; color: var(--gold-soft); font-size: .9rem; font-weight: 900; letter-spacing: .24em; text-transform: uppercase; }
+.hero-info-card {
+  width: min(460px, 100%); margin-top: 30px; padding: 22px 24px; border-radius: 28px; background: rgba(6, 13, 7, .58); border: 1px solid rgba(255,255,255,.14); backdrop-filter: blur(12px); box-shadow: 0 22px 54px rgba(0,0,0,.24);
+}
+.hero-info-card p { margin: 0; }
+.hero-info-card .date { color: var(--gold-soft); font-weight: 900; letter-spacing: .18em; text-transform: uppercase; }
+.hero-info-card .place { margin-top: 10px; font-family: "Cormorant Garamond", serif; font-size: 1.7rem; }
+.hero-info-card .copy { margin-top: 10px; color: var(--muted); font-size: .96rem; line-height: 1.6; }
+
+section, footer.action-section { width: min(calc(100% - 30px), var(--max)); margin: 0 auto; }
+.countdown-section { padding: 72px 0 42px; text-align: center; }
+.countdown-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 24px; }
+.countdown-grid article,
+.details-grid article,
+.timeline article,
+.message-card,
+.dress-card,
+.gift-card,
+.rsvp-card {
+  border-radius: 32px; border: 1px solid rgba(94, 137, 65, .18);
+  background: radial-gradient(circle at 12% 0%, rgba(255,255,255,.72), transparent 36%), rgba(255, 249, 232, .72);
+  box-shadow: var(--shadow), inset 0 0 0 1px rgba(255,255,255,.42);
+}
+.countdown-grid article { min-height: 140px; display: grid; place-items: center; padding: 20px; }
+.countdown-grid strong { display: block; font-family: "Cormorant Garamond", serif; font-size: clamp(3rem, 6vw, 5rem); line-height: .9; }
+.countdown-grid span { display: block; color: #8d682e; font-size: .68rem; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; }
+
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .76s ease, transform .76s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+.message-section { padding: 38px 0; }
+.message-card { padding: clamp(28px, 5vw, 54px); text-align: center; }
+.quote-symbol { margin: 0; color: #8d682e; font-size: 2.4rem; }
+.message-text { max-width: 760px; margin: 16px auto 0; font-family: "Cormorant Garamond", serif; font-size: clamp(2rem, 5vw, 3.8rem); line-height: 1.05; }
+.message-sign { margin: 18px 0 0; color: var(--dark-muted); font-weight: 800; }
+
+.story-section { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; align-items: center; padding: 76px 0 46px; }
+.story-image, .gallery-main, .gallery-stack img { overflow: hidden; border-radius: 36px; border: 1px solid var(--line); box-shadow: var(--shadow); }
+.story-image { min-height: 590px; }
+.story-image img, .gallery-main img, .gallery-stack img { width: 100%; height: 100%; object-fit: cover; }
+.story-copy { padding: clamp(10px, 4vw, 36px); }
+.story-copy h2, .section-title, .dress-card h2, .gift-card h2, .rsvp-card h2 {
+  margin: 14px 0 0; font-family: "Cormorant Garamond", serif; font-size: clamp(3rem, 7vw, 5.8rem); line-height: .86; font-weight: 600;
+}
+.story-copy p, .details-grid p, .timeline p, .dress-card p, .gift-card p, .rsvp-intro, .closing-section span { color: var(--dark-muted); font-weight: 650; line-height: 1.7; }
+.mission-tags { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
+.mission-tags span {
+  min-height: 38px; display: inline-flex; align-items: center; padding: 0 14px; border-radius: 999px; color: #1d3317; background: rgba(255,255,255,.64); border: 1px solid rgba(94,137,65,.18); font-size: .7rem; font-weight: 900; letter-spacing: .12em; text-transform: uppercase;
+}
+
+.details-section, .agenda-section, .gallery-section { padding: 62px 0; text-align: center; }
+.details-grid, .timeline { display: grid; gap: 16px; margin-top: 28px; }
+.details-grid { grid-template-columns: repeat(3, 1fr); }
+.details-grid article, .timeline article { min-height: 220px; padding: 28px; text-align: left; }
+.details-grid span, .timeline span { color: #8d682e; font-size: .7rem; font-weight: 900; letter-spacing: .18em; text-transform: uppercase; }
+.details-grid h3, .timeline strong { display: block; margin: 14px 0 0; font-family: "Cormorant Garamond", serif; font-size: 2.5rem; line-height: .95; }
+.timeline { grid-template-columns: repeat(4, 1fr); }
+.dress-section, .gift-section { padding: 44px 0; }
+.dress-card, .gift-card { padding: clamp(28px, 5vw, 54px); text-align: center; }
+.dress-card p, .gift-card p { max-width: 720px; margin: 16px auto 0; }
+.palette { display: flex; justify-content: center; gap: 12px; margin-top: 28px; }
+.palette span { width: 58px; height: 58px; border-radius: 20px; border: 1px solid rgba(0,0,0,.12); box-shadow: 0 12px 26px rgba(0,0,0,.12); }
+.tone-green { background: var(--green); }
+.tone-black { background: var(--coal); }
+.tone-brown { background: var(--brown); }
+.tone-gold { background: var(--gold); }
+.gallery-grid { display: grid; grid-template-columns: 1.18fr .82fr; gap: 18px; margin-top: 28px; }
+.gallery-main { min-height: 720px; }
+.gallery-stack { display: grid; gap: 18px; }
+.gallery-stack img { min-height: 351px; }
+
+.action-section { padding: 76px 0 88px; }
+.rsvp-card { padding: clamp(28px, 5vw, 54px); text-align: center; }
+.rsvp-intro { max-width: 680px; margin: 16px auto 0; }
+.ornament-line {
+  display: flex; justify-content: center; align-items: center; margin: 22px auto 0; width: 160px; height: 18px;
+}
+.ornament-line span {
+  position: relative; width: 100%; height: 1px; background: rgba(11,18,9,.22);
+}
+.ornament-line span::before {
+  content: ""; position: absolute; left: 50%; top: 50%; width: 10px; height: 10px; border-radius: 50%; background: var(--gold); transform: translate(-50%, -50%);
+}
+.rsvp-envelope-icon {
+  width: 48px; height: 48px; margin: 18px auto 0; display: grid; place-items: center; border-radius: 50%; border: 1px solid rgba(94,137,65,.2); color: #8d682e; background: rgba(255,255,255,.58); font-size: 1rem;
+}
+.rsvp-form { width: min(560px, 100%); margin: 22px auto 0; display: grid; gap: 14px; }
+.rsvp-form input[type="text"], .rsvp-form select, .rsvp-form textarea {
+  width: 100%; min-height: 54px; padding: 0 16px; border: 1px solid rgba(94,137,65,.22); border-radius: 18px; color: var(--ink); background: rgba(255,255,255,.76); outline: none;
+}
+.rsvp-form textarea { min-height: 120px; padding-top: 14px; resize: vertical; }
+.attendance-group { text-align: center; }
+.attendance-group p { margin: 0 0 10px; color: var(--ink); font-size: .82rem; font-weight: 800; }
+.attendance-options { display: inline-flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.attendance-options label { position: relative; }
+.attendance-options input { position: absolute; opacity: 0; pointer-events: none; }
+.attendance-options span {
+  min-height: 46px; display: inline-flex; align-items: center; justify-content: center; padding: 0 18px; border-radius: 999px; border: 1px solid rgba(94,137,65,.22); background: rgba(255,255,255,.7); color: var(--ink); font-size: .78rem; font-weight: 800; cursor: pointer; transition: .25s ease;
+}
+.attendance-options input:checked + span {
+  color: var(--ivory); background: linear-gradient(135deg, #1a341b, #4d8f37); border-color: rgba(0,0,0,0);
+}
+.rsvp-live-message { margin: 0; color: #8d682e; font-size: .86rem; font-weight: 800; }
+.rsvp-field-group { text-align: left; }
+.rsvp-field-group label { display: block; margin: 0 0 8px; color: var(--ink); font-size: .72rem; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
+.btn-rsvp {
+  min-height: 54px; border: 0; border-radius: 999px; color: #0e150d; background: linear-gradient(135deg, var(--gold-soft), var(--green)); cursor: pointer; font-size: .75rem; font-weight: 900; letter-spacing: .14em; text-transform: uppercase;
+}
+.closing-section { margin-top: 28px; text-align: center; }
+.closing-section p { margin: 0; font-family: "Cormorant Garamond", serif; font-size: clamp(2.8rem, 7vw, 5.2rem); line-height: .9; }
+
+.modal {
+  position: fixed; inset: 0; z-index: 1200; display: grid; place-items: center; padding: 18px; background: rgba(5,9,5,.58); backdrop-filter: blur(8px);
+}
+.modal.hidden { display: none; }
+.modal-card {
+  width: min(460px, 100%); padding: 34px 26px 26px; border-radius: 30px; border: 1px solid rgba(255,255,255,.1); background: linear-gradient(180deg, rgba(255,250,236,.95), rgba(251,243,224,.92)); box-shadow: 0 30px 80px rgba(0,0,0,.26); text-align: center; position: relative;
+}
+.modal-close {
+  position: absolute; top: 10px; right: 12px; width: 34px; height: 34px; border-radius: 50%; border: 1px solid rgba(0,0,0,.08); background: rgba(255,255,255,.76); cursor: pointer; font-size: 1.3rem; line-height: 1;
+}
+.modal-card h3 {
+  margin: 10px 0 0; font-family: "Cormorant Garamond", serif; font-size: 2.4rem; line-height: .95;
+}
+.modal-card p#modal-message { margin: 14px 0 0; color: var(--dark-muted); line-height: 1.7; }
+.modal-btn {
+  margin-top: 18px; min-height: 48px; padding: 0 22px; border: 0; border-radius: 999px; color: #0e150d; background: linear-gradient(135deg, var(--gold-soft), var(--green)); cursor: pointer; font-size: .74rem; font-weight: 900; letter-spacing: .12em; text-transform: uppercase;
+}
+
+.music-toggle {
+  position: fixed; right: 18px; bottom: 18px; z-index: 60; min-height: 50px; display: inline-flex; align-items: center; gap: 10px; padding: 0 18px; border: 1px solid rgba(255,255,255,.14); border-radius: 999px; color: var(--ivory); background: rgba(6,13,7,.76); box-shadow: 0 18px 44px rgba(0,0,0,.22); backdrop-filter: blur(12px); cursor: pointer; font-size: .7rem; font-weight: 900; letter-spacing: .12em; text-transform: uppercase;
+}
+.music-toggle span { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+.music-toggle.playing span { animation: musicPulse 1.2s infinite; }
+@keyframes musicPulse { 0% { box-shadow: 0 0 0 0 rgba(255,247,226,.56); } 80% { box-shadow: 0 0 0 12px rgba(255,247,226,0); } 100% { box-shadow: 0 0 0 0 rgba(255,247,226,0); } }
+
+@media (max-width: 880px) {
+  .story-section, .gallery-grid { grid-template-columns: 1fr; }
+  .details-grid, .timeline, .countdown-grid { grid-template-columns: repeat(2, 1fr); }
+  .story-image, .gallery-main { min-height: 480px; }
+}
+@media (max-width: 600px) {
+  section, footer.action-section { width: min(calc(100% - 22px), var(--max)); }
+  .hero-section { padding: 24px 12px; }
+  .hero-content h1 { font-size: clamp(5rem, 30vw, 7.2rem); }
+  .details-grid, .timeline, .countdown-grid { grid-template-columns: 1fr; }
+  .story-section, .details-section, .agenda-section, .gallery-section, .action-section { padding: 52px 0; }
+  .story-image, .gallery-main, .gallery-stack img { min-height: 340px; }
+  .music-toggle { left: 14px; right: 14px; justify-content: center; }
+  .splash-content { min-height: 560px; }
+  .splash-copy { font-size: .95rem; }
+}
+
+
+/* === INVYRA JOSE V2.3.2 · FINAL POLISH === */
+
+/* Entrada con fade progresivo para que la información no aparezca plana */
+.hero-content > * {
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+.invitation.visible .hero-content > * {
+  animation: invyraFadeUp .82s ease forwards;
+}
+
+.invitation.visible .hero-content > *:nth-child(1) { animation-delay: .05s; }
+.invitation.visible .hero-content > *:nth-child(2) { animation-delay: .14s; }
+.invitation.visible .hero-content > *:nth-child(3) { animation-delay: .24s; }
+.invitation.visible .hero-content > *:nth-child(4) { animation-delay: .34s; }
+.invitation.visible .hero-content > *:nth-child(5) { animation-delay: .44s; }
+.invitation.visible .hero-content > *:nth-child(6) { animation-delay: .58s; }
+
+@keyframes invyraFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* Fade interno para cards informativas al entrar en viewport */
+.reveal.visible .details-grid article,
+.reveal.visible .timeline article,
+.reveal.visible .gallery-main,
+.reveal.visible .gallery-stack img,
+.reveal.visible .rsvp-card,
+.reveal.visible .final-card {
+  animation: sectionFadeIn .72s ease forwards;
+}
+
+.reveal.visible .details-grid article:nth-child(2),
+.reveal.visible .timeline article:nth-child(2),
+.reveal.visible .gallery-stack img:nth-child(1) {
+  animation-delay: .10s;
+}
+
+.reveal.visible .details-grid article:nth-child(3),
+.reveal.visible .timeline article:nth-child(3),
+.reveal.visible .gallery-stack img:nth-child(2) {
+  animation-delay: .18s;
+}
+
+.reveal.visible .timeline article:nth-child(4) {
+  animation-delay: .26s;
+}
+
+@keyframes sectionFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+    filter: blur(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* La información de la invitación conserva una lectura suave tipo Wedding Demo 02 */
+.hero-info-card,
+.message-card,
+.dress-card,
+.gift-card,
+.rsvp-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-info-card::before,
+.message-card::before,
+.dress-card::before,
+.gift-card::before,
+.rsvp-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,.58), transparent 35%),
+    linear-gradient(180deg, rgba(255,255,255,.20), transparent 58%);
+  pointer-events: none;
+}
+
+.hero-info-card > *,
+.message-card > *,
+.dress-card > *,
+.gift-card > *,
+.rsvp-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Cierre más premium / menos plano */
+.final-card {
+  position: relative;
+  overflow: hidden;
+  width: min(900px, 100%);
+  min-height: 430px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 12px;
+  margin: 34px auto 0;
+  padding: clamp(34px, 6vw, 68px) clamp(24px, 5vw, 52px);
+  text-align: center;
+  color: var(--ivory);
+  border-radius: 42px;
+  border: 1px solid rgba(215, 173, 77, .28);
+  background: rgba(6, 13, 7, .72);
+  box-shadow: 0 34px 88px rgba(5, 12, 6, .28), inset 0 0 0 1px rgba(255,255,255,.08);
+}
+
+.final-bg {
+  position: absolute;
+  inset: -8%;
+  background-image:
+    linear-gradient(180deg, rgba(5, 10, 5, .28), rgba(5, 10, 5, .76)),
+    url('./assets/mine-zone-jose.jpg');
+  background-size: cover;
+  background-position: center;
+  filter: blur(16px) saturate(1.12);
+  transform: scale(1.1);
+  opacity: .9;
+}
+
+.final-dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,.34) 1px, transparent 1px);
+  background-size: 18px 18px;
+  opacity: .42;
+  mask-image: radial-gradient(circle at center, black 0%, transparent 72%);
+}
+
+.final-badge {
+  position: relative;
+  z-index: 2;
+  width: 72px;
+  height: 72px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 8px;
+  border-radius: 22px;
+  color: var(--gold-soft);
+  background: rgba(5, 10, 5, .78);
+  border: 1px solid rgba(215, 173, 77, .38);
+  box-shadow: 0 18px 42px rgba(0,0,0,.32);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2.7rem;
+  line-height: 1;
+}
+
+.final-kicker {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  color: var(--gold-soft);
+  font-size: .72rem;
+  font-weight: 900;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+}
+
+.final-card h2 {
+  position: relative;
+  z-index: 2;
+  margin: 6px 0 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(3.4rem, 9vw, 6.8rem);
+  line-height: .82;
+  font-weight: 600;
+  letter-spacing: -.045em;
+}
+
+.final-card span {
+  position: relative;
+  z-index: 2;
+  display: block;
+  max-width: 560px;
+  margin: 8px auto 0;
+  color: var(--muted);
+  font-weight: 700;
+  line-height: 1.65;
+}
+
+.final-meta {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.final-meta strong,
+.final-meta em {
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 14px;
+  border-radius: 999px;
+  color: var(--ivory);
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.12);
+  font-size: .68rem;
+  font-style: normal;
+  font-weight: 900;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+}
+
+.final-meta strong {
+  color: var(--gold-soft);
+}
+
+/* Antes estaba heredando un cierre muy simple; aquí anulamos el estilo viejo */
+.closing-section p:not(.final-kicker) {
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .final-card {
+    min-height: 360px;
+    border-radius: 32px;
+  }
+
+  .final-badge {
+    width: 64px;
+    height: 64px;
+    font-size: 2.35rem;
+  }
+
+  .final-meta {
+    display: grid;
+  }
+}
+
+
+/* === INVYRA JOSE V2.3.3 · RSVP + SCROLL FADE === */
+
+/* Fade real al hacer scroll: la sección entra y sus piezas aparecen con stagger */
+.fade-group {
+  opacity: 0;
+  transform: translateY(34px);
+  filter: blur(5px);
+  transition:
+    opacity .9s cubic-bezier(.2,.8,.2,1),
+    transform .9s cubic-bezier(.2,.8,.2,1),
+    filter .9s cubic-bezier(.2,.8,.2,1);
+}
+
+.fade-group.visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+.fade-group > * {
+  opacity: 0;
+  transform: translateY(22px);
+}
+
+.fade-group.visible > * {
+  animation: invyraScrollFade .78s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+.fade-group.visible > *:nth-child(1) { animation-delay: .04s; }
+.fade-group.visible > *:nth-child(2) { animation-delay: .14s; }
+.fade-group.visible > *:nth-child(3) { animation-delay: .24s; }
+.fade-group.visible > *:nth-child(4) { animation-delay: .34s; }
+
+@keyframes invyraScrollFade {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+    filter: blur(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* Ajuste específico para que cards dentro de grids también tengan entrada visible */
+.details-section.visible .details-grid article,
+.agenda-section.visible .timeline article,
+.gallery-section.visible .gallery-main,
+.gallery-section.visible .gallery-stack img {
+  opacity: 0;
+  transform: translateY(22px);
+  animation: invyraScrollFade .78s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+.details-section.visible .details-grid article:nth-child(1),
+.agenda-section.visible .timeline article:nth-child(1),
+.gallery-section.visible .gallery-main { animation-delay: .18s; }
+
+.details-section.visible .details-grid article:nth-child(2),
+.agenda-section.visible .timeline article:nth-child(2),
+.gallery-section.visible .gallery-stack img:nth-child(1) { animation-delay: .28s; }
+
+.details-section.visible .details-grid article:nth-child(3),
+.agenda-section.visible .timeline article:nth-child(3),
+.gallery-section.visible .gallery-stack img:nth-child(2) { animation-delay: .38s; }
+
+.agenda-section.visible .timeline article:nth-child(4) { animation-delay: .48s; }
+
+/* RSVP corregido: deja de sentirse plano y toma el aura visual del evento */
+.action-section {
+  position: relative;
+  padding-top: 88px;
+}
+
+.rsvp-card {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: 44px;
+  border: 1px solid rgba(215, 173, 77, .32);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,.82), transparent 36%),
+    linear-gradient(180deg, rgba(255, 249, 232, .88), rgba(235, 234, 198, .82));
+  box-shadow:
+    0 34px 90px rgba(8, 14, 8, .24),
+    inset 0 0 0 1px rgba(255,255,255,.52);
+}
+
+.rsvp-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image:
+    linear-gradient(180deg, rgba(255, 249, 232, .76), rgba(255, 249, 232, .90)),
+    url("./assets/hero-jose.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: blur(14px) saturate(1.1);
+  transform: scale(1.08);
+  opacity: .34;
+}
+
+.rsvp-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 18% 8%, rgba(100,185,70,.22), transparent 28%),
+    radial-gradient(circle at 88% 18%, rgba(215,173,77,.18), transparent 30%),
+    linear-gradient(rgba(24, 49, 23, .035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(24, 49, 23, .035) 1px, transparent 1px);
+  background-size: auto, auto, 28px 28px, 28px 28px;
+  pointer-events: none;
+}
+
+.rsvp-kicker {
+  color: #c29637;
+}
+
+.rsvp-card h2 {
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #0b1209;
+  text-shadow: 0 1px 0 rgba(255,255,255,.58);
+}
+
+.rsvp-intro {
+  color: rgba(21, 29, 18, .72);
+}
+
+.rsvp-mini-scene {
+  width: min(260px, 100%);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 18px auto 0;
+  opacity: .96;
+}
+
+.mini-block {
+  height: 18px;
+  border-radius: 7px;
+  border: 1px solid rgba(0,0,0,.08);
+  box-shadow: 0 10px 22px rgba(8,14,8,.08);
+}
+
+.mini-green {
+  background: linear-gradient(135deg, #32752c, #92d666);
+}
+
+.mini-gold {
+  background: linear-gradient(135deg, #d7ad4d, #f2db88);
+}
+
+.mini-dark {
+  background: linear-gradient(135deg, #050905, #17391d);
+}
+
+.rsvp-envelope-icon {
+  margin-top: 14px;
+  border-color: rgba(215,173,77,.28);
+  color: #8d682e;
+  background: rgba(255,255,255,.68);
+  box-shadow: 0 12px 28px rgba(8,14,8,.08);
+}
+
+.rsvp-form {
+  position: relative;
+  width: min(590px, 100%);
+  margin-top: 24px;
+  padding: 22px;
+  border-radius: 30px;
+  background: rgba(255,255,255,.46);
+  border: 1px solid rgba(255,255,255,.55);
+  box-shadow:
+    0 18px 48px rgba(8,14,8,.10),
+    inset 0 0 0 1px rgba(255,255,255,.40);
+  backdrop-filter: blur(10px);
+}
+
+.rsvp-form input[type="text"],
+.rsvp-form select,
+.rsvp-form textarea {
+  border-color: rgba(45, 83, 36, .20);
+  background: rgba(255,255,255,.84);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.70);
+}
+
+.rsvp-form input[type="text"]:focus,
+.rsvp-form select:focus,
+.rsvp-form textarea:focus {
+  border-color: rgba(100,185,70,.48);
+  box-shadow:
+    0 0 0 4px rgba(100,185,70,.10),
+    inset 0 1px 0 rgba(255,255,255,.70);
+}
+
+.attendance-options span {
+  background: rgba(255,255,255,.78);
+}
+
+.attendance-options input:checked + span {
+  background: linear-gradient(135deg, #183f1e, #65b946);
+  box-shadow: 0 14px 30px rgba(35, 92, 34, .20);
+}
+
+.rsvp-live-message {
+  color: #8d682e;
+}
+
+.btn-rsvp {
+  box-shadow: 0 18px 38px rgba(83, 150, 50, .22);
+  transition: transform .24s ease, box-shadow .24s ease, filter .24s ease;
+}
+
+.btn-rsvp:hover {
+  transform: translateY(-2px);
+  filter: saturate(1.08);
+  box-shadow: 0 22px 48px rgba(83, 150, 50, .28);
+}
+
+/* El cierre final ya no compite con el RSVP; queda más compacto */
+.final-card {
+  margin-top: 42px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-group,
+  .fade-group > *,
+  .details-section.visible .details-grid article,
+  .agenda-section.visible .timeline article,
+  .gallery-section.visible .gallery-main,
+  .gallery-section.visible .gallery-stack img,
+  .hero-content > * {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .rsvp-card {
+    border-radius: 34px;
+  }
+
+  .rsvp-form {
+    padding: 16px;
+    border-radius: 24px;
+  }
+
+  .rsvp-mini-scene {
+    width: min(220px, 100%);
+  }
+}
+
+
+/* === INVYRA JOSE V2.3.4 · TRUE SCROLL FADE + CLEAN CLOSE === */
+
+/* Limpieza: el cierre anterior era demasiado protagonista. Lo anulamos. */
+.final-card,
+.final-bg,
+.final-dots,
+.final-badge,
+.final-kicker,
+.final-meta {
+  all: unset;
+}
+
+/* Fade tipo demo INVYRA/Wedding: cada bloque entra desde abajo con blur suave. */
+.section-reveal {
+  opacity: 0;
+  transform: translateY(46px);
+  filter: blur(8px);
+  transition:
+    opacity 1s cubic-bezier(.16, 1, .3, 1),
+    transform 1s cubic-bezier(.16, 1, .3, 1),
+    filter 1s cubic-bezier(.16, 1, .3, 1);
+  will-change: opacity, transform, filter;
+}
+
+.section-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* Los elementos internos aparecen escalonados, no de golpe. */
+.section-reveal .section-kicker,
+.section-reveal .section-title,
+.section-reveal h2,
+.section-reveal .message-card,
+.section-reveal .story-image,
+.section-reveal .story-copy,
+.section-reveal .dress-card,
+.section-reveal .gift-card,
+.section-reveal .rsvp-card,
+.section-reveal .invyra-soft-close,
+.section-reveal .details-grid article,
+.section-reveal .timeline article,
+.section-reveal .gallery-main,
+.section-reveal .gallery-stack img,
+.section-reveal .countdown-grid article {
+  opacity: 0;
+  transform: translateY(34px);
+  filter: blur(6px);
+}
+
+.section-reveal.visible .section-kicker,
+.section-reveal.visible .section-title,
+.section-reveal.visible h2,
+.section-reveal.visible .message-card,
+.section-reveal.visible .story-image,
+.section-reveal.visible .story-copy,
+.section-reveal.visible .dress-card,
+.section-reveal.visible .gift-card,
+.section-reveal.visible .rsvp-card,
+.section-reveal.visible .invyra-soft-close,
+.section-reveal.visible .details-grid article,
+.section-reveal.visible .timeline article,
+.section-reveal.visible .gallery-main,
+.section-reveal.visible .gallery-stack img,
+.section-reveal.visible .countdown-grid article {
+  animation: invyraWeddingFade .95s cubic-bezier(.16, 1, .3, 1) forwards;
+}
+
+@keyframes invyraWeddingFade {
+  0% {
+    opacity: 0;
+    transform: translateY(36px);
+    filter: blur(7px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* Stagger por secciones */
+.section-reveal.visible .section-kicker { animation-delay: .04s; }
+.section-reveal.visible .section-title,
+.section-reveal.visible h2 { animation-delay: .13s; }
+.section-reveal.visible .message-card,
+.section-reveal.visible .story-image,
+.section-reveal.visible .dress-card,
+.section-reveal.visible .gift-card,
+.section-reveal.visible .rsvp-card { animation-delay: .20s; }
+.section-reveal.visible .story-copy { animation-delay: .34s; }
+
+.section-reveal.visible .countdown-grid article:nth-child(1),
+.section-reveal.visible .details-grid article:nth-child(1),
+.section-reveal.visible .timeline article:nth-child(1),
+.section-reveal.visible .gallery-main { animation-delay: .20s; }
+
+.section-reveal.visible .countdown-grid article:nth-child(2),
+.section-reveal.visible .details-grid article:nth-child(2),
+.section-reveal.visible .timeline article:nth-child(2),
+.section-reveal.visible .gallery-stack img:nth-child(1) { animation-delay: .32s; }
+
+.section-reveal.visible .countdown-grid article:nth-child(3),
+.section-reveal.visible .details-grid article:nth-child(3),
+.section-reveal.visible .timeline article:nth-child(3),
+.section-reveal.visible .gallery-stack img:nth-child(2) { animation-delay: .44s; }
+
+.section-reveal.visible .countdown-grid article:nth-child(4),
+.section-reveal.visible .timeline article:nth-child(4) { animation-delay: .56s; }
+
+/* Hero: la información inicial también entra gradual al abrir, no aparece plana. */
+.invitation.visible .hero-badge { animation-delay: .06s; }
+.invitation.visible .hero-kicker { animation-delay: .16s; }
+.invitation.visible .hero-script { animation-delay: .28s; }
+.invitation.visible .hero-content h1 { animation-delay: .40s; }
+.invitation.visible .hero-theme { animation-delay: .52s; }
+.invitation.visible .hero-info-card { animation-delay: .68s; }
+
+/* RSVP más fiel al ADN: elegante, claro, sin exceso de bloques de color. */
+.rsvp-card {
+  width: min(900px, 100%);
+  margin-left: auto;
+  margin-right: auto;
+  padding: clamp(30px, 5vw, 58px) clamp(22px, 5vw, 58px);
+  border-radius: 38px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,.76), transparent 34%),
+    linear-gradient(180deg, rgba(255, 250, 236, .86), rgba(240, 237, 207, .80));
+  box-shadow:
+    0 28px 78px rgba(8, 14, 8, .18),
+    inset 0 0 0 1px rgba(255,255,255,.48);
+}
+
+.rsvp-card::after {
+  opacity: .20;
+  filter: blur(18px) saturate(1.05);
+}
+
+.rsvp-card::before {
+  opacity: .55;
+}
+
+.rsvp-mini-scene {
+  display: none;
+}
+
+.rsvp-envelope-icon {
+  width: 46px;
+  height: 46px;
+  margin-top: 16px;
+  background: rgba(255,255,255,.54);
+}
+
+.rsvp-form {
+  width: min(540px, 100%);
+  padding: 0;
+  margin-top: 24px;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.rsvp-form input[type="text"],
+.rsvp-form select,
+.rsvp-form textarea {
+  background: rgba(255,255,255,.78);
+  border-color: rgba(25, 48, 20, .16);
+}
+
+.attendance-options span {
+  min-height: 44px;
+  background: rgba(255,255,255,.72);
+}
+
+.btn-rsvp {
+  background: linear-gradient(135deg, #eadc88, #6fc44d);
+}
+
+/* Cierre final más pequeño, sobrio y parecido a una firma final de invitación. */
+.invyra-soft-close {
+  width: min(580px, 100%);
+  margin: 34px auto 0;
+  padding: 24px 20px 34px;
+  text-align: center;
+  color: var(--ink);
+}
+
+.soft-close-mark {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 14px;
+  border-radius: 16px;
+  color: #8d682e;
+  background: rgba(255,255,255,.54);
+  border: 1px solid rgba(141,104,46,.20);
+  box-shadow: 0 14px 30px rgba(8,14,8,.08);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2rem;
+}
+
+.soft-close-kicker {
+  margin: 0;
+  color: #8d682e;
+  font-size: .68rem;
+  font-weight: 900;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.invyra-soft-close h2 {
+  margin: 8px 0 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2.7rem, 7vw, 4.4rem);
+  line-height: .92;
+  font-weight: 600;
+  letter-spacing: -.04em;
+}
+
+.invyra-soft-close span {
+  display: block;
+  margin-top: 8px;
+  color: var(--dark-muted);
+  font-weight: 700;
+}
+
+/* Evitar que reglas viejas inflen el cierre */
+.closing-section p:not(.final-kicker),
+.closing-section h2,
+.closing-section span {
+  position: relative;
+  z-index: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-reveal,
+  .section-reveal *,
+  .hero-content > * {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .rsvp-card {
+    border-radius: 30px;
+    padding: 28px 18px;
+  }
+
+  .invyra-soft-close {
+    padding-bottom: 28px;
+  }
+}
+
+
+/* === INVYRA JOSE V2.3.5 · FULL FADE + ELEGANT CLOSE OVERRIDE === */
+
+/* Fade universal de la demo: aplicado a cada sección real del entregable. */
+.invyra-fade-section {
+  opacity: 0 !important;
+  transform: translateY(52px) !important;
+  filter: blur(9px) !important;
+  transition:
+    opacity 1.05s cubic-bezier(.16, 1, .3, 1),
+    transform 1.05s cubic-bezier(.16, 1, .3, 1),
+    filter 1.05s cubic-bezier(.16, 1, .3, 1) !important;
+  will-change: opacity, transform, filter;
+}
+
+.invyra-fade-section.is-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  filter: blur(0) !important;
+}
+
+/* Entrada interna escalonada, similar al comportamiento visual de Wedding Demo 02. */
+.invyra-fade-section > * {
+  opacity: 0;
+  transform: translateY(30px);
+  filter: blur(6px);
+}
+
+.invyra-fade-section.is-visible > * {
+  animation: invyraTrueFadeIn .95s cubic-bezier(.16, 1, .3, 1) forwards;
+}
+
+.invyra-fade-section.is-visible > *:nth-child(1) { animation-delay: .08s; }
+.invyra-fade-section.is-visible > *:nth-child(2) { animation-delay: .22s; }
+.invyra-fade-section.is-visible > *:nth-child(3) { animation-delay: .36s; }
+.invyra-fade-section.is-visible > *:nth-child(4) { animation-delay: .50s; }
+
+@keyframes invyraTrueFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(34px);
+    filter: blur(7px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* Fade escalonado dentro de grids */
+.invyra-fade-section.is-visible .countdown-grid article,
+.invyra-fade-section.is-visible .details-grid article,
+.invyra-fade-section.is-visible .timeline article,
+.invyra-fade-section.is-visible .gallery-main,
+.invyra-fade-section.is-visible .gallery-stack img {
+  opacity: 0;
+  transform: translateY(30px);
+  filter: blur(6px);
+  animation: invyraTrueFadeIn .9s cubic-bezier(.16, 1, .3, 1) forwards;
+}
+
+.invyra-fade-section.is-visible .countdown-grid article:nth-child(1),
+.invyra-fade-section.is-visible .details-grid article:nth-child(1),
+.invyra-fade-section.is-visible .timeline article:nth-child(1),
+.invyra-fade-section.is-visible .gallery-main { animation-delay: .16s; }
+
+.invyra-fade-section.is-visible .countdown-grid article:nth-child(2),
+.invyra-fade-section.is-visible .details-grid article:nth-child(2),
+.invyra-fade-section.is-visible .timeline article:nth-child(2),
+.invyra-fade-section.is-visible .gallery-stack img:nth-child(1) { animation-delay: .30s; }
+
+.invyra-fade-section.is-visible .countdown-grid article:nth-child(3),
+.invyra-fade-section.is-visible .details-grid article:nth-child(3),
+.invyra-fade-section.is-visible .timeline article:nth-child(3),
+.invyra-fade-section.is-visible .gallery-stack img:nth-child(2) { animation-delay: .44s; }
+
+.invyra-fade-section.is-visible .countdown-grid article:nth-child(4),
+.invyra-fade-section.is-visible .timeline article:nth-child(4) { animation-delay: .58s; }
+
+/* Cierre final: pequeño, elegante y nada invasivo. */
+footer.action-section .invyra-soft-close {
+  all: unset;
+  box-sizing: border-box;
+  width: min(480px, calc(100% - 30px));
+  display: block;
+  margin: 30px auto 0;
+  padding: 18px 14px 28px;
+  text-align: center;
+  color: var(--ink);
+}
+
+footer.action-section .invyra-soft-close .soft-close-mark {
+  all: unset;
+  box-sizing: border-box;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 12px;
+  border-radius: 14px;
+  color: #8d682e;
+  background: rgba(255,255,255,.50);
+  border: 1px solid rgba(141,104,46,.18);
+  box-shadow: 0 10px 22px rgba(8,14,8,.07);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.75rem;
+  line-height: 1;
+}
+
+footer.action-section .invyra-soft-close .soft-close-kicker {
+  all: unset;
+  display: block;
+  margin: 0;
+  color: #8d682e;
+  font-size: .58rem;
+  font-weight: 900;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  font-family: "Montserrat", system-ui, sans-serif;
+}
+
+footer.action-section .invyra-soft-close h2 {
+  all: unset;
+  display: block;
+  margin: 8px 0 0;
+  color: var(--ink);
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2rem, 4.8vw, 3.05rem);
+  line-height: .96;
+  font-weight: 600;
+  letter-spacing: -.035em;
+}
+
+footer.action-section .invyra-soft-close span {
+  all: unset;
+  display: block;
+  margin-top: 6px;
+  color: rgba(24,31,20,.68);
+  font-size: .88rem;
+  font-weight: 750;
+  font-family: "Montserrat", system-ui, sans-serif;
+  line-height: 1.45;
+}
+
+/* Reducimos aire del footer para que no parezca una sección gigante */
+footer.action-section {
+  padding-bottom: 58px !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .invyra-fade-section,
+  .invyra-fade-section > *,
+  .invyra-fade-section .countdown-grid article,
+  .invyra-fade-section .details-grid article,
+  .invyra-fade-section .timeline article,
+  .invyra-fade-section .gallery-main,
+  .invyra-fade-section .gallery-stack img {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+@media (max-width: 600px) {
+  footer.action-section .invyra-soft-close {
+    width: min(420px, calc(100% - 28px));
+    padding-bottom: 22px;
+  }
+
+  footer.action-section .invyra-soft-close h2 {
+    font-size: clamp(1.9rem, 9vw, 2.7rem);
+  }
+}
+
+
+/* === INVYRA JOSE V2.3.6 · WEDDING-LIKE FADE + LOGO CLOSE + AUTO MUSIC === */
+
+/* Sin botón de música visible: música preparada para entrar al abrir la invitación */
+.music-toggle {
+  display: none !important;
+}
+
+/* Fade real tipo Wedding Demo 02: toda sección nace oculta y aparece al hacer scroll */
+.js-enabled .section-reveal {
+  opacity: 0;
+  transform: translate3d(0, 44px, 0);
+  filter: blur(8px);
+  transition:
+    opacity 980ms cubic-bezier(.16, 1, .3, 1),
+    transform 980ms cubic-bezier(.16, 1, .3, 1),
+    filter 980ms cubic-bezier(.16, 1, .3, 1);
+  will-change: opacity, transform, filter;
+}
+
+.js-enabled .section-reveal.visible,
+.js-enabled .section-reveal.in-view,
+.section-reveal.visible,
+.section-reveal.in-view {
+  opacity: 1 !important;
+  transform: translate3d(0, 0, 0) !important;
+  filter: blur(0) !important;
+}
+
+/* Fade escalonado de información dentro de cada sección */
+.js-enabled .section-reveal > * {
+  opacity: 0;
+  transform: translate3d(0, 26px, 0);
+  filter: blur(5px);
+}
+
+.js-enabled .section-reveal.visible > *,
+.js-enabled .section-reveal.in-view > *,
+.section-reveal.visible > *,
+.section-reveal.in-view > * {
+  animation: joseInfoFade 860ms cubic-bezier(.16, 1, .3, 1) forwards;
+}
+
+.js-enabled .section-reveal.visible > *:nth-child(1),
+.js-enabled .section-reveal.in-view > *:nth-child(1) { animation-delay: 80ms; }
+
+.js-enabled .section-reveal.visible > *:nth-child(2),
+.js-enabled .section-reveal.in-view > *:nth-child(2) { animation-delay: 210ms; }
+
+.js-enabled .section-reveal.visible > *:nth-child(3),
+.js-enabled .section-reveal.in-view > *:nth-child(3) { animation-delay: 340ms; }
+
+.js-enabled .section-reveal.visible > *:nth-child(4),
+.js-enabled .section-reveal.in-view > *:nth-child(4) { animation-delay: 470ms; }
+
+@keyframes joseInfoFade {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 30px, 0);
+    filter: blur(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: blur(0);
+  }
+}
+
+/* Elementos de grid también aparecen por capas, como en las demos Legacy */
+.js-enabled .section-reveal .countdown-grid article,
+.js-enabled .section-reveal .details-grid article,
+.js-enabled .section-reveal .timeline article,
+.js-enabled .section-reveal .gallery-main,
+.js-enabled .section-reveal .gallery-stack img {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  filter: blur(5px);
+}
+
+.js-enabled .section-reveal.visible .countdown-grid article,
+.js-enabled .section-reveal.visible .details-grid article,
+.js-enabled .section-reveal.visible .timeline article,
+.js-enabled .section-reveal.visible .gallery-main,
+.js-enabled .section-reveal.visible .gallery-stack img,
+.js-enabled .section-reveal.in-view .countdown-grid article,
+.js-enabled .section-reveal.in-view .details-grid article,
+.js-enabled .section-reveal.in-view .timeline article,
+.js-enabled .section-reveal.in-view .gallery-main,
+.js-enabled .section-reveal.in-view .gallery-stack img {
+  animation: joseInfoFade 840ms cubic-bezier(.16, 1, .3, 1) forwards;
+}
+
+.js-enabled .section-reveal.visible .countdown-grid article:nth-child(1),
+.js-enabled .section-reveal.visible .details-grid article:nth-child(1),
+.js-enabled .section-reveal.visible .timeline article:nth-child(1),
+.js-enabled .section-reveal.visible .gallery-main,
+.js-enabled .section-reveal.in-view .countdown-grid article:nth-child(1),
+.js-enabled .section-reveal.in-view .details-grid article:nth-child(1),
+.js-enabled .section-reveal.in-view .timeline article:nth-child(1),
+.js-enabled .section-reveal.in-view .gallery-main { animation-delay: 170ms; }
+
+.js-enabled .section-reveal.visible .countdown-grid article:nth-child(2),
+.js-enabled .section-reveal.visible .details-grid article:nth-child(2),
+.js-enabled .section-reveal.visible .timeline article:nth-child(2),
+.js-enabled .section-reveal.visible .gallery-stack img:nth-child(1),
+.js-enabled .section-reveal.in-view .countdown-grid article:nth-child(2),
+.js-enabled .section-reveal.in-view .details-grid article:nth-child(2),
+.js-enabled .section-reveal.in-view .timeline article:nth-child(2),
+.js-enabled .section-reveal.in-view .gallery-stack img:nth-child(1) { animation-delay: 290ms; }
+
+.js-enabled .section-reveal.visible .countdown-grid article:nth-child(3),
+.js-enabled .section-reveal.visible .details-grid article:nth-child(3),
+.js-enabled .section-reveal.visible .timeline article:nth-child(3),
+.js-enabled .section-reveal.visible .gallery-stack img:nth-child(2),
+.js-enabled .section-reveal.in-view .countdown-grid article:nth-child(3),
+.js-enabled .section-reveal.in-view .details-grid article:nth-child(3),
+.js-enabled .section-reveal.in-view .timeline article:nth-child(3),
+.js-enabled .section-reveal.in-view .gallery-stack img:nth-child(2) { animation-delay: 410ms; }
+
+.js-enabled .section-reveal.visible .countdown-grid article:nth-child(4),
+.js-enabled .section-reveal.visible .timeline article:nth-child(4),
+.js-enabled .section-reveal.in-view .countdown-grid article:nth-child(4),
+.js-enabled .section-reveal.in-view .timeline article:nth-child(4) { animation-delay: 530ms; }
+
+/* Cierre final fiel a las demos: logo INVYRA + agradecimiento + firma */
+footer.action-section .invyra-soft-close {
+  all: unset;
+  box-sizing: border-box;
+  width: min(680px, calc(100% - 32px));
+  display: block;
+  margin: 46px auto 0;
+  padding: 26px 18px 34px;
+  text-align: center;
+  color: var(--ink);
+}
+
+footer.action-section .invyra-soft-close .closing-logo {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto 24px;
+  border-radius: 0;
+  box-shadow: 0 14px 36px rgba(8,14,8,.10);
+}
+
+footer.action-section .invyra-soft-close p {
+  max-width: 640px;
+  margin: 0 auto;
+  color: rgba(24,31,20,.60);
+  font-size: clamp(1rem, 1.55vw, 1.18rem);
+  line-height: 1.78;
+  font-weight: 600;
+}
+
+footer.action-section .invyra-soft-close span {
+  display: block;
+  margin-top: 22px;
+  color: #b38a42;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2.35rem, 6vw, 4rem);
+  line-height: .9;
+  font-weight: 500;
+  font-style: italic;
+}
+
+/* Limpieza de estilos previos que hacían el cierre invasivo */
+footer.action-section .invyra-soft-close .soft-close-mark,
+footer.action-section .invyra-soft-close .soft-close-kicker,
+footer.action-section .invyra-soft-close h2 {
+  display: none !important;
+}
+
+footer.action-section {
+  padding-bottom: 76px !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-reveal,
+  .section-reveal *,
+  .section-reveal .countdown-grid article,
+  .section-reveal .details-grid article,
+  .section-reveal .timeline article,
+  .section-reveal .gallery-main,
+  .section-reveal .gallery-stack img {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+@media (max-width: 600px) {
+  footer.action-section .invyra-soft-close .closing-logo {
+    width: 62px;
+    height: 62px;
+    margin-bottom: 20px;
+  }
+
+  footer.action-section .invyra-soft-close span {
+    font-size: clamp(2.1rem, 11vw, 3rem);
+  }
+}

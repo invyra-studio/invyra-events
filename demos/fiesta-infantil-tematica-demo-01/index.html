@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>José · Mine Zone Birthday Quest</title>
+    <meta name="description" content="Invitación digital temática para el cumpleaños de José: Mine Zone Birthday Quest." />
+    <link rel="icon" type="image/jpeg" href="./assets/favicon.jpeg" />
+    <link rel="stylesheet" href="./style.css?v=2.3.6-logo-autofade" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
+    <script src="./script.js?v=2.3.6-logo-autofade" defer></script>
+  </head>
+
+  <body data-event-date="2026-08-22T16:00:00">
+    <div id="splash-screen" class="splash-screen">
+      <div class="splash-image-bg" aria-hidden="true"></div>
+      <div class="splash-grid" aria-hidden="true"></div>
+      <div class="splash-vignette" aria-hidden="true"></div>
+
+      <div class="splash-content">
+        <div class="event-badge">J</div>
+        <p class="splash-kicker">Birthday Quest</p>
+        <h1>José</h1>
+        <p class="splash-subtitle">Mine Zone</p>
+        <p class="splash-copy">Una aventura de bloques, juegos, dulces pixelados y momentos épicos está por comenzar.</p>
+
+        <button type="button" class="open-invite-btn" onclick="openInvitation()">
+          Abrir invitación
+        </button>
+
+        <p class="splash-note">Toca para entrar a la misión.</p>
+      </div>
+    </div>
+
+    <main id="invitation" class="invitation">
+      <section class="hero-section" id="inicio">
+        <img class="hero-bg" src="./assets/hero-jose.jpg" alt="Decoración principal Mine Zone para José" />
+        <div class="hero-overlay"></div>
+        <div class="hero-dots" aria-hidden="true"></div>
+
+        <div class="hero-content">
+          <div class="event-badge hero-badge">J</div>
+          <p class="hero-kicker">Te invito a mi cumpleaños</p>
+          <p class="hero-script">Birthday Quest</p>
+          <h1>José</h1>
+          <p class="hero-theme">Mine Zone</p>
+
+          <div class="hero-info-card">
+            <p class="date">22 · Agosto · 2026</p>
+            <p class="place">Mine Zone Party Hall</p>
+            <p class="copy">Una aventura de bloques, juegos, dulces pixelados y momentos épicos para celebrar juntos.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="countdown-section section-reveal">
+        <p class="section-kicker">Falta poco para la misión</p>
+        <div class="countdown-grid">
+          <article><strong id="days">00</strong><span>Días</span></article>
+          <article><strong id="hours">00</strong><span>Horas</span></article>
+          <article><strong id="mins">00</strong><span>Min</span></article>
+          <article><strong id="secs">00</strong><span>Seg</span></article>
+        </div>
+      </section>
+
+      <section class="message-section section-reveal">
+        <div class="message-card">
+          <p class="quote-symbol">❖</p>
+          <p class="message-text">“Hoy la misión es simple: construir recuerdos, compartir risas y celebrar conmigo un cumpleaños increíble.”</p>
+          <p class="message-sign">José</p>
+        </div>
+      </section>
+
+      <section class="story-section section-reveal">
+        <div class="story-image">
+          <img src="./assets/mine-zone-jose.jpg" alt="Zona de juegos Mine Zone" />
+        </div>
+        <div class="story-copy">
+          <p class="section-kicker">La aventura</p>
+          <h2>Bienvenido a Mine Zone.</h2>
+          <p>Habrá zona de juego, mesa de postres temática, sorpresas, fotos y una ambientación creada para que cada invitado se sienta dentro de una misión especial.</p>
+          <div class="mission-tags">
+            <span>Explora</span>
+            <span>Construye</span>
+            <span>Celebra</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="details-section section-reveal">
+        <p class="section-kicker">Detalles del evento</p>
+        <h2 class="section-title">La misión empieza aquí.</h2>
+
+        <div class="details-grid">
+          <article>
+            <span>Ubicación</span>
+            <h3>Mine Zone Party Hall</h3>
+            <p>Un espacio preparado para jugar, celebrar y tomar fotos dentro de la temática.</p>
+          </article>
+          <article>
+            <span>Horario</span>
+            <h3>4:00 PM</h3>
+            <p>Te recomendamos llegar puntual para no perderte el inicio de la aventura.</p>
+          </article>
+          <article>
+            <span>Regla principal</span>
+            <h3>Ven a jugar</h3>
+            <p>Ropa cómoda, mucha energía y ganas de construir recuerdos con José.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="agenda-section section-reveal">
+        <p class="section-kicker">Mapa de misión</p>
+        <div class="timeline">
+          <article>
+            <span>Spawn</span>
+            <strong>4:00</strong>
+            <p>Bienvenida y primera foto.</p>
+          </article>
+          <article>
+            <span>Quest</span>
+            <strong>4:40</strong>
+            <p>Juegos y actividades.</p>
+          </article>
+          <article>
+            <span>Cake</span>
+            <strong>5:30</strong>
+            <p>Pastel y mañanitas.</p>
+          </article>
+          <article>
+            <span>Reward</span>
+            <strong>6:15</strong>
+            <p>Sorpresas y cierre.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="dress-section section-reveal">
+        <div class="dress-card">
+          <p class="section-kicker">Código de explorador</p>
+          <h2>Verde, negro, café o detalles pixelados.</h2>
+          <p>El dress code es opcional, pero si quieres entrar en modo aventura, puedes venir con colores inspirados en Mine Zone.</p>
+
+          <div class="palette">
+            <span class="tone-green"></span>
+            <span class="tone-black"></span>
+            <span class="tone-brown"></span>
+            <span class="tone-gold"></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="gallery-section section-reveal">
+        <p class="section-kicker">Galería</p>
+        <h2 class="section-title">Detalles de la aventura.</h2>
+
+        <div class="gallery-grid">
+          <div class="gallery-main">
+            <img src="./assets/postres-jose.jpg" alt="Mesa de postres temática de José" />
+          </div>
+          <div class="gallery-stack">
+            <img src="./assets/cake-jose.jpg" alt="Pastel temático de José" />
+            <img src="./assets/mine-zone-jose.jpg" alt="Decoración Mine Zone de José" />
+          </div>
+        </div>
+      </section>
+
+      <section class="gift-section section-reveal">
+        <div class="gift-card">
+          <p class="section-kicker">Detalle opcional</p>
+          <h2>El mejor regalo es que vengas a celebrar.</h2>
+          <p>Si deseas tener un detalle con José, puedes traerlo el día del evento. Lo más importante será compartir esta aventura juntos.</p>
+        </div>
+      </section>
+
+      <footer class="action-section section-reveal">
+        <div class="rsvp-card">
+          <p class="rsvp-kicker">CONFIRMACIÓN MINE ZONE</p>
+          <h2>Confirma tu asistencia</h2>
+          <p class="rsvp-intro">Nos encantará saber si podremos contar contigo para preparar tu lugar, los juegos y cada detalle de esta aventura.</p>
+          <div class="ornament-line"><span></span></div>
+          <div class="rsvp-mini-scene" aria-hidden="true">
+            <span class="mini-block mini-green"></span>
+            <span class="mini-block mini-gold"></span>
+            <span class="mini-block mini-dark"></span>
+          </div>
+          <div class="rsvp-envelope-icon" aria-hidden="true">✦</div>
+
+          <div class="rsvp-form" id="rsvp-form">
+            <input type="text" id="nombreInvitado" placeholder="Nombre del invitado o familia" autocomplete="off" aria-label="Nombre del invitado o familia" />
+
+            <div class="attendance-group">
+              <p>Confirmo que</p>
+              <div class="attendance-options">
+                <label><input type="radio" name="asistencia" value="Asistiré" checked /><span>Asistiré</span></label>
+                <label><input type="radio" name="asistencia" value="No asistiré" /><span>No asistiré</span></label>
+              </div>
+            </div>
+
+            <p class="rsvp-live-message" id="rsvp-live-message" aria-live="polite">Selecciona tu respuesta para continuar.</p>
+
+            <div class="rsvp-field-group" id="detalleAsistenciaGroup">
+              <label for="detalleAsistenciaInvitado">Confirmo asistencia para</label>
+              <select id="detalleAsistenciaInvitado" aria-label="Confirmo asistencia para">
+                <option value="Solo el invitado">Solo el invitado</option>
+                <option value="Invitado + 1 acompañante">Invitado + 1 acompañante</option>
+                <option value="Familia / varios asistentes">Familia / varios asistentes</option>
+              </select>
+            </div>
+
+            <div class="rsvp-field-group" id="numeroAsistentesGroup">
+              <label for="numeroAsistentes">Número de asistentes</label>
+              <select id="numeroAsistentes" aria-label="Número de asistentes">
+                <option value="1">1 asistente</option>
+                <option value="2">2 asistentes</option>
+                <option value="3">3 asistentes</option>
+                <option value="4">4 asistentes</option>
+                <option value="5">5 asistentes</option>
+                <option value="6">6 asistentes</option>
+              </select>
+            </div>
+
+            <textarea id="mensajeInvitado" placeholder="Déjanos un mensaje especial, alergias o comentario adicional (opcional)" aria-label="Mensaje opcional"></textarea>
+            <button type="button" id="btn-confirmar" class="btn-rsvp" onclick="confirmarAsistencia()" aria-label="Confirmar asistencia">Confirmar asistencia</button>
+          </div>
+        </div>
+
+        <div class="closing-section invyra-soft-close">
+          <img src="./assets/logo-invyra.jpeg" alt="Invyra" class="closing-logo" />
+          <p>Gracias por acompañarme desde el primer bloque hasta la última misión.</p>
+          <span>José · Mine Zone</span>
+        </div>
+      </footer>
+
+      <div id="rsvp-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-message">
+        <div class="modal-card">
+          <button type="button" class="modal-close" onclick="cerrarModal()" aria-label="Cerrar">×</button>
+          <p class="modal-kicker">Confirmación guardada</p>
+          <h3 id="modal-title">¡Gracias por responder!</h3>
+          <p id="modal-message">Tu confirmación quedó registrada en esta demo.</p>
+          <button type="button" class="modal-btn" onclick="cerrarModal()">Entendido</button>
+        </div>
+      </div>
+
+      <audio id="event-audio" preload="auto" loop>
+        <source src="../../music/Adventure-Of-A-Lifetime.mp3?v=jose-v2.3.6" type="audio/mpeg" />
+      </audio>
+    </main>
+  </body>
+</html>
