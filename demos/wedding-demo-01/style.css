@@ -1,4 +1,4 @@
-/* INVYRA - Wedding Legacy Demo | Version 1.8.0 */
+/* INVYRA - Wedding Legacy Demo | Version 1.9.4 */
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap');
 
 :root {
@@ -3269,5 +3269,680 @@ a {
     .invitation-container {
         width: min(100%, 500px);
         max-width: 500px;
+    }
+}
+
+
+
+/* ==============================
+   v1.9.0 — Music + inline videos
+   ============================== */
+
+.video-frame {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    min-height: auto !important;
+    width: 100%;
+    background: #0f0f0f;
+}
+
+.legacy-film-video {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    background: #0f0f0f;
+}
+
+.video-frame .legacy-film-poster {
+    display: none !important;
+}
+
+.video-frame .legacy-film-overlay,
+.video-frame .legacy-final-film-glow {
+    z-index: 2;
+}
+
+.video-frame::before {
+    z-index: 4;
+}
+
+.video-frame .legacy-film-play {
+    z-index: 5;
+    border: 0;
+    transition: opacity .25s ease, transform .25s ease, background .25s ease;
+}
+
+.video-frame .legacy-film-caption {
+    z-index: 5;
+}
+
+.video-frame.is-playing .legacy-film-play {
+    opacity: .42;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(.92);
+    animation: none;
+}
+
+.video-frame.is-playing:hover .legacy-film-play,
+.video-frame.is-playing .legacy-film-play:focus-visible {
+    opacity: .82;
+}
+
+.video-frame.is-playing .legacy-film-play span {
+    width: 18px;
+    height: 24px;
+    margin-left: 0;
+    border: 0;
+    border-left: 6px solid currentColor;
+    border-right: 6px solid currentColor;
+}
+
+.legacy-film-frame.video-frame,
+.legacy-final-film-visual.video-frame {
+    min-height: auto !important;
+}
+
+@media (min-width: 900px) {
+    .legacy-film-section {
+        grid-template-columns: minmax(0, 0.98fr) minmax(420px, 0.9fr);
+    }
+
+    .legacy-film-frame.video-frame {
+        align-self: center;
+    }
+
+    .legacy-final-film-card {
+        grid-template-columns: minmax(420px, 0.96fr) minmax(0, 1.04fr);
+    }
+
+    .legacy-final-film-visual.video-frame {
+        align-self: center;
+        min-height: auto !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .legacy-film-frame.video-frame,
+    .legacy-final-film-visual.video-frame {
+        min-height: auto !important;
+        aspect-ratio: 16 / 9;
+        border-radius: 30px;
+    }
+
+    .legacy-film-caption {
+        bottom: 22px;
+    }
+}
+
+
+
+/* ==============================
+   v1.9.1 — Video polish
+   Más limpio, más fácil de reproducir/pausar
+   ============================== */
+
+.video-frame {
+    cursor: pointer;
+    background: #0f0f0f;
+    border-radius: 34px;
+}
+
+.video-frame .legacy-film-video {
+    object-fit: cover;
+    transform: scale(1.018);
+    transform-origin: center;
+}
+
+.video-frame::before,
+.video-frame .legacy-film-overlay,
+.video-frame .legacy-final-film-glow {
+    pointer-events: none;
+}
+
+.video-frame .legacy-film-caption {
+    display: none !important;
+    pointer-events: none;
+}
+
+.video-frame .legacy-film-play {
+    width: 88px;
+    height: 88px;
+    z-index: 8;
+    cursor: pointer;
+    pointer-events: auto;
+    background: rgba(43,36,30,0.42);
+    box-shadow:
+        0 18px 44px rgba(0,0,0,0.24),
+        0 0 0 16px rgba(255,255,255,0.06);
+}
+
+.video-frame.is-playing .legacy-film-play {
+    opacity: .72;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(.92);
+    animation: none;
+}
+
+.video-frame.is-playing:hover .legacy-film-play,
+.video-frame.is-playing .legacy-film-play:focus-visible {
+    opacity: .95;
+}
+
+.video-frame.is-playing .legacy-film-play span {
+    width: 20px;
+    height: 26px;
+    margin-left: 0;
+    border: 0;
+    border-left: 7px solid currentColor;
+    border-right: 7px solid currentColor;
+}
+
+.legacy-film-frame.video-frame {
+    width: min(100%, 580px);
+    justify-self: center;
+}
+
+.legacy-final-film-card {
+    align-items: center;
+}
+
+.legacy-final-film-visual.video-frame {
+    width: min(100%, 580px);
+    justify-self: center;
+    align-self: center;
+    border-radius: 34px;
+}
+
+@media (min-width: 900px) {
+    .legacy-film-section {
+        grid-template-columns: minmax(0, 0.96fr) minmax(440px, 0.92fr);
+    }
+
+    .legacy-final-film-card {
+        grid-template-columns: minmax(440px, 0.96fr) minmax(0, 1.04fr);
+        align-items: center;
+        padding: clamp(24px, 3vw, 34px);
+        gap: clamp(34px, 4vw, 52px);
+    }
+
+    .legacy-final-film-visual.video-frame {
+        min-height: auto !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .video-frame .legacy-film-play {
+        width: 76px;
+        height: 76px;
+    }
+
+    .legacy-film-frame.video-frame,
+    .legacy-final-film-visual.video-frame {
+        width: 100%;
+        border-radius: 30px;
+    }
+
+    .legacy-final-film-card {
+        padding: 18px;
+        gap: 24px;
+    }
+}
+
+
+
+/* ==============================
+   v1.9.2 — Section contrast + larger clean videos
+   ============================== */
+
+/* Give the first editorial blocks clearer separation without breaking the premium minimal style */
+.quote-section,
+.story-section {
+    position: relative;
+    width: min(100%, 720px);
+    margin-left: auto;
+    margin-right: auto;
+    padding: clamp(34px, 5vw, 52px) clamp(22px, 5vw, 48px);
+    border-radius: 34px;
+    background:
+        radial-gradient(circle at 50% 0%, rgba(255,255,255,0.72), transparent 44%),
+        linear-gradient(145deg, rgba(255,255,255,0.42), rgba(216,195,165,0.16));
+    border: 1px solid rgba(184,138,68,0.14);
+    box-shadow: 0 26px 70px rgba(43,36,30,0.055);
+}
+
+.quote-section {
+    margin-top: clamp(42px, 6vw, 68px);
+}
+
+.story-section {
+    margin-top: clamp(42px, 6vw, 72px);
+    margin-bottom: clamp(44px, 6vw, 78px);
+}
+
+.quote-text,
+.story-text {
+    color: rgba(43,36,30,0.82);
+}
+
+/* Larger, cleaner video frames */
+.video-frame {
+    overflow: hidden;
+    background: #0f0f0f;
+}
+
+.video-frame .legacy-film-video {
+    object-fit: cover;
+    transform: scale(1.01);
+}
+
+/* Hide the pause watermark while playing. The full video/card remains clickable to pause. */
+.video-frame.is-playing .legacy-film-play {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transform: translate(-50%, -50%) scale(.88);
+}
+
+.video-frame.is-playing:hover .legacy-film-play,
+.video-frame.is-playing .legacy-film-play:focus-visible {
+    opacity: 0 !important;
+}
+
+.legacy-film-frame.video-frame {
+    width: min(100%, 720px);
+    max-width: 720px;
+    aspect-ratio: 16 / 9;
+}
+
+.legacy-final-film-visual.video-frame {
+    width: 100%;
+    max-width: 760px;
+    aspect-ratio: 16 / 9;
+}
+
+/* Desktop: make video sections feel like intentional feature sections */
+@media (min-width: 900px) {
+    .legacy-film-section {
+        width: min(100%, 1120px);
+        max-width: 1120px;
+        grid-template-columns: minmax(0, .82fr) minmax(520px, 1.18fr);
+        gap: clamp(56px, 6vw, 96px);
+        padding-top: 100px;
+        padding-bottom: 96px;
+    }
+
+    .legacy-film-copy {
+        align-self: center;
+    }
+
+    .legacy-film-frame.video-frame {
+        justify-self: stretch;
+    }
+
+    .legacy-final-film-section {
+        width: min(100%, 1120px);
+        max-width: 1120px;
+    }
+
+    .legacy-final-film-card {
+        grid-template-columns: minmax(560px, 1.18fr) minmax(0, .82fr);
+        gap: clamp(48px, 5vw, 82px);
+        align-items: center;
+        padding: clamp(44px, 5vw, 72px);
+    }
+
+    .legacy-final-film-visual.video-frame {
+        justify-self: stretch;
+    }
+
+    .legacy-final-film-copy .section-title {
+        font-size: clamp(4rem, 5.2vw, 5.9rem);
+        line-height: .92;
+    }
+}
+
+@media (min-width: 1200px) {
+    .legacy-film-section,
+    .legacy-final-film-section {
+        width: min(100%, 1160px);
+        max-width: 1160px;
+    }
+
+    .legacy-film-frame.video-frame,
+    .legacy-final-film-visual.video-frame {
+        max-width: 780px;
+    }
+}
+
+@media (max-width: 899px) {
+    .quote-section,
+    .story-section {
+        width: min(100%, 440px);
+        padding: 30px 22px;
+    }
+
+    .legacy-film-section,
+    .legacy-final-film-section {
+        width: min(100%, 500px);
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .legacy-film-frame.video-frame,
+    .legacy-final-film-visual.video-frame {
+        width: 100%;
+        max-width: 100%;
+        aspect-ratio: 16 / 9;
+    }
+
+    .legacy-final-film-card {
+        padding: 22px;
+    }
+}
+
+@media (max-width: 560px) {
+    .quote-section,
+    .story-section {
+        width: calc(100% - 28px);
+        border-radius: 28px;
+    }
+
+    .legacy-film-section,
+    .legacy-final-film-section {
+        width: calc(100% - 28px);
+    }
+
+    .legacy-final-film-card {
+        border-radius: 30px;
+        padding: 18px;
+    }
+}
+
+
+
+/* ==============================
+   v1.9.3 — Dark stacked video feature sections
+   Texto arriba + video abajo para no descuadrar layout
+   ============================== */
+
+.legacy-film-section,
+.legacy-final-film-section {
+    width: min(100%, 1040px) !important;
+    max-width: 1040px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.legacy-film-section {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: clamp(32px, 5vw, 54px) !important;
+    padding: clamp(48px, 7vw, 78px) clamp(24px, 6vw, 64px) !important;
+    border-radius: clamp(30px, 4vw, 46px);
+    background:
+        radial-gradient(circle at 50% 0%, rgba(255,255,255,0.08), transparent 36%),
+        linear-gradient(145deg, rgba(50,43,36,0.98), rgba(29,25,22,0.98));
+    border: 1px solid rgba(255,250,243,0.16);
+    box-shadow: 0 34px 90px rgba(43,36,30,0.24);
+}
+
+.legacy-final-film-card {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: clamp(32px, 5vw, 54px) !important;
+    min-height: auto !important;
+    padding: clamp(48px, 7vw, 78px) clamp(24px, 6vw, 64px) !important;
+    border-radius: clamp(30px, 4vw, 46px);
+    background:
+        radial-gradient(circle at 50% 0%, rgba(255,255,255,0.08), transparent 36%),
+        linear-gradient(145deg, rgba(50,43,36,0.98), rgba(29,25,22,0.98)) !important;
+    border: 1px solid rgba(255,250,243,0.16);
+    box-shadow: 0 34px 90px rgba(43,36,30,0.24);
+}
+
+.legacy-film-copy,
+.legacy-final-film-copy {
+    order: 1;
+    width: min(100%, 760px);
+    max-width: 760px !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    text-align: center !important;
+}
+
+.legacy-film-frame.video-frame,
+.legacy-final-film-visual.video-frame {
+    order: 2;
+    width: min(100%, 860px) !important;
+    max-width: 860px !important;
+    aspect-ratio: 16 / 9;
+    border-radius: clamp(24px, 3vw, 34px);
+    border: 1px solid rgba(255,250,243,0.22);
+    box-shadow: 0 28px 76px rgba(0,0,0,0.28);
+    background: #0f0f0f;
+}
+
+.legacy-film-copy .section-label,
+.legacy-final-film-copy .section-label {
+    color: rgba(210,180,122,0.96) !important;
+    text-align: center !important;
+}
+
+.legacy-film-copy .section-title,
+.legacy-final-film-copy .section-title {
+    max-width: 780px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    color: #fffaf3 !important;
+    text-align: center !important;
+    font-size: clamp(2.9rem, 6.2vw, 5.4rem) !important;
+    line-height: 0.96 !important;
+    letter-spacing: -0.025em;
+}
+
+.legacy-film-copy .legacy-film-text,
+.legacy-final-film-copy p {
+    max-width: 680px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    color: rgba(255,250,243,0.82) !important;
+    text-align: center !important;
+    font-weight: 500;
+    line-height: 1.85;
+}
+
+.video-frame .legacy-film-video {
+    object-fit: cover;
+    transform: scale(1);
+}
+
+.video-frame .legacy-film-overlay,
+.video-frame .legacy-final-film-glow {
+    background:
+        linear-gradient(180deg, rgba(0,0,0,0.08), rgba(0,0,0,0.30)),
+        radial-gradient(circle at 50% 44%, transparent 30%, rgba(0,0,0,0.22) 100%);
+}
+
+.video-frame .legacy-film-play {
+    width: 82px;
+    height: 82px;
+    background: rgba(255,250,243,0.14);
+    color: #fffaf3;
+    border: 1px solid rgba(255,250,243,0.42);
+    box-shadow:
+        0 18px 44px rgba(0,0,0,0.32),
+        0 0 0 14px rgba(255,255,255,0.035);
+}
+
+.video-frame.is-playing .legacy-film-play {
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+@media (min-width: 900px) {
+    .legacy-film-section {
+        grid-template-columns: none !important;
+    }
+
+    .legacy-final-film-card {
+        grid-template-columns: none !important;
+    }
+
+    .legacy-film-copy .section-title {
+        font-size: clamp(3.6rem, 5.5vw, 5.6rem) !important;
+    }
+
+    .legacy-final-film-copy .section-title {
+        font-size: clamp(3.4rem, 5.2vw, 5.35rem) !important;
+    }
+}
+
+@media (max-width: 899px) {
+    .legacy-film-section,
+    .legacy-final-film-section {
+        width: min(100%, 500px) !important;
+        max-width: 500px !important;
+    }
+
+    .legacy-film-section,
+    .legacy-final-film-card {
+        padding: 42px 22px !important;
+        gap: 28px !important;
+    }
+
+    .legacy-film-copy .section-title,
+    .legacy-final-film-copy .section-title {
+        font-size: clamp(2.45rem, 11vw, 3.65rem) !important;
+        line-height: 0.98 !important;
+    }
+
+    .legacy-film-frame.video-frame,
+    .legacy-final-film-visual.video-frame {
+        width: 100% !important;
+        max-width: 100% !important;
+        border-radius: 26px;
+    }
+}
+
+@media (max-width: 560px) {
+    .legacy-film-section,
+    .legacy-final-film-section {
+        width: calc(100% - 28px) !important;
+    }
+
+    .legacy-film-section,
+    .legacy-final-film-card {
+        border-radius: 30px;
+        padding: 36px 18px !important;
+    }
+
+    .legacy-film-copy .legacy-film-text,
+    .legacy-final-film-copy p {
+        font-size: 0.92rem;
+        line-height: 1.7;
+    }
+
+    .video-frame .legacy-film-play {
+        width: 72px;
+        height: 72px;
+    }
+}
+
+
+
+/* ==============================
+   v1.9.4 — Elegant gradient + reliable pause hit area
+   ============================== */
+
+.legacy-film-section {
+    background:
+        radial-gradient(circle at 15% 10%, rgba(255,250,243,0.92), transparent 34%),
+        radial-gradient(circle at 90% 12%, rgba(198,160,92,0.30), transparent 32%),
+        radial-gradient(circle at 12% 96%, rgba(134,145,118,0.22), transparent 28%),
+        linear-gradient(145deg, #fff8ef 0%, #eadcc9 42%, #b99a68 100%) !important;
+    border: 1px solid rgba(184,138,68,0.28);
+    box-shadow:
+        0 34px 90px rgba(43,36,30,0.18),
+        inset 0 1px 0 rgba(255,255,255,0.68);
+}
+
+.legacy-final-film-card {
+    background:
+        radial-gradient(circle at 16% 8%, rgba(255,250,243,0.96), transparent 34%),
+        radial-gradient(circle at 92% 14%, rgba(198,160,92,0.32), transparent 30%),
+        radial-gradient(circle at 14% 96%, rgba(134,145,118,0.24), transparent 28%),
+        linear-gradient(145deg, #fff8ef 0%, #eadcc9 44%, #b99a68 100%) !important;
+    border: 1px solid rgba(184,138,68,0.28);
+    box-shadow:
+        0 34px 90px rgba(43,36,30,0.18),
+        inset 0 1px 0 rgba(255,255,255,0.68);
+}
+
+.legacy-film-copy .section-label,
+.legacy-final-film-copy .section-label {
+    color: #8f6f31 !important;
+}
+
+.legacy-film-copy .section-title,
+.legacy-final-film-copy .section-title {
+    color: #2f2822 !important;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.32);
+}
+
+.legacy-film-copy .legacy-film-text,
+.legacy-final-film-copy p {
+    color: rgba(64,54,46,0.82) !important;
+    font-weight: 600;
+}
+
+.legacy-film-frame.video-frame,
+.legacy-final-film-visual.video-frame {
+    box-shadow:
+        0 28px 70px rgba(43,36,30,0.24),
+        0 0 0 1px rgba(255,250,243,0.28);
+}
+
+.video-hit-area {
+    position: absolute;
+    inset: 0;
+    z-index: 7;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    background: transparent;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.video-frame .legacy-film-play {
+    z-index: 8;
+    pointer-events: none;
+}
+
+.video-frame.is-playing .legacy-film-play {
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+.video-frame.is-playing:hover .legacy-film-play,
+.video-frame.is-playing .legacy-film-play:focus-visible {
+    opacity: 0 !important;
+}
+
+@media (max-width: 560px) {
+    .legacy-film-section,
+    .legacy-final-film-card {
+        background:
+            radial-gradient(circle at 16% 8%, rgba(255,250,243,0.96), transparent 34%),
+            radial-gradient(circle at 88% 12%, rgba(198,160,92,0.28), transparent 30%),
+            linear-gradient(145deg, #fff8ef 0%, #eadcc9 48%, #bd9d69 100%) !important;
     }
 }

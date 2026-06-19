@@ -11,7 +11,7 @@
     />
 
     <link rel="icon" type="image/jpeg" href="../../LOGO/FAVICON.jpeg" />
-    <link rel="stylesheet" href="style.css?v=1.8.0" />
+    <link rel="stylesheet" href="style.css?v=1.9.4" />
 
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap"
@@ -146,12 +146,22 @@
           </p>
         </div>
 
-        <div class="legacy-film-frame" role="img" aria-label="Vista cinematográfica de la boda de Aurora y Matteo">
-          <div class="legacy-film-poster legacy-film-poster-primary"></div>
+        <div class="legacy-film-frame video-frame video-frame-primary" aria-label="Video de ejemplo de la boda de Aurora y Matteo">
+          <video
+            id="legacyVideoMain"
+            class="legacy-film-video"
+            muted
+            playsinline
+            preload="auto"
+            aria-label="Video de ejemplo de boda"
+          >
+            <source src="../../videos/Video-Ejemplo.mp4" type="video/mp4" />
+          </video>
           <div class="legacy-film-overlay"></div>
-          <div class="legacy-film-play" aria-hidden="true">
+          <button type="button" class="video-hit-area" data-video-target="legacyVideoMain" aria-label="Reproducir o pausar video"></button>
+          <button type="button" class="legacy-film-play video-play-button" data-video-target="legacyVideoMain" aria-label="Reproducir o pausar video de ejemplo">
             <span></span>
-          </div>
+          </button>
           <div class="legacy-film-caption">
             <small>Wedding Film</small>
             <strong>Aurora & Matteo</strong>
@@ -505,12 +515,22 @@
 
       <section class="legacy-final-film-section section-reveal" aria-labelledby="legacyFinalFilmTitle">
         <div class="legacy-final-film-card">
-          <div class="legacy-final-film-visual" role="img" aria-label="Momento emocional de cierre para la boda">
-            <div class="legacy-film-poster legacy-film-poster-secondary"></div>
+          <div class="legacy-final-film-visual video-frame video-frame-final" aria-label="Video de ejemplo de cierre para la boda">
+            <video
+              id="legacyVideoFinal"
+              class="legacy-film-video"
+              muted
+              playsinline
+              preload="auto"
+              aria-label="Video de ejemplo de cierre de boda"
+            >
+              <source src="../../videos/Video-Ejemplo.mp4" type="video/mp4" />
+            </video>
             <div class="legacy-final-film-glow"></div>
-            <div class="legacy-film-play legacy-film-play-soft" aria-hidden="true">
+            <button type="button" class="video-hit-area" data-video-target="legacyVideoFinal" aria-label="Reproducir o pausar video"></button>
+            <button type="button" class="legacy-film-play legacy-film-play-soft video-play-button" data-video-target="legacyVideoFinal" aria-label="Reproducir o pausar video de cierre">
               <span></span>
-            </div>
+            </button>
           </div>
 
           <div class="legacy-final-film-copy">
@@ -666,10 +686,10 @@
       </div>
     </div>
 
-    <audio id="bg-music" loop preload="auto">
-      <source src="../../music/violin-luxury.mp3" type="audio/mpeg" />
+    <audio id="bg-music" loop preload="none" data-audio-src="../../music/Aleluya-Luxury.mp3?v=1.9.0">
+      <source src="../../music/Aleluya-Luxury.mp3?v=1.9.0" type="audio/mpeg" />
     </audio>
 
-    <script src="script.js?v=1.8.0"></script>
+    <script src="script.js?v=1.9.4"></script>
   </body>
 </html>

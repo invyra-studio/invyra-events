@@ -1,6 +1,6 @@
 /**
  * INVYRA - Wedding Legacy Demo
- * Version 1.8.0
+ * Version 1.9.4
  * Server-side RSVP validation through Google Sheets / Apps Script
  * Update: Activity 14 Legacy RSVP microinteractions, autosave/restore and server-side duplicate validation
  */
@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initRsvpDraftAutosave();
     initModalClose();
     initImageFallbacks();
+    initInlineWeddingVideos();
     initLegacyPremiumMotion();
 });
 
@@ -99,8 +100,24 @@ function entrarExperiencia() {
     }, splashDuration);
 }
 
+
+function ensureWeddingAudioSource(music) {
+    if (!music) return;
+
+    const expectedAudioSrc = music.dataset.audioSrc || "../../music/Aleluya-Luxury.mp3?v=1.9.0";
+    const currentSrc = music.currentSrc || music.getAttribute("src") || "";
+
+    if (!currentSrc.includes("Aleluya-Luxury.mp3")) {
+        music.pause();
+        music.innerHTML = `<source src="${expectedAudioSrc}" type="audio/mpeg" />`;
+        music.load();
+    }
+}
+
 function playMusicSafely(music) {
     if (!music) return;
+
+    ensureWeddingAudioSource(music);
 
     music.volume = 0;
 
@@ -120,6 +137,95 @@ function playMusicSafely(music) {
 }
 
 window.entrarExperiencia = entrarExperiencia;
+
+
+/* ==============================
+   INLINE MUTED WEDDING VIDEOS
+   ============================== */
+
+function initInlineWeddingVideos() {
+    const videoButtons = document.querySelectorAll(".video-play-button, .video-hit-area");
+    const videos = document.querySelectorAll(".legacy-film-video");
+
+    videos.forEach(video => {
+        video.muted = true;
+        video.defaultMuted = true;
+        video.controls = false;
+        video.removeAttribute("autoplay");
+
+        const frame = video.closest(".video-frame");
+
+        video.addEventListener("loadedmetadata", () => {
+            if (video.currentTime === 0) {
+                try {
+                    video.currentTime = 0.01;
+                } catch (error) {
+                    console.warn("No se pudo preparar el primer frame del video:", error);
+                }
+            }
+        });
+
+        video.addEventListener("play", () => {
+            if (frame) {
+                frame.classList.add("is-playing");
+                frame.classList.remove("is-paused");
+            }
+        });
+
+        video.addEventListener("pause", () => {
+            if (frame) {
+                frame.classList.remove("is-playing");
+                frame.classList.add("is-paused");
+            }
+        });
+
+        video.addEventListener("ended", () => {
+            video.currentTime = 0;
+            if (frame) {
+                frame.classList.remove("is-playing");
+                frame.classList.add("is-paused");
+            }
+        });
+    });
+
+    videoButtons.forEach(button => {
+        button.addEventListener("click", event => {
+            event.stopPropagation();
+
+            const targetId = button.dataset.videoTarget;
+            const video = targetId ? document.getElementById(targetId) : button.closest(".video-frame")?.querySelector(".legacy-film-video");
+
+            if (!video) return;
+
+            toggleInlineWeddingVideo(video);
+        });
+    });
+}
+
+function toggleInlineWeddingVideo(video) {
+    if (!video) return;
+
+    if (video.paused) {
+        playInlineWeddingVideo(video);
+    } else {
+        video.pause();
+    }
+}
+
+function playInlineWeddingVideo(video) {
+    document.querySelectorAll(".legacy-film-video").forEach(otherVideo => {
+        if (otherVideo !== video && !otherVideo.paused) {
+            otherVideo.pause();
+        }
+    });
+
+    video.muted = true;
+    video.defaultMuted = true;
+
+    video.play().catch(error => {
+        console.warn("El video requiere interacción del usuario:", error);
+    });
+}
 
 /* ==============================
    HERO REVEAL
