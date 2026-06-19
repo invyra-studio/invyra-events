@@ -7347,3 +7347,102 @@ section + section,
     transform: scale(1.22);
   }
 }
+
+
+
+/* ==============================
+   PREVIEW 1.0.47 — Two Wedding versions
+   ============================== */
+
+.experience-teaser-card {
+    isolation: isolate;
+}
+
+.experience-teaser-card > * {
+    position: relative;
+    z-index: 2;
+}
+
+.experience-teaser-card-wedding-two {
+    border-color: rgba(184,135,60,0.36);
+    background:
+        radial-gradient(circle at 12% 0%, rgba(255,255,255,0.88), transparent 34%),
+        radial-gradient(circle at 86% 8%, rgba(125,169,194,0.22), transparent 30%),
+        radial-gradient(circle at 82% 92%, rgba(184,135,60,0.16), transparent 34%),
+        linear-gradient(145deg, rgba(255,250,242,0.82), rgba(232,216,189,0.52));
+    box-shadow:
+        0 24px 64px rgba(36,29,24,0.12),
+        0 0 38px rgba(125,169,194,0.12),
+        inset 0 0 0 1px rgba(255,255,255,0.44);
+}
+
+.experience-teaser-card-wedding-two::before {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: 44%;
+    z-index: 1;
+    opacity: .82;
+    pointer-events: none;
+    background:
+        linear-gradient(180deg, transparent, rgba(255,250,242,0.82)),
+        radial-gradient(ellipse at 50% 100%, rgba(125,169,194,0.22), transparent 66%);
+}
+
+.experience-teaser-link {
+    display: inline-flex;
+    width: fit-content;
+    min-height: 36px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 16px;
+    padding: 0 16px;
+    border-radius: 999px;
+    color: var(--espresso);
+    background: rgba(255,255,255,0.66);
+    border: 1px solid rgba(184,135,60,0.22);
+    font-size: .66rem;
+    font-weight: 900;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition:
+        transform .28s ease,
+        box-shadow .28s ease,
+        border-color .28s ease,
+        background .28s ease;
+}
+
+.experience-teaser-link:hover {
+    transform: translateY(-2px);
+    background: rgba(255,255,255,0.86);
+    border-color: rgba(184,135,60,0.38);
+    box-shadow: 0 14px 32px rgba(36,29,24,0.12);
+}
+
+.experience-teaser-link-dark {
+    color: var(--cream);
+    background: rgba(255,255,255,0.10);
+    border-color: rgba(232,210,166,0.22);
+}
+
+.experience-teaser-link-dark:hover {
+    background: rgba(255,255,255,0.16);
+    border-color: rgba(232,210,166,0.34);
+}
+
+@media (min-width: 900px) {
+    .experience-teaser-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .experience-teaser-card {
+        min-height: 178px;
+    }
+}
+
+@media (max-width: 899px) {
+    .experience-teaser-cards {
+        grid-template-columns: 1fr;
+    }
+}
