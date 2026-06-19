@@ -90,3 +90,36 @@ document.addEventListener("DOMContentLoaded", () => {
   initImageToggles();
   initSubtleCardFocus();
 });
+
+
+/* INVYRA HOTFIX 1.0.49 — aria state sync for hamburger menu */
+function initHamburgerA11ySync() {
+  const navToggle = document.getElementById("nav-toggle");
+  const siteNav = document.getElementById("site-nav");
+
+  if (!navToggle || !siteNav) return;
+
+  function syncMenuState() {
+    const isOpen = document.body.classList.contains("nav-open");
+    navToggle.setAttribute("aria-label", isOpen ? "Cerrar menú" : "Abrir menú");
+    navToggle.setAttribute("aria-expanded", String(isOpen));
+  }
+
+  navToggle.setAttribute("aria-controls", "site-nav");
+  syncMenuState();
+
+  navToggle.addEventListener("click", () => {
+    window.setTimeout(syncMenuState, 0);
+  });
+
+  document.addEventListener("click", () => {
+    window.setTimeout(syncMenuState, 0);
+  });
+
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape") window.setTimeout(syncMenuState, 0);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", initHamburgerA11ySync);
+

@@ -7446,3 +7446,72 @@ section + section,
         grid-template-columns: 1fr;
     }
 }
+
+
+/* ==========================================================
+   INVYRA — LANDING PREVIEW HOTFIX 1.0.48
+   Menú hamburguesa homologado: líneas centradas y sin descuadre.
+   ========================================================== */
+
+.nav-toggle {
+    align-items: center !important;
+    justify-content: center !important;
+    flex-direction: column !important;
+    gap: 5px !important;
+    padding: 0 !important;
+    line-height: 0 !important;
+}
+
+.nav-toggle span,
+.nav-toggle span:first-child,
+.nav-toggle span:nth-child(2),
+.nav-toggle span:nth-child(3),
+.nav-toggle span:last-child {
+    position: static !important;
+    inset: auto !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    display: block !important;
+    width: 18px !important;
+    height: 2px !important;
+    margin: 0 !important;
+    border-radius: 999px !important;
+    background: var(--espresso) !important;
+    opacity: 1;
+    transform: none !important;
+    transform-origin: center !important;
+    transition:
+        transform 0.28s ease,
+        opacity 0.28s ease,
+        background 0.28s ease !important;
+}
+
+body.nav-open .nav-toggle span:first-child {
+    transform: translateY(7px) rotate(45deg) !important;
+}
+
+body.nav-open .nav-toggle span:nth-child(2) {
+    opacity: 0 !important;
+    transform: scaleX(0.35) !important;
+}
+
+body.nav-open .nav-toggle span:nth-child(3),
+body.nav-open .nav-toggle span:last-child {
+    transform: translateY(-7px) rotate(-45deg) !important;
+}
+
+@media (max-width: 820px) {
+    .nav-toggle {
+        display: inline-flex !important;
+        flex: 0 0 44px !important;
+    }
+}
+
+@media (min-width: 821px) {
+    .nav-toggle {
+        display: none !important;
+    }
+}
+
