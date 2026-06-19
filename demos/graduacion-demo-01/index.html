@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Valeria · Graduación</title>
+    <meta name="description" content="Invitación digital de graduación para Valeria." />
+    <link rel="icon" type="image/jpeg" href="./assets/favicon.jpeg" />
+    <link rel="stylesheet" href="./style.css?v=2.3.0-unique-hero" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
+    <script src="./script.js?v=2.3.0-unique-hero" defer></script>
+  </head>
+
+  <body class="graduacion-page" data-event-date="2026-07-11T19:00:00" style="--splash-image: url('./assets/hero-graduacion.jpg')">
+    <div id="splash-screen" class="splash-screen">
+      <div class="splash-image-bg" aria-hidden="true"></div>
+      <div class="splash-grid" aria-hidden="true"></div>
+      <div class="splash-vignette" aria-hidden="true"></div>
+
+      <div class="splash-content splash-evening">
+        <div class="event-badge">V</div>
+        <p class="splash-kicker">Graduación</p>
+        <h1>Valeria</h1>
+        <p class="splash-subtitle">Class of 2026</p>
+        <p class="splash-copy">Una noche elegante para brindar por cada desvelo, cada meta cumplida y todo lo que está por comenzar.</p>
+        <button type="button" class="open-invite-btn" onclick="openInvitation()">Abrir invitación</button>
+        <p class="splash-note">Toca para abrir la invitación.</p>
+      </div>
+    </div>
+
+    <main id="invitation" class="invitation">
+      <section class="hero-section" id="inicio">
+        <img class="hero-bg" src="./assets/hero-graduacion.jpg" alt="Graduación de Valeria" />
+        <div class="hero-overlay"></div>
+        <div class="hero-dots" aria-hidden="true"></div>
+
+        <div class="hero-content hero-content-side">
+          <div class="event-badge hero-badge">V</div>
+          <p class="hero-kicker">El cierre de una etapa inolvidable</p>
+          <p class="hero-script">Class of 2026</p>
+          <h1>Valeria</h1>
+          <p class="hero-theme">Una noche para celebrar en grande</p>
+
+          <div class="hero-tags"><span>Logro</span><span>Brindis</span><span>Nueva etapa</span></div>
+
+          <div class="hero-info-card hero-info-card-side">
+            <p class="date">11 · Julio · 2026</p>
+            <p class="place">Terraza Aurea</p>
+            <p class="copy">Una noche elegante, cálida y especial para brindar por el camino recorrido y todo lo que está por comenzar.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="countdown-section section-reveal">
+        <p class="section-kicker">Falta poco para celebrar</p>
+        <div class="countdown-grid">
+          <article><strong id="days">00</strong><span>Días</span></article>
+          <article><strong id="hours">00</strong><span>Horas</span></article>
+          <article><strong id="mins">00</strong><span>Min</span></article>
+          <article><strong id="secs">00</strong><span>Seg</span></article>
+        </div>
+      </section>
+
+      <section class="message-section section-reveal">
+        <div class="message-card">
+          <p class="quote-symbol">❖</p>
+          <p class="message-text">“Cada meta alcanzada merece una celebración a la altura del camino recorrido.”</p>
+          <p class="message-sign">Valeria</p>
+        </div>
+      </section>
+
+      <section class="story-section section-reveal">
+        <div class="story-image">
+          <img src="./assets/detalle-graduacion.jpg" alt="Detalles de graduación de Valeria" />
+        </div>
+        <div class="story-copy">
+          <p class="section-kicker">La noche</p>
+          <h2>Una celebración con presencia y emoción.</h2>
+          <p>Nos reuniremos para compartir cena, brindis, fotografías y momentos especiales en una atmósfera elegante, cálida y memorable.</p>
+          <div class="mission-tags">
+            <span>Logro</span>
+<span>Brindis</span>
+<span>Nuevo comienzo</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="details-section section-reveal">
+        <p class="section-kicker">Detalles del evento</p>
+        <h2 class="section-title">Una noche para recordar.</h2>
+        <div class="details-grid">
+          <article>
+            <span>Recepción</span>
+            <h3>7:00 PM</h3>
+            <p>Bienvenida, fotografías y coctel inicial en Terraza Aurea.</p>
+          </article>
+          <article>
+            <span>Celebración</span>
+            <h3>Cena & brindis</h3>
+            <p>Cena formal, palabras especiales y brindis por Valeria.</p>
+          </article>
+          <article>
+            <span>Dress code</span>
+            <h3>Formal elegante</h3>
+            <p>Sugerimos negro, marfil, champagne o acentos dorados.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="agenda-section section-reveal">
+        <p class="section-kicker">Agenda</p>
+        <div class="timeline">
+          <article>
+            <span>Inicio</span>
+            <strong>7:00</strong>
+            <p>Recepción y fotografías.</p>
+          </article>
+          <article>
+            <span>Brindis</span>
+            <strong>7:45</strong>
+            <p>Palabras especiales.</p>
+          </article>
+          <article>
+            <span>Cena</span>
+            <strong>8:30</strong>
+            <p>Cena y convivencia.</p>
+          </article>
+          <article>
+            <span>Cierre</span>
+            <strong>10:15</strong>
+            <p>Música y recuerdos.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="dress-section section-reveal">
+        <div class="dress-card">
+          <p class="section-kicker">Dress code</p>
+          <h2>Formal elegante con acentos champagne.</h2>
+          <p>Sugerimos una paleta sobria y elegante: negro, marfil, champagne, dorado o tonos neutros.</p>
+          <div class="palette"><span style="background:#17120f"></span>
+<span style="background:#fff8eb"></span>
+<span style="background:#d8b86a"></span>
+<span style="background:#8b6b43"></span></div>
+        </div>
+      </section>
+
+      <section class="gallery-section section-reveal">
+        <p class="section-kicker">Galería</p>
+        <h2 class="section-title">Momentos de una nueva etapa.</h2>
+        <div class="gallery-grid">
+          <div class="gallery-main">
+            <img src="./assets/portrait-graduacion.jpg" alt="Retrato de graduación de Valeria" />
+          </div>
+          <div class="gallery-stack">
+            <img src="./assets/hero-graduacion.jpg" alt="Valeria en su graduación" />
+            <img src="./assets/detalle-graduacion.jpg" alt="Detalles de graduación" />
+          </div>
+        </div>
+      </section>
+
+      <section class="gift-section section-reveal">
+        <div class="gift-card">
+          <p class="section-kicker">Detalle opcional</p>
+          <h2>Tu presencia hace especial la noche.</h2>
+          <p>Si deseas tener un detalle con Valeria, podrás hacerlo el día del evento. Lo más importante será compartir este logro.</p>
+        </div>
+      </section>
+
+      <footer class="action-section section-reveal">
+        <div class="rsvp-card">
+          <p class="rsvp-kicker">Confirmación</p>
+          <h2>Confirma tu asistencia</h2>
+          <p class="rsvp-intro">Nos encantará saber si podremos contar contigo para preparar tu lugar y cuidar cada detalle de la noche.</p>
+          <div class="ornament-line"><span></span></div>
+          <div class="rsvp-envelope-icon" aria-hidden="true">✦</div>
+
+          <div class="rsvp-form" id="rsvp-form">
+            <input type="text" id="nombreInvitado" placeholder="Nombre del invitado o familia" autocomplete="off" aria-label="Nombre del invitado o familia" />
+
+            <div class="attendance-group">
+              <p>Confirmo que</p>
+              <div class="attendance-options">
+                <label><input type="radio" name="asistencia" value="Asistiré" checked /><span>Asistiré</span></label>
+                <label><input type="radio" name="asistencia" value="No asistiré" /><span>No asistiré</span></label>
+              </div>
+            </div>
+
+            <p class="rsvp-live-message" id="rsvp-live-message" aria-live="polite">Selecciona tu respuesta para continuar.</p>
+
+            <div id="attendanceDetails">
+              <div class="rsvp-field-group">
+                <label for="numeroAsistentes">Número de asistentes</label>
+                <select id="numeroAsistentes" aria-label="Número de asistentes">
+                  <option value="1">1 asistente</option>
+                  <option value="2">2 asistentes</option>
+                  <option value="3">3 asistentes</option>
+                  <option value="4">4 asistentes</option>
+                  <option value="5">5 asistentes</option>
+                  <option value="6">6 asistentes</option>
+                </select>
+              </div>
+            </div>
+
+            <textarea id="mensajeInvitado" placeholder="Mensaje para Valeria o comentario especial (opcional)" aria-label="Mensaje opcional"></textarea>
+            <button type="button" id="btn-confirmar" class="btn-rsvp" onclick="confirmarAsistencia()" aria-label="Confirmar asistencia">Confirmar asistencia</button>
+          </div>
+        </div>
+
+        <div class="closing-section">
+          <img src="./assets/logo-invyra.jpeg" alt="Invyra" class="closing-logo" />
+          <p>Gracias por acompañarme en este logro y por ser parte de esta nueva etapa.</p>
+          <span>Valeria</span>
+        </div>
+      </footer>
+
+      <div id="rsvp-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-message">
+        <div class="modal-card">
+          <button type="button" class="modal-close" onclick="cerrarModal()" aria-label="Cerrar">×</button>
+          <p class="modal-kicker">Confirmación guardada</p>
+          <h3 id="modal-title">¡Gracias por responder!</h3>
+          <p id="modal-message">Tu confirmación quedó registrada en esta demo.</p>
+          <button type="button" class="modal-btn" onclick="cerrarModal()">Entendido</button>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sofía · Primera Comunión</title>
+    <meta name="description" content="Invitación digital de Primera Comunión para Sofía." />
+    <link rel="icon" type="image/jpeg" href="./assets/favicon.jpeg" />
+    <link rel="stylesheet" href="./style.css?v=2.3.0-unique-hero" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
+    <script src="./script.js?v=2.3.0-unique-hero" defer></script>
+  </head>
+
+  <body class="comunion-page" data-event-date="2026-05-24T13:00:00" style="--splash-image: url('./assets/hero-comunion.jpg')">
+    <div id="splash-screen" class="splash-screen">
+      <div class="splash-image-bg" aria-hidden="true"></div>
+      <div class="splash-grid" aria-hidden="true"></div>
+      <div class="splash-vignette" aria-hidden="true"></div>
+
+      <div class="splash-content splash-soft">
+        <div class="event-badge">S</div>
+        <p class="splash-kicker">Primera Comunión</p>
+        <h1>Sofía</h1>
+        <p class="splash-subtitle">Mi Primera Comunión</p>
+        <p class="splash-copy">Con alegría, ternura y gratitud, queremos compartir contigo un día lleno de fe, familia y recuerdos entrañables.</p>
+        <button type="button" class="open-invite-btn" onclick="openInvitation()">Abrir invitación</button>
+        <p class="splash-note">Toca para abrir la invitación.</p>
+      </div>
+    </div>
+
+    <main id="invitation" class="invitation">
+      <section class="hero-section" id="inicio">
+        <img class="hero-bg" src="./assets/hero-comunion.jpg" alt="Primera Comunión de Sofía" />
+        <div class="hero-overlay"></div>
+        <div class="hero-dots" aria-hidden="true"></div>
+
+        <div class="hero-content hero-content-soft">
+          <div class="event-badge hero-badge">S</div>
+          <p class="hero-kicker">Con la bendición de Dios y nuestra familia</p>
+          <p class="hero-script">Mi Primera Comunión</p>
+          <h1>Sofía</h1>
+          <p class="hero-theme">Un recuerdo lleno de luz y bendición</p>
+
+          <div class="hero-tags soft-tags"><span>Fe</span><span>Familia</span><span>Bendición</span></div>
+
+          <div class="hero-info-card hero-info-card-soft">
+            <p class="date">24 · Mayo · 2026</p>
+            <p class="place">Parroquia de San Gabriel</p>
+            <p class="copy">Una celebración familiar, luminosa y llena de ternura para acompañar este día tan especial.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="countdown-section section-reveal">
+        <p class="section-kicker">Falta poco para este día especial</p>
+        <div class="countdown-grid">
+          <article><strong id="days">00</strong><span>Días</span></article>
+          <article><strong id="hours">00</strong><span>Horas</span></article>
+          <article><strong id="mins">00</strong><span>Min</span></article>
+          <article><strong id="secs">00</strong><span>Seg</span></article>
+        </div>
+      </section>
+
+      <section class="message-section section-reveal">
+        <div class="message-card">
+          <p class="quote-symbol">❖</p>
+          <p class="message-text">“Hay momentos que se guardan en el corazón para siempre; este será uno de ellos.”</p>
+          <p class="message-sign">Sofía</p>
+        </div>
+      </section>
+
+      <section class="story-section section-reveal">
+        <div class="story-image">
+          <img src="./assets/detalle-comunion.jpg" alt="Detalles de Primera Comunión" />
+        </div>
+        <div class="story-copy">
+          <p class="section-kicker">La celebración</p>
+          <h2>Un recuerdo de fe contado con ternura.</h2>
+          <p>Después de la ceremonia, compartiremos una recepción familiar con mesa dulce, fotografías y momentos pensados para agradecer, celebrar y recordar.</p>
+          <div class="mission-tags">
+            <span>Fe</span>
+<span>Familia</span>
+<span>Bendición</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="details-section section-reveal">
+        <p class="section-kicker">Detalles del evento</p>
+        <h2 class="section-title">Acompáñanos con cariño.</h2>
+        <div class="details-grid">
+          <article>
+            <span>Ceremonia</span>
+            <h3>1:00 PM</h3>
+            <p>Misa de Primera Comunión en la Parroquia de San Gabriel.</p>
+          </article>
+          <article>
+            <span>Recepción</span>
+            <h3>Jardín La Armonía</h3>
+            <p>Comida familiar, mesa dulce y fotografías después de la ceremonia.</p>
+          </article>
+          <article>
+            <span>Sugerencia</span>
+            <h3>Llegar antes</h3>
+            <p>Te recomendamos llegar con 20 minutos de anticipación.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="agenda-section section-reveal">
+        <p class="section-kicker">Itinerario</p>
+        <div class="timeline">
+          <article>
+            <span>Misa</span>
+            <strong>1:00</strong>
+            <p>Ceremonia religiosa.</p>
+          </article>
+          <article>
+            <span>Fotos</span>
+            <strong>2:10</strong>
+            <p>Momento familiar.</p>
+          </article>
+          <article>
+            <span>Comida</span>
+            <strong>2:45</strong>
+            <p>Recepción y convivencia.</p>
+          </article>
+          <article>
+            <span>Dulce</span>
+            <strong>5:00</strong>
+            <p>Pastel y agradecimiento.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="dress-section section-reveal">
+        <div class="dress-card">
+          <p class="section-kicker">Guía visual</p>
+          <h2>Tonos claros, suaves y elegantes.</h2>
+          <p>El dress code es opcional, pero sugerimos blanco, marfil, beige, azul cielo o tonos pastel para mantener una atmósfera luminosa.</p>
+          <div class="palette"><span style="background:#fffdf7"></span>
+<span style="background:#efe0c8"></span>
+<span style="background:#cfe2ec"></span>
+<span style="background:#b88b42"></span></div>
+        </div>
+      </section>
+
+      <section class="gallery-section section-reveal">
+        <p class="section-kicker">Galería</p>
+        <h2 class="section-title">Detalles de un día inolvidable.</h2>
+        <div class="gallery-grid">
+          <div class="gallery-main">
+            <img src="./assets/familia-comunion.jpg" alt="Retrato familiar de la Primera Comunión" />
+          </div>
+          <div class="gallery-stack">
+            <img src="./assets/hero-comunion.jpg" alt="Sofía en su Primera Comunión" />
+            <img src="./assets/detalle-comunion.jpg" alt="Mesa de postres de Primera Comunión" />
+          </div>
+        </div>
+      </section>
+
+      <section class="gift-section section-reveal">
+        <div class="gift-card">
+          <p class="section-kicker">Detalle opcional</p>
+          <h2>Tu presencia es el mejor regalo.</h2>
+          <p>Si deseas tener un detalle con Sofía, podrás hacerlo el día del evento. Lo más importante será compartir este momento en familia.</p>
+        </div>
+      </section>
+
+      <footer class="action-section section-reveal">
+        <div class="rsvp-card">
+          <p class="rsvp-kicker">Confirmación</p>
+          <h2>Confirma tu asistencia</h2>
+          <p class="rsvp-intro">Nos encantará saber si podremos contar contigo para preparar cada lugar y cada detalle con cariño.</p>
+          <div class="ornament-line"><span></span></div>
+          <div class="rsvp-envelope-icon" aria-hidden="true">✦</div>
+
+          <div class="rsvp-form" id="rsvp-form">
+            <input type="text" id="nombreInvitado" placeholder="Nombre del invitado o familia" autocomplete="off" aria-label="Nombre del invitado o familia" />
+
+            <div class="attendance-group">
+              <p>Confirmo que</p>
+              <div class="attendance-options">
+                <label><input type="radio" name="asistencia" value="Asistiré" checked /><span>Asistiré</span></label>
+                <label><input type="radio" name="asistencia" value="No asistiré" /><span>No asistiré</span></label>
+              </div>
+            </div>
+
+            <p class="rsvp-live-message" id="rsvp-live-message" aria-live="polite">Selecciona tu respuesta para continuar.</p>
+
+            <div id="attendanceDetails">
+              <div class="rsvp-field-group">
+                <label for="numeroAsistentes">Número de asistentes</label>
+                <select id="numeroAsistentes" aria-label="Número de asistentes">
+                  <option value="1">1 asistente</option>
+                  <option value="2">2 asistentes</option>
+                  <option value="3">3 asistentes</option>
+                  <option value="4">4 asistentes</option>
+                  <option value="5">5 asistentes</option>
+                  <option value="6">6 asistentes</option>
+                </select>
+              </div>
+            </div>
+
+            <textarea id="mensajeInvitado" placeholder="Mensaje para Sofía o comentario especial (opcional)" aria-label="Mensaje opcional"></textarea>
+            <button type="button" id="btn-confirmar" class="btn-rsvp" onclick="confirmarAsistencia()" aria-label="Confirmar asistencia">Confirmar asistencia</button>
+          </div>
+        </div>
+
+        <div class="closing-section">
+          <img src="./assets/logo-invyra.jpeg" alt="Invyra" class="closing-logo" />
+          <p>Gracias por acompañarnos en este momento de fe, amor y familia.</p>
+          <span>Sofía</span>
+        </div>
+      </footer>
+
+      <div id="rsvp-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-message">
+        <div class="modal-card">
+          <button type="button" class="modal-close" onclick="cerrarModal()" aria-label="Cerrar">×</button>
+          <p class="modal-kicker">Confirmación guardada</p>
+          <h3 id="modal-title">¡Gracias por responder!</h3>
+          <p id="modal-message">Tu confirmación quedó registrada en esta demo.</p>
+          <button type="button" class="modal-btn" onclick="cerrarModal()">Entendido</button>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
