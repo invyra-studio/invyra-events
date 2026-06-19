@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>INVYRA | Aurora & Matteo - Wedding Legacy Editorial</title>
+
+    <meta
+      name="description"
+      content="Wedding Demo 02 Legacy de INVYRA: invitación digital editorial con estética de papel rasgado, acuarela, galería protagonista, itinerario visual y RSVP avanzado."
+    />
+
+    <link rel="icon" type="image/jpeg" href="../../LOGO/FAVICON.jpeg" />
+    <link rel="stylesheet" href="style.css?v=2.4.7" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="preload" as="image" href="../../LOGO/FAVICON.jpeg" />
+    <link rel="preload" as="image" href="./assets/wedding-ceremony.jpeg" />
+    <link rel="preload" as="image" href="./assets/wedding-reception.jpeg" />
+    <link rel="preload" as="image" href="./assets/wedding-moments.jpeg" />
+    <link rel="preload" as="image" href="./assets/dress-men.jpeg" />
+    <link rel="preload" as="image" href="./assets/dress-women.jpeg" />
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+  </head>
+
+  <body>
+    <div id="splash-screen">
+      <div class="splash-watercolor" aria-hidden="true"></div>
+      <div class="splash-grain" aria-hidden="true"></div>
+      <div class="splash-photo-card" aria-hidden="true"></div>
+      <div class="splash-paper-card">
+        <img src="../../LOGO/FAVICON.jpeg" class="envelope-logo" alt="INVYRA" />
+        <p class="splash-kicker">Wedding Legacy</p>
+        <h1 class="envelope-title">Aurora & Matteo</h1>
+        <p class="envelope-date">14 · FEB · 2027</p>
+        <span class="splash-script">Nos casamos</span>
+      </div>
+
+      <button
+        type="button"
+        class="btn-start-experience"
+        aria-label="Entrar a la experiencia"
+      >
+        ENTRAR A LA EXPERIENCIA
+      </button>
+    </div>
+
+    <main class="invitation-container" id="invitation-content">
+      <header class="hero-section paper-tear-bottom" id="inicio">
+        <div class="cinematic-bg hero-atmosphere"></div>
+        <div class="hero-watercolor hero-atmosphere" aria-hidden="true"></div>
+        <div class="hero-gold-wash hero-atmosphere" aria-hidden="true"></div>
+        <div class="hero-grain hero-atmosphere" aria-hidden="true"></div>
+        <div class="cinematic-overlay hero-atmosphere"></div>
+
+        <div class="hero-content">
+          <img
+            src="../../LOGO/FAVICON.jpeg"
+            alt="Invyra Logo"
+            class="brand-logo-img reveal-item"
+          />
+
+          <p class="hero-kicker reveal-item">
+            Con la bendición de Dios y nuestras familias
+          </p>
+
+          <h2 class="pre-title reveal-item">
+            TENEMOS EL HONOR DE INVITARTE A NUESTRA BODA
+          </h2>
+
+          <h1 class="main-title reveal-title">
+            <span class="script-line">Nos casamos</span>
+            <span class="name-line name-line-one">Aurora</span>
+            <span class="ampersand">&</span>
+            <span class="name-line name-line-two">Matteo</span>
+          </h1>
+
+          <div class="hero-info-card reveal-item">
+            <p class="celebrant-name">14 · FEB · 2027</p>
+            <p class="hero-subtitle">Cancún, Q. Roo</p>
+            <span class="hero-mini-copy">Una celebración de amor, elegancia y momentos inolvidables.</span>
+          </div>
+        </div>
+      </header>
+
+      <section class="quote-section section-reveal paper-card torn-card">
+        <p class="quote-mark">“</p>
+        <p class="quote-text">
+          Dos almas, una historia, y la promesa de caminar juntos para siempre.
+        </p>
+      </section>
+
+      <section class="story-section section-reveal editorial-split">
+        <div class="editorial-photo editorial-photo-moments" role="img" aria-label="Detalle romántico de la boda de Aurora y Matteo"></div>
+        <div class="editorial-copy paper-card">
+          <p class="section-label">NUESTRA HISTORIA</p>
+          <h2 class="section-title">El inicio de un para siempre</h2>
+          <p class="story-text">
+            Hay momentos que cambian el rumbo de una vida. El nuestro comenzó con
+            una mirada, creció entre risas, promesas y sueños compartidos, y hoy
+            nos trae hasta este día: el inicio de una nueva historia juntos.
+          </p>
+        </div>
+      </section>
+
+      <section class="legacy-film-section section-reveal paper-tear-top paper-tear-bottom" aria-labelledby="legacyFilmTitle">
+        <div class="legacy-film-copy">
+          <p class="section-label">LEGACY MOMENT</p>
+          <h2 class="section-title" id="legacyFilmTitle">Una invitación que se siente como el inicio de una película</h2>
+          <p class="legacy-film-text">
+            Antes de llegar al día de la boda, cada invitado recibe una primera
+            impresión: una entrada elegante, una historia breve y una atmósfera
+            pensada para hacer que el evento se sienta especial desde el enlace.
+          </p>
+        </div>
+
+        <div class="legacy-film-frame vertical-cover-left" role="img" aria-label="Vista cinematográfica de la boda de Aurora y Matteo">
+          <div class="legacy-film-poster legacy-film-poster-primary"></div>
+          <div class="legacy-film-overlay"></div>
+          <div class="legacy-film-play" aria-hidden="true"><span></span></div>
+          <div class="legacy-film-caption">
+            <small>Wedding Film</small>
+            <strong>Aurora & Matteo</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="countdown-section section-reveal">
+        <p class="section-label">NUESTRO DÍA SE ACERCA</p>
+        <div id="countdown" class="glass-card countdown-paper">
+          <div class="time-unit"><span id="days">00</span><small>DÍAS</small></div>
+          <div class="time-unit"><span id="hours">00</span><small>HRS</small></div>
+          <div class="time-unit"><span id="mins">00</span><small>MIN</small></div>
+          <div class="time-unit"><span id="secs">00</span><small>SEG</small></div>
+        </div>
+      </section>
+
+      <section class="parents-section section-reveal paper-card">
+        <p class="section-label">CON AMOR NOS ACOMPAÑAN</p>
+        <h2 class="section-title">Nuestras familias</h2>
+        <div class="parents-grid">
+          <div class="parent-card">
+            <span>Padres de la novia</span>
+            <p>Elena Martínez<br />Roberto Salazar</p>
+          </div>
+          <div class="parent-card">
+            <span>Padres del novio</span>
+            <p>Claudia Moretti<br />Alessandro Ricci</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="details-section section-reveal">
+        <p class="section-label">CEREMONIA & RECEPCIÓN</p>
+        <h2 class="section-title">El día que empieza frente a quienes más queremos</h2>
+        <div class="event-cards">
+          <article class="event-card">
+            <div class="event-icon" aria-hidden="true">♡</div>
+            <h2>CEREMONIA RELIGIOSA</h2>
+            <p class="event-place">Parroquia de San Agustín<br />Centro Histórico</p>
+            <p class="event-time">17:30 HRS</p>
+            <a href="https://maps.app.goo.gl/AMqSzj7HJny9Rwu6A" target="_blank" rel="noopener noreferrer" class="map-button">VER EN GOOGLE MAPS</a>
+          </article>
+
+          <article class="event-card event-card-featured">
+            <div class="event-icon" aria-hidden="true">✦</div>
+            <h2>RECEPCIÓN</h2>
+            <p class="event-place">Hacienda Valentina<br />Jardín Imperial</p>
+            <p class="event-time">20:00 HRS</p>
+            <a href="https://maps.app.goo.gl/caQePDB2eGGmcqtp9" target="_blank" rel="noopener noreferrer" class="map-button">VER EN GOOGLE MAPS</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="itinerary-section section-reveal paper-tear-top paper-tear-bottom">
+        <div class="itinerary-card">
+          <div class="itinerary-copy">
+            <p class="itinerary-script">Itinerario</p>
+            <p class="section-label">NUESTRO GRAN DÍA</p>
+            <div class="timeline-card">
+              <div class="timeline-item"><i>♡</i><span>17:30 HRS</span><p>Ceremonia</p><small>Frente a nuestras familias</small></div>
+              <div class="timeline-item"><i>🥂</i><span>19:00 HRS</span><p>Cóctel de bienvenida</p><small>Primer brindis</small></div>
+              <div class="timeline-item"><i>✧</i><span>20:00 HRS</span><p>Recepción</p><small>Cena bajo las luces</small></div>
+              <div class="timeline-item"><i>♬</i><span>21:30 HRS</span><p>Primer baile</p><small>El inicio de la fiesta</small></div>
+              <div class="timeline-item"><i>✺</i><span>00:00 HRS</span><p>Fiesta</p><small>Que nunca pare</small></div>
+            </div>
+          </div>
+          <div class="itinerary-photo vertical-cover-right" role="img" aria-label="Recepción elegante de boda al anochecer"></div>
+        </div>
+      </section>
+
+      <section class="dress-code-section section-reveal">
+        <p class="dress-script">Código de vestimenta</p>
+        <p class="dress-subcopy">Etiqueta formal con acentos cálidos, neutros y champagne. Reservemos el blanco para la novia.</p>
+        <div class="dress-layout">
+          <div class="dress-column">
+            <div class="dress-image-wrap">
+              <img src="./assets/dress-men.jpeg" data-fallback-src="./assets/dress-men.jpg" alt="Ejemplo de vestimenta formal para hombres" class="dress-image" />
+            </div>
+            <h3>HOMBRES</h3>
+            <p>Etiqueta · tonos neutros</p>
+          </div>
+          <div class="dress-column">
+            <div class="dress-image-wrap">
+              <img src="./assets/dress-women.jpeg" data-fallback-src="./assets/dress-women.jpg" alt="Ejemplo de vestimenta formal para mujeres" class="dress-image" />
+            </div>
+            <h3>MUJERES</h3>
+            <p>Etiqueta · no blanco</p>
+          </div>
+        </div>
+        <div class="palette-row" aria-label="Paleta sugerida">
+          <span class="tone tone-ivory"></span>
+          <span class="tone tone-champagne"></span>
+          <span class="tone tone-gold"></span>
+          <span class="tone tone-sage"></span>
+          <span class="tone tone-blue"></span>
+        </div>
+      </section>
+
+      <section class="gallery-section section-reveal">
+        <p class="section-label">GALERÍA</p>
+        <h2 class="section-title">Momentos para guardar antes de vivirlos</h2>
+        <p class="gallery-intro">Una selección editorial para recorrer la atmósfera de nuestra celebración.</p>
+        <div class="gallery-grid expanded-gallery">
+          <button class="gallery-item gallery-large" data-bg-base="wedding-ceremony" data-gallery-title="Ceremonia" type="button"><span>Ceremonia</span></button>
+          <button class="gallery-item" data-bg-base="wedding-moments" data-gallery-title="Nosotros" type="button"><span>Nosotros</span></button>
+          <button class="gallery-item" data-bg-base="wedding-reception" data-gallery-title="Recepción" type="button"><span>Recepción</span></button>
+          <button class="gallery-item" data-bg-base="wedding-moments" data-gallery-title="Detalles" type="button"><span>Detalles</span></button>
+          <button class="gallery-item gallery-wide" data-bg-base="wedding-reception" data-gallery-title="Cena" type="button"><span>Cena</span></button>
+          <button class="gallery-item" data-bg-base="wedding-ceremony" data-gallery-title="Flores" type="button"><span>Flores</span></button>
+          <button class="gallery-item" data-bg-base="wedding-moments" data-gallery-title="Brindis" type="button"><span>Brindis</span></button>
+          <button class="gallery-item" data-bg-base="wedding-reception" data-gallery-title="Fiesta" type="button"><span>Fiesta</span></button>
+        </div>
+      </section>
+
+      <section class="menu-section section-reveal paper-tear-top">
+        <div class="wedding-menu-card">
+          <p class="menu-couple">Aurora & Matteo</p>
+          <h2 class="menu-title">Menú de boda</h2>
+          <div class="menu-divider"><span></span></div>
+          <div class="menu-content">
+            <div class="menu-block"><h3>Aperitivo</h3><p>Cóctel de bienvenida</p><p>Canapés finos de temporada</p></div>
+            <div class="menu-block"><h3>Entrada</h3><p>Ensalada de brotes tiernos con frutos secos</p><p>Crema suave de espárragos con aceite de oliva</p></div>
+            <div class="menu-block"><h3>Plato fuerte</h3><p>Salmón en salsa de cítricos y hierbas finas</p><p>Filete en reducción de vino tinto con puré rústico</p></div>
+            <div class="menu-block"><h3>Postre</h3><p>Tarta nupcial</p><p>Mini postres artesanales de la casa</p></div>
+          </div>
+          <p class="menu-closing">¡Buen provecho!</p>
+        </div>
+      </section>
+
+      <section class="gift-section section-reveal">
+        <p class="section-label">MESA DE REGALOS</p>
+        <div class="gift-card paper-card">
+          <h2>Tu presencia es nuestro mejor regalo</h2>
+          <p>Si deseas tener un detalle con nosotros, hemos preparado una mesa de regalos para acompañarnos en esta nueva etapa.</p>
+          <a href="https://mesaderegalos.liverpool.com.mx/" target="_blank" rel="noopener noreferrer" class="secondary-button" aria-label="Ver mesa de regalos">VER MESA DE REGALOS</a>
+        </div>
+      </section>
+
+      <section class="guest-info-section section-reveal">
+        <p class="section-label">GUÍA PARA INVITADOS</p>
+        <h2 class="section-title">Todo listo para vivirlo con calma</h2>
+        <div class="guest-info-card legacy-guest-guide">
+          <div class="guest-info-item"><div class="guest-info-icon" aria-hidden="true">⏱</div><div><h3>Llegada sugerida</h3><p>Te recomendamos llegar 20 minutos antes de la ceremonia para encontrar tu lugar y disfrutar el inicio sin prisa.</p></div></div>
+          <div class="guest-info-item"><div class="guest-info-icon" aria-hidden="true">✦</div><div><h3>Experiencia del día</h3><p>Ceremonia, recepción, cena y momentos especiales estarán pensados para acompañarte durante toda la celebración.</p></div></div>
+          <div class="guest-info-item"><div class="guest-info-icon" aria-hidden="true">P</div><div><h3>Estacionamiento</h3><p>El recinto contará con estacionamiento para invitados durante la recepción.</p></div></div>
+          <div class="guest-info-item"><div class="guest-info-icon" aria-hidden="true">✉</div><div><h3>Contacto</h3><p>Si necesitas resolver algún detalle antes del evento, puedes comunicarte directamente con los anfitriones.</p></div></div>
+        </div>
+      </section>
+
+      <section class="legacy-final-film-section section-reveal" aria-labelledby="legacyFinalFilmTitle">
+        <div class="legacy-final-film-card">
+          <div class="legacy-final-film-visual" role="img" aria-label="Momento emocional de cierre para la boda">
+            <div class="legacy-film-poster legacy-film-poster-secondary"></div>
+            <div class="legacy-final-film-glow"></div>
+            <div class="legacy-film-play legacy-film-play-soft" aria-hidden="true"><span></span></div>
+          </div>
+
+          <div class="legacy-final-film-copy">
+            <p class="section-label">ANTES DE CONFIRMAR</p>
+            <h2 class="section-title" id="legacyFinalFilmTitle">Gracias por ser parte de nuestro mejor día</h2>
+            <p>Tu respuesta nos ayuda a preparar cada detalle con más cuidado. Gracias por acompañarnos en una celebración que queremos recordar con las personas más importantes.</p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="action-section paper-tear-top">
+        <div class="rsvp-card">
+          <p class="rsvp-kicker">CONFIRMACIÓN LEGACY</p>
+          <h2>Confirma tu asistencia</h2>
+          <p class="rsvp-intro">Nos encantará saber si podremos contar contigo para preparar tu lugar y cuidar cada detalle de la celebración.</p>
+          <div class="ornament-line"><span></span></div>
+          <div class="rsvp-envelope-icon" aria-hidden="true">♡</div>
+
+          <div class="rsvp-form">
+            <input type="text" id="nombreInvitado" placeholder="Nombre completo o familia" autocomplete="off" aria-label="Nombre de invitado o familia" />
+            <div class="attendance-group">
+              <p>Confirmo que</p>
+              <div class="attendance-options">
+                <label><input type="radio" name="asistencia" value="Asistiré" checked /><span>Asistiré</span></label>
+                <label><input type="radio" name="asistencia" value="No asistiré" /><span>No asistiré</span></label>
+              </div>
+            </div>
+            <p class="rsvp-live-message" id="rsvp-live-message" aria-live="polite">Selecciona tu respuesta para continuar.</p>
+            <div class="rsvp-field-group" id="detalleAsistenciaGroup">
+              <label for="detalleAsistenciaInvitado">Confirmo asistencia a</label>
+              <select id="detalleAsistenciaInvitado" aria-label="Confirmo asistencia a">
+                <option value="Ceremonia y recepción">Ceremonia y recepción</option>
+                <option value="Solo ceremonia">Solo ceremonia</option>
+                <option value="Solo recepción">Solo recepción</option>
+              </select>
+            </div>
+            <div class="rsvp-field-group" id="menuInvitadoGroup">
+              <label for="menuInvitado">Preferencia de menú</label>
+              <select id="menuInvitado" aria-label="Preferencia de menú">
+                <option value="Sin preferencia">Sin preferencia</option>
+                <option value="Salmón en salsa de cítricos y hierbas finas">Salmón en salsa de cítricos y hierbas finas</option>
+                <option value="Filete en reducción de vino tinto con puré rústico">Filete en reducción de vino tinto con puré rústico</option>
+              </select>
+            </div>
+            <textarea id="mensajeInvitado" placeholder="Déjales un mensaje especial (opcional)" aria-label="Mensaje opcional"></textarea>
+            <button type="button" id="btn-confirmar" class="btn-rsvp" onclick="confirmarAsistencia()" aria-label="Confirmar asistencia">Confirmar asistencia</button>
+          </div>
+        </div>
+
+        <div class="closing-section section-reveal">
+          <img src="../../LOGO/FAVICON.jpeg" alt="Invyra" class="closing-logo" />
+          <p>Gracias por acompañarnos desde el primer mensaje hasta el último baile.</p>
+          <span>Aurora & Matteo</span>
+        </div>
+      </footer>
+    </main>
+
+    <div id="gallery-lightbox" class="gallery-lightbox hidden" role="dialog" aria-modal="true" aria-label="Vista ampliada de galería">
+      <button type="button" class="gallery-lightbox-close" aria-label="Cerrar galería">×</button>
+      <div class="gallery-lightbox-image" role="img" aria-label="Imagen de galería ampliada"></div>
+      <p class="gallery-lightbox-title"></p>
+    </div>
+
+    <div id="rsvp-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-message">
+      <div class="modal-content">
+        <h3 id="modal-title">¡RESPUESTA REGISTRADA!</h3>
+        <p id="modal-message">Gracias por confirmar. En un momento abriremos WhatsApp para completar tu mensaje.</p>
+      </div>
+    </div>
+
+    <audio id="bg-music" loop preload="auto">
+      <source src="../../music/Aleluya-Luxury.mp3" type="audio/mpeg" />
+    </audio>
+
+    <script src="script.js?v=2.1.0"></script>
+  </body>
+</html>
