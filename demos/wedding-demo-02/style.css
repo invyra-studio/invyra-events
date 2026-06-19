@@ -1,7 +1,7 @@
 /*
   INVYRA - Wedding Demo 02
   Legacy Beach/Editorial System
-  Version 2.4.7
+  Version 2.5.2
 */
 
 :root {
@@ -738,6 +738,62 @@ section, footer {
   font-family: var(--font-serif);
   font-size: 2.05rem;
   font-weight: 500;
+}
+
+
+/* INLINE MUTED VIDEO SECTIONS */
+.video-frame {
+  position: relative;
+  overflow: hidden;
+}
+
+.legacy-film-video {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  background: #ead8bf;
+}
+
+.video-frame .legacy-film-overlay,
+.video-frame .legacy-final-film-glow {
+  z-index: 1;
+}
+
+.video-frame .legacy-film-caption {
+  z-index: 4;
+}
+
+.video-frame .legacy-film-play {
+  z-index: 5;
+}
+
+.video-frame.is-playing .legacy-film-play {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(.94);
+}
+
+.video-frame.is-playing .legacy-film-caption {
+  opacity: .82;
+}
+
+.video-frame.is-paused .legacy-film-play,
+.video-frame:not(.is-playing) .legacy-film-play {
+  opacity: 1;
+}
+
+.legacy-film-play {
+  border: 1px solid rgba(255,255,255,.8);
+}
+
+@media (max-width: 560px) {
+  .video-frame.is-playing .legacy-film-caption {
+    opacity: .72;
+  }
 }
 
 /* COUNTDOWN */
@@ -1546,6 +1602,37 @@ section, footer {
   .gallery-lightbox-image { height: 68vh; }
 }
 
+
+/* Hotfix 2.4.9: prevent horizontal section tears from colliding with vertical image covers */
+@media (max-width: 880px) {
+  .legacy-film-section.paper-tear-bottom,
+  .itinerary-section.paper-tear-bottom {
+    padding-bottom: 150px;
+  }
+
+  .legacy-film-frame.vertical-cover-left,
+  .itinerary-photo.vertical-cover-right {
+    margin-bottom: 28px;
+  }
+}
+
+@media (max-width: 560px) {
+  .legacy-film-section.paper-tear-bottom,
+  .itinerary-section.paper-tear-bottom {
+    padding-bottom: 142px;
+  }
+
+  .legacy-film-frame.vertical-cover-left,
+  .itinerary-photo.vertical-cover-right {
+    margin-bottom: 34px;
+  }
+
+  .paper-tear-bottom::after,
+  .paper-tear-top::before {
+    height: 96px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: .01ms !important;
@@ -1558,3 +1645,113 @@ section, footer {
 
 .legacy-film-frame.vertical-cover-left::after,
 .itinerary-photo.vertical-cover-right::after { display:none !important; }
+
+
+
+/* Hotfix 2.5.1: cleaner video sections without torn-paper textures */
+.clean-film-section::before,
+.clean-film-section::after {
+  display: none !important;
+}
+
+.clean-video-frame::before,
+.clean-video-frame::after {
+  display: none !important;
+}
+
+.clean-film-section {
+  padding-top: clamp(76px, 9vw, 118px);
+  padding-bottom: clamp(76px, 9vw, 118px);
+}
+
+.clean-video-frame {
+  overflow: hidden;
+}
+
+.clean-video-frame .legacy-film-video {
+  background: #0f0f0f;
+}
+
+.clean-video-frame .legacy-film-caption {
+  bottom: 26px;
+}
+
+@media (max-width: 880px) {
+  .clean-film-section {
+    padding-top: 68px;
+    padding-bottom: 68px;
+  }
+}
+
+@media (max-width: 560px) {
+  .clean-film-section {
+    padding-top: 58px;
+    padding-bottom: 58px;
+  }
+  .clean-video-frame .legacy-film-caption {
+    bottom: 20px;
+  }
+}
+
+
+
+/* Hotfix 2.5.2: horizontal video frame + play/pause toggle */
+.clean-video-frame {
+  aspect-ratio: 16 / 9;
+  min-height: auto !important;
+  width: 100%;
+  max-width: 100%;
+  background: #0f0f0f;
+}
+
+.clean-video-frame .legacy-film-video {
+  object-fit: contain;
+  background: #0f0f0f;
+}
+
+.clean-video-frame .legacy-film-play {
+  transition: opacity .25s ease, transform .25s ease, background .25s ease;
+}
+
+.clean-video-frame.is-playing .legacy-film-play {
+  opacity: .38;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(.92);
+}
+
+.clean-video-frame.is-playing:hover .legacy-film-play,
+.clean-video-frame.is-playing .legacy-film-play:focus-visible {
+  opacity: .82;
+}
+
+.clean-video-frame.is-playing .legacy-film-play span {
+  width: 18px;
+  height: 24px;
+  margin-left: 0;
+  border: 0;
+  border-left: 6px solid var(--gold);
+  border-right: 6px solid var(--gold);
+}
+
+.clean-video-frame .legacy-film-caption {
+  bottom: 22px;
+}
+
+@media (max-width: 880px) {
+  .clean-video-frame {
+    aspect-ratio: 16 / 9;
+    min-height: auto !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .clean-video-frame {
+    aspect-ratio: 16 / 9;
+    min-height: auto !important;
+    border-radius: 30px;
+  }
+
+  .clean-video-frame .legacy-film-caption {
+    bottom: 16px;
+  }
+}
