@@ -1,23 +1,18 @@
-# José · Mine Zone · v2.3.6 Logo + Auto Music + Wedding Fade
+# José · Mine Zone · v2.3.7 Adventure-Demo Music
 
-Ajustes aplicados usando Wedding Demo 02 como referencia:
+Cambio aplicado:
 
-- Cierre final con logo de INVYRA, frase de agradecimiento y firma, como las demos previas.
-- Se eliminó el botón visible de música.
-- Música preparada para entrar al abrir la invitación.
-- Track recomendado para reemplazar en `/music/`:
-  - `Adventure-Of-A-Lifetime.mp3`
-  - Referencia sugerida: Coldplay — Adventure of a Lifetime
-  - Motivo: alegre, colorida, familiar, energética y compatible con una fiesta infantil premium.
-- Fade por secciones más cercano a Wedding Demo 02:
-  - body con `js-enabled`
-  - `section-reveal`
-  - entrada gradual con opacity, translate y blur
-  - stagger interno en grids y cards.
-- Demo standalone:
-  - sin menú corporativo
-  - sin header de INVYRA
-  - sin textura de papel rasgado.
+- La música ahora apunta a:
+  `../../music/Adventure-Demo.mp3?v=jose-v2.3.7`
 
-Ruta sugerida:
-`demos/fiesta-infantil-tematica-demo-01/`
+Nota:
+Windows suele ocultar extensiones conocidas. En el explorador puede verse como `Adventure-Demo`,
+pero en el repo debe existir como `music/Adventure-Demo.mp3`.
+
+La demo mantiene:
+- invitación standalone
+- cierre con logo INVYRA
+- música automática al abrir la invitación
+- fade tipo Wedding Demo 02
+- sin menú corporativo
+- sin textura de papel rasgado

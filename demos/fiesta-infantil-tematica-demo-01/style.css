@@ -1453,3 +1453,9 @@ footer.action-section {
     font-size: clamp(2.1rem, 11vw, 3rem);
   }
 }
+
+
+/* === INVYRA JOSE V2.3.7 · ADVENTURE DEMO MUSIC ROUTE === */
+.music-toggle {
+  display: none !important;
+}
