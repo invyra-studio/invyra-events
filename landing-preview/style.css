@@ -7542,3 +7542,40 @@ body.nav-open .nav-toggle span:last-child {
 .experience-teaser-card-signature-editorial {
   padding-bottom: 24px;
 }
+
+
+/* ==========================================================
+   INVYRA — LANDING PREVIEW HOTFIX 1.0.62
+   Fix móvil para teaser cards del portafolio.
+   ========================================================== */
+
+@media (max-width: 899px) {
+  .experience-teaser-cards {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .experience-teaser-card {
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 22px 18px !important;
+    border-radius: 26px !important;
+  }
+
+  .experience-teaser-thumb {
+    aspect-ratio: 4 / 3 !important;
+    margin: 14px 0 14px !important;
+    border-radius: 22px !important;
+  }
+
+  .experience-teaser-thumb img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+  }
+
+  .experience-teaser-link {
+    margin-top: 16px !important;
+  }
+}

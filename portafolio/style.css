@@ -1793,3 +1793,92 @@ body.nav-open .nav-toggle span:only-child {
   }
 }
 
+
+
+/* ==========================================================
+   INVYRA — PORTAFOLIO HOTFIX 1.0.62
+   Fix móvil: cards de demos compactas y visibles.
+   Evita huecos grandes cuando .demo-actions usa margin-top:auto
+   y fuerza visibilidad aunque IntersectionObserver falle en móvil.
+   ========================================================== */
+
+@media (max-width: 820px) {
+  .demo-grid {
+    grid-template-columns: 1fr !important;
+    gap: 22px !important;
+  }
+
+  .demo-card {
+    display: block !important;
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 22px 18px !important;
+    border-radius: 28px !important;
+  }
+
+  .demo-card-top {
+    margin-bottom: 16px !important;
+  }
+
+  .demo-visual {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 4 / 3 !important;
+    margin-bottom: 22px !important;
+    border-radius: 22px !important;
+  }
+
+  .demo-visual img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+  }
+
+  .demo-card h3 {
+    margin-top: 0 !important;
+  }
+
+  .demo-card p {
+    margin-top: 14px !important;
+  }
+
+  .demo-card ul {
+    margin-bottom: 22px !important;
+  }
+
+  .demo-actions {
+    margin-top: 22px !important;
+  }
+
+  .js-enabled .demo-card,
+  .js-enabled .demo-card.is-visible {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .demo-card {
+    padding: 20px 16px !important;
+    border-radius: 26px !important;
+  }
+
+  .demo-visual {
+    aspect-ratio: 1.42 / 1 !important;
+  }
+
+  .demo-card-top small {
+    display: none !important;
+  }
+
+  .demo-actions {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  .demo-actions a {
+    width: 100% !important;
+  }
+}
