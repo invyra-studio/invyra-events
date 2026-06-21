@@ -11,7 +11,7 @@ Demo standalone de INVYRA para Karen y Alejandro.
 - Descarga de calendario en formato ICS
 - Respuesta preliminar con borrador en localStorage
 - Responsive para escritorio, tablet y movil
-- Titulares con DM Serif Display para mejorar la lectura en pantallas compactas
+- Titulares con Fraunces en peso 500 para equilibrar elegancia editorial y lectura movil
 
 Ruta esperada:
 

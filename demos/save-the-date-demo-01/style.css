@@ -71,9 +71,9 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .splash-copy .eyebrow { color: #fff; }
 .splash-copy h1 {
   margin: 18px 0 0;
-  font-family: "DM Serif Display", serif;
+  font-family: "Fraunces", serif;
   font-size: 92px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 0.9;
 }
 .splash-copy h1 span {
@@ -103,7 +103,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 .open-invitation::before { content: ""; position: absolute; inset: 8px; border: 1px solid rgba(255,255,255,0.3); border-radius: 50%; }
 .open-invitation:hover { transform: scale(1.04); background: rgba(18,63,147,0.7); }
-.open-invitation span { font-family: "DM Serif Display", serif; font-size: 1.35rem; }
+.open-invitation span { font-family: "Fraunces", serif; font-size: 1.35rem; font-weight: 500; }
 .open-invitation small { display: block; font-size: 0.65rem; text-transform: uppercase; }
 
 .invitation { opacity: 0; transform: translateY(18px); transition: opacity 0.8s ease, transform 0.8s ease; }
@@ -132,16 +132,16 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 .hero-copy { position: absolute; z-index: 2; top: 25%; left: max(44px, calc((100vw - var(--max)) / 2)); width: min(580px, 46vw); }
 .hero-copy .eyebrow { color: var(--silver); }
-.hero-copy h1 { margin: 18px 0 0; font-family: "DM Serif Display", serif; font-size: 88px; font-weight: 400; line-height: 0.88; }
+.hero-copy h1 { margin: 18px 0 0; font-family: "Fraunces", serif; font-size: 88px; font-weight: 500; line-height: 0.88; }
 .hero-copy h1 em {
   display: block;
   color: var(--silver);
   font-size: 0.78em;
-  font-weight: 400;
+  font-weight: 500;
 }
 .hero-intro { max-width: 430px; margin: 28px 0 0; color: rgba(255,255,255,0.82); font-size: 1rem; line-height: 1.75; }
 .hero-date-lockup { position: absolute; left: max(44px, calc((100vw - var(--max)) / 2)); bottom: 54px; z-index: 2; display: flex; align-items: center; gap: 18px; }
-.hero-date-lockup strong { font-family: "DM Serif Display", serif; font-size: 74px; font-weight: 400; line-height: 1; }
+.hero-date-lockup strong { font-family: "Fraunces", serif; font-size: 74px; font-weight: 500; line-height: 1; }
 .hero-date-lockup span { padding-left: 18px; border-left: 1px solid rgba(255,255,255,0.48); color: var(--silver); font-size: 0.8rem; font-weight: 800; line-height: 1.45; text-transform: uppercase; }
 .scroll-cue { position: absolute; right: 44px; bottom: 54px; z-index: 2; display: flex; align-items: center; gap: 10px; color: #fff; font-size: 0.72rem; font-weight: 700; text-decoration: none; }
 .scroll-cue span { width: 36px; height: 1px; background: #fff; }
@@ -163,9 +163,9 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .closing h2,
 .modal-panel h2 {
   margin: 22px 0 0;
-  font-family: "DM Serif Display", serif;
+  font-family: "Fraunces", serif;
   font-size: 54px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.05;
 }
 .date-statement-side { align-self: end; }
@@ -178,14 +178,14 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .countdown-grid { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 38px; border-top: 1px solid rgba(255,255,255,0.28); border-bottom: 1px solid rgba(255,255,255,0.28); }
 .countdown-grid article { padding: 34px 18px; border-right: 1px solid rgba(255,255,255,0.28); }
 .countdown-grid article:last-child { border-right: 0; }
-.countdown-grid strong { display: block; font-family: "DM Serif Display", serif; font-size: 62px; font-weight: 400; line-height: 1; }
+.countdown-grid strong { display: block; font-family: "Fraunces", serif; font-size: 62px; font-weight: 500; line-height: 1; }
 .countdown-grid span { display: block; margin-top: 12px; color: var(--silver); font-size: 0.7rem; font-weight: 800; text-transform: uppercase; }
 
 .story { display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: center; gap: 72px; padding: 130px 0; }
 .story-photo-wrap { position: relative; }
 .story-photo-wrap img { min-height: 560px; object-fit: cover; box-shadow: var(--shadow); }
 .photo-caption { position: absolute; left: 18px; bottom: 18px; padding: 9px 12px; color: #fff; background: rgba(7,20,47,0.74); font-size: 0.65rem; font-weight: 800; text-transform: uppercase; }
-.story-copy blockquote { margin: 34px 0 0; padding: 0 0 0 24px; border-left: 2px solid var(--magenta); color: var(--cobalt); font-family: "DM Serif Display", serif; font-size: 1.55rem; font-style: italic; line-height: 1.4; }
+.story-copy blockquote { margin: 34px 0 0; padding: 0 0 0 24px; border-left: 2px solid var(--magenta); color: var(--cobalt); font-family: "Fraunces", serif; font-size: 1.55rem; font-style: italic; font-weight: 500; line-height: 1.4; }
 
 .essentials {
   width: 100%;
@@ -202,7 +202,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .essentials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: 64px; background: rgba(220,229,242,0.2); border: 1px solid rgba(220,229,242,0.2); }
 .essentials-grid article { min-height: 250px; padding: 34px; background: #0b1c3d; }
 .essentials-grid span { color: #e76eb3; font-size: 0.72rem; font-weight: 800; text-transform: uppercase; }
-.essentials-grid strong { display: block; margin-top: 42px; color: #fff; font-family: "DM Serif Display", serif; font-size: 2rem; font-weight: 400; }
+.essentials-grid strong { display: block; margin-top: 42px; color: #fff; font-family: "Fraunces", serif; font-size: 2rem; font-weight: 500; }
 .essentials-grid p { margin: 18px 0 0; color: rgba(247,248,252,0.7); font-size: 0.88rem; line-height: 1.7; }
 
 .gallery { padding: 0 0 130px; }
@@ -220,7 +220,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .calendar-section { display: grid; grid-template-columns: 0.75fr 1.25fr; min-height: 620px; color: #fff; background: var(--midnight); }
 .calendar-date { display: grid; place-content: center; justify-items: center; border-right: 1px solid rgba(255,255,255,0.18); background: var(--cobalt); }
 .calendar-date span, .calendar-date small { font-size: 0.9rem; font-weight: 800; text-transform: uppercase; }
-.calendar-date strong { font-family: "DM Serif Display", serif; font-size: 150px; font-weight: 400; line-height: 0.95; }
+.calendar-date strong { font-family: "Fraunces", serif; font-size: 150px; font-weight: 500; line-height: 0.95; }
 .calendar-copy { align-self: center; max-width: 650px; padding: 72px; }
 .calendar-copy .section-number { color: var(--silver); }
 .calendar-copy > p { color: rgba(255,255,255,0.72); }
@@ -231,7 +231,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .button-primary { color: #fff; background: var(--cobalt); }
 
 .response-section { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 84px; padding: 130px 0; }
-.response-signature { margin-top: 42px; color: var(--cobalt); font-family: "DM Serif Display", serif; font-size: 2.2rem; font-style: italic; }
+.response-signature { margin-top: 42px; color: var(--cobalt); font-family: "Fraunces", serif; font-size: 2.2rem; font-style: italic; font-weight: 500; }
 .response-form { padding: 42px; border: 1px solid var(--line); border-radius: 6px; background: #fff; box-shadow: var(--shadow); }
 .response-form > label, .response-form legend { display: block; margin: 0 0 10px; color: var(--midnight); font-size: 0.72rem; font-weight: 800; text-transform: uppercase; }
 .response-form input[type="text"], .response-form select, .response-form textarea { width: 100%; margin-bottom: 24px; padding: 14px; border: 1px solid var(--line); border-radius: 3px; color: var(--ink); background: var(--pearl); outline: none; }
@@ -248,7 +248,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .closing img { width: 148px; height: auto; margin: 0 auto 24px; object-fit: contain; }
 .closing p { margin: 0; color: var(--silver); }
 .closing h2 { margin-top: 22px; font-size: 52px; }
-.closing h2 em { color: var(--silver); font-weight: 400; }
+.closing h2 em { color: var(--silver); font-weight: 500; }
 .closing span { display: block; margin-top: 20px; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; }
 
 .modal { position: fixed; inset: 0; z-index: 1200; display: grid; place-items: center; padding: 20px; opacity: 0; visibility: hidden; background: rgba(7,20,47,0.78); backdrop-filter: blur(12px); transition: opacity 0.3s ease, visibility 0.3s ease; }
