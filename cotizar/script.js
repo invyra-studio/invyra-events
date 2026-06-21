@@ -25,11 +25,13 @@ function initMobileNav() {
   function closeNav() {
     document.body.classList.remove("nav-open");
     navToggle.setAttribute("aria-label", "Abrir menú");
+    navToggle.setAttribute("aria-expanded", "false");
   }
   function toggleNav() {
     document.body.classList.toggle("nav-open");
     const isOpen = document.body.classList.contains("nav-open");
     navToggle.setAttribute("aria-label", isOpen ? "Cerrar menú" : "Abrir menú");
+    navToggle.setAttribute("aria-expanded", String(isOpen));
   }
   navToggle.addEventListener("click", (event) => {
     event.stopPropagation();
@@ -223,6 +225,41 @@ function initQuoteFormEnhancements() {
   initPhoneInputRules();
   initEventDateRules();
   initPackageExtrasRules();
+}
+
+function initQuotePrefill() {
+  const params = new URLSearchParams(window.location.search);
+  const eventAliases = {
+    birthday: "Cumpleaños",
+    xv: "XV años",
+    "fiesta-infantil": "Fiesta infantil",
+    bautizo: "Bautizo",
+    "primera-comunion": "Primera comunión",
+    graduacion: "Graduación",
+    "gender-reveal": "Gender Reveal",
+    "bridal-shower": "Bridal Shower",
+    "save-the-date": "Save the Date",
+    wedding: "Boda",
+    "baby-shower": "Baby Shower",
+  };
+  const packageAliases = {
+    essential: "Esencial",
+    esencial: "Esencial",
+    signature: "Signature",
+    legacy: "Legacy",
+  };
+  const eventValue = eventAliases[(params.get("tipo") || "").toLowerCase()];
+  const packageValue = packageAliases[(params.get("nivel") || "").toLowerCase()];
+  const eventSelect = document.getElementById("eventType");
+  const packageSelect = document.getElementById("packageType");
+
+  if (eventValue && eventSelect) eventSelect.value = eventValue;
+  if (packageValue && packageSelect) packageSelect.value = packageValue;
+  if (eventValue || packageValue) {
+    updateExtrasByPackage();
+    const form = document.getElementById("quote-form");
+    if (form) saveQuoteDraft(form);
+  }
 }
 
 function initNameInputRules() {
@@ -488,8 +525,11 @@ function getLeadFormData() {
     correo: getInputValue("clientEmail"),
     tipoEvento: getInputValue("eventType"),
     fechaEvento: getInputValue("eventDate"),
+    invitados: getInputValue("guestCount"),
     ciudadLugar: getInputValue("eventLocation"),
     paquete: getInputValue("packageType"),
+    presupuesto: getInputValue("budgetRange"),
+    plazoDecision: getInputValue("decisionTiming"),
     adicionales: getCheckedValues("extras"),
     coloresTematica: getInputValue("themeColors"),
     ideaEvento: getInputValue("eventIdea"),
@@ -503,12 +543,13 @@ function validateLeadData(data) {
   if (!data.whatsapp) missingFields.push("clientPhone");
   if (!data.tipoEvento) missingFields.push("eventType");
   if (!data.paquete) missingFields.push("packageType");
+  if (!data.presupuesto) missingFields.push("budgetRange");
   if (missingFields.length) {
     return {
       isValid: false,
       fields: missingFields,
       message:
-        "Completa nombre, WhatsApp, tipo de evento y nivel de experiencia de interés.",
+        "Completa nombre, WhatsApp, tipo de evento, nivel de experiencia y presupuesto estimado.",
     };
   }
   if (!isValidName(data.nombre)) {
@@ -546,8 +587,11 @@ function submitLeadToGoogleSheets(data) {
       correo: data.correo,
       tipoEvento: data.tipoEvento,
       fechaEvento: data.fechaEvento,
+      invitados: data.invitados,
       ciudadLugar: data.ciudadLugar,
       paquete: data.paquete,
+      presupuesto: data.presupuesto,
+      plazoDecision: data.plazoDecision,
       adicionales: data.adicionales,
       coloresTematica: data.coloresTematica,
       ideaEvento: data.ideaEvento,
@@ -589,8 +633,11 @@ function buildWhatsappMessage(data) {
     `*Correo:* ${data.correo || "No especificado"}\n` +
     `*Tipo de evento:* ${data.tipoEvento || "No especificado"}\n` +
     `*Fecha del evento:* ${formattedDate || "No definida"}\n` +
+    `*Invitados estimados:* ${data.invitados || "No definido"}\n` +
     `*Ciudad / zona:* ${data.ciudadLugar || "No especificado"}\n` +
     `*Nivel de experiencia de interés:* ${data.paquete || "No especificado"}\n` +
+    `*Presupuesto estimado:* ${data.presupuesto || "No especificado"}\n` +
+    `*Plazo para comenzar:* ${data.plazoDecision || "No definido"}\n` +
     `*Adicionales de interés:* ${data.adicionales || "No especificado"}\n` +
     `*Estilo visual / temática:* ${data.coloresTematica || "No definido"}\n` +
     `*Objetivo o idea del evento:* ${data.ideaEvento || "Sin detalles adicionales"}\n` +
@@ -731,6 +778,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initActiveNavLinks();
   initQuoteFormEnhancements();
   initQuoteFormAutosave();
+  initQuotePrefill();
   initQuoteForm();
   initWhatsappLinks();
   initImageFallbacks();

@@ -12,14 +12,14 @@
     />
 
     <link rel="icon" type="image/jpeg" href="../LOGO/FAVICON.jpeg" />
-    <link rel="stylesheet" href="./style.css?v=experiencias-1.0.49-menu-hamburger-fix" />
+    <link rel="stylesheet" href="./style.css?v=experiencias-1.0.50-rc" />
 
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
 
-    <script src="./script.js?v=experiencias-1.0.49-menu-hamburger-fix" defer></script>
+    <script src="./script.js?v=experiencias-1.0.50-rc" defer></script>
   </head>
 
   <body>
@@ -30,7 +30,7 @@
     </div>
 
     <header class="site-header">
-      <a href="../landing-preview/" class="brand" aria-label="Volver a INVYRA">
+      <a href="../" class="brand" aria-label="Volver a INVYRA">
         <img src="../LOGO/FAVICON.jpeg" alt="INVYRA" class="brand-logo" />
         <div class="brand-text">
           <span>INVYRA</span>
@@ -45,7 +45,7 @@
       </button>
 
       <nav class="site-nav" id="site-nav">
-        <a href="../landing-preview/">Inicio</a>
+        <a href="../">Inicio</a>
         <a href="../experiencias/" class="active">Experiencias</a>
         <a href="../portafolio/">Portafolio</a>
         <a href="../cotizar/" class="nav-cta">Cotizar</a>
@@ -100,7 +100,7 @@
         </div>
 
         <div class="level-grid" aria-label="Niveles de experiencia INVYRA">
-          <article class="level-card" data-level-card="essential">
+          <article class="level-card" id="essential" data-level-card="essential">
             <div class="level-top">
               <span>01</span>
               <small>Essential</small>
@@ -114,13 +114,15 @@
               <li>Invitación digital animada</li>
               <li>Música de fondo</li>
               <li>Datos del evento</li>
+              <li>Confirmación por WhatsApp</li>
               <li>Botón de ubicación</li>
               <li>Diseño personalizado</li>
+              <li>1 ajuste incluido</li>
             </ul>
             <a href="../cotizar/?nivel=Essential" class="level-link">Cotizar Essential</a>
           </article>
 
-          <article class="level-card level-card-featured" data-level-card="signature">
+          <article class="level-card level-card-featured" id="signature" data-level-card="signature">
             <div class="recommended-ribbon">Opción recomendada</div>
             <div class="level-top">
               <span>02</span>
@@ -135,14 +137,17 @@
               <li>Todo lo de Essential</li>
               <li>Cuenta regresiva</li>
               <li>Ubicación en Google Maps</li>
+              <li>Código de vestimenta</li>
               <li>Galería de fotos</li>
               <li>Animaciones especiales</li>
               <li>Pantalla de bienvenida</li>
+              <li>Publicación en línea</li>
+              <li>2 ajustes incluidos</li>
             </ul>
             <a href="../cotizar/?nivel=Signature" class="level-link">Cotizar Signature</a>
           </article>
 
-          <article class="level-card level-card-dark" data-level-card="legacy">
+          <article class="level-card level-card-dark" id="legacy" data-level-card="legacy">
             <div class="level-top">
               <span>03</span>
               <small>Legacy</small>
@@ -156,9 +161,14 @@
               <li>Mini sitio web del evento</li>
               <li>Historia de la pareja o familia</li>
               <li>Video de portada o fondo animado</li>
+              <li>Galería premium</li>
+              <li>Cuenta regresiva avanzada</li>
               <li>Confirmación avanzada</li>
               <li>Nombre del invitado</li>
               <li>Música personalizada</li>
+              <li>Código de vestimenta e itinerario</li>
+              <li>Mesa de regalos y Google Maps</li>
+              <li>Publicación en línea y 3 ajustes</li>
             </ul>
             <a href="../cotizar/?nivel=Legacy" class="level-link">Cotizar Legacy</a>
           </article>
@@ -200,6 +210,18 @@
             class="showcase-image"
           />
         </div>
+
+        <div class="extras-summary" aria-label="Resumen de adicionales disponibles">
+          <article><strong>Dominio personalizado</strong><span>Una dirección web única para tu evento.</span></article>
+          <article><strong>Video de portada</strong><span>Una apertura visual especial para la invitación.</span></article>
+          <article><strong>Nombre del invitado</strong><span>Una bienvenida personalizada para cada persona.</span></article>
+          <article><strong>Confirmación automática</strong><span>Registro de asistencia conectado a Google Sheets.</span></article>
+          <article><strong>Galería ampliada</strong><span>Más fotografías y momentos dentro del recorrido.</span></article>
+          <article><strong>Secciones extra</strong><span>Historia, padrinos, mesa de regalos y más.</span></article>
+          <article><strong>Cuenta regresiva</strong><span>Anticipación antes del gran día.</span></article>
+          <article><strong>Publicación en línea</strong><span>Tu invitación disponible en un enlace INVYRA.</span></article>
+          <article><strong>Música personalizada</strong><span>Una canción especial acorde con el evento.</span></article>
+        </div>
       </section>
 
       <section class="conversion-route">
@@ -232,7 +254,7 @@
       <span>Experiencias digitales para eventos</span>
 
       <div class="footer-actions">
-        <a href="../landing-preview/">Volver a inicio</a>
+        <a href="../">Volver a inicio</a>
         <a href="../portafolio/">Portafolio</a>
         <a href="https://www.instagram.com/invyra.studio/" target="_blank" rel="noopener noreferrer">Instagram</a>
       </div>

@@ -9,7 +9,7 @@
       content="Cotiza una experiencia digital premium para tu evento con INVYRA."
     />
     <link rel="icon" type="image/jpeg" href="../LOGO/FAVICON.jpeg" />
-    <link rel="stylesheet" href="./style.css?v=1.0.54" />
+    <link rel="stylesheet" href="./style.css?v=1.0.55-rc" />
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800;900&family=Great+Vibes&display=swap"
       rel="stylesheet"
@@ -22,7 +22,7 @@
       src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"
       defer
     ></script>
-    <script src="./script.js?v=1.0.54" defer></script>
+    <script src="./script.js?v=1.0.55-rc" defer></script>
   </head>
   <body>
     <div class="site-bg">
@@ -32,7 +32,7 @@
       <div class="bg-lines"></div>
     </div>
     <header class="site-header">
-      <a href="../landing-preview/" class="brand" aria-label="Volver a INVYRA">
+      <a href="../" class="brand" aria-label="Volver a INVYRA">
         <img src="../LOGO/FAVICON.jpeg" alt="INVYRA" class="brand-logo" />
         <div class="brand-text">
           <span>INVYRA</span><small>Premium Digital Events</small>
@@ -43,11 +43,13 @@
         class="nav-toggle"
         id="nav-toggle"
         aria-label="Abrir menú"
+        aria-expanded="false"
+        aria-controls="site-nav"
       >
         <span></span><span></span><span></span>
       </button>
       <nav class="site-nav" id="site-nav">
-        <a href="../landing-preview/">Inicio</a>
+        <a href="../">Inicio</a>
         <a href="../experiencias/">Experiencias</a>
         <a href="../portafolio/">Portafolio</a>
         <a href="../cotizar/" class="nav-cta active">Cotizar</a>
@@ -174,6 +176,10 @@
                 <option value="Fiesta infantil">Fiesta infantil</option>
                 <option value="Bautizo">Bautizo</option>
                 <option value="Primera comunión">Primera comunión</option>
+                <option value="Graduación">Graduación</option>
+                <option value="Gender Reveal">Gender Reveal</option>
+                <option value="Bridal Shower">Bridal Shower</option>
+                <option value="Save the Date">Save the Date</option>
                 <option value="Otro">Otro</option>
               </select>
             </div>
@@ -181,6 +187,17 @@
             <div class="form-row">
               <label for="eventDate">Fecha del evento</label>
               <input type="date" id="eventDate" name="eventDate" />
+            </div>
+
+            <div class="form-row">
+              <label for="guestCount">Número estimado de invitados</label>
+              <select id="guestCount" name="guestCount">
+                <option value="">Aún no lo sé</option>
+                <option value="Hasta 50">Hasta 50</option>
+                <option value="51 a 100">51 a 100</option>
+                <option value="101 a 200">101 a 200</option>
+                <option value="Más de 200">Más de 200</option>
+              </select>
             </div>
 
             <div class="form-row">
@@ -203,6 +220,29 @@
                 <option value="Aún no sé cuál elegir">
                   Aún no sé cuál elegir
                 </option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <label for="budgetRange">Presupuesto estimado</label>
+              <select id="budgetRange" name="budgetRange" required>
+                <option value="">Selecciona un rango</option>
+                <option value="Hasta $1,500 MXN">Hasta $1,500 MXN</option>
+                <option value="$1,500 a $2,500 MXN">$1,500 a $2,500 MXN</option>
+                <option value="$2,500 a $4,000 MXN">$2,500 a $4,000 MXN</option>
+                <option value="Más de $4,000 MXN">Más de $4,000 MXN</option>
+                <option value="Necesito orientación">Necesito orientación</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <label for="decisionTiming">¿Cuándo te gustaría comenzar?</label>
+              <select id="decisionTiming" name="decisionTiming">
+                <option value="">Aún no lo sé</option>
+                <option value="Esta semana">Esta semana</option>
+                <option value="En las próximas 2 semanas">En las próximas 2 semanas</option>
+                <option value="Este mes">Este mes</option>
+                <option value="Solo estoy explorando">Solo estoy explorando</option>
               </select>
             </div>
 
