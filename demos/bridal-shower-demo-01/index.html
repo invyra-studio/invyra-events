@@ -10,8 +10,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./style.css?v=1.0.0-bridal-edit" />
-    <script src="./script.js?v=1.0.0-bridal-edit" defer></script>
+    <link rel="stylesheet" href="./style.css?v=1.1.0-signature-homologada" />
+    <script src="./script.js?v=1.1.0-signature-homologada" defer></script>
   </head>
 
   <body data-event-date="2026-10-03T18:00:00">
@@ -105,6 +105,7 @@
           <article><span>Lugar</span><strong>Maison Rouge</strong><p>Polanco · Ciudad de México</p></article>
           <article><span>Dress code</span><strong>Black cocktail</strong><p>La novia será la única en marfil.</p></article>
         </div>
+        <a class="map-button" href="https://www.google.com/maps/search/?api=1&query=Polanco+Ciudad+de+Mexico" target="_blank" rel="noopener noreferrer">Ver zona en Google Maps</a>
       </section>
 
       <section class="schedule section-reveal">
@@ -178,7 +179,7 @@
           <label for="guest-message">Una nota para la novia</label>
           <textarea id="guest-message" name="guestMessage" rows="5" placeholder="Un deseo, recuerdo o mensaje especial"></textarea>
           <p id="form-status" class="form-status" aria-live="polite"></p>
-          <button class="primary-button" type="submit">Confirmar mi lugar</button>
+          <button class="primary-button" type="submit">Confirmar por WhatsApp</button>
         </form>
       </section>
 
@@ -190,14 +191,13 @@
       </footer>
     </main>
 
-    <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-title">
-      <div class="modal-panel">
-        <button id="modal-close" class="modal-close" type="button" aria-label="Cerrar">×</button>
-        <p class="section-label">RSVP guardado</p>
-        <h2 id="modal-title">You're on the list.</h2>
-        <p id="modal-message">Tu respuesta quedó guardada en esta demostración.</p>
-        <button id="modal-confirm" class="primary-button" type="button">Entendido</button>
-      </div>
-    </div>
+    <button id="music-toggle" class="music-toggle" type="button" aria-label="Reproducir música" aria-pressed="false">
+      <span class="music-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span id="music-label">Activar música</span>
+    </button>
+
+    <audio id="bg-music" loop preload="metadata">
+      <source src="../../music/violin-luxury.mp3" type="audio/mpeg" />
+    </audio>
   </body>
 </html>

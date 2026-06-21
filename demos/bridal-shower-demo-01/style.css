@@ -86,6 +86,8 @@ button, input, textarea { font: inherit; }
 .details-grid span { color: var(--red); font-size: 0.66rem; font-weight: 800; text-transform: uppercase; }
 .details-grid strong { display: block; margin-top: 38px; font-family: "Cormorant Garamond", serif; font-size: 2rem; }
 .details-grid p { color: var(--muted); font-size: 0.82rem; }
+.map-button { display: inline-flex; margin-top: 18px; padding: 13px 18px; border: 1px solid var(--black); border-radius: 3px; color: var(--black); font-size: 0.7rem; font-weight: 800; text-decoration: none; text-transform: uppercase; transition: color 0.25s ease, background 0.25s ease; }
+.map-button:hover { color: #fff; background: var(--black); }
 
 .schedule { padding: 110px 0 120px; }
 .schedule-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin-top: 38px; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.18); }
@@ -138,11 +140,15 @@ button, input, textarea { font: inherit; }
 .closing h2 { margin: 16px 0 0; font-family: "Cormorant Garamond", serif; font-size: 64px; font-weight: 700; }
 .closing span { display: block; margin-top: 16px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; }
 
-.modal { position: fixed; inset: 0; z-index: 1200; display: grid; place-items: center; padding: 20px; opacity: 0; visibility: hidden; background: rgba(11,9,9,0.82); backdrop-filter: blur(12px); transition: opacity 0.3s ease, visibility 0.3s ease; }
-.modal.is-open { opacity: 1; visibility: visible; }
-.modal-panel { position: relative; width: min(520px, 100%); padding: 42px; border-radius: 6px; background: var(--ivory); box-shadow: var(--shadow); }
-.modal-panel > p:not(.section-label) { color: var(--muted); line-height: 1.7; }
-.modal-close { position: absolute; top: 10px; right: 12px; width: 40px; height: 40px; border: 0; background: transparent; cursor: pointer; font-size: 1.7rem; }
+.music-toggle { position: fixed; right: 18px; bottom: 18px; z-index: 900; min-height: 44px; display: flex; align-items: center; gap: 10px; padding: 0 15px; border: 1px solid rgba(255,255,255,0.2); border-radius: 999px; color: #fff; background: rgba(11,9,9,0.88); box-shadow: 0 12px 30px rgba(11,9,9,0.22); backdrop-filter: blur(12px); cursor: pointer; opacity: 0; pointer-events: none; transform: translateY(10px); transition: opacity 0.25s ease, transform 0.25s ease; }
+.music-toggle.is-visible { opacity: 1; pointer-events: auto; transform: none; }
+.music-toggle > span:last-child { font-size: 0.64rem; font-weight: 800; text-transform: uppercase; }
+.music-bars { height: 14px; display: flex; align-items: end; gap: 2px; }
+.music-bars i { width: 2px; height: 6px; display: block; background: var(--red-bright); }
+.music-toggle.is-playing .music-bars i { animation: musicBar 0.85s ease-in-out infinite alternate; }
+.music-toggle.is-playing .music-bars i:nth-child(2) { animation-delay: 0.2s; }
+.music-toggle.is-playing .music-bars i:nth-child(3) { animation-delay: 0.4s; }
+@keyframes musicBar { to { height: 14px; } }
 
 .js-enabled .section-reveal { opacity: 0; transform: translateY(38px); }
 .js-enabled .section-reveal.is-visible { opacity: 1; transform: none; transition: opacity 0.9s ease, transform 0.9s ease; }

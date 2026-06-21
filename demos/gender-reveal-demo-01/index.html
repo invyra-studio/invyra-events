@@ -10,8 +10,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,500&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./style.css?v=1.0.0-signature-prism" />
-    <script src="./script.js?v=1.0.0-signature-prism" defer></script>
+    <link rel="stylesheet" href="./style.css?v=1.1.0-signature-homologada" />
+    <script src="./script.js?v=1.1.0-signature-homologada" defer></script>
   </head>
 
   <body data-event-date="2026-09-19T16:30:00">
@@ -120,6 +120,7 @@
           <article><span>Dónde</span><strong>Casa Prisma</strong><p>Jardines del Pedregal · CDMX</p></article>
           <article><span>Momento reveal</span><strong>6:00 PM</strong><p>Llega puntual para vivirlo completo.</p></article>
         </div>
+        <a class="map-button" href="https://www.google.com/maps/search/?api=1&query=Jardines+del+Pedregal+Ciudad+de+Mexico" target="_blank" rel="noopener noreferrer">Ver zona en Google Maps</a>
       </section>
 
       <section class="dress section-reveal">
@@ -189,7 +190,7 @@
           <label for="guest-message">Mensaje opcional</label>
           <textarea id="guest-message" name="guestMessage" rows="4" placeholder="Un deseo para el bebé o comentario especial"></textarea>
           <p id="form-status" class="form-status" aria-live="polite"></p>
-          <button class="primary-button" type="submit">Confirmar asistencia</button>
+          <button class="primary-button" type="submit">Confirmar por WhatsApp</button>
         </form>
       </section>
 
@@ -201,14 +202,13 @@
       </footer>
     </main>
 
-    <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-title">
-      <div class="modal-panel">
-        <button id="modal-close" class="modal-close" type="button" aria-label="Cerrar">×</button>
-        <p class="section-label">Respuesta guardada</p>
-        <h2 id="modal-title">Gracias por compartir la ilusión.</h2>
-        <p id="modal-message">Tu confirmación quedó guardada en esta demostración.</p>
-        <button id="modal-confirm" class="primary-button" type="button">Entendido</button>
-      </div>
-    </div>
+    <button id="music-toggle" class="music-toggle" type="button" aria-label="Reproducir música" aria-pressed="false">
+      <span class="music-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span id="music-label">Activar música</span>
+    </button>
+
+    <audio id="bg-music" loop preload="metadata">
+      <source src="../../music/violin-luxury.mp3" type="audio/mpeg" />
+    </audio>
   </body>
 </html>

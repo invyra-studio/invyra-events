@@ -3,6 +3,35 @@ document.documentElement.classList.add("js-enabled");
 const EVENT_DATE = document.body.dataset.eventDate;
 const RSVP_KEY = "invyra_gender_reveal_lucia_mateo";
 const VOTE_KEY = "invyra_gender_reveal_vote";
+const WHATSAPP_NUMBER = "525535690278";
+
+function setMusicState(isPlaying) {
+  const button = document.getElementById("music-toggle");
+  const label = document.getElementById("music-label");
+  button?.classList.toggle("is-playing", isPlaying);
+  button?.setAttribute("aria-pressed", String(isPlaying));
+  button?.setAttribute("aria-label", isPlaying ? "Pausar música" : "Reproducir música");
+  if (label) label.textContent = isPlaying ? "Música" : "Activar música";
+}
+
+function startMusic() {
+  const audio = document.getElementById("bg-music");
+  const button = document.getElementById("music-toggle");
+  button?.classList.add("is-visible");
+  if (!audio) return;
+  audio.volume = 0.35;
+  audio.play().then(() => setMusicState(true)).catch(() => setMusicState(false));
+}
+
+function toggleMusic() {
+  const audio = document.getElementById("bg-music");
+  if (!audio) return;
+  if (audio.paused) audio.play().then(() => setMusicState(true)).catch(() => setMusicState(false));
+  else {
+    audio.pause();
+    setMusicState(false);
+  }
+}
 
 function openInvitation() {
   document.getElementById("splash-screen")?.classList.add("is-hidden");
@@ -11,6 +40,7 @@ function openInvitation() {
   invitation?.setAttribute("aria-hidden", "false");
   document.body.classList.remove("is-locked");
   window.scrollTo({ top: 0, behavior: "auto" });
+  startMusic();
 }
 
 function initReveal() {
@@ -84,18 +114,18 @@ function restoreDraft() {
   syncAttendance();
 }
 
-function openModal(message) {
-  const modal = document.getElementById("modal");
-  const copy = document.getElementById("modal-message");
-  if (copy) copy.textContent = message;
-  modal?.classList.add("is-open");
-  modal?.setAttribute("aria-hidden", "false");
-}
-
-function closeModal() {
-  const modal = document.getElementById("modal");
-  modal?.classList.remove("is-open");
-  modal?.setAttribute("aria-hidden", "true");
+function buildWhatsAppUrl(data) {
+  const lines = [
+    "Hola, confirmo mi respuesta para el Gender Reveal de Lucía y Mateo:",
+    "",
+    `Nombre o familia: ${data.name}`,
+    `Respuesta: ${data.attendance}`
+  ];
+  if (data.attendance === "Asistiré") {
+    lines.push(`Asistentes: ${data.count}`, `Apuesta: ${data.team}`);
+  }
+  if (data.message) lines.push(`Mensaje: ${data.message}`);
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join("\n"))}`;
 }
 
 function initRsvp() {
@@ -110,24 +140,23 @@ function initRsvp() {
     const name = document.getElementById("guest-name")?.value.trim();
     const attendance = document.querySelector('input[name="attendance"]:checked')?.value;
     const team = document.getElementById("team-choice")?.value || "Sin apuesta";
+    const count = document.getElementById("guest-count")?.value || "1";
+    const message = document.getElementById("guest-message")?.value.trim() || "";
     if (!name) {
       if (status) status.textContent = "Escribe tu nombre para guardar la confirmación.";
       document.getElementById("guest-name")?.focus();
       return;
     }
-    if (status) status.textContent = "";
+    if (status) status.textContent = "Abriendo WhatsApp para enviar tu confirmación...";
     saveDraft();
-    openModal(`${name} confirmó: ${attendance}. Apuesta: ${team}.`);
+    window.open(buildWhatsAppUrl({ name, attendance, team, count, message }), "_blank", "noopener,noreferrer");
   });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   document.body.classList.add("is-locked");
   document.getElementById("open-invitation")?.addEventListener("click", openInvitation);
-  document.getElementById("modal-close")?.addEventListener("click", closeModal);
-  document.getElementById("modal-confirm")?.addEventListener("click", closeModal);
-  document.getElementById("modal")?.addEventListener("click", event => { if (event.target.id === "modal") closeModal(); });
-  document.addEventListener("keydown", event => { if (event.key === "Escape") closeModal(); });
+  document.getElementById("music-toggle")?.addEventListener("click", toggleMusic);
   initCountdown();
   initReveal();
   initRsvp();

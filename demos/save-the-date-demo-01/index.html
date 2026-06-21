@@ -10,8 +10,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./style.css?v=1.1.2-fraunces-editorial" />
-    <script src="./script.js?v=1.1.2-fraunces-editorial" defer></script>
+    <link rel="stylesheet" href="./style.css?v=1.2.0-signature-homologada" />
+    <script src="./script.js?v=1.2.0-signature-homologada" defer></script>
   </head>
 
   <body data-event-date="2026-11-14T17:30:00">
@@ -126,6 +126,7 @@
             <p>Una tarde que se convertirá en noche.</p>
           </article>
         </div>
+        <a class="map-button" href="https://www.google.com/maps/search/?api=1&query=Ciudad+de+Mexico" target="_blank" rel="noopener noreferrer">Ver ciudad en Google Maps</a>
       </section>
 
       <section class="gallery section-reveal" aria-label="Galería de Karen y Alejandro">
@@ -195,7 +196,7 @@
           <textarea id="guest-message" name="guestMessage" rows="4" placeholder="Déjanos unas palabras"></textarea>
 
           <p id="form-status" class="form-status" aria-live="polite"></p>
-          <button class="button button-primary" type="submit">Guardar mi respuesta</button>
+          <button class="button button-primary" type="submit">Responder por WhatsApp</button>
         </form>
       </section>
 
@@ -207,14 +208,13 @@
       </footer>
     </main>
 
-    <div id="response-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
-      <div class="modal-panel">
-        <button id="modal-close" class="modal-close" type="button" aria-label="Cerrar">×</button>
-        <p class="section-number">Respuesta guardada</p>
-        <h2 id="modal-title">Gracias por apartar este momento.</h2>
-        <p id="modal-message">Tu respuesta quedó registrada en esta demostración.</p>
-        <button id="modal-confirm" class="button button-primary" type="button">Entendido</button>
-      </div>
-    </div>
+    <button id="music-toggle" class="music-toggle" type="button" aria-label="Reproducir música" aria-pressed="false">
+      <span class="music-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span id="music-label">Activar música</span>
+    </button>
+
+    <audio id="bg-music" loop preload="metadata">
+      <source src="../../music/violin-luxury.mp3" type="audio/mpeg" />
+    </audio>
   </body>
 </html>
