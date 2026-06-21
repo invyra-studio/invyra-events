@@ -12,7 +12,7 @@
     />
 
     <link rel="icon" type="image/jpeg" href="./LOGO/FAVICON.jpeg" />
-    <link rel="stylesheet" href="./style.css?v=landing-1.0.63-mobile-demo-visibility" />
+    <link rel="stylesheet" href="./style.css?v=landing-1.0.65-home-package-sample" />
 
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800;900&family=Great+Vibes&display=swap"
@@ -27,7 +27,7 @@
       src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"
       defer
     ></script>
-    <script src="./script.js?v=landing-1.0.63-mobile-demo-visibility" defer></script>
+    <script src="./script.js?v=landing-1.0.65-home-package-sample" defer></script>
   </head>
 
   <body>
@@ -53,6 +53,8 @@
         class="nav-toggle"
         id="nav-toggle"
         aria-label="Abrir menú"
+        aria-expanded="false"
+        aria-controls="site-nav"
       >
         <span></span>
         <span></span>
@@ -301,11 +303,11 @@
             <p class="section-kicker">Portafolio</p>
 
             <h2 class="section-title">
-              Un vistazo rápido. El portafolio completo vive aparte.
+              Una muestra por nivel. El catálogo completo vive aparte.
             </h2>
 
             <p class="section-copy">
-              La landing solo muestra una muestra breve de lo que INVYRA puede lograr. Cada demo tiene su propia personalidad, su nivel de experiencia y un recorrido pensado para verse impecable desde el celular.
+              Aquí mostramos una referencia de Essential, Signature y Legacy. El catálogo completo vive en el portafolio, donde puedes explorar todas las temáticas y estilos disponibles.
             </p>
 
             <div class="experience-teaser-actions">
@@ -314,31 +316,35 @@
             </div>
           </div>
 
-          <div class="experience-teaser-cards" aria-label="Resumen breve del portafolio INVYRA">
-            <article class="experience-teaser-card">
+          <div class="experience-teaser-cards experience-package-sample" aria-label="Una demo representativa por paquete INVYRA">
+            <article class="experience-teaser-card experience-teaser-card-package">
               <span>Essential</span>
-              <h3>Birthday</h3>
-              <p>Una experiencia clara, elegante y directa.</p>
+              <div class="experience-teaser-thumb">
+                <img src="./assets/cover-birthday.png" alt="Miniatura de Birthday Demo, ejemplo Essential de INVYRA" loading="lazy" />
+              </div>
+              <h3>Birthday Demo</h3>
+              <p>Una experiencia clara, elegante y directa para compartir lo esencial con intención.</p>
+              <a href="./demos/birthday-demo-01/" class="experience-teaser-link" aria-label="Ver Birthday Demo Essential">Ver demo</a>
             </article>
 
-            <article class="experience-teaser-card experience-teaser-card-featured">
+            <article class="experience-teaser-card experience-teaser-card-package experience-teaser-card-featured">
               <span>Signature</span>
-              <h3>XV / Baby Shower</h3>
-              <p>Más presencia visual, detalles y ambiente.</p>
+              <div class="experience-teaser-thumb">
+                <img src="./assets/cover-xv-anos.png" alt="Miniatura de XV Demo, ejemplo Signature de INVYRA" loading="lazy" />
+              </div>
+              <h3>XV Demo</h3>
+              <p>Más presencia visual, movimiento y detalles para una celebración con mayor impacto.</p>
+              <a href="./demos/xv-demo-01/" class="experience-teaser-link" aria-label="Ver XV Demo Signature">Ver demo</a>
             </article>
 
-            <article class="experience-teaser-card experience-teaser-card-dark">
-              <span>Legacy · Original</span>
-              <h3>Wedding</h3>
-              <p>La versión original de boda: elegante, cinematográfica y memorable.</p>
-              <a href="./demos/wedding-demo-01/" class="experience-teaser-link experience-teaser-link-dark" aria-label="Ver Wedding Demo original">Ver demo original</a>
-            </article>
-
-            <article class="experience-teaser-card experience-teaser-card-wedding-two">
-              <span>Legacy · Nueva versión</span>
-              <h3>Wedding 02</h3>
-              <p>Una segunda propuesta editorial con textura de papel, video y atmósfera de playa.</p>
-              <a href="./demos/wedding-demo-02/" class="experience-teaser-link" aria-label="Ver Wedding Demo 02">Ver nueva demo</a>
+            <article class="experience-teaser-card experience-teaser-card-package experience-teaser-card-dark">
+              <span>Legacy</span>
+              <div class="experience-teaser-thumb">
+                <img src="./assets/cover-wedding.png" alt="Miniatura de Wedding Demo, ejemplo Legacy de INVYRA" loading="lazy" />
+              </div>
+              <h3>Wedding Demo</h3>
+              <p>Una experiencia narrativa, cinematográfica y completa para acompañar todo el evento.</p>
+              <a href="./demos/wedding-demo-01/" class="experience-teaser-link experience-teaser-link-dark" aria-label="Ver Wedding Demo Legacy">Ver demo</a>
             </article>
           </div>
         </div>

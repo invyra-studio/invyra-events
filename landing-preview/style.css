@@ -7610,3 +7610,47 @@ body.nav-open .nav-toggle span:last-child {
     margin-top: 16px !important;
   }
 }
+
+
+/* INVYRA 1.0.65 — una muestra por paquete en el home */
+.experience-teaser-shell {
+  grid-template-columns: 1fr !important;
+  align-items: start;
+}
+
+.experience-teaser-copy {
+  max-width: 980px;
+}
+
+.experience-teaser-copy .section-title {
+  max-width: 900px;
+}
+
+.experience-package-sample {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 18px !important;
+}
+
+.experience-teaser-card-package {
+  display: flex;
+  min-height: 0 !important;
+  flex-direction: column;
+}
+
+.experience-teaser-card-package .experience-teaser-thumb {
+  aspect-ratio: 4 / 3;
+}
+
+.experience-teaser-card-package p {
+  margin-bottom: 20px;
+}
+
+.experience-teaser-card-package .experience-teaser-link {
+  margin-top: auto;
+}
+
+@media (max-width: 899px) {
+  .experience-package-sample {
+    grid-template-columns: 1fr !important;
+  }
+}

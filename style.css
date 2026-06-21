@@ -7457,8 +7457,204 @@ section + section,
   }
 }
 
+
+/* INVYRA 1.0.65 — una muestra por paquete en el home */
+.experience-teaser-shell {
+  grid-template-columns: 1fr !important;
+  align-items: start;
+}
+
+.experience-teaser-copy {
+  max-width: 980px;
+}
+
+.experience-teaser-copy .section-title {
+  max-width: 900px;
+}
+
+.experience-package-sample {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 18px !important;
+}
+
+.experience-teaser-card-package {
+  display: flex;
+  min-height: 0 !important;
+  flex-direction: column;
+}
+
+.experience-teaser-card-package .experience-teaser-thumb {
+  aspect-ratio: 4 / 3;
+}
+
+.experience-teaser-card-package p {
+  margin-bottom: 20px;
+}
+
+.experience-teaser-card-package .experience-teaser-link {
+  margin-top: auto;
+}
+
+@media (max-width: 899px) {
+  .experience-package-sample {
+    grid-template-columns: 1fr !important;
+  }
+}
+
 @media (max-width: 899px) {
     .experience-teaser-cards {
         grid-template-columns: 1fr;
     }
+}
+
+
+/* ==========================================================
+   INVYRA — LANDING PRINCIPAL 1.0.64
+   Catálogo de Bloques 1 y 2 + homologación móvil con preview.
+   ========================================================== */
+
+.nav-toggle {
+    align-items: center !important;
+    justify-content: center !important;
+    flex-direction: column !important;
+    gap: 5px !important;
+    padding: 0 !important;
+    line-height: 0 !important;
+}
+
+.nav-toggle span,
+.nav-toggle span:first-child,
+.nav-toggle span:nth-child(2),
+.nav-toggle span:nth-child(3),
+.nav-toggle span:last-child {
+    position: static !important;
+    inset: auto !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    display: block !important;
+    width: 18px !important;
+    height: 2px !important;
+    margin: 0 !important;
+    border-radius: 999px !important;
+    background: var(--espresso) !important;
+    opacity: 1;
+    transform: none !important;
+    transform-origin: center !important;
+    transition: transform 0.28s ease, opacity 0.28s ease, background 0.28s ease !important;
+}
+
+body.nav-open .nav-toggle span:first-child {
+    transform: translateY(7px) rotate(45deg) !important;
+}
+
+body.nav-open .nav-toggle span:nth-child(2) {
+    opacity: 0 !important;
+    transform: scaleX(0.35) !important;
+}
+
+body.nav-open .nav-toggle span:nth-child(3),
+body.nav-open .nav-toggle span:last-child {
+    transform: translateY(-7px) rotate(-45deg) !important;
+}
+
+@media (max-width: 820px) {
+    .nav-toggle {
+        display: inline-flex !important;
+        flex: 0 0 44px !important;
+    }
+}
+
+@media (min-width: 821px) {
+    .nav-toggle {
+        display: none !important;
+    }
+}
+
+.experience-teaser-thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 24px;
+  overflow: hidden;
+  margin: 14px 0 12px;
+  border: 1px solid rgba(214, 194, 164, 0.36);
+  background: rgba(255, 255, 255, 0.52);
+  box-shadow: 0 18px 42px rgba(35, 27, 18, 0.14);
+}
+
+.experience-teaser-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.experience-teaser-card-signature-kids,
+.experience-teaser-card-signature-ceremony,
+.experience-teaser-card-signature-editorial,
+.experience-teaser-card-block-two {
+  padding-bottom: 24px;
+}
+
+.experience-teaser-card-block-two .experience-teaser-thumb {
+  aspect-ratio: 4 / 3;
+}
+
+.experience-teaser-card-signature-save-date {
+  border-color: rgba(36, 74, 125, 0.30);
+  background: linear-gradient(145deg, rgba(244, 248, 255, 0.92), rgba(215, 226, 243, 0.62));
+}
+
+.experience-teaser-card-signature-reveal {
+  border-color: rgba(116, 174, 194, 0.30);
+  background: linear-gradient(145deg, rgba(250, 253, 252, 0.94), rgba(241, 222, 216, 0.58));
+}
+
+.experience-teaser-card-signature-bridal {
+  border-color: rgba(128, 29, 46, 0.28);
+  background: linear-gradient(145deg, rgba(255, 252, 247, 0.90), rgba(225, 207, 205, 0.58));
+}
+
+@media (max-width: 899px) {
+  .demos-section.section-reveal {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .experience-teaser-cards {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .experience-teaser-card {
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 22px 18px !important;
+    border-radius: 26px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .experience-teaser-thumb {
+    aspect-ratio: 4 / 3 !important;
+    margin: 14px 0 !important;
+    border-radius: 22px !important;
+  }
+
+  .experience-teaser-thumb img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+  }
+
+  .experience-teaser-link {
+    margin-top: 16px !important;
+  }
 }

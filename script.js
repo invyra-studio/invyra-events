@@ -24,11 +24,13 @@ function initMobileNav() {
     function closeNav() {
         document.body.classList.remove("nav-open");
         navToggle.setAttribute("aria-label", "Abrir menú");
+        navToggle.setAttribute("aria-expanded", "false");
     }
     function toggleNav() {
         document.body.classList.toggle("nav-open");
         const isOpen = document.body.classList.contains("nav-open");
         navToggle.setAttribute("aria-label", isOpen ? "Cerrar menú" : "Abrir menú");
+        navToggle.setAttribute("aria-expanded", String(isOpen));
     }
     navToggle.addEventListener("click", event => {
         event.stopPropagation();
@@ -584,7 +586,14 @@ function initImageFallbacks() {
 
 function initKeyboardHelpers() {
     document.addEventListener("keydown", event => {
-        if (event.key === "Escape") document.body.classList.remove("nav-open");
+        if (event.key === "Escape") {
+            document.body.classList.remove("nav-open");
+            const navToggle = document.getElementById("nav-toggle");
+            if (navToggle) {
+                navToggle.setAttribute("aria-label", "Abrir menú");
+                navToggle.setAttribute("aria-expanded", "false");
+            }
+        }
     });
 }
 
