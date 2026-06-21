@@ -413,6 +413,9 @@ main { position: relative; z-index: 1; }
 .demo-actions a:hover { transform: translateY(-2px); color: var(--cream); background: var(--espresso); }
 .demo-card-featured { border-color: rgba(74,16,33,0.18); }
 .demo-card-glam { border-color: rgba(166,108,188,0.24); }
+.demo-card-save-date { border-color: rgba(36,74,125,0.28); background: radial-gradient(circle at 88% 8%, rgba(56,112,180,0.12), transparent 32%), linear-gradient(145deg, rgba(249,252,255,0.88), rgba(218,228,243,0.58)); }
+.demo-card-reveal { border-color: rgba(116,174,194,0.30); background: radial-gradient(circle at 12% 0%, rgba(152,207,226,0.18), transparent 34%), radial-gradient(circle at 90% 10%, rgba(238,164,147,0.16), transparent 32%), rgba(255,255,255,0.70); }
+.demo-card-bridal { border-color: rgba(128,29,46,0.28); background: radial-gradient(circle at 88% 8%, rgba(142,26,47,0.14), transparent 32%), linear-gradient(145deg, rgba(255,252,247,0.86), rgba(225,207,205,0.58)); }
 .demo-card-dark { background: radial-gradient(circle at 18% 0%, rgba(234,215,173,0.13), transparent 34%), radial-gradient(circle at 86% 86%, rgba(74,16,33,0.28), transparent 34%), linear-gradient(145deg, #0f0f0e, #1b1815 58%, #270813); border-color: rgba(234,215,173,0.30); box-shadow: 0 30px 86px rgba(20,18,16,0.22), 0 0 30px rgba(184,135,60,0.08); }
 .demo-card-dark h3, .demo-card-dark p, .demo-card-dark li { color: var(--cream); }
 .demo-card-dark p, .demo-card-dark li { color: rgba(255,250,242,0.84); }

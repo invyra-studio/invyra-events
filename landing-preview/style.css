@@ -7539,8 +7539,28 @@ body.nav-open .nav-toggle span:last-child {
 
 .experience-teaser-card-signature-kids,
 .experience-teaser-card-signature-ceremony,
-.experience-teaser-card-signature-editorial {
+.experience-teaser-card-signature-editorial,
+.experience-teaser-card-block-two {
   padding-bottom: 24px;
+}
+
+.experience-teaser-card-block-two .experience-teaser-thumb {
+  aspect-ratio: 4 / 3;
+}
+
+.experience-teaser-card-signature-save-date {
+  border-color: rgba(36, 74, 125, 0.30);
+  background: linear-gradient(145deg, rgba(244, 248, 255, 0.92), rgba(215, 226, 243, 0.62));
+}
+
+.experience-teaser-card-signature-reveal {
+  border-color: rgba(116, 174, 194, 0.30);
+  background: linear-gradient(145deg, rgba(250, 253, 252, 0.94), rgba(241, 222, 216, 0.58));
+}
+
+.experience-teaser-card-signature-bridal {
+  border-color: rgba(128, 29, 46, 0.28);
+  background: linear-gradient(145deg, rgba(255, 252, 247, 0.90), rgba(225, 207, 205, 0.58));
 }
 
 
