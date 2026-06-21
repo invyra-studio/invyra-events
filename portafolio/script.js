@@ -93,9 +93,12 @@ function initImageFallbacks() {
 }
 
 function initRevealAnimations() {
-  const items = document.querySelectorAll(
+  const criticalSections = document.querySelectorAll(".demos-section.section-reveal");
+  criticalSections.forEach(section => section.classList.add("is-visible"));
+
+  const items = Array.from(document.querySelectorAll(
     ".section-reveal, .demo-card, .feature-preview, .reading-grid article, .mood-strip article, .decision-steps article"
-  );
+  )).filter(item => !item.matches(".demos-section.section-reveal"));
 
   if (!items.length) return;
 
@@ -113,7 +116,7 @@ function initRevealAnimations() {
         }
       });
     },
-    { threshold: 0.12, rootMargin: "0px 0px -70px 0px" }
+    { threshold: 0.08, rootMargin: "0px 0px 40px 0px" }
   );
 
   items.forEach((item, index) => {
@@ -161,4 +164,3 @@ function initHamburgerA11ySync() {
 }
 
 document.addEventListener("DOMContentLoaded", initHamburgerA11ySync);
-

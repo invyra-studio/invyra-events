@@ -7442,8 +7442,23 @@ section + section,
 }
 
 @media (max-width: 899px) {
+  .demos-section.section-reveal {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .experience-teaser-card {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
+
+@media (max-width: 899px) {
     .experience-teaser-cards {
         grid-template-columns: 1fr;
     }
 }
-

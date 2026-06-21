@@ -1796,13 +1796,20 @@ body.nav-open .nav-toggle span:only-child {
 
 
 /* ==========================================================
-   INVYRA — PORTAFOLIO HOTFIX 1.0.62
+   INVYRA — PORTAFOLIO HOTFIX 1.0.63
    Fix móvil: cards de demos compactas y visibles.
    Evita huecos grandes cuando .demo-actions usa margin-top:auto
    y fuerza visibilidad aunque IntersectionObserver falle en móvil.
    ========================================================== */
 
 @media (max-width: 820px) {
+  .js-enabled .demos-section.section-reveal,
+  .js-enabled .demos-section.section-reveal.is-visible {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+  }
+
   .demo-grid {
     grid-template-columns: 1fr !important;
     gap: 22px !important;
@@ -1854,6 +1861,7 @@ body.nav-open .nav-toggle span:only-child {
   .js-enabled .demo-card,
   .js-enabled .demo-card.is-visible {
     opacity: 1 !important;
+    visibility: visible !important;
     transform: none !important;
   }
 }

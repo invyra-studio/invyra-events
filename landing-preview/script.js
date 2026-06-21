@@ -13,6 +13,7 @@ const INVYRA_WHATSAPP_NUMBER = "525535690278";
 const SCRIPT_URL =
     "https://script.google.com/macros/s/AKfycbwvkuj1XGIoV6nxZhq2YPdpytfAaftlEXJElHnRy-hcGHZKM5jF2ERaF7JFSNwiCOBD/exec";
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const isMobileViewport = window.matchMedia("(max-width: 899px)").matches;
 const QUOTE_FORM_STORAGE_KEY = "invyra_landing_preview_quote_draft";
 
 function initMobileNav() {
@@ -114,6 +115,10 @@ function initAnimations() {
         return;
     }
     gsap.utils.toArray(".section-reveal").forEach(section => {
+        if (isMobileViewport && section.classList.contains("demos-section")) {
+            gsap.set(section, { opacity: 1, y: 0, filter: "blur(0px)" });
+            return;
+        }
         gsap.fromTo(section, { opacity: 0, y: 64, filter: "blur(10px)" }, {
             scrollTrigger: { trigger: section, start: "top 86%", toggleActions: "play none none none" },
             opacity: 1, y: 0, filter: "blur(0px)", duration: 1.1, ease: "power3.out"
