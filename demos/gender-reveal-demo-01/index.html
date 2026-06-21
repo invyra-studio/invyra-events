@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f7faf8" />
+    <meta name="description" content="Gender Reveal Signature para Lucía y Mateo." />
+    <title>Lucía & Mateo · Gender Reveal</title>
+    <link rel="icon" type="image/jpeg" href="./assets/favicon.jpeg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./style.css?v=1.0.0-signature-prism" />
+    <script src="./script.js?v=1.0.0-signature-prism" defer></script>
+  </head>
+
+  <body data-event-date="2026-09-19T16:30:00">
+    <div id="splash-screen" class="splash-screen" aria-label="Apertura de Gender Reveal">
+      <img class="splash-photo" src="./assets/splash-prisma.jpg" alt="Esfera prismática para el Gender Reveal de Lucía y Mateo" />
+      <div class="splash-wash" aria-hidden="true"></div>
+      <div class="prism-line prism-line-one" aria-hidden="true"></div>
+      <div class="prism-line prism-line-two" aria-hidden="true"></div>
+
+      <header class="splash-brand">
+        <img src="./assets/favicon.jpeg" alt="INVYRA" />
+        <span>Lucía & Mateo · 2026</span>
+      </header>
+
+      <div class="splash-copy">
+        <p class="eyebrow">Something beautiful is growing</p>
+        <h1>El secreto<br /><em>está por revelarse.</em></h1>
+        <p>Dos corazones esperan. Una pequeña historia está a punto de comenzar.</p>
+      </div>
+
+      <button id="open-invitation" class="open-invitation" type="button">
+        <span>Abrir</span>
+        <small>la experiencia</small>
+      </button>
+    </div>
+
+    <main id="invitation" class="invitation" aria-hidden="true">
+      <section class="hero" id="inicio">
+        <img class="hero-photo" src="./assets/hero-lucia-mateo.jpg" alt="Lucía y Mateo esperando a su bebé en un pabellón luminoso" />
+        <div class="hero-overlay" aria-hidden="true"></div>
+
+        <div class="hero-brand">
+          <img src="./assets/favicon.jpeg" alt="INVYRA" />
+          <span>Gender Reveal · Signature</span>
+        </div>
+
+        <div class="hero-copy">
+          <p class="eyebrow">Te invitamos a descubrirlo</p>
+          <h1>Lucía <em>&</em> Mateo</h1>
+          <h2>Hay un secreto creciendo.</h2>
+          <p>Ven a compartir la emoción, hacer tu apuesta y descubrir con nosotros quién viene en camino.</p>
+        </div>
+
+        <div class="hero-date">
+          <strong>19</strong>
+          <span>Septiembre<br />2026 · 4:30 PM</span>
+        </div>
+
+        <a href="#cuenta" class="scroll-cue">Sigue la luz <span></span></a>
+      </section>
+
+      <section class="countdown section-reveal" id="cuenta">
+        <div class="countdown-heading">
+          <p class="section-label">01 / La espera</p>
+          <h2>Cada día nos acerca<br />un poco más al secreto.</h2>
+        </div>
+        <div class="countdown-grid" aria-label="Cuenta regresiva">
+          <article><strong id="days">000</strong><span>Días</span></article>
+          <article><strong id="hours">00</strong><span>Horas</span></article>
+          <article><strong id="minutes">00</strong><span>Min</span></article>
+          <article><strong id="seconds">00</strong><span>Seg</span></article>
+        </div>
+      </section>
+
+      <section class="story section-reveal">
+        <div class="story-copy">
+          <p class="section-label">02 / Nuestra alegría</p>
+          <h2>La familia está creciendo y queremos vivir este momento contigo.</h2>
+          <p>Entre preguntas, sonrisas y mucha ilusión, preparamos una tarde para reunir a quienes queremos y revelar juntos una noticia que ya cambió nuestro mundo.</p>
+          <blockquote>“Antes de conocerte, ya llenaste de luz todos nuestros días.”</blockquote>
+        </div>
+        <figure class="story-image">
+          <img src="./assets/story-lucia-mateo.jpg" alt="Lucía y Mateo caminando juntos durante la espera" loading="lazy" />
+          <figcaption>L + M · La dulce espera</figcaption>
+        </figure>
+      </section>
+
+      <section class="vote-section section-reveal" id="votacion">
+        <div class="vote-heading">
+          <p class="section-label">03 / Tu intuición</p>
+          <h2>¿Qué color te susurra el corazón?</h2>
+          <p>Haz tu elección antes de llegar. Tu voto se guardará en este dispositivo.</p>
+        </div>
+        <div class="vote-options" role="group" aria-label="Votación del Gender Reveal">
+          <button type="button" class="vote-card vote-sky" data-vote="Team Cielo">
+            <span class="vote-orb"></span>
+            <small>Mi intuición dice</small>
+            <strong>Team Cielo</strong>
+          </button>
+          <button type="button" class="vote-card vote-coral" data-vote="Team Coral">
+            <span class="vote-orb"></span>
+            <small>Mi intuición dice</small>
+            <strong>Team Coral</strong>
+          </button>
+        </div>
+        <p id="vote-status" class="vote-status" aria-live="polite">Todavía puedes cambiar de opinión.</p>
+      </section>
+
+      <section class="details section-reveal">
+        <div class="details-title">
+          <p class="section-label">04 / Coordenadas</p>
+          <h2>Una tarde para sentir, apostar y celebrar.</h2>
+        </div>
+        <div class="details-grid">
+          <article><span>Cuándo</span><strong>19 · Septiembre</strong><p>Sábado · 4:30 PM</p></article>
+          <article><span>Dónde</span><strong>Casa Prisma</strong><p>Jardines del Pedregal · CDMX</p></article>
+          <article><span>Momento reveal</span><strong>6:00 PM</strong><p>Llega puntual para vivirlo completo.</p></article>
+        </div>
+      </section>
+
+      <section class="dress section-reveal">
+        <div class="dress-image">
+          <img src="./assets/detail-prisma.jpg" alt="Detalles prismáticos del Gender Reveal" loading="lazy" />
+        </div>
+        <div class="dress-copy">
+          <p class="section-label">05 / Código de color</p>
+          <h2>Ven vestido según tu apuesta.</h2>
+          <p>El código es opcional. Puedes elegir un detalle en cielo, coral o mantenerte neutral en blanco y plata.</p>
+          <div class="palette" aria-label="Paleta sugerida">
+            <span class="tone-sky" title="Cielo"></span>
+            <span class="tone-coral" title="Coral"></span>
+            <span class="tone-white" title="Blanco"></span>
+            <span class="tone-silver" title="Plata"></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="timeline-section section-reveal">
+        <p class="section-label">06 / El recorrido</p>
+        <div class="timeline">
+          <article><span>4:30</span><strong>Bienvenida</strong><p>Fotos, bocados y primeras apuestas.</p></article>
+          <article><span>5:15</span><strong>Team game</strong><p>Dinámica para poner a prueba tu intuición.</p></article>
+          <article><span>6:00</span><strong>El secreto</strong><p>El momento que todos estamos esperando.</p></article>
+          <article><span>6:30</span><strong>Celebración</strong><p>Abrazos, postre y recuerdos.</p></article>
+        </div>
+      </section>
+
+      <section class="gallery section-reveal">
+        <div class="gallery-heading"><p class="section-label">07 / La espera</p><h2>Un pequeño vistazo a nuestra alegría.</h2></div>
+        <div class="gallery-grid">
+          <figure class="gallery-main"><img src="./assets/hero-lucia-mateo.jpg" alt="Lucía y Mateo durante la dulce espera" loading="lazy" /></figure>
+          <figure><img src="./assets/detail-prisma.jpg" alt="Detalles preparados para la revelación" loading="lazy" /></figure>
+          <figure><img src="./assets/story-lucia-mateo.jpg" alt="Sesión editorial de Lucía y Mateo" loading="lazy" /></figure>
+        </div>
+      </section>
+
+      <section class="rsvp section-reveal">
+        <div class="rsvp-intro">
+          <p class="section-label">08 / Confirmación</p>
+          <h2>Queremos descubrirlo contigo.</h2>
+          <p>Confirma tu asistencia y deja registrada tu apuesta para preparar cada detalle de esta tarde.</p>
+          <span>Lucía & Mateo</span>
+        </div>
+
+        <form id="rsvp-form" class="rsvp-form" novalidate>
+          <label for="guest-name">Nombre o familia</label>
+          <input id="guest-name" name="guestName" type="text" placeholder="Escribe tu nombre" autocomplete="name" required />
+
+          <fieldset>
+            <legend>Confirmo que</legend>
+            <div class="attendance-options">
+              <label><input type="radio" name="attendance" value="Asistiré" checked /><span>Asistiré</span></label>
+              <label><input type="radio" name="attendance" value="No asistiré" /><span>No asistiré</span></label>
+            </div>
+          </fieldset>
+
+          <div id="attendance-details">
+            <label for="guest-count">Número de asistentes</label>
+            <select id="guest-count" name="guestCount"><option value="1">1 persona</option><option value="2">2 personas</option><option value="3">3 personas</option><option value="4">4 personas</option></select>
+
+            <label for="team-choice">Mi apuesta</label>
+            <select id="team-choice" name="teamChoice"><option value="Team Cielo">Team Cielo</option><option value="Team Coral">Team Coral</option><option value="Sigo indeciso">Sigo indeciso</option></select>
+          </div>
+
+          <label for="guest-message">Mensaje opcional</label>
+          <textarea id="guest-message" name="guestMessage" rows="4" placeholder="Un deseo para el bebé o comentario especial"></textarea>
+          <p id="form-status" class="form-status" aria-live="polite"></p>
+          <button class="primary-button" type="submit">Confirmar asistencia</button>
+        </form>
+      </section>
+
+      <footer class="closing section-reveal">
+        <img src="./assets/logo-invyra.jpeg" alt="INVYRA" />
+        <p>El secreto está cada vez más cerca.</p>
+        <h2>Lucía <em>&</em> Mateo</h2>
+        <span>19 · Septiembre · 2026</span>
+      </footer>
+    </main>
+
+    <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-title">
+      <div class="modal-panel">
+        <button id="modal-close" class="modal-close" type="button" aria-label="Cerrar">×</button>
+        <p class="section-label">Respuesta guardada</p>
+        <h2 id="modal-title">Gracias por compartir la ilusión.</h2>
+        <p id="modal-message">Tu confirmación quedó guardada en esta demostración.</p>
+        <button id="modal-confirm" class="primary-button" type="button">Entendido</button>
+      </div>
+    </div>
+  </body>
+</html>
