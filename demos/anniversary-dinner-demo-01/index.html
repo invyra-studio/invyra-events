@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#240d12" />
+    <meta name="description" content="Demo Essential INVYRA para una cena de aniversario intima, elegante y facil de compartir." />
+    <title>INVYRA | Diez Años, Una Mesa</title>
+    <link rel="icon" type="image/jpeg" href="../../LOGO/FAVICON.jpeg" />
+    <link rel="preload" as="image" href="./assets/hero-anniversary.webp" />
+    <link rel="stylesheet" href="./style.css?v=1.0.0" />
+    <script src="./script.js?v=1.0.0" defer></script>
+  </head>
+  <body class="is-locked">
+    <div class="splash" id="splash">
+      <div class="splash-photo" aria-hidden="true"></div>
+      <div class="splash-shade" aria-hidden="true"></div>
+      <div class="splash-card">
+        <img src="../../LOGO/VERSIÓN MONOCROMÁTICA BLANCA.jpeg" alt="INVYRA" />
+        <p>Essential · Cena de aniversario</p>
+        <h1>Diez años.<br />Una mesa.</h1>
+        <span>Valeria &amp; Tomas</span>
+        <button type="button" id="openExperience">Abrir invitación</button>
+      </div>
+    </div>
+
+    <audio id="bg-music" loop preload="auto">
+      <source src="../../music/violin-luxury.mp3" type="audio/mpeg" />
+    </audio>
+
+    <main>
+      <header class="hero hero-section" id="inicio">
+        <img src="./assets/hero-anniversary.webp" alt="Mesa preparada para una cena de aniversario" />
+        <div class="hero-shade" aria-hidden="true"></div>
+        <div class="hero-copy reveal">
+          <p class="eyebrow">14 · NOV · 2026</p>
+          <h1>Diez años<br />merecen una pausa.</h1>
+          <p class="hero-names">Valeria &amp; Tomas</p>
+          <span class="hero-rule"></span>
+          <p class="hero-note">Queremos compartir contigo una cena pequeña, larga y muy nuestra.</p>
+        </div>
+        <a class="scroll-cue" href="#detalles">Descubrir <span aria-hidden="true">↓</span></a>
+      </header>
+
+      <section class="event-strip details-section section-reveal" id="detalles" aria-label="Datos del evento">
+        <article><span>Fecha</span><strong>Sábado 14 de noviembre</strong></article>
+        <article><span>Hora</span><strong>20:30 hrs</strong></article>
+        <article><span>Lugar</span><strong>Casa Prunes · Roma Norte</strong></article>
+      </section>
+
+      <section class="manifesto gala-editorial-section section-reveal reveal">
+        <p class="section-index">01 / La invitación</p>
+        <div>
+          <h2>No es una fiesta grande.<br />Es una noche importante.</h2>
+          <p>Hace diez años empezamos a elegirnos. Esta vez queremos celebrarlo sin prisa, alrededor de una mesa y junto a las personas que han estado cerca de nuestra historia.</p>
+        </div>
+      </section>
+
+      <section class="editorial-image gala-closing-moment section-reveal reveal">
+        <img src="./assets/detail-anniversary.webp" alt="Álbum y copas preparados para recordar diez años juntos" loading="lazy" />
+        <p>Una década hecha de días comunes que terminaron siendo extraordinarios.</p>
+      </section>
+
+      <section class="essentials guest-guide-section section-reveal reveal">
+        <p class="section-index">02 / Lo esencial</p>
+        <div class="essentials-grid">
+          <article><span>Código de vestimenta</span><strong>Cóctel nocturno</strong><p>Borgoña, negro, marfil o el tono que te haga sentir especial.</p></article>
+          <article><span>Mesa</span><strong>Cena de cuatro tiempos</strong><p>La experiencia comenzará puntual para compartir la noche completa.</p></article>
+          <article><span>Momento</span><strong>Brindis a las 22:00</strong><p>Llega con tiempo para comenzar la noche todos juntos.</p></article>
+        </div>
+      </section>
+
+      <section class="rsvp action-section section-reveal reveal" id="rsvp">
+        <div class="rsvp-intro rsvp-card">
+          <p class="section-index rsvp-package-label">03 / Experiencia Esencial</p>
+          <h2>Hay un lugar en la mesa para ti.</h2>
+          <p>Confirma antes del 31 de octubre. Tu respuesta se enviará directamente por WhatsApp.</p>
+        </div>
+        <form id="rsvpForm" class="rsvp-form" novalidate>
+          <label>Nombre completo<input id="guestName" name="guestName" type="text" autocomplete="name" required /></label>
+          <fieldset>
+            <legend>¿Podrás acompañarnos?</legend>
+            <label><input type="radio" name="attendance" value="Sí asistiré" checked /> Sí, estaré ahí</label>
+            <label><input type="radio" name="attendance" value="No podré asistir" /> No podré asistir</label>
+          </fieldset>
+          <label>Mensaje para Valeria y Tomás<textarea id="guestMessage" name="guestMessage" rows="3" placeholder="Opcional"></textarea></label>
+          <button type="submit">Confirmar por WhatsApp</button>
+          <p class="form-status" id="formStatus" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="location location-container section-reveal reveal">
+        <div>
+          <p class="section-index location-text">04 / Ubicación</p>
+          <h2>Casa Prunes</h2>
+          <p>Chihuahua 78, Roma Norte<br />Cuauhtémoc, Ciudad de México</p>
+          <a class="location-link" href="https://maps.google.com/?q=Casa+Prunes+CDMX" target="_blank" rel="noopener noreferrer">Abrir ubicación</a>
+        </div>
+        <div class="location-mark" aria-hidden="true"><span>19.419</span><i></i><span>-99.164</span></div>
+      </section>
+    </main>
+
+    <footer>
+      <img src="../../LOGO/VERSIÓN MONOCROMÁTICA BLANCA.jpeg" alt="INVYRA" />
+      <p>El evento empieza antes de llegar.</p>
+      <span>Essential Experience · Cena de aniversario</span>
+    </footer>
+  </body>
+</html>

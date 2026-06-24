@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#26372f" />
+    <meta name="description" content="Demo Essential INVYRA para una pedida de mano íntima y elegante entre familias." />
+    <title>INVYRA | Nuestra Pedida</title>
+    <link rel="icon" type="image/jpeg" href="../../LOGO/FAVICON.jpeg" />
+    <link rel="preload" as="image" href="./assets/hero-proposal.webp" />
+    <link rel="stylesheet" href="./style.css?v=1.0.0" />
+    <script src="./script.js?v=1.0.0" defer></script>
+  </head>
+  <body class="is-locked">
+    <div class="splash" id="splash">
+      <div class="splash-photo" aria-hidden="true"></div>
+      <div class="splash-shade" aria-hidden="true"></div>
+      <div class="splash-copy">
+        <img src="../../LOGO/VERSIÓN MONOCROMÁTICA BLANCA.jpeg" alt="INVYRA" />
+        <p>Essential · Pedida de mano</p>
+        <h1>Nuestra<br /><em>pedida.</em></h1>
+        <span>Regina &amp; Santiago</span>
+        <button type="button" id="openExperience">Abrir invitación</button>
+      </div>
+    </div>
+
+    <audio id="bg-music" loop preload="auto">
+      <source src="../../music/violin-luxury.mp3" type="audio/mpeg" />
+    </audio>
+
+    <main>
+      <header class="hero hero-section">
+        <img src="./assets/hero-proposal.webp" alt="Regina y Santiago entrando a la cena de su pedida de mano" />
+        <div class="hero-overlay" aria-hidden="true"></div>
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Una promesa entre familias</p>
+          <h1>Nuestra<br /><em>pedida.</em></h1>
+          <span>Regina &amp; Santiago</span>
+          <p>Queremos compartir contigo una noche pequeña que significa el comienzo de algo enorme.</p>
+        </div>
+        <div class="hero-date"><strong>24</strong><span>Octubre<br />2026</span></div>
+      </header>
+
+      <section class="invitation gala-editorial-section section-reveal reveal">
+        <p class="section-label">01 / La invitación</p>
+        <div>
+          <h2>Antes del “sí”,<br />estuvieron todos los que nos enseñaron a amar.</h2>
+          <p>Con mucha alegría, nuestras familias se reunirán para celebrar formalmente nuestra pedida de mano. Nos encantará que seas parte de esta cena tan importante para nosotros.</p>
+        </div>
+      </section>
+
+      <section class="event-data details-section section-reveal" aria-label="Información del evento">
+        <article class="reveal"><span>Fecha</span><strong>Sábado 24 de octubre</strong></article>
+        <article class="reveal"><span>Hora</span><strong>19:00 horas</strong></article>
+        <article class="reveal"><span>Lugar</span><strong>Casa Pedregal · CDMX</strong></article>
+      </section>
+
+      <section class="detail gala-closing-moment section-reveal reveal">
+        <img src="./assets/detail-proposal.webp" alt="Cartas familiares y detalles preparados para la pedida" loading="lazy" />
+        <div><p class="section-label">Nuestro momento</p><h2>Dos familias.<br />Una misma mesa.</h2><p>La cena comenzará puntual. Queremos brindar juntos y guardar una fotografía de este nuevo capítulo.</p></div>
+      </section>
+
+      <section class="notes guest-guide-section section-reveal reveal">
+        <p class="section-label">02 / Para acompañarnos</p>
+        <div class="notes-grid">
+          <article><span>Vestimenta</span><strong>Formal de tarde</strong><p>Verde profundo, marfil, rosa empolvado y tonos neutros.</p></article>
+          <article><span>Detalle</span><strong>No hace falta regalo</strong><p>Tu presencia y cariño son todo lo que queremos esa noche.</p></article>
+          <article><span>Confirmación</span><strong>Antes del 10 de octubre</strong><p>Así podremos preparar tu lugar con calma.</p></article>
+        </div>
+      </section>
+
+      <section class="rsvp action-section section-reveal" id="rsvp">
+        <div class="rsvp-copy rsvp-card reveal"><p class="section-label rsvp-package-label">03 / Experiencia Esencial</p><h2>Queremos<br />reservar tu lugar.</h2><p>Tu confirmación se enviará directamente por WhatsApp.</p></div>
+        <form id="rsvpForm" class="rsvp-form reveal" novalidate>
+          <label>Nombre completo<input id="guestName" name="guestName" type="text" autocomplete="name" required /></label>
+          <fieldset><legend>¿Podrás acompañarnos?</legend><label><input type="radio" name="attendance" value="Sí asistiré" checked /> Sí, estaré ahí</label><label><input type="radio" name="attendance" value="No podré asistir" /> No podré asistir</label></fieldset>
+          <label id="messageField">Mensaje para Regina y Santiago<textarea id="guestMessage" name="guestMessage" rows="3" placeholder="Opcional"></textarea></label>
+          <button type="submit">Confirmar por WhatsApp</button>
+          <p id="formStatus" class="form-status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="location location-container section-reveal reveal">
+        <div><p class="section-label location-text">04 / Ubicación</p><h2>Casa<br />Pedregal</h2><p>Fuentes del Pedregal<br />Tlalpan, Ciudad de México</p></div>
+        <a class="location-link" href="https://maps.google.com/?q=Fuentes+del+Pedregal+CDMX" target="_blank" rel="noopener noreferrer">Abrir mapa <span>↗</span></a>
+      </section>
+    </main>
+
+    <footer><img src="../../LOGO/VERSIÓN MONOCROMÁTICA BLANCA.jpeg" alt="INVYRA" /><p>El evento empieza antes de llegar.</p><span>Essential Experience · Pedida de mano</span></footer>
+  </body>
+</html>

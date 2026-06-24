@@ -241,6 +241,9 @@ function initQuotePrefill() {
     "save-the-date": "Save the Date",
     wedding: "Boda",
     "baby-shower": "Baby Shower",
+    "anniversary-dinner": "Cena de aniversario",
+    "corporate-launch": "Lanzamiento corporativo",
+    "proposal-dinner": "Pedida de mano",
   };
   const packageAliases = {
     essential: "Esencial",
