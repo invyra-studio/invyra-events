@@ -91,11 +91,10 @@ El portafolio ubica aquí baby shower, XV, fiesta infantil, primera comunión, g
 
 Las demos Legacy de boda editorial y lanzamiento corporativo confirman que el nivel se define por profundidad narrativa, medios y personalización, no por exigir módulos de boda en eventos donde no aplican.
 
-## Catálogo y excepción privada
+## Catálogo comercial
 
 - El catálogo público contiene 15 demos comerciales.
-- `memorial-demo-01` es privada, conmemorativa y no pertenece a Esencial, Signature o Legacy.
-- Memorial no aparece en Portafolio ni entra en el conteo público. Esto es una decisión de producto, no una contradicción.
+- Advertencia técnica temporal: cualquier carpeta `demos/memorial*` es privada/no listada, ajena a paquetes y propuestas comerciales, y debe ignorarse salvo instrucción expresa.
 
 ## Módulos y adicionales
 

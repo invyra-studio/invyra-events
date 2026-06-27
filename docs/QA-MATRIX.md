@@ -2,7 +2,7 @@
 
 ## Alcance
 
-Auditoría estática de Inicio, Experiencias, Portafolio, Cotizar y las 16 demos presentes. No incluye ejecución visual, pruebas reales de red ni Playwright.
+Auditoría estática de Inicio, Experiencias, Portafolio, Cotizar y las 15 demos comerciales. No incluye ejecución visual, pruebas reales de red ni Playwright.
 
 Leyenda: `Sí` = evidencia en fuente; `No` = brecha observada; `N/A` = no aplica; `PC` = **POR CONFIRMAR**.
 
@@ -12,7 +12,7 @@ Leyenda: `Sí` = evidencia en fuente; `No` = brecha observada; `N/A` = no aplica
 |---|---|---|---|
 | Inicio | Presentar marca y conducir a exploración/cotización | Promesa premium, mobile first, narrativa de primera impresión, portafolio, proceso y CTA | Validación visual y de enlaces en ejecución |
 | Experiencias | Explicar niveles y adicionales | Alcance publicado para tres niveles y recomendación de Signature | Deuda de contenido: copy visible que anuncia una futura sustitución del mapa de paquetes; incluidos/adicionales siguen POR CONFIRMAR |
-| Portafolio | Mostrar y filtrar demos | Etiquetas por nivel, filtros y rutas hacia demo/cotización | Correcto: publica 15 demos comerciales; Memorial es privada y queda fuera del conteo |
+| Portafolio | Mostrar y filtrar demos | Etiquetas por nivel, filtros y rutas hacia demo/cotización | Correcto: publica 15 demos comerciales |
 | Cotizar | Capturar briefing y abrir WhatsApp | Prefill por URL, reglas por paquete, borrador local, integración remota y WhatsApp | Probar errores reales, privacidad, doble envío y persistencia |
 
 ## Demos
@@ -28,7 +28,6 @@ Leyenda: `Sí` = evidencia en fuente; `No` = brecha observada; `N/A` = no aplica
 | `fiesta-infantil-tematica-demo-01` | Signature | Sí | No | Sí | No | No | Falta pausa, WhatsApp y deshabilitado; conserva CSS de control musical sin control visible |
 | `gender-reveal-demo-01` | Signature | Sí | No | No | Sí | No | Incumple música y RSVP dependiente |
 | `graduacion-demo-01` | Signature | No | N/A | Sí | No | No | Deuda: requiere música, WhatsApp y RSVP conforme |
-| `memorial-demo-01` | Privada conmemorativa | Sí | Sí | Sí | N/A | N/A | Fuera de paquetes, catálogo y conteo comercial |
 | `primera-comunion-demo-01` | Signature | No | N/A | Sí | No | No | Deuda: requiere música, WhatsApp y RSVP conforme |
 | `proposal-dinner-demo-01` | Esencial | Sí | Sí | Sí | Sí | N/A | Base coherente; requiere prueba manual |
 | `save-the-date-demo-01` | Signature | Sí | No | No | Sí | No | Incumple música y RSVP dependiente |
@@ -54,8 +53,7 @@ Estas brechas no redefinen paquetes ni comportamientos; deben corregirse en fase
 
 - Nombre oficial: **Esencial**.
 - Signature adapta módulos al evento manteniendo profundidad, cantidad de contenido y valor equivalentes.
-- Hay 15 demos comerciales y una privada conmemorativa.
-- Memorial queda fuera de paquetes, catálogo y conteo público.
+- Hay 15 demos comerciales.
 - WhatsApp es obligatorio en toda demo comercial.
 - Toda demo con música oculta controles y pausa al perder visibilidad.
 - RSVP deshabilita dependencias y excluye sus datos del envío.
@@ -73,4 +71,4 @@ Estas brechas no redefinen paquetes ni comportamientos; deben corregirse en fase
 - La página principal se sirve desde la raíz en `https://invyra-studio.github.io/invyra-events/`.
 - La preview se sirve desde `landing-preview/` dentro del mismo despliegue: `https://invyra-studio.github.io/invyra-events/landing-preview/`.
 - No existe una rama de preview ni un workflow propio en el repositorio. Una rama de trabajo publicada en GitHub no obtiene preview web automáticamente.
-- `client-preview/` y Memorial, si permanecen dentro del árbol publicado, son accesibles por URL directa aunque no estén enlazados.
+- `client-preview/`, si permanece dentro del árbol publicado, es accesible por URL directa aunque no esté enlazado.
