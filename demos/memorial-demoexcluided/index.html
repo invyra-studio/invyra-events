@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#18201d" />
+    <meta name="description" content="Invitación conmemorativa para un aniversario luctuoso." />
+    <title>En memoria de Manuel Alejandro Ruiz Valdés</title>
+    <link rel="icon" type="image/jpeg" href="./assets/favicon.jpeg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./style.css?v=1.0.0" />
+    <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
+    <script src="./script.js?v=1.0.0" defer></script>
+  </head>
+
+  <body class="is-locked" data-event-date="2026-07-04T07:00:00-06:00">
+    <div class="splash" id="splash">
+      <img class="splash-photo" src="./assets/memorial-persona-generica.png" alt="Fotografía de Manuel Alejandro Ruiz Valdés" />
+      <div class="splash-shade" aria-hidden="true"></div>
+      <div class="splash-content">
+        <p class="splash-eyebrow">Con amor recordamos</p>
+        <span class="splash-rule" aria-hidden="true"></span>
+        <h1>Manuel Alejandro<br />Ruiz Valdés</h1>
+        <p class="splash-event">Aniversario luctuoso</p>
+        <button type="button" id="openInvitation">Abrir invitación</button>
+        <small>4 de julio de 2026</small>
+      </div>
+    </div>
+
+    <audio id="bg-music" loop preload="auto">
+      <source src="./assets/musica-conmemorativa.mp3" type="audio/mpeg" />
+    </audio>
+
+    <main>
+      <header class="hero" id="inicio">
+        <img class="hero-photo" src="./assets/memorial-persona-generica.png" alt="Manuel Alejandro Ruiz Valdés" />
+        <div class="hero-shade" aria-hidden="true"></div>
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Siempre en nuestra memoria</p>
+          <h1>Manuel Alejandro<br />Ruiz Valdés</h1>
+          <p class="hero-dates">Su amor y su recuerdo permanecen con nosotros</p>
+          <span class="fine-rule" aria-hidden="true"></span>
+          <p class="hero-quote">“El amor nunca deja de ser.”</p>
+          <small>1 Corintios 13:8</small>
+        </div>
+        <a class="scroll-cue" href="#invitacion">Acompáñanos <i data-lucide="chevron-down"></i></a>
+      </header>
+
+      <section class="invitation section-shell reveal" id="invitacion">
+        <p class="section-number">01</p>
+        <div class="invitation-copy">
+          <p class="eyebrow dark">En su aniversario luctuoso</p>
+          <h2>Su vida dejó una huella que el tiempo no borra.</h2>
+          <p>Con profundo cariño, nuestra familia te invita a acompañarnos para honrar su memoria, elevar una oración y recordar juntos el amor que permanece.</p>
+        </div>
+      </section>
+
+      <section class="countdown reveal" aria-label="Cuenta regresiva">
+        <p class="eyebrow">4 de julio de 2026</p>
+        <h2>Nos reuniremos para recordarlo</h2>
+        <div class="countdown-grid">
+          <article><strong id="days">00</strong><span>Días</span></article>
+          <article><strong id="hours">00</strong><span>Horas</span></article>
+          <article><strong id="minutes">00</strong><span>Minutos</span></article>
+          <article><strong id="seconds">00</strong><span>Segundos</span></article>
+        </div>
+      </section>
+
+      <section class="portrait-moment reveal">
+        <figure>
+          <img src="./assets/memorial-persona-generica.png" alt="Recuerdo de Manuel Alejandro Ruiz Valdés" loading="lazy" />
+          <figcaption>Manuel Alejandro Ruiz Valdés</figcaption>
+        </figure>
+        <div>
+          <p class="eyebrow dark">Un recuerdo que permanece</p>
+          <blockquote>“Hay personas que no se van del todo, porque viven en cada historia, cada enseñanza y cada gesto de amor que dejaron en nosotros.”</blockquote>
+          <p class="family-sign">Con cariño, su familia</p>
+        </div>
+      </section>
+
+      <section class="moments section-shell reveal" id="momentos">
+        <p class="section-number">02</p>
+        <div class="moments-heading">
+          <p class="eyebrow dark">Momentos de oración</p>
+          <h2>Sábado 4 de julio</h2>
+        </div>
+        <div class="moments-grid">
+          <article>
+            <span class="icon-wrap"><i data-lucide="church"></i></span>
+            <p class="card-kicker">Por la manana</p>
+            <h3>Santa Misa</h3>
+            <strong>7:00 AM</strong>
+            <p class="venue">Parroquia por confirmar</p>
+            <p class="address">La ubicación se agregará al recibir los datos de la familia.</p>
+            <a class="location-link is-pending" href="#" aria-disabled="true"><i data-lucide="map-pin"></i> Ubicación pendiente</a>
+          </article>
+          <article>
+            <span class="icon-wrap"><i data-lucide="flame"></i></span>
+            <p class="card-kicker">Al caer la tarde</p>
+            <h3>Santo Rosario</h3>
+            <strong>7:00 PM</strong>
+            <p class="venue">Domicilio por confirmar</p>
+            <p class="address">La ubicación se agregará al recibir los datos de la familia.</p>
+            <a class="location-link is-pending" href="#" aria-disabled="true"><i data-lucide="map-pin"></i> Ubicación pendiente</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="prayer reveal">
+        <div class="prayer-mark" aria-hidden="true"><span></span><i></i><span></span></div>
+        <p class="eyebrow">En comunión y esperanza</p>
+        <blockquote>“Dale, Señor, el descanso eterno,<br />y brille para él la luz perpetua.”</blockquote>
+        <p>Gracias por acompañarnos con tu presencia, tus oraciones y tu cariño.</p>
+      </section>
+
+      <section class="closing reveal">
+        <img src="./assets/memorial-fondo-oracion.png" alt="Vela y flores en memoria de Manuel Alejandro Ruiz Valdés" loading="lazy" />
+        <div class="closing-shade" aria-hidden="true"></div>
+        <div class="closing-copy">
+          <p class="eyebrow">En memoria de</p>
+          <h2>Manuel Alejandro<br />Ruiz Valdés</h2>
+          <span class="fine-rule" aria-hidden="true"></span>
+          <p>Tu recuerdo sigue siendo luz en nuestra familia.</p>
+          <small>4 · JULIO · 2026</small>
+        </div>
+      </section>
+    </main>
+
+  </body>
+</html>
+
+<!-- Standalone memorial demo: not linked from Invyra portfolio. -->
