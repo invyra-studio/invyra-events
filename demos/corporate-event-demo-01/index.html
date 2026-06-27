@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>INVYRA | Summit Noir - Evento Corporativo</title>
+    <meta name="description" content="Demo Legacy para evento corporativo creada por INVYRA." />
+    <link rel="stylesheet" href="./style.css?v=1.0.0" />
+    <link rel="preload" as="image" href="./assets/corporate-hero.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  </head>
+  <body class="splash-active">
+    <div id="splash-screen">
+      <div class="splash-bg" aria-hidden="true"></div>
+      <div class="splash-panel">
+        <p class="kicker">Legacy Corporate Event</p>
+        <h1>Summit Noir</h1>
+        <p>Una noche ejecutiva para presentar, conectar y celebrar resultados.</p>
+      </div>
+      <button type="button" class="btn-start">Entrar a la experiencia</button>
+    </div>
+
+    <main class="invitation-shell">
+      <header class="hero-section">
+        <div class="hero-bg" aria-hidden="true"></div>
+        <div class="hero-shade" aria-hidden="true"></div>
+        <nav class="topbar">
+          <span>INVYRA</span>
+          <a href="#registro">Registro</a>
+        </nav>
+        <div class="hero-content">
+          <p class="kicker reveal">Invitacion corporativa Legacy</p>
+          <h1 class="main-title reveal">Summit Noir</h1>
+          <p class="hero-copy reveal">
+            Presentacion anual de estrategia, networking ejecutivo y cena de reconocimiento para aliados clave.
+          </p>
+          <div class="hero-meta reveal">
+            <span>12 Noviembre 2026</span>
+            <span>18:30 HRS</span>
+            <span>Glass Hall Reforma</span>
+          </div>
+        </div>
+      </header>
+
+      <section class="legacy-intro reveal-section">
+        <p class="section-label">La experiencia</p>
+        <div>
+          <h2>Una invitacion digital con presencia de marca.</h2>
+          <p>
+            Esta demo muestra como una convocatoria corporativa puede sentirse premium desde el primer enlace:
+            apertura visual, agenda clara, sede, registro, lineamientos para invitados y CTA operativo.
+          </p>
+        </div>
+      </section>
+
+      <section class="metrics reveal-section">
+        <article><span>180</span><p>invitados ejecutivos</p></article>
+        <article><span>04</span><p>bloques de agenda</p></article>
+        <article><span>01</span><p>registro centralizado</p></article>
+      </section>
+
+      <section class="agenda reveal-section">
+        <div class="section-heading">
+          <p class="section-label">Agenda</p>
+          <h2>Ritmo claro para una noche de alto nivel.</h2>
+        </div>
+        <div class="agenda-list">
+          <article><time>18:30</time><div><h3>Recepcion y acreditacion</h3><p>Ingreso con lista, bienvenida y coctel ejecutivo.</p></div></article>
+          <article><time>19:15</time><div><h3>Keynote institucional</h3><p>Mensaje de direccion y vision para el siguiente ciclo.</p></div></article>
+          <article><time>20:10</time><div><h3>Panel de aliados</h3><p>Conversacion breve con socios estrategicos y lideres de proyecto.</p></div></article>
+          <article><time>21:00</time><div><h3>Cena y networking</h3><p>Cierre con cena, reconocimientos y conexiones clave.</p></div></article>
+        </div>
+      </section>
+
+      <section class="venue reveal-section">
+        <div>
+          <p class="section-label">Sede</p>
+          <h2>Glass Hall Reforma</h2>
+          <p>Salon ejecutivo con acceso controlado, valet parking y vista nocturna a la ciudad.</p>
+        </div>
+        <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer">Ver mapa</a>
+      </section>
+
+      <section class="protocol reveal-section">
+        <p class="section-label">Guia para invitados</p>
+        <div class="protocol-grid">
+          <article><h3>Dress code</h3><p>Business formal en tonos negro, gris, blanco o champagne.</p></article>
+          <article><h3>Acceso</h3><p>Presenta tu confirmacion digital al llegar al modulo de registro.</p></article>
+          <article><h3>Networking</h3><p>La cena tendra mesas asignadas para facilitar conversaciones estrategicas.</p></article>
+        </div>
+      </section>
+
+      <section class="registration reveal-section" id="registro">
+        <p class="section-label">Registro</p>
+        <h2>Confirma tu asistencia</h2>
+        <form class="rsvp-form">
+          <div class="two-cols">
+            <input id="guestName" type="text" placeholder="Nombre completo" autocomplete="off" />
+            <input id="companyName" type="text" placeholder="Empresa / cargo" autocomplete="off" />
+          </div>
+          <div class="radio-row">
+            <label><input type="radio" name="asistencia" value="Asistiré" checked /><span>Asistiré</span></label>
+            <label><input type="radio" name="asistencia" value="No asistiré" /><span>No asistiré</span></label>
+          </div>
+          <textarea id="guestNotes" placeholder="Notas de acceso, acompanante o requerimientos"></textarea>
+          <p id="rsvpStatus" class="status">Tu registro se guardara en este dispositivo.</p>
+          <button type="submit">Confirmar registro</button>
+        </form>
+      </section>
+
+      <footer class="footer">
+        <img src="./assets/invyra-favicon.jpeg" alt="INVYRA" class="footer-logo" />
+        <p>INVYRA / Evento corporativo Legacy.</p>
+      </footer>
+    </main>
+
+    <audio id="bgMusic" loop preload="none"></audio>
+    <script src="./script.js?v=1.0.0"></script>
+  </body>
+</html>

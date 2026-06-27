@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>INVYRA | Brindis de Oro - Aniversario</title>
+    <meta name="description" content="Demo Essential para aniversario creada por INVYRA." />
+    <link rel="stylesheet" href="./style.css?v=1.0.0" />
+    <link rel="preload" as="image" href="./assets/anniversary-hero.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  </head>
+  <body class="splash-active">
+    <div id="splash-screen">
+      <div class="splash-image" aria-hidden="true"></div>
+      <div class="splash-card">
+        <p class="kicker">Essential Anniversary</p>
+        <h1>Brindis de Oro</h1>
+        <p>Una noche para celebrar lo que permanece.</p>
+        <button type="button" class="btn-start">Entrar a la experiencia</button>
+      </div>
+    </div>
+
+    <main class="invitation-shell">
+      <header class="hero-section">
+        <div class="hero-bg" aria-hidden="true"></div>
+        <div class="hero-overlay" aria-hidden="true"></div>
+        <div class="hero-content">
+          <p class="brand reveal">INVYRA</p>
+          <p class="kicker reveal">Aniversario de bodas</p>
+          <h1 class="main-title reveal">Sofia & Daniel</h1>
+          <p class="hero-copy reveal">15 anos de historia, una mesa para brindar y una noche para recordarlo todo.</p>
+          <div class="hero-date reveal">
+            <span>24 Octubre 2026</span>
+            <span>20:00 HRS</span>
+            <span>Terraza Miraluz</span>
+          </div>
+        </div>
+      </header>
+
+      <section class="intro-section reveal-section">
+        <p class="section-label">La invitacion</p>
+        <h2>Hay historias que merecen una pausa bonita.</h2>
+        <p>
+          Queremos reunir a quienes han sido parte de este camino para compartir una cena tranquila,
+          un brindis y una noche con la calidez de los recuerdos importantes.
+        </p>
+      </section>
+
+      <section class="details-grid reveal-section">
+        <article>
+          <span>01</span>
+          <h3>Cena intima</h3>
+          <p>Recepcion con mesa reservada, musica suave y una atmosfera pensada para conversar sin prisa.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Brindis</h3>
+          <p>Un momento breve para agradecer, celebrar y mirar hacia lo que viene.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Codigo</h3>
+          <p>Coctel elegante en tonos neutros, dorado suave o negro clasico.</p>
+        </article>
+      </section>
+
+      <section class="schedule reveal-section">
+        <p class="section-label">Itinerario</p>
+        <div class="timeline">
+          <div><strong>19:45</strong><span>Llegada de invitados</span></div>
+          <div><strong>20:15</strong><span>Cena</span></div>
+          <div><strong>21:20</strong><span>Brindis de aniversario</span></div>
+          <div><strong>22:00</strong><span>Musica y sobremesa</span></div>
+        </div>
+      </section>
+
+      <section class="location-card reveal-section">
+        <div>
+          <p class="section-label">Lugar</p>
+          <h2>Terraza Miraluz</h2>
+          <p>Av. Reforma 204, Ciudad de Mexico. Acceso por valet parking desde las 19:30 hrs.</p>
+        </div>
+        <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer">Ver ubicacion</a>
+      </section>
+
+      <section class="rsvp-card reveal-section">
+        <p class="section-label">RSVP</p>
+        <h2>Confirma tu asistencia</h2>
+        <form class="rsvp-form">
+          <input id="guestName" type="text" placeholder="Nombre de invitado o familia" autocomplete="off" />
+          <div class="radio-row">
+            <label><input type="radio" name="asistencia" value="Asistiré" checked /><span>Asistiré</span></label>
+            <label><input type="radio" name="asistencia" value="No asistiré" /><span>No asistiré</span></label>
+          </div>
+          <textarea id="guestMessage" placeholder="Mensaje opcional para Sofia y Daniel"></textarea>
+          <p id="rsvpStatus" class="status">Tu respuesta se guardara en este dispositivo.</p>
+          <button type="submit">Confirmar asistencia</button>
+        </form>
+      </section>
+
+      <footer class="footer">
+        <img src="./assets/invyra-favicon.jpeg" alt="INVYRA" class="footer-logo" />
+        <p>INVYRA / El evento empieza antes de llegar.</p>
+      </footer>
+    </main>
+
+    <audio id="bgMusic" loop preload="none"></audio>
+    <script src="./script.js?v=1.0.0"></script>
+  </body>
+</html>

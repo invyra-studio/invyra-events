@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>INVYRA | La Pregunta - Pedida de Mano</title>
+    <meta name="description" content="Demo Essential para pedida de mano creada por INVYRA." />
+    <link rel="stylesheet" href="./style.css?v=1.0.0" />
+    <link rel="preload" as="image" href="./assets/proposal-hero.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  </head>
+  <body class="splash-active">
+    <div id="splash-screen">
+      <div class="splash-bg" aria-hidden="true"></div>
+      <div class="splash-note">
+        <p class="kicker">Essential Proposal</p>
+        <h1>La Pregunta</h1>
+        <p>Un momento pequeno para decir algo enorme.</p>
+        <button type="button" class="btn-start">Entrar a la experiencia</button>
+      </div>
+    </div>
+
+    <main class="invitation-shell">
+      <header class="hero-section">
+        <div class="hero-bg" aria-hidden="true"></div>
+        <div class="hero-overlay" aria-hidden="true"></div>
+        <div class="hero-content">
+          <p class="brand reveal">INVYRA</p>
+          <p class="kicker reveal">Pedida de mano</p>
+          <h1 class="main-title reveal">Valeria & Bruno</h1>
+          <p class="hero-copy reveal">Acompananos en una cena intima donde una historia dara su siguiente paso.</p>
+          <div class="hero-meta reveal">
+            <span>07 Febrero 2027</span>
+            <span>19:30 HRS</span>
+            <span>Jardin Liora</span>
+          </div>
+        </div>
+      </header>
+
+      <section class="quote reveal-section">
+        <p>Antes de decirlo en voz alta, queremos compartirlo con las personas que hacen que este momento sea casa.</p>
+      </section>
+
+      <section class="story reveal-section">
+        <p class="section-label">La noche</p>
+        <h2>Una cena sencilla, una sorpresa y las personas correctas.</h2>
+        <p>
+          La invitacion esta pensada para mantener el momento elegante y discreto:
+          datos claros, tono romantico y una experiencia que acompana sin revelar demasiado.
+        </p>
+      </section>
+
+      <section class="moments reveal-section">
+        <article><span>01</span><h3>Bienvenida</h3><p>Recepcion tranquila en jardin con mesa familiar y musica suave.</p></article>
+        <article><span>02</span><h3>La pregunta</h3><p>Un instante reservado para la pareja y sus personas mas cercanas.</p></article>
+        <article><span>03</span><h3>Celebracion</h3><p>Brindis, fotos y cena para cerrar la noche con calma.</p></article>
+      </section>
+
+      <section class="details reveal-section">
+        <div>
+          <p class="section-label">Detalles</p>
+          <h2>Jardin Liora</h2>
+          <p>Entrada por acceso privado desde las 19:15 hrs. Dress code: elegante casual en tonos neutros.</p>
+        </div>
+        <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer">Ver ubicacion</a>
+      </section>
+
+      <section class="rsvp-card reveal-section">
+        <p class="section-label">RSVP</p>
+        <h2>Confirma con discrecion</h2>
+        <form class="rsvp-form">
+          <input id="guestName" type="text" placeholder="Nombre de invitado o familia" autocomplete="off" />
+          <div class="radio-row">
+            <label><input type="radio" name="asistencia" value="Asistiré" checked /><span>Asistiré</span></label>
+            <label><input type="radio" name="asistencia" value="No asistiré" /><span>No asistiré</span></label>
+          </div>
+          <textarea id="guestMessage" placeholder="Mensaje opcional para Valeria y Bruno"></textarea>
+          <p id="rsvpStatus" class="status">Tu respuesta se guardara en este dispositivo.</p>
+          <button type="submit">Confirmar asistencia</button>
+        </form>
+      </section>
+
+      <footer class="footer">
+        <img src="./assets/invyra-favicon.jpeg" alt="INVYRA" class="footer-logo" />
+        <p>INVYRA / El evento empieza antes de llegar.</p>
+      </footer>
+    </main>
+
+    <audio id="bgMusic" loop preload="none"></audio>
+    <script src="./script.js?v=1.0.0"></script>
+  </body>
+</html>

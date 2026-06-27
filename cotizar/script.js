@@ -232,6 +232,8 @@ function initQuotePrefill() {
   const eventAliases = {
     birthday: "Cumpleaños",
     xv: "XV años",
+    anniversary: "Cena de aniversario",
+    proposal: "Pedida de mano",
     "fiesta-infantil": "Fiesta infantil",
     bautizo: "Bautizo",
     "primera-comunion": "Primera comunión",
@@ -239,6 +241,7 @@ function initQuotePrefill() {
     "gender-reveal": "Gender Reveal",
     "bridal-shower": "Bridal Shower",
     "save-the-date": "Save the Date",
+    "corporate-event": "Evento corporativo",
     wedding: "Boda",
     "baby-shower": "Baby Shower",
   };

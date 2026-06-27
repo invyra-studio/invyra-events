@@ -19,17 +19,17 @@ Leyenda: `Sí` = evidencia en fuente; `No` = brecha observada; `N/A` = no aplica
 
 | Demo | Nivel publicado | Audio al abrir | Pausa al ocultar | Sin botón visible de música | WhatsApp | Dependientes se deshabilitan al declinar | Resultado preliminar |
 |---|---|---:|---:|---:|---:|---:|---|
-| `anniversary-dinner-demo-01` | Esencial | Sí | Sí | Sí | Sí | N/A | Base coherente; requiere prueba manual |
+| `anniversary-demo-01` | Esencial | Sí | Sí | Sí | Sí | N/A | Base coherente; requiere prueba manual |
 | `babyshower-demo-01` | Signature | Sí | Sí | Sí | Sí | Sí | Referente Signature coherente |
 | `bautizo-demo-01` | Signature | Sí | Sí | Sí | No | Sí | Falta CTA de WhatsApp |
 | `birthday-demo-01` | Esencial | Sí | Sí | Sí | Sí | N/A | Referente Esencial coherente |
 | `bridal-shower-demo-01` | Signature | Sí | No | No | Sí | No | Incumple música y RSVP dependiente |
-| `corporate-launch-demo-01` | Legacy | Sí | Sí | Sí | Sí | Sí | Adaptación Legacy coherente |
+| `corporate-event-demo-01` | Legacy | Sí | Sí | Sí | Sí | Sí | Adaptación Legacy coherente; requiere prueba manual |
 | `fiesta-infantil-tematica-demo-01` | Signature | Sí | No | Sí | No | No | Falta pausa, WhatsApp y deshabilitado; conserva CSS de control musical sin control visible |
 | `gender-reveal-demo-01` | Signature | Sí | No | No | Sí | No | Incumple música y RSVP dependiente |
 | `graduacion-demo-01` | Signature | No | N/A | Sí | No | No | Deuda: requiere música, WhatsApp y RSVP conforme |
 | `primera-comunion-demo-01` | Signature | No | N/A | Sí | No | No | Deuda: requiere música, WhatsApp y RSVP conforme |
-| `proposal-dinner-demo-01` | Esencial | Sí | Sí | Sí | Sí | N/A | Base coherente; requiere prueba manual |
+| `proposal-demo-01` | Esencial | Sí | Sí | Sí | Sí | N/A | Base coherente; requiere prueba manual |
 | `save-the-date-demo-01` | Signature | Sí | No | No | Sí | No | Incumple música y RSVP dependiente |
 | `wedding-demo-01` | Legacy | Sí | Sí | Sí | Sí | Sí | Referente Legacy coherente |
 | `wedding-demo-02` | Legacy | Sí | Sí | Sí | Sí | Sí | Variante Legacy coherente en fuente |
