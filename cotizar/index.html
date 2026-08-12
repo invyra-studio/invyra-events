@@ -10,6 +10,7 @@
     />
     <link rel="icon" type="image/jpeg" href="../LOGO/FAVICON.jpeg" />
     <link rel="stylesheet" href="./style.css?v=1.1.0-commercial" />
+    <link rel="stylesheet" href="../assets/css/legal-links.css?v=2.0.1-legal" />
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800;900&family=Great+Vibes&display=swap"
       rel="stylesheet"
@@ -22,7 +23,7 @@
       src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"
       defer
     ></script>
-    <script src="./script.js?v=1.1.0-commercial" defer></script>
+    <script src="./script.js?v=1.2.1-legal" defer></script>
   </head>
   <body>
     <div class="site-bg">
@@ -295,6 +296,19 @@
               </select>
             </div>
 
+            <div class="privacy-summary" aria-labelledby="privacySummaryTitle">
+              <strong class="privacy-summary-title" id="privacySummaryTitle">Aviso de Privacidad simplificado</strong>
+              <p><strong>Responsable:</strong> Javier Valdemar Gonzalez Ortega, persona física que opera bajo la marca comercial INVYRA.</p>
+              <p><strong>Domicilio:</strong> Delia 149, Guadalupe Tepeyac, Gustavo A. Madero, 07840 Ciudad de México, CDMX.</p>
+              <p>Usamos los datos de este formulario para atender tu cotización, recomendar un alcance, contactarte y, si contratas, gestionar el proyecto. El formulario actual no te suscribe automáticamente a publicidad.</p>
+              <p>Puedes limitar el tratamiento, revocar tu consentimiento cuando proceda o ejercer derechos ARCO escribiendo a <a href="mailto:invyra.privacidad@gmail.com">invyra.privacidad@gmail.com</a>. Consulta el <a href="../privacidad/" target="_blank" rel="noopener noreferrer">Aviso de Privacidad Integral</a>.</p>
+            </div>
+
+            <label class="legal-consent" for="legalConsent">
+              <input type="checkbox" id="legalConsent" required />
+              <span>Declaro haber leído el <a href="../privacidad/" target="_blank" rel="noopener noreferrer">Aviso de Privacidad</a> y acepto los <a href="../terminos/" target="_blank" rel="noopener noreferrer">Términos del servicio</a> y las <a href="../politicas/" target="_blank" rel="noopener noreferrer">Políticas aplicables</a> a mi solicitud.</span>
+            </label>
+
             <button type="submit" class="btn btn-secondary form-submit full-row">
               Cotizar mi experiencia
             </button>
@@ -305,6 +319,11 @@
     <footer class="site-footer">
       <p>INVYRA · Premium Digital Events</p>
       <span>Formulario de cotización premium</span>
+      <div class="legal-links" aria-label="Información legal de INVYRA">
+        <a href="../privacidad/">Aviso de Privacidad</a>
+        <a href="../terminos/">Términos del servicio</a>
+        <a href="../politicas/">Cambios y cancelaciones</a>
+      </div>
     </footer>
     <a
       href="https://wa.me/525535690278?text=Hola%20INVYRA%2C%20quiero%20cotizar%20una%20experiencia%20digital%20premium%20para%20mi%20evento."

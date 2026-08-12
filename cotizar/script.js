@@ -543,6 +543,7 @@ function getLeadFormData() {
     coloresTematica: getInputValue("themeColors"),
     ideaEvento: getInputValue("eventIdea"),
     comoConocio: getInputValue("referralSource"),
+    aceptaLegal: document.getElementById("legalConsent")?.checked === true,
   };
 }
 
@@ -552,13 +553,20 @@ function validateLeadData(data) {
   if (!data.whatsapp) missingFields.push("clientPhone");
   if (!data.tipoEvento) missingFields.push("eventType");
   if (!data.paquete) missingFields.push("packageType");
-  if (!data.presupuesto) missingFields.push("budgetRange");
   if (missingFields.length) {
     return {
       isValid: false,
       fields: missingFields,
       message:
-        "Completa nombre, WhatsApp, tipo de evento, nivel de experiencia y presupuesto estimado.",
+        "Completa nombre, WhatsApp, tipo de evento y nivel de experiencia.",
+    };
+  }
+  if (!data.aceptaLegal) {
+    return {
+      isValid: false,
+      fields: ["legalConsent"],
+      message:
+        "Confirma que has leído el Aviso de Privacidad y aceptas los términos aplicables.",
     };
   }
   if (!isValidName(data.nombre)) {

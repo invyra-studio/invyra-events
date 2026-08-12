@@ -1,0 +1,98 @@
+/* INVYRA · Sprint 2 legal / shared footer + quote notice */
+.legal-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 16px;
+  width: 100%;
+  margin-top: 18px;
+  font-size: .72rem;
+}
+
+.legal-links a {
+  color: inherit;
+  opacity: .72;
+  text-decoration: underline;
+  text-decoration-color: rgba(183, 135, 60, .38);
+  text-underline-offset: 4px;
+  transition: opacity .2s ease, color .2s ease;
+}
+
+.legal-links a:hover,
+.legal-links a:focus-visible {
+  color: #d7b77f;
+  opacity: 1;
+}
+
+.privacy-summary {
+  grid-column: 1 / -1;
+  margin-top: 8px;
+  padding: 20px;
+  border: 1px solid rgba(184, 135, 60, .26);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(184,135,60,.09), transparent 38%),
+    rgba(255, 250, 242, .62);
+  color: #30271f;
+}
+
+.privacy-summary-title {
+  display: block;
+  margin-bottom: 7px;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.28rem;
+  line-height: 1.15;
+}
+
+.privacy-summary p {
+  margin: 6px 0;
+  font-size: .78rem;
+  line-height: 1.65;
+}
+
+.privacy-summary a,
+.legal-consent a {
+  color: #7f5b2b;
+  font-weight: 700;
+  text-underline-offset: 3px;
+}
+
+
+.legal-consent {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 2px 0 8px;
+  padding: 14px 15px;
+  border: 1px solid rgba(184, 135, 60, .28);
+  border-radius: 14px;
+  background: rgba(255,255,255,.54);
+  color: #342b23;
+  font-size: .77rem;
+  line-height: 1.55;
+}
+
+.legal-consent input[type="checkbox"] {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: #8d642e;
+}
+
+.legal-consent:focus-within {
+  border-color: rgba(141, 100, 46, .62);
+  box-shadow: 0 0 0 3px rgba(183, 135, 70, .11);
+}
+
+#legalConsent.field-warning {
+  outline: 3px solid rgba(164, 80, 45, .28);
+  outline-offset: 3px;
+}
+
+@media (max-width: 720px) {
+  .privacy-summary { padding: 17px; }
+  .legal-consent { padding: 13px; }
+  .legal-links { gap: 9px 14px; }
+}
