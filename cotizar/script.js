@@ -250,6 +250,7 @@ function initQuotePrefill() {
     esencial: "Esencial",
     signature: "Signature",
     legacy: "Legacy",
+    bespoke: "Bespoke",
   };
   const eventValue = eventAliases[(params.get("tipo") || "").toLowerCase()];
   const packageValue = packageAliases[(params.get("nivel") || "").toLowerCase()];
@@ -330,17 +331,22 @@ function updateExtrasByPackage() {
   }
   if (selectedPackage === "Legacy") {
     hint.textContent =
-      "Legacy Experience concentra la mayoría de funciones premium. Solo se muestran adicionales realmente aplicables.";
+      "Legacy ya incluye video, nombre de invitado, confirmación automática y música personalizada. Solo se muestran adicionales que pueden ampliar el alcance o la entrega.";
     return;
   }
   if (selectedPackage === "Signature") {
     hint.textContent =
-      "Estos adicionales complementan Signature Experience sin repetir funciones ya incluidas.";
+      "Signature ya incluye RSVP inteligente, galería de hasta 12–15 fotos y 1 sección adicional. Aquí aparecen ampliaciones posteriores o funciones premium no incluidas.";
     return;
   }
   if (selectedPackage === "Esencial") {
     hint.textContent =
-      "Puedes agregar funciones extra para elevar Essential Experience según tu evento.";
+      "Esencial incluye publicación, cuenta regresiva y galería de 4–6 fotos. Aquí puedes ampliar alcance sin duplicar lo que ya incluye el paquete.";
+    return;
+  }
+  if (selectedPackage === "Bespoke") {
+    hint.textContent =
+      "Bespoke se cotiza a medida. Marca solo referencias útiles; el alcance final se define contigo.";
     return;
   }
   hint.textContent =

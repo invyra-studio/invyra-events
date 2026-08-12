@@ -9,7 +9,7 @@
       content="Cotiza una experiencia digital premium para tu evento con INVYRA."
     />
     <link rel="icon" type="image/jpeg" href="../LOGO/FAVICON.jpeg" />
-    <link rel="stylesheet" href="./style.css?v=1.0.55-rc" />
+    <link rel="stylesheet" href="./style.css?v=1.1.0-commercial" />
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800;900&family=Great+Vibes&display=swap"
       rel="stylesheet"
@@ -22,7 +22,7 @@
       src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"
       defer
     ></script>
-    <script src="./script.js?v=1.0.55-rc" defer></script>
+    <script src="./script.js?v=1.1.0-commercial" defer></script>
   </head>
   <body>
     <div class="site-bg">
@@ -62,10 +62,7 @@
           Cuéntanos tu evento sin perderte entre mensajes.
         </h1>
         <p class="section-copy">
-          Esta página reúne el briefing completo para orientar mejor tu
-          cotización. La landing se mantiene ligera; aquí nos das el contexto
-          necesario para proponerte una experiencia a la altura de tu
-          celebración.
+          Comparte primero lo esencial. Con esos datos podemos orientar el paquete y, si hace falta, profundizamos después sin hacerte llenar información innecesaria.
         </p>
       </section>
       <section class="quote-form-section section-reveal" id="cotizar">
@@ -217,23 +214,22 @@
               <label for="packageType">Nivel de experiencia de interés</label>
               <select id="packageType" name="packageType" required>
                 <option value="">Selecciona una opción</option>
-                <option value="Esencial">Essential Experience</option>
-                <option value="Signature">Signature Experience</option>
-                <option value="Legacy">Legacy Experience</option>
-                <option value="Aún no sé cuál elegir">
-                  Aún no sé cuál elegir
-                </option>
+                <option value="Esencial">Esencial — $1,299 MXN</option>
+                <option value="Signature">Signature — $1,899 MXN</option>
+                <option value="Legacy">Legacy — $2,899 MXN</option>
+                <option value="Bespoke">INVYRA Bespoke — desde $5,900 MXN</option>
+                <option value="Aún no sé cuál elegir">Aún no sé cuál elegir</option>
               </select>
             </div>
 
             <div class="form-row">
-              <label for="budgetRange">Presupuesto estimado</label>
-              <select id="budgetRange" name="budgetRange" required>
+              <label for="budgetRange">Presupuesto estimado <span class="optional-label">opcional</span></label>
+              <select id="budgetRange" name="budgetRange">
                 <option value="">Selecciona un rango</option>
-                <option value="Hasta $1,500 MXN">Hasta $1,500 MXN</option>
-                <option value="$1,500 a $2,500 MXN">$1,500 a $2,500 MXN</option>
-                <option value="$2,500 a $4,000 MXN">$2,500 a $4,000 MXN</option>
-                <option value="Más de $4,000 MXN">Más de $4,000 MXN</option>
+                <option value="$1,299 a $1,899 MXN">$1,299 a $1,899 MXN</option>
+                <option value="$1,900 a $2,899 MXN">$1,900 a $2,899 MXN</option>
+                <option value="$2,900 a $5,899 MXN">$2,900 a $5,899 MXN</option>
+                <option value="$5,900 MXN o más">$5,900 MXN o más</option>
                 <option value="Necesito orientación">Necesito orientación</option>
               </select>
             </div>
@@ -257,96 +253,16 @@
               </p>
 
               <div class="extras-checklist" id="extrasChecklist">
-                <label
-                  class="check-option"
-                  data-packages="Esencial,Signature,Legacy"
-                >
-                  <input
-                    type="checkbox"
-                    name="extras"
-                    value="Dominio personalizado"
-                  />
-                  <span>Dominio personalizado</span>
-                </label>
-
-                <label class="check-option" data-packages="Esencial,Signature">
-                  <input
-                    type="checkbox"
-                    name="extras"
-                    value="Video de portada"
-                  />
-                  <span>Video de portada</span>
-                </label>
-
-                <label class="check-option" data-packages="Esencial,Signature">
-                  <input
-                    type="checkbox"
-                    name="extras"
-                    value="Nombre del invitado"
-                  />
-                  <span>Nombre del invitado</span>
-                </label>
-
-                <label class="check-option" data-packages="Esencial">
-                  <input
-                    type="checkbox"
-                    name="extras"
-                    value="Confirmación automática"
-                  />
-                  <span>Confirmación automática</span>
-                </label>
-
-                <label class="check-option" data-packages="Esencial">
-                  <input
-                    type="checkbox"
-                    name="extras"
-                    value="Galería ampliada"
-                  />
-                  <span>Galería ampliada</span>
-                </label>
-
-                <label class="check-option" data-packages="Esencial,Signature">
-                  <input
-                    type="checkbox"
-                    name="extras"
-                    value="Secciones extra / mesa de regalos"
-                  />
-                  <span>Secciones extra / mesa de regalos</span>
-                </label>
-
-                <label class="check-option" data-packages="Esencial">
-                  <input
-                    type="checkbox"
-                    name="extras"
-                    value="Cuenta regresiva"
-                  />
-                  <span>Cuenta regresiva</span>
-                </label>
-
-                <label class="check-option" data-packages="Esencial">
-                  <input
-                    type="checkbox"
-                    name="extras"
-                    value="Publicación en línea"
-                  />
-                  <span>Publicación en línea</span>
-                </label>
-
-                <label class="check-option" data-packages="Esencial,Signature">
-                  <input
-                    type="checkbox"
-                    name="extras"
-                    value="Música personalizada"
-                  />
-                  <span>Música personalizada</span>
-                </label>
-
-                <label class="check-option" data-packages="Signature">
-                  <input type="checkbox" name="extras" value="Itinerario" />
-                  <span>Itinerario</span>
-                </label>
-              </div>
-            </div>
+                <label class="check-option" data-packages="Esencial,Signature,Legacy,Bespoke"><input type="checkbox" name="extras" value="Dominio personalizado" /><span>Dominio personalizado · desde $699</span></label>
+                <label class="check-option" data-packages="Esencial,Signature"><input type="checkbox" name="extras" value="Video de portada" /><span>Video de portada · $550–$650</span></label>
+                <label class="check-option" data-packages="Esencial,Signature"><input type="checkbox" name="extras" value="Nombre del invitado" /><span>Nombre del invitado · desde $450</span></label>
+                <label class="check-option" data-packages="Esencial,Signature"><input type="checkbox" name="extras" value="Confirmación automática" /><span>Confirmación automática · $450</span></label>
+                <label class="check-option" data-packages="Esencial,Signature,Legacy"><input type="checkbox" name="extras" value="Bloque adicional de galería" /><span>Bloque adicional de galería · $350</span></label>
+                <label class="check-option" data-packages="Esencial,Signature,Legacy"><input type="checkbox" name="extras" value="Sección extra" /><span>Sección extra · $350–$450 c/u</span></label>
+                <label class="check-option" data-packages="Esencial,Signature"><input type="checkbox" name="extras" value="Música personalizada" /><span>Música personalizada · $200</span></label>
+                <label class="check-option" data-packages="Esencial,Signature,Legacy,Bespoke"><input type="checkbox" name="extras" value="Express 48 h" /><span>Express 48 h · +$699</span></label>
+                <label class="check-option" data-packages="Esencial,Signature,Legacy,Bespoke"><input type="checkbox" name="extras" value="Prioridad 24 h" /><span>Prioridad 24 h · +$999</span></label>
+              </div>            </div>
 
             <div class="form-row full-row">
               <label for="themeColors">Estilo visual o temática deseada</label>

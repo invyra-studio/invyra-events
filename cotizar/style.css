@@ -6615,3 +6615,40 @@ body.nav-open .nav-toggle span:last-child {
     width: 100%;
   }
 }
+
+/* ==========================================================
+   INVYRA — VISUAL POLISH 1.1.1 / COTIZAR
+   Homologa navegación fija y WhatsApp con la estética general.
+   ========================================================== */
+
+section[id] {
+    scroll-margin-top: 148px;
+}
+
+.floating-whatsapp {
+    border: 1px solid rgba(234, 215, 173, 0.30);
+    color: var(--cream, #fffaf2);
+    background:
+        radial-gradient(circle at 18% 0%, rgba(184, 135, 60, 0.16), transparent 38%),
+        linear-gradient(135deg, #18382b 0%, #102a20 54%, #0c2018 100%);
+    box-shadow:
+        0 18px 44px rgba(15, 43, 31, 0.24),
+        0 0 24px rgba(184, 135, 60, 0.07),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.floating-whatsapp:hover {
+    background:
+        radial-gradient(circle at 18% 0%, rgba(184, 135, 60, 0.22), transparent 40%),
+        linear-gradient(135deg, #214c3a 0%, #17382a 56%, #10281e 100%);
+    box-shadow:
+        0 22px 54px rgba(15, 43, 31, 0.30),
+        0 0 30px rgba(184, 135, 60, 0.10);
+}
+
+@media (max-width: 820px) {
+    section[id] {
+        scroll-margin-top: 118px;
+    }
+}
+

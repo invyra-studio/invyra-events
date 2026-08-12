@@ -1,116 +1,118 @@
 # Reglas de paquetes INVYRA
 
-## Cómo leer este documento
+## Fuente oficial
 
-Las reglas se derivan de la página Experiencias, las etiquetas del Portafolio y las demos de referencia. Se distingue entre:
+Este documento sincroniza la oferta comercial de lanzamiento de INVYRA. La web, Cotización, Portafolio y materiales comerciales deben respetar esta estructura.
 
-- **Promesa publicada:** alcance que la página Experiencias atribuye al nivel.
-- **Patrón observado:** forma en que las demos actuales materializan esa promesa.
-- **POR CONFIRMAR:** alcance comercial que todavía requiere consultar la oferta exacta.
+## Precios de lanzamiento
 
-## Reglas comunes a todos los niveles
+| Nivel | Precio de lanzamiento | Intención |
+|---|---:|---|
+| **Esencial** | **$1,299 MXN** | Todo lo necesario para invitar con elegancia |
+| **Signature** | **$1,899 MXN** | La experiencia ideal para invitar y organizar |
+| **Legacy** | **$2,899 MXN** | Exclusividad y personalización para una experiencia completa |
+| **INVYRA Bespoke** | **Desde $5,900 MXN** | Proyectos a medida con alcance especial |
 
-- Invitación digital premium, personalizada y compartible.
-- Diseño móvil como invitación vertical y escritorio editorial contenido.
-- Información esencial legible y CTA principal inequívoco.
-- Música sin control visible, con intento de reproducción al abrir y pausa al perder visibilidad.
+Los precios de lanzamiento no deben presentarse como permanentes.
+
+## Reglas comunes
+
+- Invitación web responsive y mobile-first.
+- URL INVYRA incluida.
+- Diseño adaptado al evento.
+- Publicación en línea incluida en la experiencia base.
+- Cuenta regresiva incluida desde Esencial.
 - WhatsApp funcional en toda demo comercial.
-- RSVP coherente: al declinar, deshabilitar campos dependientes y excluir sus datos del envío.
-- Privacidad: no exponer datos personales, credenciales o información de clientes en documentación pública.
+- No exponer datos personales en parámetros visibles de URL.
+- No añadir controles visibles de música dentro de las demos comerciales salvo decisión posterior explícita.
 
-## Matriz preliminar
+## Esencial — $1,299 MXN
 
-| Dimensión | Esencial | Signature | Legacy |
-|---|---|---|---|
-| Intención | Resolver con claridad, elegancia y función | Aumentar presencia, emoción y recuerdo | Construir una historia digital más completa |
-| Referente principal | `birthday-demo-01` | `xv-demo-01` y `babyshower-demo-01` | `wedding-demo-01` |
-| Profundidad observada | Recorrido compacto con apertura, identidad, datos, ubicación y RSVP | Recorrido medio con módulos visuales o emocionales propios del evento | Mini sitio narrativo con más secciones, medios y decisiones del invitado |
-| RSVP observado | Confirmación directa | Confirmación con uno o más datos contextuales | Confirmación avanzada con preferencias o decisiones adicionales |
-| Movimiento | Animación de entrada y revelados contenidos | Animaciones especiales y bienvenida más protagonista | Movimiento cinematográfico o editorial; puede incluir video |
-| Ajustes publicados | 1 | 2 | 3 |
+Incluye:
 
-## Esencial
-
-### Promesa publicada
-
-- Invitación digital animada.
+- Invitación web responsive.
+- URL INVYRA.
+- Diseño adaptado al evento.
 - Música de fondo.
-- Datos del evento.
+- Fecha, horarios y datos del evento.
+- Google Maps / Waze.
 - Confirmación por WhatsApp.
-- Botón de ubicación.
-- Diseño personalizado.
-- Un ajuste incluido.
-
-### Patrón observado
-
-`birthday-demo-01` concentra el recorrido en apertura, hero, atmósfera editorial breve, datos, ubicación y RSVP. No depende de galería, cuenta regresiva o múltiples secciones para sentirse premium.
-
-El portafolio también clasifica como Esencial las demos de aniversario y pedida. Esto confirma que Esencial puede cambiar de estética y tipo de evento sin aumentar necesariamente su profundidad funcional.
-
-## Signature
-
-### Promesa publicada
-
-- Todo lo de Esencial.
 - Cuenta regresiva.
-- Ubicación en Google Maps.
 - Código de vestimenta.
-- Galería de fotos.
-- Animaciones especiales.
+- Galería sencilla de **4–6 fotos**.
+- **1 ronda de ajustes**.
+
+### RSVP Esencial
+
+Confirmación por WhatsApp. El invitado selecciona su respuesta y continúa por WhatsApp para enviarla. No se debe afirmar que la respuesta quedó almacenada si técnicamente no existe almacenamiento previo.
+
+## Signature — $1,899 MXN · MÁS ELEGIDO
+
+Incluye todo Esencial, más:
+
+- Galería ampliada de **hasta 12–15 fotos**.
+- Animaciones premium.
 - Pantalla de bienvenida.
-- Publicación en línea.
-- Dos ajustes incluidos.
+- Itinerario.
+- Mesa de regalos.
+- **RSVP inteligente** mediante formulario INVYRA.
+- Registro organizado de confirmaciones.
+- **Hasta 1 sección adicional**.
+- **2 rondas de ajustes**.
 
-### Patrón observado
+### RSVP Signature
 
-`xv-demo-01` materializa el paquete de forma amplia: bienvenida, cuenta regresiva, detalles, mapa, dress code, itinerario, galería y RSVP contextual.
+Formulario INVYRA + registro estructurado de respuestas. La automatización avanzada no se debe anunciar como incluida.
 
-`babyshower-demo-01` demuestra que los módulos se adaptan al evento: prioriza atmósfera, cuenta regresiva, detalles, regalos, participación emocional y RSVP. Los módulos Signature se eligen según el evento, pero el resultado debe conservar profundidad, cantidad de contenido y valor equivalentes al nivel.
+## Legacy — $2,899 MXN
 
-El portafolio ubica aquí baby shower, XV, fiesta infantil, primera comunión, graduación, bautizo, save the date, gender reveal y bridal shower.
+Incluye todo Signature, más:
 
-## Legacy
-
-### Promesa publicada
-
-- Mini sitio web del evento.
-- Historia de la pareja o familia.
 - Video de portada o fondo animado.
-- Galería premium.
-- Cuenta regresiva avanzada.
-- Confirmación avanzada.
 - Nombre del invitado.
+- Historia de la pareja, festejada o familia.
+- **Hasta 3 secciones personalizadas**.
+- Galería premium de **hasta 25–30 fotos**.
+- Cuenta regresiva avanzada.
+- **RSVP automatizado / avanzado**: registro, automatización y campos avanzados según el flujo contratado.
 - Música personalizada.
-- Código de vestimenta e itinerario.
-- Mesa de regalos y Google Maps.
-- Publicación en línea y tres ajustes.
+- **3 rondas de ajustes**.
 
-### Patrón observado
+## INVYRA Bespoke — desde $5,900 MXN
 
-`wedding-demo-01` amplía la narrativa mediante historia, video, cuenta regresiva, múltiples ubicaciones, dress code, itinerario, menú, galería, regalos, información para invitados y RSVP avanzado.
+Para dirección visual desde cero, animaciones especiales, branding, dominio, versiones bilingües, control QR, integraciones o desarrollos particulares. El alcance se cotiza por proyecto.
 
-Las demos Legacy de boda editorial y lanzamiento corporativo confirman que el nivel se define por profundidad narrativa, medios y personalización, no por exigir módulos de boda en eventos donde no aplican.
+## Adicionales
 
-## Catálogo comercial
+| Adicional | Precio de lanzamiento | Aplicación |
+|---|---:|---|
+| Dominio personalizado | Desde $699 MXN / primer año | Todos los niveles |
+| Video de portada | $550–$650 MXN | Esencial / Signature; incluido en Legacy |
+| Nombre del invitado | Desde $450 MXN, hasta 100 invitados | Esencial / Signature; incluido en Legacy |
+| Confirmación automática | $450 MXN | Esencial / Signature; incluida en Legacy |
+| Bloque adicional de galería | $350 MXN | Después del límite incluido en cada nivel |
+| Sección extra | $350–$450 MXN c/u | Después del límite incluido en cada nivel |
+| Música personalizada | $200 MXN | Esencial / Signature; incluida en Legacy |
+| Express 48 h | +$699 MXN | Sujeto a disponibilidad |
+| Prioridad 24 h | +$999 MXN | Sujeto a disponibilidad |
 
-- El catálogo público contiene 15 demos comerciales.
-- Advertencia técnica temporal: cualquier carpeta `demos/memorial*` es privada/no listada, ajena a paquetes y propuestas comerciales, y debe ignorarse salvo instrucción expresa.
+### Diferencia de música
 
-## Módulos y adicionales
+- **Música de fondo:** pista de la biblioteca INVYRA o audio autorizado/proporcionado para el proyecto bajo las condiciones aceptadas.
+- **Música personalizada:** integración y ajuste de una canción específica elegida para la experiencia.
 
-La página Experiencias presenta como adicionales: dominio personalizado, video de portada, nombre del invitado, confirmación automática conectada, galería ampliada, secciones extra, cuenta regresiva, publicación en línea y música personalizada.
+## Reglas de alcance
 
-No asumir automáticamente que un adicional está incluido o excluido. La selección debe depender del nivel contratado y de la confirmación comercial.
+- Cuando una galería exceda el límite del nivel, se vende como bloque adicional.
+- Cuando las secciones excedan el límite del nivel, se cotizan individualmente según complejidad.
+- Dominio personalizado se vende como servicio de registro/configuración; la renovación depende de la extensión.
+- Personalización de invitados por encima de 100 invitados se cotiza por volumen.
+- Express solo debe venderse cuando la capacidad operativa permita cumplirlo.
 
-## Deuda de calidad y contenido
+## Regla de marca
 
-- La interfaz actual todavía usa “Essential” en algunos lugares; debe migrarse a **Esencial** en una fase posterior.
-- Graduación y Primera Comunión son Signature y requieren música.
-- Las brechas actuales de controles musicales, visibilidad, WhatsApp y RSVP se corrigen como deuda; no cambian la definición de los paquetes.
-- El texto provisional visible en Experiencias sobre una futura sustitución del mapa de paquetes es deuda de contenido.
+El nombre oficial del primer nivel es **Esencial**. No usar “Essential” en superficies comerciales nuevas.
 
-## POR CONFIRMAR
+## Material privado
 
-1. **Incluidos frente a adicionales:** la oferta presenta algunos módulos en ambos contextos. La frontera final debe extraerse de la oferta comercial exacta.
-2. **Confirmación conectada:** definir qué parte del registro remoto es estándar y qué parte pertenece a un adicional.
-3. **Publicación y alojamiento:** resolver su inclusión por nivel dentro de la misma revisión de oferta comercial, sin asumirla desde la implementación técnica.
+Cualquier carpeta `demos/memorial*` es privada/no listada, ajena al catálogo comercial, y debe ignorarse salvo instrucción expresa.
