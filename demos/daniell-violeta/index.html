@@ -11,7 +11,7 @@
     />
 
     <link rel="icon" type="image/jpeg" href="../../LOGO/FAVICON.jpeg" />
-    <link rel="stylesheet" href="style.css?v=2.6.0" />
+    <link rel="stylesheet" href="style.css?v=2.6.1" />
 
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@400;500;600;700;800&display=swap"
@@ -29,7 +29,7 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
   </head>
 
-  <body>
+  <body data-rsvp-demo-disabled="true">
     <div id="splash-screen">
       <div class="splash-watercolor" aria-hidden="true"></div>
       <div class="splash-grain" aria-hidden="true"></div>
@@ -199,31 +199,32 @@
         <div class="guest-info-card legacy-guest-guide">
           <div class="guest-info-item"><div class="guest-info-icon" aria-hidden="true">⏱</div><div><h3>Llegada sugerida</h3><p>Te recomendamos llegar 20 minutos antes de la ceremonia para encontrar tu lugar y acompañar a Daniell desde el comienzo de este día especial.</p></div></div>
           <div class="guest-info-item"><div class="guest-info-icon" aria-hidden="true">✦</div><div><h3>Experiencia del día</h3><p>La ceremonia comenzará a las 6:00 PM y la recepción en Salón Mila's dará inicio a las 7:00 PM.</p></div></div>
-          <div class="guest-info-item"><div class="guest-info-icon" aria-hidden="true">⌖</div><div><h3>Ubicación de la recepción</h3><p>El enlace de ubicación de Salón Mila's se agregará en cuanto quede confirmado.</p></div></div>
+          <div class="guest-info-item"><div class="guest-info-icon" aria-hidden="true">⌖</div><div><h3>Ubicación de la recepción</h3><p>La ubicación de Salón Mila’s ya está confirmada. Usa el botón “Ver en Google Maps” para llegar fácilmente.</p></div></div>
           <div class="guest-info-item"><div class="guest-info-icon" aria-hidden="true">✦</div><div><h3>Una noche para recordar</h3><p>Ven con ganas de celebrar, abrazar, bailar y formar parte de un recuerdo que Daniell llevará siempre consigo.</p></div></div>
         </div>
       </section>
 <footer class="action-section paper-tear-top">
         <div class="rsvp-card">
           <p class="rsvp-kicker">CONFIRMACIÓN DE ASISTENCIA</p>
+          <p class="rsvp-demo-badge" role="status">MODO MUESTRA · CONFIRMACIÓN DESHABILITADA</p>
           <h2>Confirma tu asistencia</h2>
           <p class="rsvp-intro">Tu presencia hará esta noche todavía más especial. Confírmanos si podrás acompañar a Daniell en sus XV años.</p>
           <div class="ornament-line"><span></span></div>
           <div class="rsvp-envelope-icon" aria-hidden="true">♡</div>
 
           <div class="rsvp-form">
-            <input type="text" id="nombreInvitado" placeholder="Nombre completo o familia" autocomplete="off" aria-label="Nombre de invitado o familia" />
+            <input type="text" id="nombreInvitado" placeholder="Nombre completo o familia" autocomplete="off" aria-label="Nombre de invitado o familia" disabled />
             <div class="attendance-group">
               <p>Confirmo que</p>
               <div class="attendance-options">
-                <label><input type="radio" name="asistencia" value="Asistiré" checked /><span>Asistiré</span></label>
-                <label><input type="radio" name="asistencia" value="No asistiré" /><span>No asistiré</span></label>
+                <label><input type="radio" name="asistencia" value="Asistiré" checked disabled /><span>Asistiré</span></label>
+                <label><input type="radio" name="asistencia" value="No asistiré" disabled /><span>No asistiré</span></label>
               </div>
             </div>
-            <p class="rsvp-live-message" id="rsvp-live-message" aria-live="polite">Selecciona tu respuesta para continuar.</p>
+            <p class="rsvp-live-message" id="rsvp-live-message" aria-live="polite">La confirmación se habilitará cuando la invitación quede en su versión final.</p>
             <input type="hidden" id="detalleAsistenciaInvitado" value="Ceremonia y recepción" />
-            <textarea id="mensajeInvitado" placeholder="Déjale a Daniell un mensaje especial (opcional)" aria-label="Mensaje opcional"></textarea>
-            <button type="button" id="btn-confirmar" class="btn-rsvp" onclick="confirmarAsistencia()" aria-label="Confirmar asistencia">Confirmar asistencia</button>
+            <textarea id="mensajeInvitado" placeholder="Déjale a Daniell un mensaje especial (opcional)" aria-label="Mensaje opcional" disabled></textarea>
+            <button type="button" id="btn-confirmar" class="btn-rsvp" onclick="confirmarAsistencia()" aria-label="Confirmación deshabilitada en modo muestra" disabled>Disponible en versión final</button>
           </div>
         </div>
 
@@ -252,6 +253,6 @@
       <source src="./assets/Daniell-Violeta.mp3?v=1.0" type="audio/mpeg" />
     </audio>
 
-    <script src="script.js?v=2.6.0"></script>
+    <script src="script.js?v=2.6.1"></script>
   </body>
 </html>

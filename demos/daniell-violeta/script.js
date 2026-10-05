@@ -487,6 +487,7 @@ function initRsvpMicrointeractions() {
    ============================== */
 
 async function confirmarAsistencia() {
+    if (document.body.dataset.rsvpDemoDisabled === "true") return;
     const inputNombre = document.getElementById("nombreInvitado");
     const inputMensaje = document.getElementById("mensajeInvitado");
     const detalleAsistenciaInput = document.getElementById("detalleAsistenciaInvitado");
