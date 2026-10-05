@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>INVYRA | Daniell Violeta - Mis XV Años</title>
+
+    <meta
+      name="description"
+      content="Invitación digital de XV años para Daniell Violeta, con estética editorial elegante en verde esmeralda y champagne."
+    />
+
+    <link rel="icon" type="image/jpeg" href="../../LOGO/FAVICON.jpeg" />
+    <link rel="stylesheet" href="style.css?v=2.6.0" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="preload" as="image" href="../../LOGO/FAVICON.jpeg" />
+    <link rel="preload" as="image" href="./assets/wedding-ceremony.jpeg" />
+    <link rel="preload" as="image" href="./assets/wedding-reception.jpeg" />
+    <link rel="preload" as="image" href="./assets/wedding-moments.jpeg" />
+    <link rel="preload" as="image" href="./assets/dress-men.jpeg" />
+    <link rel="preload" as="image" href="./assets/dress-women.jpeg" />
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+  </head>
+
+  <body>
+    <div id="splash-screen">
+      <div class="splash-watercolor" aria-hidden="true"></div>
+      <div class="splash-grain" aria-hidden="true"></div>
+      <div class="splash-photo-card" aria-hidden="true"></div>
+      <div class="splash-paper-card">
+        <img src="../../LOGO/FAVICON.jpeg" class="envelope-logo" alt="INVYRA" />
+        <p class="splash-kicker">Mis XV Años</p>
+        <h1 class="envelope-title">Daniell Violeta</h1>
+        <p class="envelope-date">SÁBADO · 28 · NOVIEMBRE</p>
+        <span class="splash-script">Te invito a celebrar</span>
+      </div>
+
+      <button
+        type="button"
+        class="btn-start-experience"
+        aria-label="Entrar a la experiencia"
+      >
+        ENTRAR A LA EXPERIENCIA
+      </button>
+    </div>
+
+    <main class="invitation-container" id="invitation-content">
+      <header class="hero-section paper-tear-bottom" id="inicio">
+        <div class="cinematic-bg hero-atmosphere"></div>
+        <div class="hero-watercolor hero-atmosphere" aria-hidden="true"></div>
+        <div class="hero-gold-wash hero-atmosphere" aria-hidden="true"></div>
+        <div class="hero-grain hero-atmosphere" aria-hidden="true"></div>
+        <div class="cinematic-overlay hero-atmosphere"></div>
+
+        <div class="hero-content">
+          <img
+            src="../../LOGO/FAVICON.jpeg"
+            alt="Invyra Logo"
+            class="brand-logo-img reveal-item"
+          />
+
+          <p class="hero-kicker reveal-item">
+            Con el amor de mi familia y la alegría de quienes han acompañado mi camino
+          </p>
+
+          <h2 class="pre-title reveal-item">
+            QUIERO COMPARTIR CONTIGO UNA NOCHE QUE GUARDARÉ PARA SIEMPRE
+          </h2>
+
+          <h1 class="main-title reveal-title">
+            <span class="script-line">Mis XV años</span>
+            <span class="name-line name-line-one">Daniell</span>
+            <span class="ampersand">·</span>
+            <span class="name-line name-line-two">Violeta</span>
+          </h1>
+
+          <div class="hero-info-card reveal-item">
+            <p class="celebrant-name">28 · NOV · 2026</p>
+            <p class="hero-subtitle">SÁBADO · 28 DE NOVIEMBRE</p>
+            <span class="hero-mini-copy">Quince años de sueños, aprendizajes y recuerdos llegan a una noche que quiero compartir contigo.</span>
+          </div>
+        </div>
+      </header>
+
+      <section class="quote-section section-reveal paper-card torn-card">
+        <p class="quote-mark">“</p>
+        <p class="quote-text">
+          Hay momentos que duran una noche y recuerdos que nos acompañan toda la vida. Quiero que este sea uno de ellos, contigo.
+        </p>
+      </section>
+<section class="countdown-section section-reveal">
+        <p class="section-label">FALTA POCO PARA MIS XV</p>
+        <div id="countdown" class="glass-card countdown-paper">
+          <div class="time-unit"><span id="days">00</span><small>DÍAS</small></div>
+          <div class="time-unit"><span id="hours">00</span><small>HRS</small></div>
+          <div class="time-unit"><span id="mins">00</span><small>MIN</small></div>
+          <div class="time-unit"><span id="secs">00</span><small>SEG</small></div>
+        </div>
+      </section>
+
+      <section class="parents-section section-reveal paper-card">
+        <p class="section-label">QUIENES HACEN POSIBLE ESTE SUEÑO</p>
+        <h2 class="section-title">Con amor, mi familia</h2>
+        <div class="parents-grid">
+          <div class="parent-card">
+            <span>Mis papás</span>
+            <p>Karen Marlene García Gámez<br />Carlos Eduardo Ortega Ocadiz</p>
+          </div>
+          <div class="parent-card">
+            <span>Mis padrinos</span>
+            <p>Cristina Elizabeth García Gámez<br />Jesús Francisco Díaz Miranda</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="details-section section-reveal">
+        <p class="section-label">CEREMONIA & CELEBRACIÓN</p>
+        <h2 class="section-title">Dos momentos, una misma celebración</h2>
+        <div class="event-cards">
+          <article class="event-card">
+            <div class="event-icon" aria-hidden="true"><svg viewBox="0 0 64 64" class="event-icon-svg" role="img" aria-label="Icono de iglesia"><path d="M32 10v12"/><path d="M27 15h10"/><path d="M20 26l12-10 12 10"/><path d="M23 24v24"/><path d="M41 24v24"/><path d="M28 48v-10a4 4 0 0 1 8 0v10"/><path d="M17 48h30"/><path d="M26 31h4"/><path d="M34 31h4"/></svg></div>
+            <h2>CEREMONIA RELIGIOSA</h2>
+            <p class="event-place">Parroquia de San Pedro Apóstol de Atzompa</p>
+            <p class="event-time">18:00 HRS</p>
+            <a href="https://maps.app.goo.gl/j5ucgPLe4FX9uEHo7" target="_blank" rel="noopener noreferrer" class="map-button">VER EN GOOGLE MAPS</a>
+          </article>
+
+          <article class="event-card event-card-featured">
+            <div class="event-icon" aria-hidden="true"><svg viewBox="0 0 64 64" class="event-icon-svg" role="img" aria-label="Icono de salón de eventos"><path d="M16 48V24l16-8 16 8v24"/><path d="M24 48V36h16v12"/><path d="M12 48h40"/><path d="M20 28h4"/><path d="M28 28h8"/><path d="M40 28h4"/><path d="M32 12l0 0"/><path d="M46 18l4-4"/><path d="M50 24h4"/><path d="M18 18l-4-4"/><path d="M10 24H6"/></svg></div>
+            <h2>RECEPCIÓN</h2>
+            <p class="event-place">Salón Mila's</p>
+            <p class="event-time">19:00 HRS</p>
+            <a href="https://maps.app.goo.gl/RXL2Ew265Zvy1KGo6" target="_blank" rel="noopener noreferrer" class="map-button">VER EN GOOGLE MAPS</a>
+          </article>
+        </div>
+      </section>
+<section class="dress-code-section section-reveal">
+        <p class="dress-script">Código de vestimenta</p>
+        <p class="dress-subcopy">Para que Daniell brille en su día, algunos tonos quedan reservados para ella.</p>
+        <div class="dress-layout">
+          <div class="dress-column">
+            <div class="dress-image-wrap">
+              <img src="./assets/dress-men.jpeg" data-fallback-src="./assets/dress-men.jpg" alt="Ejemplo de vestimenta formal para hombres" class="dress-image" />
+            </div>
+            <h3>HOMBRES</h3>
+            <p>Formal. Evita verde esmeralda.</p>
+          </div>
+          <div class="dress-column">
+            <div class="dress-image-wrap">
+              <img src="./assets/dress-women.jpeg" data-fallback-src="./assets/dress-women.jpg" alt="Ejemplo de vestimenta formal para mujeres" class="dress-image" />
+            </div>
+            <h3>MUJERES</h3>
+            <p>Formal. Evita tonos similares al vestido.</p>
+          </div>
+        </div>
+        <div class="reserved-colors">
+          <p class="reserved-colors-label">TONOS RESERVADOS PARA LA QUINCEAÑERA</p>
+          <p class="reserved-colors-note">Verde esmeralda, botella, pino y jade.</p>
+          <div class="palette-row" aria-label="Tonos reservados para la quinceañera">
+            <span class="tone tone-emerald" title="Verde esmeralda"></span>
+            <span class="tone tone-bottle" title="Verde botella"></span>
+            <span class="tone tone-pine" title="Verde pino"></span>
+            <span class="tone tone-jade" title="Verde jade"></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="gallery-section section-reveal">
+        <p class="section-label">GALERÍA</p>
+        <h2 class="section-title">Una noche imaginada para recordar siempre</h2>
+        <p class="gallery-intro">Detalles, luces y colores que anticipan la atmósfera de mis XV años.</p>
+        <div class="gallery-grid expanded-gallery">
+          <button class="gallery-item gallery-large" data-bg-base="wedding-ceremony" data-gallery-title="Ceremonia" type="button"><span>Ceremonia</span></button>
+          <button class="gallery-item" data-bg-base="wedding-moments" data-gallery-title="Daniell" type="button"><span>Daniell</span></button>
+          <button class="gallery-item" data-bg-base="wedding-reception" data-gallery-title="Recepción" type="button"><span>Recepción</span></button>
+          <button class="gallery-item" data-bg-base="wedding-moments" data-gallery-title="Detalles" type="button"><span>Detalles</span></button>
+          <button class="gallery-item" data-bg-base="wedding-reception" data-gallery-title="Celebración" type="button"><span>Celebración</span></button>
+        </div>
+      </section>
+<section class="gift-section section-reveal">
+        <p class="section-label">TU PRESENCIA</p>
+        <div class="gift-card paper-card">
+          <h2>Tu presencia será mi mejor regalo</h2>
+          <p>Lo más importante para mí es compartir esta noche con las personas que forman parte de mi historia. Gracias por estar presente en un momento tan especial.</p>
+          
+        </div>
+      </section>
+
+      <section class="guest-info-section section-reveal">
+        <p class="section-label">GUÍA PARA INVITADOS</p>
+        <h2 class="section-title">Para disfrutar cada momento</h2>
+        <div class="guest-info-card legacy-guest-guide">
+          <div class="guest-info-item"><div class="guest-info-icon" aria-hidden="true">⏱</div><div><h3>Llegada sugerida</h3><p>Te recomendamos llegar 20 minutos antes de la ceremonia para encontrar tu lugar y acompañar a Daniell desde el comienzo de este día especial.</p></div></div>
+          <div class="guest-info-item"><div class="guest-info-icon" aria-hidden="true">✦</div><div><h3>Experiencia del día</h3><p>La ceremonia comenzará a las 6:00 PM y la recepción en Salón Mila's dará inicio a las 7:00 PM.</p></div></div>
+          <div class="guest-info-item"><div class="guest-info-icon" aria-hidden="true">⌖</div><div><h3>Ubicación de la recepción</h3><p>El enlace de ubicación de Salón Mila's se agregará en cuanto quede confirmado.</p></div></div>
+          <div class="guest-info-item"><div class="guest-info-icon" aria-hidden="true">✦</div><div><h3>Una noche para recordar</h3><p>Ven con ganas de celebrar, abrazar, bailar y formar parte de un recuerdo que Daniell llevará siempre consigo.</p></div></div>
+        </div>
+      </section>
+<footer class="action-section paper-tear-top">
+        <div class="rsvp-card">
+          <p class="rsvp-kicker">CONFIRMACIÓN DE ASISTENCIA</p>
+          <h2>Confirma tu asistencia</h2>
+          <p class="rsvp-intro">Tu presencia hará esta noche todavía más especial. Confírmanos si podrás acompañar a Daniell en sus XV años.</p>
+          <div class="ornament-line"><span></span></div>
+          <div class="rsvp-envelope-icon" aria-hidden="true">♡</div>
+
+          <div class="rsvp-form">
+            <input type="text" id="nombreInvitado" placeholder="Nombre completo o familia" autocomplete="off" aria-label="Nombre de invitado o familia" />
+            <div class="attendance-group">
+              <p>Confirmo que</p>
+              <div class="attendance-options">
+                <label><input type="radio" name="asistencia" value="Asistiré" checked /><span>Asistiré</span></label>
+                <label><input type="radio" name="asistencia" value="No asistiré" /><span>No asistiré</span></label>
+              </div>
+            </div>
+            <p class="rsvp-live-message" id="rsvp-live-message" aria-live="polite">Selecciona tu respuesta para continuar.</p>
+            <input type="hidden" id="detalleAsistenciaInvitado" value="Ceremonia y recepción" />
+            <textarea id="mensajeInvitado" placeholder="Déjale a Daniell un mensaje especial (opcional)" aria-label="Mensaje opcional"></textarea>
+            <button type="button" id="btn-confirmar" class="btn-rsvp" onclick="confirmarAsistencia()" aria-label="Confirmar asistencia">Confirmar asistencia</button>
+          </div>
+        </div>
+
+        <div class="closing-section section-reveal">
+          <img src="../../LOGO/FAVICON.jpeg" alt="Invyra" class="closing-logo" />
+          <p>Gracias por acompañarme en una noche que marca el comienzo de una nueva etapa y que quiero recordar rodeada de quienes quiero.</p>
+          <span>Daniell Violeta</span>
+        </div>
+      </footer>
+    </main>
+
+    <div id="gallery-lightbox" class="gallery-lightbox hidden" role="dialog" aria-modal="true" aria-label="Vista ampliada de galería">
+      <button type="button" class="gallery-lightbox-close" aria-label="Cerrar galería">×</button>
+      <div class="gallery-lightbox-image" role="img" aria-label="Imagen de galería ampliada"></div>
+      <p class="gallery-lightbox-title"></p>
+    </div>
+
+    <div id="rsvp-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-message">
+      <div class="modal-content">
+        <h3 id="modal-title">¡RESPUESTA REGISTRADA!</h3>
+        <p id="modal-message">Gracias por confirmar tu asistencia a los XV años de Daniell Violeta.</p>
+      </div>
+    </div>
+
+    <audio id="bg-music" loop preload="none" data-audio-src="../../music/Daniell-Violeta.mp3?v=1.0">
+      <source src="../../music/Daniell-Violeta.mp3?v=1.0" type="audio/mpeg" />
+    </audio>
+
+    <script src="script.js?v=2.6.0"></script>
+  </body>
+</html>
