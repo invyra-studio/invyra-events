@@ -105,7 +105,7 @@ function entrarExperiencia() {
 function ensureWeddingAudioSource(music) {
     if (!music) return;
 
-    const expectedAudioSrc = music.dataset.audioSrc || "../../music/Daniell-Violeta.mp3?v=1.0";
+    const expectedAudioSrc = music.dataset.audioSrc || "./assets/Daniell-Violeta.mp3?v=1.0";
     const currentSrc = music.currentSrc || music.getAttribute("src") || "";
 
     if (!currentSrc.includes("Daniell-Violeta.mp3")) {
